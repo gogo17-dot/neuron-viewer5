@@ -1239,7 +1239,6 @@ function init() {
       });
     }
     neuronSetLang(currentLang);
-    updateThemeToggleChrome();
     try {
       localStorage.setItem("neyron_theme", theme);
     } catch (e) {}
