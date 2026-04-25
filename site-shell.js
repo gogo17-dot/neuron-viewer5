@@ -36,6 +36,9 @@
     if (typeof window.__neyronPostStructuresLang === "function") {
       window.__neyronPostStructuresLang();
     }
+    if (typeof window.__neyronAfterSetLang === "function") {
+      window.__neyronAfterSetLang(lang);
+    }
   }
 
   function initLang() {
@@ -52,6 +55,9 @@
     }
     if (typeof window.__neyronPostStructuresTheme === "function") {
       window.__neyronPostStructuresTheme();
+    }
+    if (typeof window.__neuronAtlasApplyTheme === "function") {
+      window.__neuronAtlasApplyTheme(t);
     }
   }
 
@@ -121,4 +127,7 @@
       });
     }
   }
+
+  window.__neyronSiteShellSetLang = setLang;
+  window.__neyronSiteShellSetTheme = setTheme;
 })();

@@ -2,66 +2,37 @@
   box-sizing: border-box;
 }
 
-.neuron-atlas-chrome {
+/* Same top nav height as Synapse / rest of site (`site.css` .site-nav is 60px fixed). */
+body.neuron-structure-page {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #000000;
+  color: #e2e8f0;
+}
+
+.neuron-structure-main {
   position: fixed;
-  top: 0;
+  top: 60px;
   left: 0;
   right: 0;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  height: 44px;
-  padding: 0 14px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: rgba(6, 14, 26, 0.92);
-  border-bottom: 1px solid rgba(126, 207, 179, 0.35);
-}
-
-html.atlas-day .neuron-atlas-chrome {
-  background: #fffef4;
-  border-bottom-color: #0a0a0a;
-}
-
-.neuron-atlas-chrome__brand {
-  color: rgba(200, 245, 225, 0.95);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-html.atlas-day .neuron-atlas-chrome__brand {
-  color: #0a0a0a;
-}
-
-.neuron-atlas-chrome__link {
-  color: rgba(160, 200, 185, 0.85);
-  text-decoration: none;
-}
-
-.neuron-atlas-chrome__link:hover {
-  color: #7ecfb3;
-}
-
-html.atlas-day .neuron-atlas-chrome__link {
-  color: #3a3020;
-}
-
-html.atlas-day .neuron-atlas-chrome__link:hover {
-  color: #0a0a0a;
-}
-
-/* Match main site nav-tools (site.css); align in compact neuron header */
-.neuron-atlas-chrome .nav-tools {
-  margin-left: auto;
-  flex-shrink: 0;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  background: #000000;
 }
 
 html,
 body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -71,19 +42,9 @@ body {
   color: #e2e8f0;
 }
 
-body {
-  padding-top: 44px;
-  box-sizing: border-box;
-}
-
-#root {
-  margin: 0;
-  width: 100%;
-  height: calc(100% - 44px);
-  overflow: hidden;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: #000000;
-  color: #e2e8f0;
+html.atlas-day .neuron-structure-main,
+html.atlas-day #root {
+  background: #ffffff;
 }
 
 html.atlas-day,

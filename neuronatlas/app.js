@@ -75,9 +75,9 @@ if (closeBtn && panel) {
 
 let currentLang = "en";
 
-function setLang(lang) {
+/** Panel + tooltips only; nav EN/AZ and <html lang> come from `site-shell.js`. */
+function neuronSetLang(lang) {
   currentLang = lang;
-  document.documentElement.lang = lang === "az" ? "az" : "en";
 
   const descriptions = lang === "en" ? PART_DESCRIPTIONS : PART_DESCRIPTIONS_AZ;
   /** Prefer the mesh key from the last click (incl. double-click depth) so title + body stay aligned. */
@@ -111,21 +111,11 @@ function setLang(lang) {
       tip.textContent = tooltipNames[lang][panelOpenPickLabel] || panelOpenPickLabel;
     }
   }
-  document.querySelectorAll(".neuron-atlas-chrome [data-en][data-az]").forEach(function (el) {
-    el.textContent = lang === "az" ? el.getAttribute("data-az") : el.getAttribute("data-en");
-  });
-
-  const langEnBtn = document.getElementById("lang-en");
-  const langAzBtn = document.getElementById("lang-az");
-  if (langEnBtn) langEnBtn.classList.toggle("is-active", lang !== "az");
-  if (langAzBtn) langAzBtn.classList.toggle("is-active", lang === "az");
-
-  try {
-    localStorage.setItem("neyron_lang", lang);
-  } catch (e) {}
 }
 
-window.setLang = setLang;
+window.__neyronAfterSetLang = function (lang) {
+  neuronSetLang(lang);
+};
 
 function clientToNdc(clientX, clientY, canvasEl, target) {
   const r = canvasEl.getBoundingClientRect();
@@ -379,12 +369,18 @@ window.addEventListener("message", (e) => {
   const d = e.data;
   if (!d || d.source !== "neyron-parent") return;
   if (d.type === "theme" && (d.theme === "day" || d.theme === "night")) {
-    if (typeof window.__neuronAtlasApplyTheme === "function") {
+    if (typeof window.__neyronSiteShellSetTheme === "function") {
+      window.__neyronSiteShellSetTheme(d.theme);
+    } else if (typeof window.__neuronAtlasApplyTheme === "function") {
       window.__neuronAtlasApplyTheme(d.theme);
     }
   }
   if (d.type === "lang" && (d.lang === "en" || d.lang === "az")) {
-    setLang(d.lang);
+    if (typeof window.__neyronSiteShellSetLang === "function") {
+      window.__neyronSiteShellSetLang(d.lang);
+    } else {
+      neuronSetLang(d.lang);
+    }
   }
 });
 
@@ -1242,7 +1238,7 @@ function init() {
         }
       });
     }
-    if (typeof setLang === "function") setLang(currentLang);
+    neuronSetLang(currentLang);
     updateThemeToggleChrome();
     try {
       localStorage.setItem("neyron_theme", theme);
@@ -1363,29 +1359,6 @@ function init() {
   }
   animate();
 
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const next = atlasViewTheme === "day" ? "night" : "day";
-      applyAtlasTheme(next);
-    });
-  }
-}
-
-document.getElementById("lang-en")?.addEventListener("click", () => setLang("en"));
-document.getElementById("lang-az")?.addEventListener("click", () => setLang("az"));
-
-{
-  const qs = new URLSearchParams(window.location.search);
-  const urlLang = qs.get("lang");
-  if (urlLang === "en" || urlLang === "az") {
-    setLang(urlLang);
-  } else {
-    try {
-      const lsL = localStorage.getItem("neyron_lang");
-      if (lsL === "az" || lsL === "en") setLang(lsL);
-    } catch (e) {}
-  }
 }
 
 init();

@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="night">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEYRON — Neuron structure</title>
     <script src="../page-base.js"></script>
     <script>
@@ -20,9 +20,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../site.css" />
     <link rel="stylesheet" href="styles.css" />
     <script type="importmap">
@@ -34,31 +35,48 @@
       }
     </script>
   </head>
-  <body>
-    <header class="neuron-atlas-chrome" aria-label="Site">
-      <a class="neuron-atlas-chrome__brand" href="../index.html">NEYRON</a>
-      <a class="neuron-atlas-chrome__link" href="../atlas.html">← Atlas</a>
-      <a class="neuron-atlas-chrome__link" href="../index.html" data-en="Home" data-az="Ana səhifə">Home</a>
-      <div class="nav-tools neuron-atlas-chrome__tools">
-        <div class="lang-switch" role="group" aria-label="Language">
-          <button type="button" id="lang-en" class="is-active">EN</button>
-          <button type="button" id="lang-az">AZ</button>
+  <body class="neuron-structure-page" data-page="atlas">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <span class="brand-dot" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="../index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="../atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="../articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="../book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
         </div>
-        <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
-          <span class="theme-pill__knob" aria-hidden="true"></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5" />
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-            />
-          </svg>
-        </button>
-      </div>
-    </header>
-    <div id="root"></div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="neuron-structure-main" aria-label="Neuron structure viewer">
+        <div id="root"></div>
+      </main>
+    </div>
+
     <div
       id="info-panel"
       style="
@@ -131,6 +149,19 @@
     >
       2026 © Created by Omar Garagozov
     </div>
+
     <script type="module" src="app.js"></script>
+    <script src="../site-shell.js" defer></script>
+    <script src="../particles-bg.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof window.__neyronSiteShellSetLang !== "function") return;
+        var qs = new URLSearchParams(location.search);
+        var l = qs.get("lang");
+        if (l === "en" || l === "az") window.__neyronSiteShellSetLang(l);
+        var t = qs.get("theme");
+        if (t === "day" || t === "night") window.__neyronSiteShellSetTheme(t);
+      });
+    </script>
   </body>
 </html>
