@@ -115,20 +115,10 @@ function setLang(lang) {
     el.textContent = lang === "az" ? el.getAttribute("data-az") : el.getAttribute("data-en");
   });
 
-  const btnEn = document.getElementById("btn-en");
-  const btnAz = document.getElementById("btn-az");
-  const dayChrome = document.documentElement.classList.contains("atlas-day");
-  const activeBg = dayChrome ? "rgba(224, 90, 16, 0.18)" : "rgba(255,255,255,0.12)";
-  const activeFg = dayChrome ? "#2a1a08" : "#ffffff";
-  const idleFg = dayChrome ? "rgba(42, 26, 8, 0.42)" : "rgba(255,255,255,0.4)";
-  if (btnEn) {
-    btnEn.style.background = lang === "en" ? activeBg : "transparent";
-    btnEn.style.color = lang === "en" ? activeFg : idleFg;
-  }
-  if (btnAz) {
-    btnAz.style.background = lang === "az" ? activeBg : "transparent";
-    btnAz.style.color = lang === "az" ? activeFg : idleFg;
-  }
+  const langEnBtn = document.getElementById("lang-en");
+  const langAzBtn = document.getElementById("lang-az");
+  if (langEnBtn) langEnBtn.classList.toggle("is-active", lang !== "az");
+  if (langAzBtn) langAzBtn.classList.toggle("is-active", lang === "az");
 
   try {
     localStorage.setItem("neyron_lang", lang);
@@ -1151,16 +1141,6 @@ function init() {
 
   let atlasViewTheme = "night";
 
-  function updateThemeToggleChrome() {
-    const el = document.getElementById("theme-toggle");
-    if (!el) return;
-    el.textContent = atlasViewTheme === "day" ? "Night" : "Day";
-    el.setAttribute(
-      "aria-label",
-      atlasViewTheme === "day" ? "Switch to night mode" : "Switch to day mode"
-    );
-  }
-
   function applyAtlasTheme(theme) {
     const isDay = theme === "day";
     atlasViewTheme = theme;
@@ -1392,8 +1372,8 @@ function init() {
   }
 }
 
-document.getElementById("btn-en")?.addEventListener("click", () => setLang("en"));
-document.getElementById("btn-az")?.addEventListener("click", () => setLang("az"));
+document.getElementById("lang-en")?.addEventListener("click", () => setLang("en"));
+document.getElementById("lang-az")?.addEventListener("click", () => setLang("az"));
 
 {
   const qs = new URLSearchParams(window.location.search);

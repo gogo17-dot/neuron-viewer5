@@ -17,11 +17,14 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="stylesheet" href="styles.css" />
     <script type="importmap">
       {
         "imports": {
@@ -36,14 +39,23 @@
       <a class="neuron-atlas-chrome__brand" href="../index.html">NEYRON</a>
       <a class="neuron-atlas-chrome__link" href="../atlas.html">← Atlas</a>
       <a class="neuron-atlas-chrome__link" href="../index.html" data-en="Home" data-az="Ana səhifə">Home</a>
-      <div class="neuron-atlas-chrome__tools">
-        <button id="theme-toggle" type="button" class="neuron-atlas-chrome__pill" aria-label="Switch theme">
-          Day
-        </button>
-        <div id="lang-toggle" class="neuron-atlas-chrome__lang">
-          <button id="btn-en" type="button" class="neuron-atlas-chrome__lang-btn">EN</button>
-          <button id="btn-az" type="button" class="neuron-atlas-chrome__lang-btn">AZ</button>
+      <div class="nav-tools neuron-atlas-chrome__tools">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" id="lang-en" class="is-active">EN</button>
+          <button type="button" id="lang-az">AZ</button>
         </div>
+        <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-pill__knob" aria-hidden="true"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+            />
+          </svg>
+        </button>
       </div>
     </header>
     <div id="root"></div>

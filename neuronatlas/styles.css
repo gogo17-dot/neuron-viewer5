@@ -53,67 +53,11 @@ html.atlas-day .neuron-atlas-chrome__link:hover {
   color: #0a0a0a;
 }
 
-.neuron-atlas-chrome__tools {
+/* Match main site nav-tools (site.css); align in compact neuron header */
+.neuron-atlas-chrome .nav-tools {
   margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.neuron-atlas-chrome__pill {
-  margin: 0;
-  cursor: pointer;
-  border: 1px solid rgba(126, 207, 179, 0.45);
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.35);
-  color: rgba(220, 245, 235, 0.95);
-  padding: 5px 12px;
-  font: inherit;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-html.atlas-day .neuron-atlas-chrome__pill {
-  border-color: rgba(10, 10, 10, 0.35);
-  background: rgba(255, 255, 255, 0.85);
-  color: #2a1a08;
-}
-
-.neuron-atlas-chrome__lang {
-  display: flex;
-  border: 1px solid rgba(126, 207, 179, 0.45);
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-html.atlas-day .neuron-atlas-chrome__lang {
-  border-color: rgba(10, 10, 10, 0.28);
-  background: rgba(255, 255, 255, 0.88);
-}
-
-.neuron-atlas-chrome__lang-btn {
-  margin: 0;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: rgba(200, 230, 215, 0.55);
-  padding: 5px 12px;
-  font: inherit;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.neuron-atlas-chrome__lang-btn + .neuron-atlas-chrome__lang-btn {
-  border-left: 1px solid rgba(126, 207, 179, 0.35);
-}
-
-html.atlas-day .neuron-atlas-chrome__lang-btn {
-  color: rgba(42, 26, 8, 0.45);
-}
-
-html.atlas-day .neuron-atlas-chrome__lang-btn + .neuron-atlas-chrome__lang-btn {
-  border-left-color: rgba(10, 10, 10, 0.2);
+  flex-shrink: 0;
+  font-family: "Share Tech Mono", ui-monospace, monospace;
 }
 
 html,
