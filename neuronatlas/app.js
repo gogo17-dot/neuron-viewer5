@@ -114,9 +114,36 @@ function setLang(lang) {
   document.querySelectorAll(".neuron-atlas-chrome [data-en][data-az]").forEach(function (el) {
     el.textContent = lang === "az" ? el.getAttribute("data-az") : el.getAttribute("data-en");
   });
+
+  const btnEn = document.getElementById("btn-en");
+  const btnAz = document.getElementById("btn-az");
+  const dayChrome = document.documentElement.classList.contains("atlas-day");
+  const activeBg = dayChrome ? "rgba(224, 90, 16, 0.18)" : "rgba(255,255,255,0.12)";
+  const activeFg = dayChrome ? "#2a1a08" : "#ffffff";
+  const idleFg = dayChrome ? "rgba(42, 26, 8, 0.42)" : "rgba(255,255,255,0.4)";
+  if (btnEn) {
+    btnEn.style.background = lang === "en" ? activeBg : "transparent";
+    btnEn.style.color = lang === "en" ? activeFg : idleFg;
+  }
+  if (btnAz) {
+    btnAz.style.background = lang === "az" ? activeBg : "transparent";
+    btnAz.style.color = lang === "az" ? activeFg : idleFg;
+  }
+
+  try {
+    localStorage.setItem("neyron_lang", lang);
+  } catch (e) {}
 }
 
 window.setLang = setLang;
+
+function clientToNdc(clientX, clientY, canvasEl, target) {
+  const r = canvasEl.getBoundingClientRect();
+  const w = Math.max(1, r.width);
+  const h = Math.max(1, r.height);
+  target.x = ((clientX - r.left) / w) * 2 - 1;
+  target.y = -((clientY - r.top) / h) * 2 + 1;
+}
 
 const tooltipNames = {
   en: {
@@ -470,33 +497,39 @@ function init() {
   const fog = new THREE.FogExp2(nightBg, 0.008);
   scene.fog = fog;
 
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    500
-  );
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);
   camera.position.set(0, 2, 16);
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     powerPreference: "high-performance",
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.25;
   wrap.appendChild(renderer.domElement);
 
+  const ndcScratch = new THREE.Vector2();
+
+  function syncCanvasSize() {
+    const rect = wrap.getBoundingClientRect();
+    const w = Math.max(1, Math.floor(rect.width));
+    const h = Math.max(1, Math.floor(rect.height));
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setSize(w, h);
+  }
+  syncCanvasSize();
+  const resizeObs = new ResizeObserver(() => syncCanvasSize());
+  resizeObs.observe(wrap);
+  window.addEventListener("resize", syncCanvasSize);
+
   renderer.domElement.addEventListener("click", (e) => {
-    const mouse = new THREE.Vector2(
-      (e.clientX / window.innerWidth) * 2 - 1,
-      -(e.clientY / window.innerHeight) * 2 + 1
-    );
+    clientToNdc(e.clientX, e.clientY, renderer.domElement, ndcScratch);
 
     const clickRaycaster = new THREE.Raycaster();
-    clickRaycaster.setFromCamera(mouse, camera);
+    clickRaycaster.setFromCamera(ndcScratch, camera);
 
     const allMeshes = [];
     scene.traverse((obj) => {
@@ -534,12 +567,9 @@ function init() {
 
   /** Native double-click: pick second distinct structure along ray (same as 2nd click `detail`). */
   renderer.domElement.addEventListener("dblclick", (e) => {
-    const mouse = new THREE.Vector2(
-      (e.clientX / window.innerWidth) * 2 - 1,
-      -(e.clientY / window.innerHeight) * 2 + 1
-    );
+    clientToNdc(e.clientX, e.clientY, renderer.domElement, ndcScratch);
     const cr = new THREE.Raycaster();
-    cr.setFromCamera(mouse, camera);
+    cr.setFromCamera(ndcScratch, camera);
     const pickMeshes = [];
     scene.traverse((obj) => {
       if (obj.isMesh && obj.userData.label) {
@@ -1121,11 +1151,24 @@ function init() {
 
   let atlasViewTheme = "night";
 
+  function updateThemeToggleChrome() {
+    const el = document.getElementById("theme-toggle");
+    if (!el) return;
+    el.textContent = atlasViewTheme === "day" ? "Night" : "Day";
+    el.setAttribute(
+      "aria-label",
+      atlasViewTheme === "day" ? "Switch to night mode" : "Switch to day mode"
+    );
+  }
+
   function applyAtlasTheme(theme) {
     const isDay = theme === "day";
     atlasViewTheme = theme;
     document.body.classList.toggle("atlas-day", isDay);
     document.documentElement.classList.toggle("atlas-day", isDay);
+    try {
+      document.documentElement.setAttribute("data-theme", isDay ? "day" : "night");
+    } catch (e) {}
 
     if (isDay) {
       scene.background.setHex(0xffffff);
@@ -1220,6 +1263,10 @@ function init() {
       });
     }
     if (typeof setLang === "function") setLang(currentLang);
+    updateThemeToggleChrome();
+    try {
+      localStorage.setItem("neyron_theme", theme);
+    } catch (e) {}
   }
 
   window.__neuronAtlasApplyTheme = applyAtlasTheme;
@@ -1236,16 +1283,6 @@ function init() {
     } catch (e) {}
   }
   applyAtlasTheme(initialTheme);
-
-  const urlLang = qs.get("lang");
-  if (urlLang === "en" || urlLang === "az") {
-    setLang(urlLang);
-  } else {
-    try {
-      const lsL = localStorage.getItem("neyron_lang");
-      if (lsL === "az" || lsL === "en") setLang(lsL);
-    } catch (e) {}
-  }
 
   scene.traverse((obj) => {
     if (obj.isMesh) {
@@ -1264,12 +1301,11 @@ function init() {
   let lastClientY = -1;
 
   function onPointerMove(event) {
-    pointerNdc.x = (event.clientX / window.innerWidth) * 2 - 1;
-    pointerNdc.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    clientToNdc(event.clientX, event.clientY, renderer.domElement, pointerNdc);
     lastClientX = event.clientX;
     lastClientY = event.clientY;
   }
-  window.addEventListener("mousemove", onPointerMove);
+  renderer.domElement.addEventListener("mousemove", onPointerMove);
 
   renderer.domElement.addEventListener("pointerdown", () => {
     controls.autoRotate = false;
@@ -1347,12 +1383,29 @@ function init() {
   }
   animate();
 
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const next = atlasViewTheme === "day" ? "night" : "day";
+      applyAtlasTheme(next);
+    });
+  }
+}
+
+document.getElementById("btn-en")?.addEventListener("click", () => setLang("en"));
+document.getElementById("btn-az")?.addEventListener("click", () => setLang("az"));
+
+{
+  const qs = new URLSearchParams(window.location.search);
+  const urlLang = qs.get("lang");
+  if (urlLang === "en" || urlLang === "az") {
+    setLang(urlLang);
+  } else {
+    try {
+      const lsL = localStorage.getItem("neyron_lang");
+      if (lsL === "az" || lsL === "en") setLang(lsL);
+    } catch (e) {}
+  }
 }
 
 init();
