@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+}
+
+.neuron-atlas-chrome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 44px;
+  padding: 0 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(6, 14, 26, 0.92);
+  border-bottom: 1px solid rgba(126, 207, 179, 0.35);
+}
+
+html.atlas-day .neuron-atlas-chrome {
+  background: #fffef4;
+  border-bottom-color: #0a0a0a;
+}
+
+.neuron-atlas-chrome__brand {
+  color: rgba(200, 245, 225, 0.95);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+html.atlas-day .neuron-atlas-chrome__brand {
+  color: #0a0a0a;
+}
+
+.neuron-atlas-chrome__link {
+  color: rgba(160, 200, 185, 0.85);
+  text-decoration: none;
+}
+
+.neuron-atlas-chrome__link:hover {
+  color: #7ecfb3;
+}
+
+html.atlas-day .neuron-atlas-chrome__link {
+  color: #3a3020;
+}
+
+html.atlas-day .neuron-atlas-chrome__link:hover {
+  color: #0a0a0a;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #000000;
+  color: #e2e8f0;
+}
+
+body {
+  padding-top: 44px;
+  box-sizing: border-box;
+}
+
+#root {
+  margin: 0;
+  width: 100%;
+  height: calc(100% - 44px);
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #000000;
+  color: #e2e8f0;
+}
+
+html.atlas-day,
+html.atlas-day body,
+html.atlas-day #root {
+  background: #ffffff;
+  color: #2a1a08;
+}
+
+html.atlas-day #creator-credit {
+  color: #5c4a3a !important;
+}
+
+/* Part info panel — keep inside iframe; long English/AZ text wraps and scrolls */
+#info-panel {
+  box-sizing: border-box !important;
+  width: min(280px, calc(100vw - 24px)) !important;
+  max-height: min(86vh, 680px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+#panel-name,
+#panel-desc {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+#panel-name {
+  padding-right: 28px;
+}
+
+#panel-desc {
+  padding-right: 4px;
+}
+
+/* Night — description card: clear edges, mint/teal frame (matches NEYRON night accents) */
+html:not(.atlas-day) #info-panel {
+  background: rgba(6, 14, 26, 0.78) !important;
+  border: 1px solid rgba(126, 207, 179, 0.42) !important;
+  border-radius: 6px !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 204, 0.1),
+    0 10px 36px rgba(0, 0, 0, 0.55) !important;
+  backdrop-filter: blur(10px);
+}
+
+html:not(.atlas-day) #panel-close {
+  color: rgba(160, 220, 195, 0.75) !important;
+}
+
+html:not(.atlas-day) #panel-close:hover {
+  color: rgba(200, 245, 225, 0.95) !important;
+}
+
+/* Part info panel — day: solid card, black frame, high-contrast “marker” text */
+html.atlas-day #info-panel {
+  background: #fffef4 !important;
+  border-left: none !important;
+  border: 3px solid #0a0a0a !important;
+  border-radius: 4px !important;
+  box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12) !important;
+}
+
+html.atlas-day #panel-close {
+  color: #0a0a0a !important;
+  font-weight: 700 !important;
+  -webkit-text-stroke: 0.4px #fffef4;
+  paint-order: stroke fill;
+}
+
+html.atlas-day #panel-name {
+  color: #0a0a0a !important;
+  font-weight: 800 !important;
+  -webkit-text-stroke: 0.65px #fffef4;
+  paint-order: stroke fill;
+  text-shadow: 0.04em 0.04em 0 rgba(10, 10, 10, 0.18);
+}
+
+html.atlas-day #panel-desc {
+  color: #0a0a0a !important;
+  font-weight: 600 !important;
+  -webkit-text-stroke: 0.45px #fffef4;
+  paint-order: stroke fill;
+  text-shadow: 0.03em 0.03em 0 rgba(10, 10, 10, 0.12);
+}
+
+/* Hover part name — day: same cream + black marker frame as #info-panel / #panel-desc */
+html.atlas-day .neyron-hover-tooltip {
+  background: #fffef4 !important;
+  border: 3px solid #0a0a0a !important;
+  border-radius: 4px !important;
+  box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12) !important;
+  color: #0a0a0a !important;
+  font-weight: 600 !important;
+  -webkit-text-stroke: 0.45px #fffef4;
+  paint-order: stroke fill;
+  text-shadow: 0.03em 0.03em 0 rgba(10, 10, 10, 0.12);
+}
+
+.r3f-root {
+  width: 100%;
+  height: 100%;
+}
+
+.neuron-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.neuron-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.neuron-description-panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: min(420px, calc(100vw - 32px));
+  max-height: min(72vh, 640px);
+  overflow: auto;
+  padding: 1rem 2.5rem 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+}
+
+.neuron-description-panel h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding-right: 0.25rem;
+  color: #7dd3fc;
+}
+
+.neuron-description-panel p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+}
+
+.neuron-description-panel__empty {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.neuron-description-panel__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(51, 65, 85, 0.65);
+  color: #e2e8f0;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.neuron-description-panel__close:hover {
+  background: rgba(71, 85, 105, 0.9);
+}

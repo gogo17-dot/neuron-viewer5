@@ -1,28 +1,936 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="night">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache" />
-    <title>Viewer</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>NEYRON — Home</title>
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css" />
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
-        }
-      }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="site.css" />
   </head>
-  <body>
-    <div id="app">
-      <canvas id="scene"></canvas>
-      <button type="button" id="theme-toggle" aria-label="Switch to day view" title="Switch to day (red neuron)">☾</button>
+  <body data-page="home">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-dot" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section id="hero" aria-label="Hero">
+        <canvas id="scene"></canvas>
+        <div class="hero-overlay">
+          <div class="hero-copy">
+            <h1>
+              <span data-en="Explore the Human" data-az="İnsan beynini">Explore the Human</span><br />
+              <span class="line-accent" data-en="Brain" data-az="Kəşf Edin">Brain</span>
+            </h1>
+            <p class="hero-sub" data-en="Making Neuroscience Truly Compelling" data-az="Neyroelməni həqiqətən cəlbedici edirik">
+              Making Neuroscience Truly Compelling
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="history" class="content-section io-fade">
+        <div class="tag" data-en="Antiquity to today" data-az="Qədimlikdən bugünə">Antiquity to today</div>
+        <h2 class="section-title" data-en="History of Neuroscience" data-az="Neyroelm tarixi">History of Neuroscience</h2>
+        <p
+          class="section-desc"
+          data-en="In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology. The interactive neuron in the hero inherits that arc—orbit it as you like—while the section below tracks what the field is doing today."
+          data-az="Platonun Afınasında «Timey» artıq başın iliyə oxşar yollarını ruh və bədənin görüşdüyü yer kimi təsəvvür edirdi — təcrübəsiz, lakin mikroskopdan əvvəl beyinin idarə orqanı olduğu fikrini işarə edirdi. Qədim Roma anatomiyası olan Galen irsi, son antiklik və orta əsrlər boyu saxlanıb mübahisə edildi; ventrikullar və sinirləri hiss və hərəkətə bağladı. İslamın qızıl dövrü həkimləri kranial müşahidələri klinika və şərhlərdə dəqiqləşdirdi. İntibah disseksiyaları bükülü serebrumu sistematik çəkməyə açdı; XIX əsr hüceyrə doktrinası və elektrofiziologiya əlavə etdi — qədim fəlsəfəni ölçülə bilən biologiyaya çevirdi. Qəhrəmandakı interaktiv neyron bu qövsü davam etdirir — istədiyiniz kimi orbit edin; aşağıdakı bölmə isə sahənin bu gün nə etdiyini izləyir."
+        >
+          In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology. The interactive neuron in the hero inherits that arc—orbit it as you like—while the section below tracks what the field is doing today.
+        </p>
+        <div class="discoveries-now">
+          <h3 class="discoveries-now__title" data-en="What’s happening now" data-az="Bu gün nə baş verir">What’s happening now</h3>
+          <div class="discovery-grid" role="list">
+            <article class="discovery-card" role="listitem">
+              <a
+                class="discovery-card__media"
+                href="https://braininitiative.nih.gov/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="NIH BRAIN Initiative (opens in new tab)"
+              >
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/BRAIN%20Initiative%20(35718683826).png?width=330"
+                  alt="BRAIN Initiative graphic"
+                  width="330"
+                  height="220"
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+              <div class="discovery-card__body">
+                <h4 class="discovery-card__name" data-en="NIH BRAIN Initiative" data-az="NIH BRAIN Initiative">NIH BRAIN Initiative</h4>
+                <p
+                  class="discovery-card__text"
+                  data-en="Since 2013 the U.S. BRAIN Initiative has funded tool-building and circuit-level mapping across species—connectomics, next probes, and data standards meant to make whole brains legible at new resolution."
+                  data-az="2013-cü ildən ABŞ BRAIN Initiative alətlərin yaradılmasını və dövrələr üzrə xəritələməni maliyyələşdirir — konnektomika, yeni prob və bütün beyinləri daha yüksək dəqiqlikdə oxuna bilən məlumat standartları."
+                >
+                  Since 2013 the U.S. BRAIN Initiative has funded tool-building and circuit-level mapping across species—connectomics, next probes, and data standards meant to make whole brains legible at new resolution.
+                </p>
+              </div>
+            </article>
+            <article class="discovery-card" role="listitem">
+              <a
+                class="discovery-card__media"
+                href="https://www.humanconnectomeproject.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Human Connectome Project (opens in new tab)"
+              >
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Connectome.jpg?width=330"
+                  alt="Brain white-matter tractography (connectome-style rendering)"
+                  width="330"
+                  height="220"
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+              <div class="discovery-card__body">
+                <h4 class="discovery-card__name" data-en="Human Connectome Project" data-az="İnsan Konnektom Layihəsi">Human Connectome Project</h4>
+                <p
+                  class="discovery-card__text"
+                  data-en="The HCP consortium (2010s onward) released open diffusion and functional MRI from hundreds of healthy adults—defining reference wiring diagrams that labs worldwide still reuse for psychiatry and development studies."
+                  data-az="HCP konsorsiumu (2010-cu illər və sonrası) yüzlərlə sağlam yetkin insandan açıq diffuziya və funksional MRI yayıb — bütün dünyada psixiatriya və inkişaf tədqiqatlarında istifadə olunan istinad çərtivə diaqramları yaradıb."
+                >
+                  The HCP consortium (2010s onward) released open diffusion and functional MRI from hundreds of healthy adults—defining reference wiring diagrams that labs worldwide still reuse for psychiatry and development studies.
+                </p>
+              </div>
+            </article>
+            <article class="discovery-card" role="listitem">
+              <a
+                class="discovery-card__media"
+                href="https://alphafold.ebi.ac.uk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AlphaFold database (opens in new tab)"
+              >
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/AlphaFold%202.png?width=330"
+                  alt="AlphaFold 2 performance and architecture diagram"
+                  width="330"
+                  height="220"
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+              <div class="discovery-card__body">
+                <h4 class="discovery-card__name" data-en="AlphaFold & structural proteomics" data-az="AlphaFold və struktur proteomika">AlphaFold & structural proteomics</h4>
+                <p
+                  class="discovery-card__text"
+                  data-en="DeepMind / EMBL-EBI’s AlphaFold (2020–2021) began predicting millions of protein 3D structures from sequence alone; neuroscientists now fold ion channels, receptors, and scaffolds into models of synaptic disease much faster than before."
+                  data-az="DeepMind / EMBL-EBI AlphaFold (2020–2021) milyonlarla zülalın 3D strukturunu yalnız ardıcıllıqdan proqnozlaşdırmağa başladı; neyroelmçilər ion kanallarını, reseptorları və skeletləri sinaptik xəstəlik modellərinə əvvəllərkindən çox daha sürətli daxil edir."
+                >
+                  DeepMind / EMBL-EBI’s AlphaFold (2020–2021) began predicting millions of protein 3D structures from sequence alone; neuroscientists now fold ion channels, receptors, and scaffolds into models of synaptic disease much faster than before.
+                </p>
+              </div>
+            </article>
+            <article class="discovery-card" role="listitem">
+              <a
+                class="discovery-card__media"
+                href="https://en.wikipedia.org/wiki/Optogenetics"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Wikipedia: Optogenetics (opens in new tab)"
+              >
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Example_of_optogenetic_activation_of_prefrontal_cortex.jpg?width=330"
+                  alt="Laboratory recording related to optogenetic manipulation of cortical activity"
+                  width="330"
+                  height="220"
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+              <div class="discovery-card__body">
+                <h4 class="discovery-card__name" data-en="Optogenetics in living circuits" data-az="Canlı dövrələrdə optogenetika">Optogenetics in living circuits</h4>
+                <p
+                  class="discovery-card__text"
+                  data-en="Channelrhodopsins fused to genetics (mid-2000s onward) let labs switch defined cell types with millisecond light pulses in awake mice—turning causal tests of memory, motivation, and clinical targets into a mainstream technique."
+                  data-az="Kanalrodopsinlər genetika ilə birləşdirilərək (2000-ci illərin ortasından) laboratoriyalara oyaq siçanlarda millisaniyəlik işıq impulsları ilə müəyyən hüceyrə tiplərini açıb-bağlamağa imkan verir — yaddaş, motivasiya və klinik hədəflərin səbəb-nəticə sınaqlarını adi texnikaya çevirir."
+                >
+                  Channelrhodopsins fused to genetics (mid-2000s onward) let labs switch defined cell types with millisecond light pulses in awake mice—turning causal tests of memory, motivation, and clinical targets into a mainstream technique.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-brand">NEYRON</div>
+        <div class="footer-center">© 2026 neyron.atlas.az</div>
+      </footer>
     </div>
-    <script type="module">
-      import(`./app.js?t=${Date.now()}`);
+
+    <script>
+      (function () {
+        var LS_LANG = "neyron_lang";
+        var LS_THEME = "neyron_theme";
+        function getLang() {
+          return document.documentElement.getAttribute("lang") === "az" ? "az" : "en";
+        }
+
+        function setLang(lang) {
+          document.documentElement.lang = lang === "az" ? "az" : "en";
+          localStorage.setItem(LS_LANG, lang === "az" ? "az" : "en");
+          document.querySelectorAll("[data-en][data-az]").forEach(function (el) {
+            el.textContent = lang === "az" ? el.getAttribute("data-az") : el.getAttribute("data-en");
+          });
+          document.getElementById("lang-en").classList.toggle("is-active", lang !== "az");
+          document.getElementById("lang-az").classList.toggle("is-active", lang === "az");
+          document.querySelectorAll("[data-tooltip-en]").forEach(function (el) {
+            var a = el.getAttribute("data-tooltip-en");
+            var b = el.getAttribute("data-tooltip-az");
+            if (a && b) el.title = lang === "az" ? b + " / " + a : a + " / " + b;
+          });
+          var page = document.body.getAttribute("data-page");
+          if (page) {
+            document.querySelectorAll("[data-nav]").forEach(function (el) {
+              el.classList.toggle("is-active", el.getAttribute("data-nav") === page);
+            });
+          }
+          if (typeof window.__neyronRerenderDiscoveriesForLang === "function") {
+            window.__neyronRerenderDiscoveriesForLang();
+          }
+        }
+
+        function initLang() {
+          var stored = localStorage.getItem(LS_LANG);
+          setLang(stored === "az" ? "az" : "en");
+        }
+
+        document.getElementById("lang-en").addEventListener("click", function () {
+          setLang("en");
+        });
+        document.getElementById("lang-az").addEventListener("click", function () {
+          setLang("az");
+        });
+
+        function setTheme(theme) {
+          var t = theme === "day" ? "day" : "night";
+          document.documentElement.setAttribute("data-theme", t);
+          localStorage.setItem(LS_THEME, t);
+          if (window.__neyronApplyViewTheme) window.__neyronApplyViewTheme(t);
+        }
+
+        function initTheme() {
+          var stored = localStorage.getItem(LS_THEME);
+          var prefers = stored === "day" || stored === "night" ? stored : "night";
+          setTheme(prefers);
+        }
+
+        document.getElementById("theme-toggle").addEventListener("click", function () {
+          var cur = document.documentElement.getAttribute("data-theme");
+          setTheme(cur === "day" ? "night" : "day");
+        });
+
+        function syncNavMenuOpenClass() {
+          var nt = document.getElementById("nav-toggle");
+          if (!nt) return;
+          document.body.classList.toggle("nav-menu-open", nt.checked);
+        }
+
+        document.getElementById("nav-toggle").addEventListener("change", syncNavMenuOpenClass);
+
+        document.querySelectorAll(".nav-center a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            var nt = document.getElementById("nav-toggle");
+            nt.checked = false;
+            syncNavMenuOpenClass();
+          });
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 900) {
+            var nt = document.getElementById("nav-toggle");
+            if (nt) nt.checked = false;
+            document.body.classList.remove("nav-menu-open");
+          }
+        });
+
+        if (typeof IntersectionObserver !== "undefined") {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) e.target.classList.add("io-visible");
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+          );
+          document.querySelectorAll(".io-fade").forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          document.querySelectorAll(".io-fade").forEach(function (el) {
+            el.classList.add("io-visible");
+          });
+        }
+
+        /* --- Particle canvas (60 nodes, proximity lines) --- */
+        var pCanvas = document.getElementById("bg-particles");
+        var pCtx = pCanvas.getContext("2d");
+        var particles = [];
+        var P_COUNT = 60;
+        var CONNECT = 110;
+
+        function resizeParticles() {
+          pCanvas.width = window.innerWidth;
+          pCanvas.height = window.innerHeight;
+        }
+
+        function hexToRgb(hex) {
+          var h = hex.replace("#", "");
+          if (h.length === 3) {
+            h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+          }
+          var n = parseInt(h, 16);
+          return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+        }
+
+        function particleColors() {
+          var root = getComputedStyle(document.documentElement);
+          var accent = root.getPropertyValue("--accent").trim() || "#00ff8c";
+          var rgb = hexToRgb(accent);
+          var theme = document.documentElement.getAttribute("data-theme");
+          var aLine = theme === "day" ? 0.3 : 0.4;
+          var aDot = theme === "day" ? 0.45 : 0.35;
+          return {
+            line: "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + aLine + ")",
+            dot: "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + aDot + ")",
+          };
+        }
+
+        function initParticles() {
+          particles.length = 0;
+          for (var i = 0; i < P_COUNT; i++) {
+            particles.push({
+              x: Math.random() * pCanvas.width,
+              y: Math.random() * pCanvas.height,
+              vx: (Math.random() - 0.5) * 0.35,
+              vy: (Math.random() - 0.5) * 0.35,
+            });
+          }
+        }
+
+        function tickParticles() {
+          var cols = particleColors();
+          pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+          var i, j, p, q, dx, dy, d;
+          for (i = 0; i < P_COUNT; i++) {
+            p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > pCanvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > pCanvas.height) p.vy *= -1;
+          }
+          for (i = 0; i < P_COUNT; i++) {
+            for (j = i + 1; j < P_COUNT; j++) {
+              p = particles[i];
+              q = particles[j];
+              dx = p.x - q.x;
+              dy = p.y - q.y;
+              d = Math.sqrt(dx * dx + dy * dy);
+              if (d < CONNECT) {
+                pCtx.strokeStyle = cols.line;
+                pCtx.lineWidth = 1 - d / CONNECT;
+                pCtx.beginPath();
+                pCtx.moveTo(p.x, p.y);
+                pCtx.lineTo(q.x, q.y);
+                pCtx.stroke();
+              }
+            }
+          }
+          pCtx.fillStyle = cols.dot;
+          for (i = 0; i < P_COUNT; i++) {
+            p = particles[i];
+            pCtx.beginPath();
+            pCtx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+            pCtx.fill();
+          }
+          requestAnimationFrame(tickParticles);
+        }
+
+        resizeParticles();
+        initParticles();
+        window.addEventListener("resize", function () {
+          resizeParticles();
+          initParticles();
+        });
+        tickParticles();
+
+        /* --- Three.js neuron (from app.js, simplified: no raycaster / hover) --- */
+        var canvas = document.getElementById("scene");
+        var hero = document.getElementById("hero");
+
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x020810);
+
+        var camera = new THREE.PerspectiveCamera(45, 1, 0.08, 500);
+        camera.position.set(0, 1.2, 14);
+
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.12;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        var pmremGenerator = new THREE.PMREMGenerator(renderer);
+        var envScene = new THREE.Scene();
+        envScene.add(new THREE.AmbientLight(0xffffff, 0.45));
+        var envDir = new THREE.DirectionalLight(0xfff5f0, 2.5);
+        envDir.position.set(2, 6, 4);
+        envScene.add(envDir);
+        var envBall = new THREE.Mesh(
+          new THREE.SphereGeometry(6, 32, 24),
+          new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.15, metalness: 0.05 })
+        );
+        envScene.add(envBall);
+        var envRT = pmremGenerator.fromScene(envScene, 0.04);
+        scene.environment = envRT.texture;
+        pmremGenerator.dispose();
+
+        var ambientLight = new THREE.AmbientLight(0xb8c8e8, 0.28);
+        scene.add(ambientLight);
+
+        var keyLight = new THREE.DirectionalLight(0xffeedd, 2.2);
+        keyLight.position.set(8, 14, 10);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.set(2048, 2048);
+        keyLight.shadow.camera.near = 0.5;
+        keyLight.shadow.camera.far = 80;
+        keyLight.shadow.camera.left = -20;
+        keyLight.shadow.camera.right = 20;
+        keyLight.shadow.camera.top = 20;
+        keyLight.shadow.camera.bottom = -24;
+        keyLight.shadow.bias = -0.0002;
+        scene.add(keyLight);
+
+        var rimLight = new THREE.DirectionalLight(0x88aaff, 1.1);
+        rimLight.position.set(-12, 6, -8);
+        scene.add(rimLight);
+
+        var fillLight = new THREE.DirectionalLight(0xe8f0ff, 0.65);
+        fillLight.position.set(2, 2, 14);
+        scene.add(fillLight);
+
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
+        controls.minDistance = 0.35;
+        controls.maxDistance = 120;
+        controls.enablePan = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.65;
+
+        var starField = null;
+        var neuralNetBg = null;
+        var neuronAuraNet = null;
+        var viewTheme = "night";
+
+        function createStarField(count) {
+          count = count || 2200;
+          var positions = new Float32Array(count * 3);
+          var i;
+          for (i = 0; i < count; i++) {
+            var u = Math.random() * Math.PI * 2;
+            var v = Math.acos(2 * Math.random() - 1);
+            var r = 85 + Math.random() * 115;
+            positions[i * 3] = r * Math.sin(v) * Math.cos(u);
+            positions[i * 3 + 1] = r * Math.cos(v) * 0.75;
+            positions[i * 3 + 2] = r * Math.sin(v) * Math.sin(u);
+          }
+          var geo = new THREE.BufferGeometry();
+          geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+          var mat = new THREE.PointsMaterial({
+            color: 0xc8dcff,
+            size: 0.055,
+            transparent: true,
+            opacity: 0.85,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true,
+          });
+          var pts = new THREE.Points(geo, mat);
+          pts.frustumCulled = false;
+          return pts;
+        }
+
+        starField = createStarField();
+        scene.add(starField);
+
+        function createNeuralNetworkBackground3D() {
+          var NODE_COUNT = 165;
+          var SPHERE_R = 24;
+          var CONNECT_DIST = 3.5;
+          var DRIFT_AMP = 0.38;
+          var DRIFT_SPEED = 0.28;
+
+          var group = new THREE.Group();
+          var bases = [];
+          var phases = [];
+          var meshes = [];
+
+          var sphereGeo = new THREE.SphereGeometry(0.05, 10, 8);
+          var sphereMat = new THREE.MeshBasicMaterial({
+            color: 0x00ffcc,
+            transparent: true,
+            opacity: 0.2,
+            depthWrite: false,
+          });
+
+          var i, j;
+          for (i = 0; i < NODE_COUNT; i++) {
+            var theta = Math.random() * Math.PI * 2;
+            var phi = Math.acos(2 * Math.random() - 1);
+            var r = SPHERE_R * Math.cbrt(Math.random());
+            var x = r * Math.sin(phi) * Math.cos(theta);
+            var y = r * Math.sin(phi) * Math.sin(theta);
+            var z = r * Math.cos(phi);
+            bases.push(new THREE.Vector3(x, y, z));
+            phases.push([
+              Math.random() * Math.PI * 2,
+              Math.random() * Math.PI * 2,
+              Math.random() * Math.PI * 2,
+              0.75 + Math.random() * 0.5,
+              0.82 + Math.random() * 0.36,
+              0.78 + Math.random() * 0.44,
+            ]);
+            var mesh = new THREE.Mesh(sphereGeo, sphereMat);
+            mesh.position.copy(bases[i]);
+            group.add(mesh);
+            meshes.push(mesh);
+          }
+
+          var nodes = meshes;
+          var positions = [];
+          var edgePairs = [];
+          for (i = 0; i < NODE_COUNT; i++) {
+            for (j = i + 1; j < NODE_COUNT; j++) {
+              var dist = nodes[i].position.distanceTo(nodes[j].position);
+              if (dist < CONNECT_DIST) {
+                edgePairs.push(i, j);
+                positions.push(
+                  nodes[i].position.x,
+                  nodes[i].position.y,
+                  nodes[i].position.z,
+                  nodes[j].position.x,
+                  nodes[j].position.y,
+                  nodes[j].position.z
+                );
+              }
+            }
+          }
+
+          var lineGeo = new THREE.BufferGeometry();
+          var linePos = new Float32Array(positions);
+          lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePos, 3));
+          var lineMat = new THREE.LineBasicMaterial({
+            color: 0x00ffcc,
+            transparent: true,
+            opacity: 0.03,
+            depthWrite: false,
+          });
+          var lineSegments = new THREE.LineSegments(lineGeo, lineMat);
+          lineSegments.frustumCulled = false;
+          group.add(lineSegments);
+
+          function update(tSec) {
+            for (i = 0; i < NODE_COUNT; i++) {
+              var m = meshes[i];
+              var ph = phases[i];
+              var sp = ph[3] * DRIFT_SPEED;
+              m.position.x = bases[i].x + DRIFT_AMP * Math.sin(tSec * sp + ph[0]);
+              m.position.y = bases[i].y + DRIFT_AMP * Math.sin(tSec * sp * ph[4] + ph[1]);
+              m.position.z = bases[i].z + DRIFT_AMP * Math.sin(tSec * sp * ph[5] + ph[2]);
+            }
+            var p = 0;
+            for (var e = 0; e < edgePairs.length; e += 2) {
+              var ia = edgePairs[e];
+              var jb = edgePairs[e + 1];
+              var a = nodes[ia].position;
+              var b = nodes[jb].position;
+              linePos[p++] = a.x;
+              linePos[p++] = a.y;
+              linePos[p++] = a.z;
+              linePos[p++] = b.x;
+              linePos[p++] = b.y;
+              linePos[p++] = b.z;
+            }
+            lineGeo.attributes.position.needsUpdate = true;
+          }
+
+          return { group: group, update: update };
+        }
+
+        neuralNetBg = createNeuralNetworkBackground3D();
+        scene.add(neuralNetBg.group);
+
+        function createOrganicNeuronAura(root) {
+          var group = new THREE.Group();
+          group.name = "organic_neuron_aura";
+          group.renderOrder = -1;
+
+          root.updateMatrixWorld(true);
+          var box = new THREE.Box3().setFromObject(root);
+          var size = box.getSize(new THREE.Vector3());
+          var halfMax = Math.max(size.x, size.y, size.z) * 0.5;
+          var rInner = halfMax * 0.86;
+          var rOuter = halfMax * 1.38;
+
+          var NODE_COUNT = 260;
+          var rnd = function () {
+            return Math.random() * 2 - 1;
+          };
+
+          var nodeGeo = new THREE.SphereGeometry(0.04, 7, 5);
+          var nodeMat = new THREE.MeshBasicMaterial({
+            color: 0x00ffcc,
+            transparent: true,
+            opacity: 0.22,
+            depthWrite: false,
+          });
+
+          var i;
+          for (i = 0; i < NODE_COUNT; i++) {
+            var dir = new THREE.Vector3(rnd(), rnd(), rnd()).normalize();
+            var jitter = 0.82 + Math.random() * 0.45;
+            var r = (rInner + Math.random() * (rOuter - rInner)) * jitter;
+            var mesh = new THREE.Mesh(nodeGeo, nodeMat);
+            mesh.position.copy(dir.multiplyScalar(r));
+            group.add(mesh);
+          }
+
+          root.add(group);
+          return { update: function () {} };
+        }
+
+        var NEURON_PHYSICAL_MAT_PROPS = {
+          color: 0xc9a43e,
+          emissive: 0x5a3a10,
+          emissiveIntensity: 0.22,
+          roughness: 0.36,
+          metalness: 0.55,
+          clearcoat: 0.18,
+          clearcoatRoughness: 0.4,
+          side: THREE.DoubleSide,
+        };
+
+        var NEURON_DAY_MAT_PROPS = {
+          color: 0xc93840,
+          emissive: 0x501820,
+          emissiveIntensity: 0.26,
+          roughness: 0.34,
+          metalness: 0.52,
+          clearcoat: 0.16,
+          clearcoatRoughness: 0.42,
+          side: THREE.DoubleSide,
+        };
+
+        function disposeMaterial(m) {
+          if (m && typeof m.dispose === "function") m.dispose();
+        }
+
+        function applyNeuronPhysicalMaterials(object) {
+          object.traverse(function (child) {
+            if (!child.isMesh) return;
+            var prev = child.material;
+            if (Array.isArray(prev)) prev.forEach(disposeMaterial);
+            else disposeMaterial(prev);
+            child.material = new THREE.MeshPhysicalMaterial(NEURON_PHYSICAL_MAT_PROPS);
+          });
+        }
+
+        function applyNeuronThemeColors(props) {
+          var neur = scene.getObjectByName("neuron");
+          if (!neur) return;
+          neur.traverse(function (o) {
+            if (!o.isMesh || !o.material) return;
+            var mats = Array.isArray(o.material) ? o.material : [o.material];
+            var mi;
+            for (mi = 0; mi < mats.length; mi++) {
+              var m = mats[mi];
+              if (!m.isMeshPhysicalMaterial) continue;
+              m.color.setHex(props.color);
+              m.emissive.setHex(props.emissive);
+              m.emissiveIntensity = props.emissiveIntensity;
+              m.roughness = props.roughness;
+              m.metalness = props.metalness;
+              m.clearcoat = props.clearcoat;
+              m.clearcoatRoughness = props.clearcoatRoughness;
+            }
+          });
+        }
+
+        function applyCyanParticleTheme(isDay) {
+          var bg = neuralNetBg && neuralNetBg.group;
+          if (bg) {
+            var ch;
+            for (ch = 0; ch < bg.children.length; ch++) {
+              var o = bg.children[ch];
+              if (o.isMesh && o.material && o.material.isMeshBasicMaterial) {
+                if (isDay) {
+                  o.material.color.setHex(0x00c853);
+                  o.material.opacity = 0.58;
+                } else {
+                  o.material.color.setHex(0x00ff8c);
+                  o.material.opacity = 0.2;
+                }
+                break;
+              }
+            }
+            for (ch = 0; ch < bg.children.length; ch++) {
+              o = bg.children[ch];
+              if (o.isLineSegments && o.material) {
+                if (isDay) {
+                  o.material.color.setHex(0xe05a10);
+                  o.material.opacity = 0.12;
+                } else {
+                  o.material.color.setHex(0x00ff8c);
+                  o.material.opacity = 0.03;
+                }
+                break;
+              }
+            }
+          }
+
+          var auraGroup = scene.getObjectByName("neuron")
+            ? scene.getObjectByName("neuron").getObjectByName("organic_neuron_aura")
+            : null;
+          if (auraGroup) {
+            for (ch = 0; ch < auraGroup.children.length; ch++) {
+              var om = auraGroup.children[ch];
+              if (om.isMesh && om.material && om.material.isMeshBasicMaterial) {
+                if (isDay) {
+                  om.material.color.setHex(0xe05a10);
+                  om.material.opacity = 0.5;
+                } else {
+                  om.material.color.setHex(0x00ff8c);
+                  om.material.opacity = 0.22;
+                }
+                break;
+              }
+            }
+          }
+        }
+
+        function fitNeuronToView(object, targetSize) {
+          targetSize = targetSize || 10;
+          object.updateMatrixWorld(true);
+          var box = new THREE.Box3().setFromObject(object);
+          if (box.isEmpty()) {
+            object.position.set(0, 0, 0);
+            controls.target.set(0, 0, 0);
+            camera.position.set(0, 1.2, 14);
+            camera.near = 0.02;
+            camera.far = 600;
+            camera.updateProjectionMatrix();
+            controls.update();
+            return;
+          }
+          var size = box.getSize(new THREE.Vector3());
+          var maxD = Math.max(size.x, size.y, size.z, 0.001);
+          var s = targetSize / maxD;
+          object.scale.setScalar(s);
+          object.updateMatrixWorld(true);
+          var box2 = new THREE.Box3().setFromObject(object);
+          var c2 = box2.getCenter(new THREE.Vector3());
+          object.position.sub(c2);
+        }
+
+        function frameNeuronOpeningView(object, margin) {
+          margin = margin || 1.24;
+          object.updateMatrixWorld(true);
+          var box = new THREE.Box3().setFromObject(object);
+          if (box.isEmpty()) {
+            controls.target.set(0, 0, 0);
+            camera.position.set(0, 1.2, 18);
+            camera.near = 0.02;
+            camera.far = 600;
+            camera.updateProjectionMatrix();
+            controls.update();
+            return;
+          }
+          var sphere = box.getBoundingSphere(new THREE.Sphere());
+          var r = Math.max(sphere.radius, 1e-4);
+          var vFov = (camera.fov * Math.PI) / 180;
+          var hFov = 2 * Math.atan(Math.tan(vFov / 2) * Math.max(camera.aspect, 0.25));
+          var distV = r / Math.tan(vFov / 2);
+          var distH = r / Math.tan(hFov / 2);
+          var dist = Math.max(distV, distH) * margin;
+          var c = sphere.center;
+          controls.target.copy(c);
+          var eye = new THREE.Vector3(0.12, 0.18, 1).normalize().multiplyScalar(dist);
+          camera.position.copy(c).add(eye);
+          camera.lookAt(c);
+          camera.near = Math.max(0.02, dist * 0.012);
+          camera.far = Math.max(600, dist * 12);
+          camera.updateProjectionMatrix();
+          controls.update();
+        }
+
+        function applyViewTheme(theme) {
+          viewTheme = theme;
+          var isDay = theme === "day";
+          if (isDay) {
+            scene.background.setHex(0xfaf8f4);
+            if (starField && starField.material) {
+              starField.material.color.setHex(0x9aa8bc);
+              starField.material.opacity = 0.14;
+            }
+            ambientLight.color.setHex(0xffffff);
+            ambientLight.intensity = 0.52;
+            keyLight.color.setHex(0xfff5f0);
+            keyLight.intensity = 2.35;
+            rimLight.color.setHex(0xc8d8f0);
+            rimLight.intensity = 0.72;
+            fillLight.color.setHex(0xffffff);
+            fillLight.intensity = 0.55;
+            renderer.toneMappingExposure = 1.05;
+            applyNeuronThemeColors(NEURON_DAY_MAT_PROPS);
+            applyCyanParticleTheme(true);
+          } else {
+            scene.background.setHex(0x020810);
+            if (starField && starField.material) {
+              starField.material.color.setHex(0xc8dcff);
+              starField.material.opacity = 0.85;
+            }
+            ambientLight.color.setHex(0xb8c8e8);
+            ambientLight.intensity = 0.28;
+            keyLight.color.setHex(0xffeedd);
+            keyLight.intensity = 2.2;
+            rimLight.color.setHex(0x88aaff);
+            rimLight.intensity = 1.1;
+            fillLight.color.setHex(0xe8f0ff);
+            fillLight.intensity = 0.65;
+            renderer.toneMappingExposure = 1.12;
+            applyNeuronThemeColors(NEURON_PHYSICAL_MAT_PROPS);
+            applyCyanParticleTheme(false);
+          }
+        }
+
+        window.__neyronApplyViewTheme = applyViewTheme;
+        initLang();
+        initTheme();
+        applyViewTheme(document.documentElement.getAttribute("data-theme") === "day" ? "day" : "night");
+
+        var GLB_URL = "./neuron.glb";
+        var loader = new THREE.GLTFLoader();
+        loader.load(
+          GLB_URL,
+          function (gltf) {
+            var root = gltf.scene;
+            root.name = "neuron";
+            applyNeuronPhysicalMaterials(root);
+            fitNeuronToView(root, 10);
+            root.scale.setScalar(4.0);
+            root.updateMatrixWorld(true);
+            var box = new THREE.Box3().setFromObject(root);
+            var center = box.getCenter(new THREE.Vector3());
+            root.position.sub(center);
+            root.updateMatrixWorld(true);
+            frameNeuronOpeningView(root);
+            root.traverse(function (o) {
+              if (o.isMesh) o.castShadow = false;
+            });
+            scene.add(root);
+            neuronAuraNet = createOrganicNeuronAura(root);
+            var pageTheme = document.documentElement.getAttribute("data-theme") === "day" ? "day" : "night";
+            applyViewTheme(pageTheme);
+          },
+          undefined,
+          function (err) {
+            console.error(err);
+          }
+        );
+
+        function resizeThree() {
+          var w = hero.clientWidth;
+          var h = hero.clientHeight;
+          if (w < 1 || h < 1) return;
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+          renderer.setSize(w, h);
+        }
+
+        var ro = new ResizeObserver(function () {
+          resizeThree();
+        });
+        ro.observe(hero);
+        window.addEventListener("resize", resizeThree);
+        resizeThree();
+
+        function animate() {
+          requestAnimationFrame(animate);
+          var nowMs = performance.now();
+          var tSec = nowMs * 0.001;
+          var isDay = viewTheme === "day";
+          var ap = 0.5 + 0.5 * Math.sin(tSec * 3.1);
+          keyLight.intensity = (isDay ? 2.35 : 2.2) + ap * 0.22;
+          fillLight.intensity = (isDay ? 0.55 : 0.65) + ap * 0.12;
+
+          controls.update();
+          if (starField) starField.rotation.y += 0.00012;
+          if (neuralNetBg) neuralNetBg.update(tSec);
+          if (neuronAuraNet) neuronAuraNet.update(tSec);
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        if (window.location.hash === "#history" || window.location.hash === "#anatomy") {
+          var histEl = document.getElementById("history");
+          if (histEl) {
+            window.requestAnimationFrame(function () {
+              histEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+          }
+        }
+      })();
     </script>
+    <script src="discoveries-feed.js"></script>
   </body>
 </html>

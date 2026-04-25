@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEYRON — Neuron structure</title>
+    <script src="../page-base.js"></script>
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search).get("theme");
+          if (p !== "day" && p !== "night") p = localStorage.getItem("neyron_theme");
+          if (p === "day" || p === "night") document.documentElement.setAttribute("data-theme", p);
+          else document.documentElement.setAttribute("data-theme", "night");
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "night");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+          "three/": "https://cdn.jsdelivr.net/npm/three@0.170.0/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="neuron-atlas-chrome" aria-label="Site">
+      <a class="neuron-atlas-chrome__brand" href="../index.html">NEYRON</a>
+      <a class="neuron-atlas-chrome__link" href="../atlas.html">← Atlas</a>
+      <a class="neuron-atlas-chrome__link" href="../index.html" data-en="Home" data-az="Ana səhifə">Home</a>
+    </header>
+    <div id="root"></div>
+    <div
+      id="info-panel"
+      style="
+        position: fixed;
+        right: -340px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 280px;
+        background: transparent;
+        border-left: 1px solid rgba(255,255,255,0.12);
+        padding: 28px 24px;
+        z-index: 100;
+        transition: right 0.5s cubic-bezier(0.16,1,0.3,1);
+      "
+    >
+      <div
+        id="panel-close"
+        style="
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          cursor: pointer;
+          color: rgba(255,255,255,0.35);
+          font-size: 11px;
+          font-family: monospace;
+          letter-spacing: 0.2em;
+        "
+      >
+        ✕
+      </div>
+      <div
+        id="panel-name"
+        style="
+          font-family: monospace;
+          font-size: 0.65rem;
+          font-weight: 400;
+          color: rgba(255,255,255,0.92);
+          letter-spacing: 0.35em;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        "
+      ></div>
+      <div
+        id="panel-desc"
+        style="
+          font-family: monospace;
+          font-size: 0.68rem;
+          color: rgba(200,200,200,0.88);
+          line-height: 1.75;
+          letter-spacing: 0.02em;
+          font-weight: 300;
+        "
+      ></div>
+    </div>
+    <div
+      id="creator-credit"
+      style="
+        position: fixed;
+        left: 16px;
+        bottom: 14px;
+        z-index: 500;
+        color: #ffffff;
+        font-family: monospace;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        opacity: 1;
+        pointer-events: none;
+        user-select: none;
+      "
+    >
+      2026 © Created by Omar Garagozov
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

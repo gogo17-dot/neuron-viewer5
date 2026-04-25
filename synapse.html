@@ -1,0 +1,3761 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Synapse</title>
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="site.css" />
+    <style>
+      body.synapse-atlas-page {
+        overflow-x: hidden;
+      }
+      #canvas-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      /* Part info panel — match `neuronatlas/index.html` + `neuronatlas/styles.css` (neuron structure viewer). */
+      #info-panel {
+        box-sizing: border-box;
+        position: fixed;
+        top: 50%;
+        right: -340px;
+        transform: translateY(-50%);
+        width: min(280px, calc(100vw - 24px));
+        max-height: min(86vh, 680px);
+        z-index: 80;
+        padding: 28px 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #info-panel.open {
+        right: max(12px, env(safe-area-inset-right, 0px));
+      }
+      #panel-name,
+      #panel-desc {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        max-width: 100%;
+      }
+
+      #info-panel-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        margin-right: -4px;
+        padding-right: 8px;
+      }
+      #panel-name {
+        font-family: ui-monospace, monospace;
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        margin: 0 0 16px;
+        padding-right: 28px;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      #panel-desc {
+        font-family: ui-monospace, monospace;
+        font-size: 0.68rem;
+        font-weight: 300;
+        line-height: 1.75;
+        letter-spacing: 0.02em;
+        margin: 0;
+        color: rgba(200, 200, 200, 0.88);
+        white-space: pre-line;
+      }
+      #panel-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 6px 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-family: ui-monospace, monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      html:not([data-theme="day"]) #info-panel {
+        background: rgba(6, 14, 26, 0.78);
+        border: 1px solid rgba(126, 207, 179, 0.42);
+        border-radius: 6px;
+        box-shadow:
+          0 0 0 1px rgba(0, 255, 204, 0.1),
+          0 10px 36px rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+      }
+      html:not([data-theme="day"]) #panel-close {
+        color: rgba(160, 220, 195, 0.75);
+      }
+      html:not([data-theme="day"]) #panel-close:hover {
+        color: rgba(200, 245, 225, 0.95);
+      }
+      html[data-theme="day"] #info-panel {
+        background: #fffef4;
+        border: 3px solid #0a0a0a;
+        border-radius: 4px;
+        box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12);
+      }
+      html[data-theme="day"] #panel-close {
+        color: #0a0a0a;
+        font-weight: 700;
+        -webkit-text-stroke: 0.4px #fffef4;
+        paint-order: stroke fill;
+      }
+      html[data-theme="day"] #panel-name {
+        color: #0a0a0a;
+        font-weight: 800;
+        -webkit-text-stroke: 0.65px #fffef4;
+        paint-order: stroke fill;
+        text-shadow: 0.04em 0.04em 0 rgba(10, 10, 10, 0.18);
+      }
+      html[data-theme="day"] #creator-credit {
+        color: #5c4a3a !important;
+      }
+
+      html[data-theme="day"] #panel-desc {
+        color: #0a0a0a;
+        font-weight: 600;
+        -webkit-text-stroke: 0.45px #fffef4;
+        paint-order: stroke fill;
+        text-shadow: 0.03em 0.03em 0 rgba(10, 10, 10, 0.12);
+      }
+      /* Hover labels: same look as `neuronatlas/app.js` neuron scene tooltip (Atlas → Neuron). */
+      #tooltip {
+        position: fixed;
+        z-index: 200;
+        display: none;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #ffffff;
+        font-family: monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        padding: 5px 12px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        max-width: 18rem;
+        white-space: nowrap;
+        line-height: 1.35;
+        text-align: left;
+        transition: left 0.15s, top 0.15s, bottom 0.15s;
+      }
+      /* Day: match info panel — black “marker” label, cream card, heavy black outline. */
+      html[data-theme="day"] #tooltip {
+        background: #fffef4;
+        border: 3px solid #0a0a0a;
+        border-radius: 4px;
+        box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12);
+        color: #0a0a0a;
+        font-weight: 600;
+        -webkit-text-stroke: 0.45px #fffef4;
+        paint-order: stroke fill;
+        text-shadow: 0.03em 0.03em 0 rgba(10, 10, 10, 0.12);
+      }
+      .synapse-embed-controls {
+        position: absolute;
+        right: max(10px, env(safe-area-inset-right, 0px));
+        bottom: max(10px, env(safe-area-inset-bottom, 0px));
+        z-index: 12;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.45rem;
+        max-width: calc(100% - 24px);
+        pointer-events: none;
+      }
+      .synapse-embed-controls > * {
+        pointer-events: auto;
+      }
+      .synapse-help-popover {
+        width: min(340px, calc(100vw - 48px));
+        max-height: min(52vh, 380px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 6px;
+        text-align: left;
+        box-sizing: border-box;
+      }
+      .synapse-help-popover[hidden] {
+        display: none !important;
+      }
+      html:not([data-theme="day"]) .synapse-help-popover {
+        background: rgba(6, 14, 26, 0.92);
+        border: 1px solid rgba(126, 207, 179, 0.45);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+      }
+      html[data-theme="day"] .synapse-help-popover {
+        background: #fffef4;
+        border: 3px solid #0a0a0a;
+        box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12);
+      }
+      .synapse-help-popover__header {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 12px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      html[data-theme="day"] .synapse-help-popover__header {
+        border-bottom-color: rgba(10, 10, 10, 0.15);
+      }
+      .synapse-help-popover__title {
+        margin: 0;
+        font-family: ui-monospace, monospace;
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      html[data-theme="day"] .synapse-help-popover__title {
+        color: #0a0a0a;
+      }
+      .synapse-help-popover__close {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 4px 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-family: ui-monospace, monospace;
+        font-size: 12px;
+        line-height: 1;
+        color: rgba(160, 220, 195, 0.85);
+      }
+      .synapse-help-popover__close:hover {
+        color: rgba(200, 245, 225, 0.98);
+      }
+      html[data-theme="day"] .synapse-help-popover__close {
+        color: #0a0a0a;
+        font-weight: 700;
+      }
+      .synapse-help-popover__body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 14px 14px;
+        font-family: ui-monospace, monospace;
+        font-size: 0.62rem;
+        font-weight: 300;
+        line-height: 1.7;
+        letter-spacing: 0.04em;
+        color: rgba(200, 210, 220, 0.92);
+        white-space: pre-line;
+      }
+      html[data-theme="day"] .synapse-help-popover__body {
+        color: #2a1a08;
+        font-weight: 500;
+      }
+      .ui-signal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.4rem;
+      }
+      .ui-signal__row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.45rem;
+      }
+      .ui-signal .btn-synapse-help {
+        font-family: ui-monospace, monospace;
+        font-size: 0.52rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.75rem;
+        border-radius: 4px;
+        border: 1px solid rgba(180, 200, 220, 0.35);
+        background: rgba(0, 20, 32, 0.55);
+        color: rgba(220, 230, 240, 0.85);
+        cursor: pointer;
+        transition: opacity 0.2s, border-color 0.2s, background 0.2s;
+      }
+      .ui-signal .btn-synapse-help:hover {
+        border-color: rgba(0, 255, 204, 0.45);
+        background: rgba(0, 40, 50, 0.65);
+      }
+      html[data-theme="day"] .ui-signal .btn-synapse-help {
+        border: 1px solid rgba(42, 26, 8, 0.22);
+        background: rgba(255, 255, 255, 0.72);
+        color: #3a2818;
+      }
+      html[data-theme="day"] .ui-signal .btn-synapse-help:hover {
+        border-color: rgba(224, 90, 16, 0.45);
+        background: rgba(255, 250, 240, 0.95);
+      }
+      .ui-signal .btn-fire {
+        font-family: ui-monospace, monospace;
+        font-size: 0.52rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 0.5rem 0.85rem;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 255, 204, 0.4);
+        background: rgba(0, 30, 40, 0.5);
+        color: #7af0e0;
+        cursor: pointer;
+        transition: opacity 0.2s, border-color 0.2s, background 0.2s;
+        max-width: 100%;
+      }
+      .ui-signal .btn-fire:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+      .ui-signal .btn-fire:not(:disabled):hover {
+        background: rgba(0, 255, 204, 0.12);
+        border-color: rgba(0, 255, 204, 0.6);
+      }
+      html[data-theme="day"] .ui-signal .btn-fire {
+        border: 1px solid rgba(224, 90, 16, 0.4);
+        background: rgba(255, 255, 255, 0.55);
+        color: #b04008;
+      }
+      html[data-theme="day"] .ui-signal .btn-fire:not(:disabled):hover {
+        background: rgba(224, 90, 16, 0.1);
+      }
+      .ui-signal .auto-cb {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: ui-monospace, monospace;
+        font-size: 0.5rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(200, 230, 240, 0.35);
+        pointer-events: auto;
+        cursor: pointer;
+      }
+      html[data-theme="day"] .ui-signal .auto-cb {
+        color: rgba(42, 26, 8, 0.35);
+      }
+    </style>
+  </head>
+  <body class="synapse-atlas-page" data-page="atlas">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-dot" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="atlas-embed-page">
+        <p class="atlas-embed-note" data-en="Synapse" data-az="Sinaps">Synapse</p>
+        <div class="atlas-embed-frame synapse-embed-wrap">
+          <div id="canvas-container"></div>
+          <div
+            id="creator-credit"
+            style="
+              position: absolute;
+              left: 16px;
+              bottom: 14px;
+              z-index: 10;
+              color: #ffffff;
+              font-family: monospace;
+              font-size: 10px;
+              letter-spacing: 0.06em;
+              opacity: 1;
+              pointer-events: none;
+              user-select: none;
+            "
+          >
+            2026 © Created by Omar Garagozov
+          </div>
+          <div class="synapse-embed-controls">
+            <aside
+              id="synapse-activate-help"
+              class="synapse-help-popover"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="synapse-help-title"
+              hidden
+            >
+              <div class="synapse-help-popover__header">
+                <h3 class="synapse-help-popover__title" id="synapse-help-title" data-en="What “Activate synapse” shows" data-az="“Sinapsı aktivləşdir” nə göstərir">
+                  What “Activate synapse” shows
+                </h3>
+                <button type="button" class="synapse-help-popover__close" id="synapse-help-close" aria-label="Close">✕</button>
+              </div>
+              <div
+                class="synapse-help-popover__body"
+                data-en="Pressing Activate synapse runs a didactic sequence of chemical synaptic transmission (not a literal molecular dynamics simulation, but the order matches textbooks).
+
+1. Presynaptic excitation — the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
+
+2. Calcium entry — Ca²⁺ influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca²⁺ channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
+
+3. Vesicle docking and fusion — primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a “quantum” of neurotransmitter: that is the physical meaning of quantal release.
+
+4. Cleft diffusion — transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
+
+5. Receptor binding and postsynaptic response — binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
+
+Auto, when enabled, repeats the full sequence on a timer so you can watch the cycle without clicking each time."
+                data-az="«Sinapsı aktivləşdir» düyməsi kimyəvi sinaptik ötürülmənin tədris ardıcıllığını işə salır (həqiqi molekulyar dinamika simulyasiyası deyil, lakin ardıcıllıq dərsliyə uyğundur).
+
+1. Presinaptik həyəcanlanma — model boutona tərəf hərəkət edən fəallığı animasiya edir; bu, terminala daxil olan aksiyon potensialı və presinaptik membranın depolyarizasiyasının sxematik təsviridir.
+
+2. Kalsium girişi — aktiv zona yaxınlığında Ca²⁺ axını terminalda lokal artım kimi göstərilir. Həqiqi sinapslarda gərginliyə həssas Ca²⁺ kanalları söykənmiş vezikulların üzbəüzü klasterləşir; yaranan mikrodomen millisaniyə miqyasında ifrazata imkan verir.
+
+3. Vezikul söykənməsi və füzyonu — primlənmiş vezikullar aktiv zona diskə yaxınlaşır və membranla birləşir (exositoz). Hər vezikul neyrotransmitterin “kvant”ını buraxır — bu da kvantal ifrazanın fiziki mənasıdır.
+
+4. Yarıqda diffuziya — neyrotransmitter molekulları təxminən ~20 nm sinoptik yarığı diffuziya ilə keçir və postsinaptik reseptorlara çatır. Transmitterin kimliyi (burada stilizə edilib) hədəf hüceyrədə həyəcanlandırma və ya tormuzlamanı müəyyən edir.
+
+5. Reseptor bağlanması və postsinaptik cavab — bağlanma ion kanallarını açır və ya modulyasiya edir; səhnədə reseptor tərəfində bağlanma impulsları və membran/tikan cavabı bu kimyanın yenidən elektrikə çevrilməsinin sadələşdirilmiş oxunuşudur.
+
+Avto rejimi yandıranda bütün ardıcıllıq taymerlə təkrarlanır ki, hər dəfə klikləmədən dövrü izləyə biləsiniz."
+              >
+                Pressing Activate synapse runs a didactic sequence of chemical synaptic transmission (not a literal molecular dynamics simulation, but the order matches textbooks).
+
+1. Presynaptic excitation — the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
+
+2. Calcium entry — Ca²⁺ influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca²⁺ channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
+
+3. Vesicle docking and fusion — primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a “quantum” of neurotransmitter: that is the physical meaning of quantal release.
+
+4. Cleft diffusion — transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
+
+5. Receptor binding and postsynaptic response — binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
+
+Auto, when enabled, repeats the full sequence on a timer so you can watch the cycle without clicking each time.
+              </div>
+            </aside>
+            <div class="ui-signal" aria-label="Synapse activation">
+              <div class="ui-signal__row">
+                <button type="button" class="btn-synapse-help" id="btn-synapse-help" data-i18n-en="Info" data-i18n-az="Məlumat">
+                  Info
+                </button>
+                <button type="button" class="btn-fire" id="btn-fire" data-i18n-en="Activate synapse" data-i18n-az="Sinapsı aktivləşdir">
+                  Activate synapse
+                </button>
+              </div>
+              <label
+                class="auto-cb"
+                data-title-en="Auto: run Activate synapse every 4 seconds while idle"
+                data-title-az="Avto: boşdaykən 4 saniyədə bir sinapsı aktivləşdir"
+                ><input type="checkbox" id="auto-signal" /> <span data-i18n-en="auto" data-i18n-az="avto">auto</span></label
+              >
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-brand">NEYRON</div>
+        <div class="footer-center">© 2026 neyron.atlas.az</div>
+      </footer>
+    </div>
+
+    <div id="tooltip"></div>
+    <div id="info-panel" aria-hidden="true">
+      <button type="button" id="panel-close" aria-label="Close">✕</button>
+      <div id="panel-name"></div>
+      <div id="info-panel-body">
+        <div id="panel-desc"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="site-shell.js"></script>
+    <script src="particles-bg.js"></script>
+    <script>
+      (function () {
+        var descriptions = {
+          "Presynaptic Terminal":
+            "The presynaptic terminal (bouton) is the axon ending specialised for regulated neurotransmitter release. In many central synapses a single bouton is on the order of about 1–5 micrometres across; neuromuscular and other specialised synapses can be much larger. The cytoplasm organises synaptic vesicles into functional pools (for example docked or primed vesicles at the active zone and reserve vesicles deeper in the bouton), positions mitochondria for ATP-intensive steps such as vesicle cycling, and concentrates presynaptic voltage-gated calcium channels. When an action potential invades the terminal, depolarisation opens those channels; the resulting local calcium transient on the submillisecond-to-millisecond scale triggers SNARE-mediated fusion of primed vesicles at the active zone so transmitter enters the synaptic cleft.",
+          Mitochondria:
+            "Mitochondria inside boutons are usually elongated organelles on the order of about 0.5–5 micrometres long and submicrometre across the short axis in typical tissue images—far larger than a single synaptic vesicle (tens of nanometres). They regenerate ATP for vesicle priming and refilling, clathrin-mediated and bulk endocytosis of fused membranes, and ion pumping that restores gradients after activity. They also participate in local calcium handling during trains of stimuli. Impaired mitochondrial transport, membrane potential, or quality control in terminals is associated with synaptic depression and contributes to pathology in several neurodegenerative disorders.",
+          "Synaptic Vesicle":
+            "Small clear synaptic vesicles that store classic small-molecule transmitters are roughly about 35–50 nanometres in diameter depending on synapse class and preparation. Each vesicle can package on the order of about 10³–10⁴ neurotransmitter molecules depending on transporter expression, luminal ionic conditions, and vesicle size. Vesicles pass through a trafficking cycle including endocytosis after fusion, refilling, transport back toward the active zone, docking, and priming. Calcium-evoked fusion at the active zone releases transmitter into the cleft; the vesicle membrane then becomes part of the presynaptic surface or is retrieved on timescales that set short-term plasticity.",
+          "Active Zone":
+            "The active zone is a dense protein specialization of the presynaptic plasma membrane that couples voltage-gated calcium channels to release-ready vesicles. Electron microscopy shows it as a paramembranous ribbon or grid whose lateral extent is typically on the order of a few hundred nanometres, varying by synapse type. Scaffold proteins (for example RIM, Munc13, Bassoon, RIM-BP) together with calcium channels organise the distance between channels and vesicles, set baseline release probability, and support forms of short-term facilitation and depression observed electrophysiologically.",
+          Neurotransmitter:
+            "After exocytosis, transmitter molecules diffuse through the aqueous synaptic cleft. At many central synapses the cleft width is on the order of tens of nanometres (often roughly about 20 nanometres is quoted as a typical central value, with biological variation). Because individual transmitter molecules are sub-nanometre in size, pure diffusion across such a narrow gap takes on the order of tens to hundreds of microseconds before substantial postsynaptic binding begins. Which transmitter is released (for example glutamate, GABA, acetylcholine) determines whether the postsynaptic response is excitatory, inhibitory, or modulatory through specific receptor types.",
+          "Postsynaptic Membrane":
+            "The postsynaptic membrane is the lipid bilayer of the receiving cell that faces the cleft. It contains neurotransmitter receptors, auxiliary subunits that modulate channel gating, and adhesion molecules that align pre- and postsynaptic specialisations. On dendritic spines the postsynaptic membrane forms the curved head surface, commonly on the order of about half to one micrometre across for many excitatory synapses. Synaptic currents through receptors in this membrane produce excitatory or inhibitory postsynaptic potentials that spread along dendrites toward the axon initial segment, where they are integrated with other inputs.",
+          "Postsynaptic Density":
+            "The postsynaptic density (PSD) is an electron-dense cytoskeletal structure located just beneath the postsynaptic membrane opposite the presynaptic active zone. At excitatory spine synapses its lateral size is commonly measured in the hundreds of nanometres (roughly about 250–500 nanometres depending on synapse class). Scaffold proteins such as PSD-95, GKAP, Shank, and Homer anchor transmembrane receptors to the actin cytoskeleton and recruit signalling enzymes. That architecture makes the PSD a structural hub for long-term changes in synaptic strength during plasticity.",
+          Receptor:
+            "Postsynaptic receptors are transmembrane proteins with ligand-binding domains exposed to the cleft. Their role is to bind released neurotransmitter and, depending on receptor class, open ion channels directly (ionotropic receptors), alter channel properties through second messengers (metabotropic pathways), or both. Without receptor activation, presynaptic release would not reliably produce changes in postsynaptic voltage or downstream biochemistry. Nicotinic acetylcholine receptors, one well-studied ionotropic class, are pentameric ligand-gated channels with overall dimensions on the order of about 10 nanometres along the axis normal to the membrane—nanometre-scale, not micrometre-scale. Proteins do not have a single intrinsic colour like paint; in transmission electron microscopy they appear as dense protein in the membrane, and colours in figures are chosen for clarity.",
+          "Dendritic Spine":
+            "A dendritic spine is a micron-scale protrusion from a dendrite shaft that forms a partially isolated biochemical compartment. In mammalian cortex and hippocampus measured by electron microscopy, spine heads are commonly about 0.5–1.0 micrometres in diameter, neck diameters often about 0.05–0.3 micrometres, and neck lengths roughly about 0.05–2 micrometres depending on spine class (thin, mushroom, stubby). The head carries the postsynaptic density and the highest density of receptors for the synapse. Spine geometry influences how synaptic currents shape local voltage and how calcium and second messengers are compartmentalised relative to the parent dendrite.",
+          "Spine Neck":
+            "The spine neck is the narrow cytosolic bridge between the spine head and the dendritic shaft. Because it is thin and can be long, it increases axial resistance between head and shaft, which attenuates how somatically recorded electrical signals sample synaptic currents generated at the head. It also slows diffusion of ions and small molecules between head and shaft, supporting biochemical compartmentalisation of calcium and second messengers during synaptic activity. Population measurements of neck dimensions in hippocampus and cortex therefore correlate with coupling strength between spine head and dendrite and with plasticity-related remodelling.",
+        };
+
+        var descriptionsAz = {
+          "Presynaptic Terminal":
+            "Presinaptik terminal (bouton) neyrotransmitterin tənzimlənən ifrazı üçün ixtisaslaşmış axon sonudur. Bir çox mərkəzi sinapslarda tək boutonun eni adətən təxminən 1–5 mikrometr səviyyəsindədir; əzələ-sinir və digər ixtisaslaşmış sinapslar daha böyük ola bilər. Sitoplazma sinaptik vezikulları funksional hovuzlara təşkil edir (məsələn aktiv zonada söykənmiş və ya primlənmiş vezikullar və boutonun dərinliyində ehtiyat vezikullar), vezikul dövrü kimi ATP tələbkar addımlar üçün mitoxondriumları yerləşdirir və presinaptik gərginliyə həssas kalsium kanallarını sıxlaşdırır. Aksiyon potensialı terminala daxil olduqda depolarizasiya bu kanalları açır; yaranan lokal kalsium dalğası millisaniyə və daha aşağı miqyasında aktiv zonada primlənmiş vezikulların SNARE vasitəli birləşməsini işə salır ki, transmitter sinaptik yarığa keçsin.",
+          Mitochondria:
+            "Bouton daxilindəki mitoxondriumlar adətən təxminən 0.5–5 mikrometr uzunluğunda uzunsov orqanellelər və en kəsiyində tipik toxuma şəkillərində submikrometr ölçülüdür — tək sinaptik vezikuladan (onlarla nanometr) orders böyükdür. Onlar vezikul priminqi və doldurulması, birləşmiş membranın klastrin vasitəli və kütləvi endositozu və fəaliyyətdən sonra gradientlərin bərpası üçün ion nasosları üçün ATP bərpa edir. Həm də stimul seriyaları zamanı lokal kalsium idarəçiliyində iştirak edir. Terminallarda mitoxondriumların daşınması, membran potensialı və ya keyfiyyət nəzarətinin pozulması sinaptil depressiya ilə əlaqələndirilir və bir neçə neyrodegenerativ vəziyyətdə patologiyaya töhfə verir.",
+          "Synaptic Vesicle":
+            "Klassik kiçik molekullu transmitterləri saxlayan kiçik şəffaf sinaptik vezikullar sinaps sinfindən və preparatdan asılı olaraq təxminən 35–50 nanometr diametrində olur. Hər vezikul transporter ifadəsi, luminal ion şəraiti və ölçüdən asılı olaraq təxminən 10³–10⁴ neyrotransmitter molekulu paketləyə bilər. Vezikullar füzyondan sonra endositoz, doldurulma, aktiv zonaya geri nəqliyyat, söykənmə və primləmə daxil olmaqla trafik dövründən keçir. Aktiv zonada kalsiumla təhrik olunan füzyon transmitteri yarığa buraxır; vezikul membranı sonra presinaptik səthin bir hissəsinə çevrilir və ya qısamüddətli plastikliyin müəyyən etdiyi vaxt miqyasında geri alınır.",
+          "Active Zone":
+            "Aktiv zona presinaptik plazma membranının gərginliyə həssas kalsium kanallarını ifrazə üçün hazır vezikullarla birləşdirən sıx zülal ixtisaslaşmasıdır. Elektron mikroskopiyada o, sinaps tipindən asılı olaraq adətən bir neçə yüz nanometr enində paramembran zolaq və ya tor kimi görünür. Skelet zülalları (məsələn RIM, Munc13, Bassoon, RIM-BP) kalsium kanalları ilə birlikdə kanallar ilə vezikullar arasındakı məsafəni təşkil edir, bazal ifraz ehtimalını təyin edir və elektrofiziologiyada müşahidə olunan qısamüddətli facilitasiya və depressiya formalarını dəstəkləyir.",
+          Neurotransmitter:
+            "Exositozdan sonra transmitter molekulları suyu sinaptik yarıqda diffuziya edir. Bir çox mərkəzi sinapslarda yarığın eni onlarla nanometr səviyyəsindədir (tipik mərkəzi dəyər kimi tez-tez təxminən 20 nanometr göstərilir, bioloji dəyişkənlik ilə). Tək transmitter molekulları subnanometr ölçüdə olduğundan belə dar boşluqda təmiz diffuziya postsinaptik əhəmiyyətli bağlanmaya başlamazdan əvvəl onlarla mikrosaniyə səviyyəsində vaxt alır. Hansı transmitterin buraxılması (məsələn qlutamat, GABA, asetilkolin) postsinaptik cavabın həyəcanlandırıcı, tormuzlayıcı və ya müəyyən reseptor tipləri vasitəsilə modulyator olmasını təyin edir.",
+          "Postsynaptic Membrane":
+            "Postsinaptik membran yarığa baxan qəbul edən hüceyrənin lipid ikili qatıdır. Neyrotransmitter reseptorlarını, kanal qapagını modulyasiya edən köməkçi subvahidləri və pre- və postsinaptik ixtisaslaşmaları düzən adeziya molekullarını ehtiva edir. Dendritik tikalarda postsinaptik membran əyilmiş baş səthini əmələ gətirir; bir çox excitator sinapslarda bu baş adətən təxminən yarım ilə bir mikrometr enində olur. Bu membrandakı reseptorlar vasitəsilə sinaptik cərəyanlar həyəcanlandırıcı və ya inhibitor postsinaptik potensiallar yaradır ki, onlar dendritlər boyu akson ilkin seqmentinə tərəf yayılaraq digər girişlərlə inteqrasiya olunur.",
+          "Postsynaptic Density":
+            "Postsinaptik sıxlıq (PSD) presinaptik aktiv zonanın üzbəüzündə postsinaptik membranın altında yerləşən elektron sıx sitoskelet quruluşudur. Excitator tikan sinapslarında onun yan ölçüsü adətən yüzlərlə nanometr ilə ölçülür (sinaps sinfindən asılı olaraq təxminən 250–500 nanometr). PSD-95, GKAP, Shank, Homer kimi skelet zülalları transmembran reseptorları aktin sitoskeletinə bağlayır və siqnal fermentlərini cəlb edir. Bu memarlıq plastiklik zamanı sinaptik gücün uzunmüddətli dəyişməsində struktur mərkəz rolunu oynayır.",
+          Receptor:
+            "Postsinaptik reseptorlar yarığa açılan bağlama domenləri olan transmembran zülallarıdır. Onların rolu buraxılmış neyrotransmitterə bağlanmaq və reseptor sinfindən asılı olaraq birbaşa ion kanallarını açmaq (ionotrop reseptorlar), ikinci messencerlər vasitəsilə kanal xassələrini dəyişdirmək (metabotrop yollar) və ya hər ikisidir. Reseptor aktivləşməsi olmadan presinaptik ifraz postsinaptik gərginlikdə və ya aşağı axında etibarlı dəyişiklik yaratmazdı. Yaxşı öyrənilmiş ionotrop siniflərdən biri olan nikotin asetilkolin reseptorları pentamerik ion kanalıdır; membran normalına görə ümumi ölçüləri təxminən 10 nanometr səviyyəsində oxunan oxlar boyunca nanometr miqyasındadır, mikrometr deyil. Zülalların boya kimi tək inherent rəngi yoxdur; ötürücü elektron mikroskopiyada onlar membranda sıx zülal kimi görünür, şəkillərdəki rənglər isə adətən aydınlıq üçündür.",
+          "Dendritic Spine":
+            "Dendritik tikan dendrit çöhrəsindən çıxan və qismən təcrid olunmuş biokimyəvi kompartment yaradan mikron miqyasında çıxıntıdır. Memalıların korteksi və hipokampusunda elektron mikroskopiya ilə ölçüləndə tikan başlarının diametri adətən təxminən 0.5–1.0 mikrometr, boyun diametri təxminən 0.05–0.3 mikrometr, boyun uzunluğu isə incə, göbələk və ya qısa sinfdən asılı olaraq təxminən 0.05–2 mikrometr olur. Baş PSD-ni və sinaps üçün ən yüksək reseptor sıxlığını daşıyır. Tikan geometriyası sinaptik cərəyanların lokal gərginliyi necə formalaşdırdığını və kalsium ilə ikinci messencerlərin ana dendritə nisbətən kompartmantallaşdırılmasını təsir edir.",
+          "Spine Neck":
+            "Tikan boynu tikan başı ilə dendrit çöhrəsi arasında dar sitoplazma körpüsüdür. Nazik və bəzən uzun olduğuna görə baş ilə çöhrə arasında oxial müqaviməti artırır; bu da başda yaranan sinaptik cərəyanların somada qeydə alınan elektrik siqnallarına necə ötürülməsini zəiflədir. Həmçinin ionların və kiçik molekulların baş ilə çöhrə arasında diffuziyasını yavaşladaraq sinaptik fəaliyyət zamanı kalsium və ikinci messencerlərin biokimyəvi kompartmantallaşdırmasını dəstəkləyir. Hipokampus və korteksdə boyun ölçülərinin populyasiya ölçüləri ona görə baş ilə dendrit arasındakı əlaqə gücü və plastikliklə bağlı yenidənqurulma ilə korrelyasiya olunur.",
+        };
+
+        var nameAz = {
+          "Presynaptic Terminal": "Presinaptik Terminal",
+          Mitochondria: "Mitoxondriya",
+          "Synaptic Vesicle": "Sinaptik Vezikül",
+          "Active Zone": "Aktiv Zona",
+          Neurotransmitter: "Nörotransmitter",
+          "Postsynaptic Membrane": "Postsinaptik Membran",
+          "Postsynaptic Density": "Postsinaptik Sıxlıq",
+          Receptor: "Reseptor",
+          "Dendritic Spine": "Dendritik Tikan",
+          "Spine Neck": "Tikan boynu",
+        };
+
+        /** Match neuron atlas iframe viewer (`neuronatlas/app.js` applyAtlasTheme). */
+        var SYNAPSE_SCENE_BG_NIGHT = 0x000000;
+        /** Day: slightly below pure white to reduce overexposure on cream UI. */
+        var SYNAPSE_SCENE_BG_DAY = 0xebe6dc;
+        /** Dendritic spine (stem+head): unlit solid fill — orange day, green neon night. */
+        /** Spine feed ripple (warm; no cyan). */
+        var SPINE_RIPPLE_COLOR_DAY = 0xd0b8a0;
+        var SPINE_RIPPLE_COLOR_NIGHT = 0xc4a078;
+        /** PSD base albedo (idle / reset); day palette vs night. */
+        var PSD_BASE_COLOR_DAY = 0x2a5030;
+        var PSD_BASE_COLOR_NIGHT = 0x1a1a1c;
+        var scene,
+          camera,
+          renderer,
+          controls,
+          clock,
+          viewGroup;
+        var composer, bloomPass, renderPass, cleftLight, preInteriorLight, postInteriorLight, mainDirLight, mainHemiLight, synapseFillDir, synapseAmbMain, synapseAmbFill, synapseAmbPostSyn, synapseFrontPl, cleftVoidMesh, postMembraneMesh, psdMesh, activeZoneMesh, spineStemMesh, spineHeadMesh, cupRippleMesh, spineFeedRippleMesh, dockingPoolDiscMesh, spineIonGroup;
+        var bindHitsThisCycle = 0;
+        var spineFeedforwardPulse = 0;
+        var presynCaClusters = [];
+        var ionGroup;
+        var presynCaGeoms = { init: false };
+        /** Deeper terminal interior: Ca²⁺ influx “locks” on this region before exocytosis. */
+        var caVesiclePool = new THREE.Vector3(0, 1.24, 0);
+        var CA_POOL_R = 0.38;
+        var N_PRESYN_CA = 12;
+        var caInfluxArrivalCount = 0;
+        var dockingVioletPulse = 0;
+        var caInfluxRetreat = false;
+        var caTealCleftLatched = false;
+        var spineIons = [];
+        var spineNaIonsInit = false;
+        var spineNaIonsSpawnedThisCycle = false;
+        var spineNaTealResetWhenClear = false;
+        var tealCleftResetAfterSpine = false;
+        var N_SPINE_NA = 15;
+        var cupSurfacePulse = 0;
+        var lastCupDepolT = -1;
+        var CUP_DEPOL_STAGGER = 0.22;
+        var CUP_PULSE_DECAY = 0.8;
+        var _surfaceV = new THREE.Vector3();
+        var _postCenter = new THREE.Vector3(0, -0.5, 0);
+        var _postR = 2.2;
+        /** Pull receptor bases slightly into the surface so the mesh reads half-embedded, not adrift. */
+        var RECEPTOR_MEMBRANE_INSET = 0.028;
+        /** Matches PSD disc radius in buildScene; used to clamp receptor footprints inside the disc. */
+        var PSD_DISPLAY_RADIUS = 1.1;
+        var RECEPTOR_PSD_EDGE = 0.24;
+        /** Vesicle fusion / burst height — aligned with active zone disc (~0.28). */
+        var RELEASE_Y = 0.31;
+        /** Active zone disc radius (`CylinderGeometry` 1.1); dock targets stay well inside for a clean pass-through. */
+        var AZ_DISC_R = 1.1;
+        /** Must match active zone mesh in `buildScene` (cylinder height 0.05, center Y 0.28). */
+        var AZ_MESH_CENTER_Y = 0.28;
+        var AZ_MESH_HALF_H = 0.025;
+        var AZ_MESH_Y_TOP = AZ_MESH_CENTER_Y + AZ_MESH_HALF_H;
+        var AZ_MESH_Y_BOT = AZ_MESH_CENTER_Y - AZ_MESH_HALF_H;
+        /** Gap between neurotransmitter sphere surface and AZ mesh (avoids clipping through disc). */
+        var AZ_NT_SURFACE_PAD = 0.014;
+        var NT_AMBIENT_SPHERE_R = 0.09;
+        var FIRE_NT_SPHERE_R = 0.038;
+        /** Dock slots for signal vesicles: radius inside disc, separated so spheres do not overlap at fusion. */
+        var VESICLE_DOCK_SLOT_R = 0.4;
+        var RECEPTOR_BIND_SEC = 0.3;
+        var RECEPTOR_BIND_SPARK_SEC = 0.3;
+        var _nTmp = new THREE.Vector3();
+        var _nTmp2 = new THREE.Vector3();
+        var _vPin = new THREE.Vector3();
+        var _eulerTmp = new THREE.Euler();
+        var _qP = new THREE.Quaternion();
+        var _q0 = new THREE.Quaternion();
+        var _qJ = new THREE.Quaternion();
+        var _axisX = new THREE.Vector3(1, 0, 0);
+        var _axisZ = new THREE.Vector3(0, 0, 1);
+        var postInteriorBaseI = 0.25;
+        var postMemEmissiveBase = 0.2;
+        var postResponsePulse = 0;
+        var postMemReceiveUntil = 0;
+        var POST_MEM_RECEIVE_SEC = 0.22;
+        var postEmissiveHex = 0x1a1000;
+        var postInteriorColorHex = 0xa89858;
+        var _cWarmPost = new THREE.Color();
+        var _cBasePost = new THREE.Color();
+        var _eWarmPost = new THREE.Color();
+        var _eBasePost = new THREE.Color();
+        var starGeo, starPos, starField;
+        var nts = [];
+        var vesicleMeshes = [];
+        var terminalMesh;
+        var raycaster = new THREE.Raycaster();
+        var mouseNdc = new THREE.Vector2();
+        var lastTooltipLabel = null;
+        var networkFrame = 0;
+
+        var container = document.getElementById("canvas-container");
+        var tooltip = document.getElementById("tooltip");
+        var infoPanel = document.getElementById("info-panel");
+        var panelName = document.getElementById("panel-name");
+        var panelDesc = document.getElementById("panel-desc");
+        var labeledMeshes = [];
+        var receptors = [];
+        var RECEPTOR_COUNT = 20;
+        /** Uniform scale vs previous sizing (GLB + fallback + hit radii). */
+        var RECEPTOR_VISUAL_SCALE = 1.26;
+        var openPanelKey = null;
+        var pointerX = 0;
+        var pointerY = 0;
+        var G = typeof gsap !== "undefined" ? gsap : null;
+        var signalState = "idle";
+        var signalBlockNt = false;
+        var apWave;
+        var burstGroup;
+        var apPointLight;
+        var burstNts = [];
+        var fireNtGeo = null;
+        var fireNtMaterial = null;
+        var releaseCounter = 0;
+        var autoSignalTimeout = null;
+        var NTS_PER_BURST = 6;
+        var N_SIGNAL_V = 5;
+
+        function vec3Gsap(v3, tx, ty, tz, opts) {
+          opts = opts || {};
+          if (!G || !v3) {
+            v3.set(tx, ty, tz);
+            if (opts.onComplete) {
+              opts.onComplete();
+            }
+            return;
+          }
+          var o = { x: v3.x, y: v3.y, z: v3.z };
+          G.to(o, {
+            x: tx,
+            y: ty,
+            z: tz,
+            duration: opts.dur != null ? opts.dur : 0.5,
+            delay: opts.delay != null ? opts.delay : 0,
+            ease: opts.ease || "power2.inOut",
+            onUpdate: function () {
+              v3.set(o.x, o.y, o.z);
+            },
+            onComplete: function () {
+              v3.set(tx, ty, tz);
+              if (opts.onComplete) {
+                opts.onComplete();
+              }
+            },
+          });
+        }
+
+        function getLang() {
+          var l = (document.documentElement.getAttribute("lang") || "en").toLowerCase();
+          return l === "az" ? "az" : "en";
+        }
+
+        function isAz() {
+          return getLang() === "az";
+        }
+
+        function isDay() {
+          return document.documentElement.getAttribute("data-theme") === "day";
+        }
+
+        /**
+         * Presynaptic terminal on day: same as atlas Soma after `applyAtlasTheme("day")` —
+         * `applyDayPhysicalHeroLook` + translucent branch (`neuronatlas/app.js` NEYRON_DAY_PHYS, opacity under 0.98).
+         */
+        function applyPresynapticTerminalDaySomaMaterial() {
+          if (!isDay() || !terminalMesh || !terminalMesh.material) {
+            return;
+          }
+          var tm = terminalMesh.material;
+          if (!tm.isMeshPhysicalMaterial) {
+            return;
+          }
+          tm.color.setHex(0xc93840);
+          tm.emissive.setHex(0x501820);
+          tm.emissiveIntensity = 0.26;
+          tm.roughness = 0.34;
+          tm.metalness = 0.52;
+          tm.clearcoat = 0.16;
+          tm.clearcoatRoughness = 0.42;
+          tm.transmission = 0;
+          tm.transparent = true;
+          tm.opacity = 0.28;
+          tm.depthWrite = false;
+          tm.side = THREE.DoubleSide;
+          if (tm.thickness !== undefined) {
+            tm.thickness = 0.3;
+          }
+          if (tm.ior !== undefined) {
+            tm.ior = 1.2;
+          }
+        }
+
+        /** Day: postsynaptic membrane + spine — opaque, no emissive (no self-glow). Terminal uses soma day look separately. */
+        function applyDayMatteTerminalMembraneSpine() {
+          if (!isDay()) {
+            return;
+          }
+          if (postMembraneMesh && postMembraneMesh.material) {
+            var pmd = postMembraneMesh.material;
+            pmd.opacity = 1;
+            pmd.transparent = false;
+            if (pmd.emissive) {
+              pmd.emissive.setHex(0x000000);
+            }
+            if (pmd.emissiveIntensity !== undefined) {
+              pmd.emissiveIntensity = 0;
+            }
+          }
+          if (spineFeedRippleMesh && spineFeedRippleMesh.material) {
+            spineFeedRippleMesh.material.blending = THREE.NormalBlending;
+          }
+        }
+
+        /** Dendritic spine stem+head share one unlit material — fully opaque; no emissive. */
+        function applySpineIdleVisual() {
+          if (!spineStemMesh || !spineStemMesh.material) {
+            return;
+          }
+          var m = spineStemMesh.material;
+          if (isDay()) {
+            m.color.setHex(0x664422);
+            if (m.emissive) {
+              m.emissive.setHex(0x000000);
+            }
+            if (m.emissiveIntensity !== undefined) {
+              m.emissiveIntensity = 0;
+            }
+          } else {
+            m.color.setHex(0x9a7a4a);
+            if (m.emissive) {
+              m.emissive.setHex(0x100800);
+            }
+            if (m.emissiveIntensity !== undefined) {
+              m.emissiveIntensity = 0.15;
+            }
+          }
+          m.transparent = false;
+          m.opacity = 1;
+          m.depthWrite = true;
+          m.depthTest = true;
+          if (spineFeedRippleMesh && spineFeedRippleMesh.material && spineFeedRippleMesh.material.color) {
+            spineFeedRippleMesh.material.color.setHex(isDay() ? SPINE_RIPPLE_COLOR_DAY : SPINE_RIPPLE_COLOR_NIGHT);
+            spineFeedRippleMesh.material.blending = isDay() ? THREE.NormalBlending : THREE.AdditiveBlending;
+          }
+        }
+
+        /** Synaptic vesicles: warm gold at night, earthy amber in day. */
+        function applySynapticVesicleMaterialsForTheme(isDayMode) {
+          if (!vesicleMeshes || !vesicleMeshes.length) {
+            return;
+          }
+          for (var vi = 0; vi < vesicleMeshes.length; vi++) {
+            var mat = vesicleMeshes[vi].material;
+            if (!mat || !mat.isMeshPhysicalMaterial) {
+              continue;
+            }
+            if (isDayMode) {
+              mat.color.setHex(0xa07820);
+              mat.emissive.setHex(0x483010);
+              mat.emissiveIntensity = 0.028;
+              mat.roughness = 0.48;
+              mat.metalness = 0.04;
+              mat.clearcoat = 0.04;
+              mat.clearcoatRoughness = 0.52;
+              mat.transparent = true;
+              mat.opacity = 0.94;
+              mat.transmission = 0.05;
+            } else {
+              mat.color.setHex(0xf0d080);
+              mat.emissive.setHex(0xffaa33);
+              mat.emissiveIntensity = 0.16;
+              mat.roughness = 0.32;
+              mat.metalness = 0.0;
+              mat.clearcoat = 0.28;
+              mat.clearcoatRoughness = 0.32;
+              mat.transparent = true;
+              mat.opacity = 0.96;
+              mat.transmission = 0.0;
+            }
+          }
+        }
+
+        var ntColorNight = 0x00ffcc;
+        var ntColorDay = 0xe05a10;
+        var starColorNight = 0xa8b8d8;
+        var starColorDay = 0xcc6633;
+
+        /** Day: lit Lambert so NTs are not full-brightness BasicMaterial “LEDs”; night keeps Basic cyan. */
+        function applyNeurotransmitterMaterialsForTheme(isDayMode) {
+          if (!nts || !nts.length) {
+            return;
+          }
+          var ni;
+          for (ni = 0; ni < nts.length; ni++) {
+            var nm = nts[ni];
+            if (!nm.material) {
+              continue;
+            }
+            if (!nm.userData.ntBasicRef) {
+              nm.userData.ntBasicRef = nm.material;
+            }
+            if (isDayMode) {
+              if (!nm.userData.ntLambertDay) {
+                nm.userData.ntLambertDay = new THREE.MeshLambertMaterial({
+                  color: ntColorDay,
+                  emissive: 0x080402,
+                  emissiveIntensity: 0.02,
+                });
+              } else {
+                nm.userData.ntLambertDay.color.setHex(ntColorDay);
+              }
+              nm.material = nm.userData.ntLambertDay;
+            } else {
+              nm.material = nm.userData.ntBasicRef;
+              nm.material.color.setHex(ntColorNight);
+            }
+          }
+        }
+
+        function labelForKey(key) {
+          if (isAz() && nameAz[key]) return nameAz[key];
+          return key;
+        }
+
+        function textForKey(key) {
+          if (isAz() && descriptionsAz[key]) return descriptionsAz[key];
+          if (descriptions[key]) return descriptions[key];
+          return "";
+        }
+
+        function resetInfoPanelBodyScroll() {
+          var b = document.getElementById("info-panel-body");
+          if (b) {
+            b.scrollTop = 0;
+          }
+        }
+
+        function applyI18nStatic() {
+          var az = isAz();
+          document.querySelectorAll("[data-i18n-en]").forEach(function (el) {
+            el.textContent = az ? el.getAttribute("data-i18n-az") : el.getAttribute("data-i18n-en");
+          });
+          var acLb = document.querySelector(".ui-signal .auto-cb");
+          if (acLb && acLb.getAttribute("data-title-en")) {
+            acLb.title = az ? acLb.getAttribute("data-title-az") : acLb.getAttribute("data-title-en");
+          }
+        }
+
+        function setTheme() {
+          var d = isDay();
+          if (d) {
+            if (scene) scene.background = new THREE.Color(SYNAPSE_SCENE_BG_DAY);
+            if (renderer) {
+              renderer.toneMappingExposure = 0.86;
+            }
+            if (bloomPass) {
+              /** Hero page has no bloom — disable in day for the same crisp, bright look. */
+              bloomPass.strength = 0;
+              bloomPass.radius = 0.16;
+              bloomPass.threshold = 1;
+            }
+            if (mainDirLight) {
+              mainDirLight.color.setHex(0xece4dc);
+              mainDirLight.intensity = 0.48;
+            }
+            if (synapseFillDir) {
+              synapseFillDir.color.setHex(0xd8d4ce);
+              synapseFillDir.intensity = 0.28;
+            }
+            if (mainHemiLight) {
+              mainHemiLight.color.setHex(0xa8b4c4);
+              mainHemiLight.groundColor.setHex(0x2e3238);
+              mainHemiLight.intensity = 0.3;
+            }
+            if (synapseAmbMain) {
+              synapseAmbMain.color.setHex(0xe8e2da);
+              synapseAmbMain.intensity = 0.24;
+            }
+            if (synapseAmbFill) {
+              synapseAmbFill.color.setHex(0xd0d4dc);
+              synapseAmbFill.intensity = 0.09;
+            }
+            if (synapseAmbPostSyn) {
+              synapseAmbPostSyn.color.setHex(0xd8d0c8);
+              synapseAmbPostSyn.intensity = 0.2;
+            }
+            if (synapseFrontPl) {
+              synapseFrontPl.color.setHex(0xc8ccd0);
+              synapseFrontPl.intensity = 0.07;
+            }
+            if (cleftLight) {
+              cleftLight.intensity = 0.04;
+              cleftLight.color.setHex(0x1a1e22);
+            }
+            if (preInteriorLight) {
+              preInteriorLight.intensity = 0.09;
+              preInteriorLight.color.setHex(0x5a8cd8);
+            }
+            if (postInteriorLight) {
+              postInteriorLight.intensity = 0;
+              postInteriorColorHex = 0xb8a870;
+              postInteriorLight.color.setHex(postInteriorColorHex);
+            }
+            if (cleftVoidMesh && cleftVoidMesh.material) {
+              cleftVoidMesh.material.transparent = true;
+              cleftVoidMesh.material.opacity = 0;
+              cleftVoidMesh.material.colorWrite = false;
+            }
+            postMemEmissiveBase = 0;
+            postEmissiveHex = 0x1a1000;
+            postInteriorBaseI = 0.1;
+            applyPresynapticTerminalDaySomaMaterial();
+            if (postMembraneMesh) {
+              postMembraneMesh.material.color.setHex(0x986838);
+            }
+            if (psdMesh && psdMesh.material) {
+              psdMesh.material.color.setHex(PSD_BASE_COLOR_DAY);
+              psdMesh.material.emissive.setHex(0x0c0c0c);
+              psdMesh.material.emissiveIntensity = 0.045;
+            }
+            if (activeZoneMesh && activeZoneMesh.material) {
+              activeZoneMesh.material.color.setHex(0xd04400);
+              activeZoneMesh.material.emissive.setHex(0x601008);
+              activeZoneMesh.material.emissiveIntensity = 0.1;
+              activeZoneMesh.material.clearcoat = 0.04;
+              activeZoneMesh.material.clearcoatRoughness = 0.55;
+            }
+            applyNeurotransmitterMaterialsForTheme(true);
+            applySynapticVesicleMaterialsForTheme(true);
+            applyMitochondriaThemeForView(true);
+            applyReceptorPaletteForTheme(true);
+          } else {
+            if (scene) scene.background = new THREE.Color(SYNAPSE_SCENE_BG_NIGHT);
+            if (renderer) {
+              renderer.toneMappingExposure = 0.92;
+            }
+            if (bloomPass) {
+              bloomPass.strength = 0.22;
+              bloomPass.radius = 0.22;
+              bloomPass.threshold = 0.68;
+            }
+            if (mainDirLight) {
+              mainDirLight.color.setHex(0xe8dfd5);
+              mainDirLight.intensity = 0.32;
+            }
+            if (synapseFillDir) {
+              synapseFillDir.color.setHex(0xb4c4dc);
+              synapseFillDir.intensity = 0.24;
+            }
+            if (mainHemiLight) {
+              mainHemiLight.color.setHex(0xb8c4d4);
+              mainHemiLight.groundColor.setHex(0x242a32);
+              mainHemiLight.intensity = 0.42;
+            }
+            if (synapseAmbMain) {
+              synapseAmbMain.color.setHex(0x2a333d);
+              synapseAmbMain.intensity = 0.22;
+            }
+            if (synapseAmbFill) {
+              synapseAmbFill.color.setHex(0x0a0c0e);
+              synapseAmbFill.intensity = 0.09;
+            }
+            if (synapseAmbPostSyn) {
+              synapseAmbPostSyn.color.setHex(0xd8c8b8);
+              synapseAmbPostSyn.intensity = 0.36;
+            }
+            if (synapseFrontPl) {
+              synapseFrontPl.color.setHex(0x88a0a8);
+              synapseFrontPl.intensity = 0.14;
+            }
+            if (cleftLight) {
+              cleftLight.intensity = 0.08;
+              cleftLight.color.setHex(0x0d1218);
+            }
+            if (preInteriorLight) {
+              preInteriorLight.intensity = 0.22;
+              preInteriorLight.color.setHex(0x3d7cf2);
+            }
+            if (postInteriorLight) {
+              postInteriorLight.intensity = 0;
+              postInteriorColorHex = 0xa89858;
+              postInteriorLight.color.setHex(postInteriorColorHex);
+            }
+            if (cleftVoidMesh && cleftVoidMesh.material) {
+              cleftVoidMesh.material.transparent = true;
+              cleftVoidMesh.material.opacity = 0;
+              cleftVoidMesh.material.colorWrite = false;
+            }
+            postMemEmissiveBase = 0.2;
+            postEmissiveHex = 0x1a1000;
+            postInteriorBaseI = 0.25;
+            if (terminalMesh && terminalMesh.material) {
+              var tmn = terminalMesh.material;
+              tmn.color.setHex(0x1c2a40);
+              tmn.emissive.setHex(0x3568b0);
+              tmn.emissiveIntensity = 0.2;
+              tmn.transparent = true;
+              tmn.opacity = 0.9;
+              tmn.transmission = 0.08;
+              tmn.roughness = 0.48;
+              tmn.clearcoat = 0.22;
+              tmn.clearcoatRoughness = 0.28;
+            }
+            if (postMembraneMesh) {
+              postMembraneMesh.material.color.setHex(0xc4a870);
+              postMembraneMesh.material.opacity = 0.82;
+              postMembraneMesh.material.emissive.setHex(0x1a1000);
+              postMembraneMesh.material.emissiveIntensity = 0.2;
+            }
+            if (psdMesh && psdMesh.material) {
+              psdMesh.material.color.setHex(PSD_BASE_COLOR_NIGHT);
+              psdMesh.material.emissive.setHex(0x0a0a0a);
+              psdMesh.material.emissiveIntensity = 0.08;
+            }
+            if (activeZoneMesh && activeZoneMesh.material) {
+              activeZoneMesh.material.color.setHex(0xe08822);
+              activeZoneMesh.material.emissive.setHex(0xff6210);
+              activeZoneMesh.material.emissiveIntensity = 0.4;
+              activeZoneMesh.material.clearcoat = 0.15;
+            }
+            applyNeurotransmitterMaterialsForTheme(false);
+            applySynapticVesicleMaterialsForTheme(false);
+            applyMitochondriaThemeForView(false);
+            applyReceptorPaletteForTheme(false);
+          }
+          applySpineIdleVisual();
+          if (d) {
+            applyDayMatteTerminalMembraneSpine();
+            applyPresynapticTerminalDaySomaMaterial();
+          }
+          applySynapseAtlasBackgroundTheme(d);
+          if (openPanelKey) {
+            panelName.textContent = labelForKey(openPanelKey);
+            panelDesc.textContent = textForKey(openPanelKey);
+          }
+        }
+
+        function getViewportSize() {
+          if (!container) {
+            return { w: Math.max(2, window.innerWidth), h: Math.max(2, window.innerHeight) };
+          }
+          var r = container.getBoundingClientRect();
+          var w = Math.floor(r.width) || window.innerWidth;
+          var h = Math.floor(r.height) || window.innerHeight;
+          return { w: Math.max(2, w), h: Math.max(2, h) };
+        }
+
+        function init() {
+          clock = new THREE.Clock();
+          scene = new THREE.Scene();
+          scene.background = new THREE.Color(isDay() ? SYNAPSE_SCENE_BG_DAY : SYNAPSE_SCENE_BG_NIGHT);
+
+          var vs0 = getViewportSize();
+          camera = new THREE.PerspectiveCamera(50, vs0.w / vs0.h, 0.1, 2000);
+          camera.position.set(0, 0, 12);
+          camera.layers.enable(1);
+          raycaster.layers.enable(1);
+
+          renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+          renderer.setSize(vs0.w, vs0.h);
+          renderer.outputEncoding = THREE.sRGBEncoding;
+          renderer.toneMapping = THREE.ACESFilmicToneMapping;
+          renderer.toneMappingExposure = 0.92;
+          container.appendChild(renderer.domElement);
+
+          var OrbitC =
+            typeof THREE.OrbitControls === "function"
+              ? THREE.OrbitControls
+              : typeof OrbitControls === "function"
+                ? OrbitControls
+                : null;
+          if (!OrbitC) throw new Error("OrbitControls not found");
+          controls = new OrbitC(camera, renderer.domElement);
+          controls.enableDamping = true;
+          controls.dampingFactor = 0.05;
+          controls.minDistance = 4;
+          controls.maxDistance = 32;
+
+          viewGroup = new THREE.Group();
+          scene.add(viewGroup);
+
+          synapseAmbMain = new THREE.AmbientLight(0x2a333d, 0.22);
+          synapseAmbMain.layers.enable(1);
+          scene.add(synapseAmbMain);
+          synapseAmbFill = new THREE.AmbientLight(0x0a0c0e, 0.09);
+          synapseAmbFill.layers.enable(1);
+          scene.add(synapseAmbFill);
+          mainDirLight = new THREE.DirectionalLight(0xe8dfd5, 0.44);
+          mainDirLight.position.set(6, 10, 8);
+          scene.add(mainDirLight);
+          synapseFillDir = new THREE.DirectionalLight(0xb4c4dc, 0.18);
+          synapseFillDir.position.set(-7, 5, -8);
+          scene.add(synapseFillDir);
+          mainHemiLight = new THREE.HemisphereLight(0xb8c4d4, 0x242a32, 0.34);
+          mainHemiLight.position.set(0, 14, 0);
+          scene.add(mainHemiLight);
+          synapseFrontPl = new THREE.PointLight(0x88a0a8, 0.14, 14, 1.5);
+          synapseFrontPl.position.set(0, 0.35, 2.2);
+          scene.add(synapseFrontPl);
+          cleftLight = new THREE.PointLight(0x0a0c0e, 0.08, 12, 2.2);
+          cleftLight.position.set(0, 1.5, 0);
+          scene.add(cleftLight);
+          preInteriorLight = new THREE.PointLight(0x3d7cf2, 0.32, 4.5, 2);
+          preInteriorLight.position.set(0, 2.75, 0.05);
+          viewGroup.add(preInteriorLight);
+          postInteriorLight = new THREE.PointLight(0xa89858, 0, 4, 1.8);
+          postInteriorLight.position.set(0, 1.1, 0.05);
+          postInteriorLight.layers.enable(1);
+          postInteriorLight.visible = false;
+          viewGroup.add(postInteriorLight);
+          synapseAmbPostSyn = new THREE.AmbientLight(0xd8c8b8, 0.36);
+          synapseAmbPostSyn.layers.set(1);
+          scene.add(synapseAmbPostSyn);
+
+          var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          composer = new THREE.EffectComposer(renderer);
+          composer.setPixelRatio(dpr);
+          renderPass = new THREE.RenderPass(scene, camera);
+          bloomPass = new THREE.UnrealBloomPass(
+            new THREE.Vector2(vs0.w, vs0.h),
+            0.32,
+            0.22,
+            0.62
+          );
+          composer.addPass(renderPass);
+          composer.addPass(bloomPass);
+          composer.setSize(vs0.w, vs0.h);
+          if (isDay()) {
+            bloomPass.strength = 0;
+            bloomPass.radius = 0.16;
+            bloomPass.threshold = 1;
+          } else {
+            bloomPass.strength = 0.22;
+            bloomPass.radius = 0.22;
+            bloomPass.threshold = 0.68;
+          }
+
+          buildScene();
+          buildStars();
+
+          window.addEventListener("resize", onResize);
+          var embedWrap = container.closest(".synapse-embed-wrap");
+          if (typeof ResizeObserver !== "undefined") {
+            var ro = new ResizeObserver(function () {
+              onResize();
+            });
+            ro.observe(container);
+            if (embedWrap) ro.observe(embedWrap);
+          }
+
+          new MutationObserver(function () {
+            setTheme();
+            applyI18nStatic();
+            if (openPanelKey) {
+              panelName.textContent = labelForKey(openPanelKey);
+              panelDesc.textContent = textForKey(openPanelKey);
+              resetInfoPanelBodyScroll();
+            }
+          }).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["data-theme", "lang"],
+          });
+
+          window.__neyronApplyViewTheme = function () {
+            setTheme();
+          };
+
+          renderer.domElement.addEventListener("mousemove", onPointerMove);
+          renderer.domElement.addEventListener("click", onClick);
+
+          document.getElementById("panel-close").addEventListener("click", function () {
+            infoPanel.classList.remove("open");
+            openPanelKey = null;
+            infoPanel.setAttribute("aria-hidden", "true");
+          });
+          setTheme();
+          applyI18nStatic();
+          setupSignalUi();
+          setupSynapseHelpUi();
+          loadMitochondriaGlb();
+          loadNicotinicReceptorsGlb();
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(onResize);
+          });
+        }
+
+        /** Star field: same distribution as `index.html` createStarField (neuron atlas hero). */
+        function buildStars() {
+          var count = 2200;
+          starPos = new Float32Array(count * 3);
+          var si;
+          for (si = 0; si < count; si++) {
+            var u = Math.random() * Math.PI * 2;
+            var v = Math.acos(2 * Math.random() - 1);
+            var r = 85 + Math.random() * 115;
+            starPos[si * 3] = r * Math.sin(v) * Math.cos(u);
+            starPos[si * 3 + 1] = r * Math.cos(v) * 0.75;
+            starPos[si * 3 + 2] = r * Math.sin(v) * Math.sin(u);
+          }
+          var starMat = new THREE.PointsMaterial({
+            color: 0xc8dcff,
+            size: 0.055,
+            transparent: true,
+            opacity: 0.85,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true,
+          });
+          starGeo = new THREE.BufferGeometry();
+          starGeo.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+          starField = new THREE.Points(starGeo, starMat);
+          starField.frustumCulled = false;
+          starField.name = "synapse_star_field";
+          starField.visible = true;
+          starField.renderOrder = -20;
+          /** Same as `index.html`: star field is scene-root so it does not spin with the synapse model. */
+          scene.add(starField);
+        }
+
+        /** Star field only (no neural-net shell or organic aura particles). */
+        function applySynapseAtlasBackgroundTheme(isDayMode) {
+          if (starField && starField.material) {
+            starField.material.size = 0.055;
+            if (isDayMode) {
+              starField.material.color.setHex(0x9aa8bc);
+              starField.material.opacity = 0.1;
+              starField.material.blending = THREE.NormalBlending;
+            } else {
+              starField.material.color.setHex(0xc8dcff);
+              starField.material.opacity = 0.85;
+              starField.material.blending = THREE.AdditiveBlending;
+            }
+          }
+        }
+
+        function registerLabel(mesh, key) {
+          mesh.userData.label = key;
+          labeledMeshes.push(mesh);
+        }
+
+        function findRootLabel(obj) {
+          var o = obj;
+          while (o) {
+            if (o.userData && o.userData.label) return o.userData.label;
+            o = o.parent;
+          }
+          return null;
+        }
+
+        /** Nearest ancestor that carries `userData.label` (same walk as `findRootLabel`). */
+        function findRootLabelMesh(obj) {
+          var o = obj;
+          while (o) {
+            if (o.userData && o.userData.label) {
+              return o;
+            }
+            o = o.parent;
+          }
+          return null;
+        }
+
+        /**
+         * Ray hits include many triangles on the same mesh (e.g. terminal front + back).
+         * Collapse to one entry per labeled pick target so double-click can reach receptors behind the terminal.
+         */
+        function buildOrderedUniqueLabelHits(intersections) {
+          var out = [];
+          var lastRoot = null;
+          var i;
+          for (i = 0; i < intersections.length; i++) {
+            var rootM = findRootLabelMesh(intersections[i].object);
+            if (!rootM) {
+              continue;
+            }
+            if (rootM === lastRoot) {
+              continue;
+            }
+            out.push(intersections[i]);
+            lastRoot = rootM;
+          }
+          return out;
+        }
+
+        function storeReceptorMaterialRefs(root) {
+          var list = [];
+          root.traverse(function (n) {
+            if (n.isMesh) {
+              var m = n.material;
+              if (Array.isArray(m)) {
+                for (var j = 0; j < m.length; j++) {
+                  if (m[j]) {
+                    list.push(m[j]);
+                  }
+                }
+              } else if (m) {
+                list.push(m);
+              }
+            }
+          });
+          root.userData.meshMats = list;
+        }
+
+        function forEachReceptorMat(rec, fn) {
+          var mats = rec.userData && rec.userData.meshMats;
+          if (mats && mats.length) {
+            for (var i = 0; i < mats.length; i++) {
+              fn(mats[i], i);
+            }
+          } else if (rec.material) {
+            fn(rec.material, 0);
+          }
+        }
+
+        // Irregular cluster on the **postsynaptic density** disc (receptor plane topY = -0.46; PSD center y = -0.42).
+        // `y` on each spot = **top** of the PSD disc (upper cap); placement code offsets by mesh height so bases touch.
+        function generateReceptorPsdDiscLayout(n) {
+          var psdR = PSD_DISPLAY_RADIUS;
+          var psdHalfH = 0.05;
+          var psdY = -0.51;
+          var topY = psdY + psdHalfH;
+          /** Keep scaled receptor mesh (esp. GLB) inside the disc, not hanging past the rim. */
+          var RECEPTOR_DISC_EDGE_PAD = 0.24;
+          var rMax = Math.max(0.15, psdR - RECEPTOR_MEMBRANE_INSET - RECEPTOR_DISC_EDGE_PAD);
+          var out = [];
+          for (var i = 0; i < n; i++) {
+            var put = false;
+            var mdep = 0.14 + Math.random() * 0.1;
+            for (var tries = 0; tries < 10; tries++) {
+              for (var att = 0; att < 220; att++) {
+                var ang = Math.random() * Math.PI * 2;
+                var rr = Math.sqrt(Math.random()) * rMax;
+                var x = Math.cos(ang) * rr;
+                var z = Math.sin(ang) * rr;
+                var p = new THREE.Vector3(x, topY, z);
+                var ok = true;
+                for (var j = 0; j < out.length; j++) {
+                  if (p.distanceToSquared(new THREE.Vector3(out[j].x, out[j].y, out[j].z)) < mdep * mdep) {
+                    ok = false;
+                    break;
+                  }
+                }
+                if (!ok) {
+                  continue;
+                }
+                out.push({
+                  x: p.x,
+                  y: p.y,
+                  z: p.z,
+                  nx: 0,
+                  ny: 1,
+                  nz: 0,
+                  jx: 0,
+                  jy: 0,
+                  jz: 0,
+                  s: 0.82 + Math.random() * 0.12,
+                });
+                put = true;
+                break;
+              }
+              mdep *= 0.88;
+            }
+            if (!put) {
+              var t = ((i * 1.37 + Math.random()) / n) * Math.PI * 2;
+              var rr2 = rMax * (0.55 + Math.random() * 0.38);
+              out.push({
+                x: Math.cos(t) * rr2,
+                y: topY,
+                z: Math.sin(t) * rr2,
+                nx: 0,
+                ny: 1,
+                nz: 0,
+                jx: 0,
+                jy: 0,
+                jz: 0,
+                s: 0.9 + Math.random() * 0.12,
+              });
+            }
+          }
+          var rim = rMax * 0.92;
+          var rim2 = rim * rim;
+          for (var k = 0; k < out.length; k++) {
+            var q = out[k];
+            var ll = q.x * q.x + q.z * q.z;
+            if (ll > rim2 && ll > 1e-10) {
+              var f = rim / Math.sqrt(ll);
+              q.x *= f;
+              q.z *= f;
+            }
+          }
+          return out;
+        }
+
+        function pulseNearestReceptor(pos, tAt) {
+          if (!receptors || !receptors.length) {
+            return;
+          }
+          var bi = 0;
+          var bd = 1e6;
+          for (var j = 0; j < receptors.length; j++) {
+            var d2 = receptors[j].position.distanceToSquared(pos);
+            if (d2 < bd) {
+              bd = d2;
+              bi = j;
+            }
+          }
+          if (bd < 0.3 * RECEPTOR_VISUAL_SCALE * RECEPTOR_VISUAL_SCALE) {
+            var t0 = tAt != null ? tAt : clock.getElapsedTime();
+            receptors[bi].userData.bindUntil = t0 + RECEPTOR_BIND_SEC;
+            receptors[bi].userData.bindSparkT = RECEPTOR_BIND_SPARK_SEC;
+            trySpawnSpineNaWave();
+          }
+        }
+
+        function isPointNearPsd(p) {
+          if (!psdMesh) {
+            return false;
+          }
+          var py = psdMesh.position.y;
+          var pr = PSD_DISPLAY_RADIUS * 0.98;
+          var hh = 0.09;
+          if (p.y < py - hh || p.y > py + hh) {
+            return false;
+          }
+          return p.x * p.x + p.z * p.z < pr * pr;
+        }
+
+        /** Presynaptic terminal sphere center (matches `terminalMesh.position.y`). */
+        var NT_TERMINAL_CENT_Y = 1.5;
+        /** Conservative inner radius: keeps NT out of the terminal shell volume. */
+        var NT_TERMINAL_R = 2.08;
+        /** Ambient NT spawn: horizontal disc under AZ; Y range keeps full spheres below the AZ mesh (spawn R < AZ_DISC_R). */
+        var NT_AZ_SPAWN_R = 0.38;
+        var NT_AZ_SPAWN_Y0 = 0.07;
+        var NT_AZ_SPAWN_Y1 = AZ_MESH_Y_BOT - AZ_NT_SURFACE_PAD - NT_AMBIENT_SPHERE_R;
+
+        function sphereIntersectsActiveZoneDisc(px, py, pz, sphereR) {
+          var horizR = AZ_DISC_R + sphereR;
+          if (px * px + pz * pz > horizR * horizR) {
+            return false;
+          }
+          return py - sphereR < AZ_MESH_Y_TOP && py + sphereR > AZ_MESH_Y_BOT;
+        }
+
+        /** Push NT sphere centers out of the AZ slab (falling → cleft side; reuptake → terminal side). */
+        function snapNeurosphereClearOfActiveZone(pos, sphereR, rising) {
+          if (!sphereIntersectsActiveZoneDisc(pos.x, pos.y, pos.z, sphereR)) {
+            return;
+          }
+          if (rising) {
+            pos.y = Math.max(pos.y, AZ_MESH_Y_TOP + sphereR + AZ_NT_SURFACE_PAD);
+          } else {
+            pos.y = Math.min(pos.y, AZ_MESH_Y_BOT - sphereR - AZ_NT_SURFACE_PAD);
+          }
+        }
+
+        function sampleAmbientNtSpawnNearActiveZone(pos) {
+          var ang = Math.random() * Math.PI * 2;
+          var rad = NT_AZ_SPAWN_R * Math.sqrt(Math.random());
+          pos.x = Math.cos(ang) * rad;
+          pos.z = Math.sin(ang) * rad;
+          if (NT_AZ_SPAWN_Y1 > NT_AZ_SPAWN_Y0) {
+            pos.y = NT_AZ_SPAWN_Y0 + Math.random() * (NT_AZ_SPAWN_Y1 - NT_AZ_SPAWN_Y0);
+          } else {
+            pos.y = NT_AZ_SPAWN_Y0;
+          }
+          snapNeurosphereClearOfActiveZone(pos, NT_AMBIENT_SPHERE_R, false);
+        }
+
+        /** If a point drifts into the presynaptic terminal bulk, push it outward into the cleft. */
+        function pushPointOutOfPresynapticTerminalShell(pos) {
+          var cy = NT_TERMINAL_CENT_Y;
+          var dx = pos.x;
+          var dy = pos.y - cy;
+          var dz = pos.z;
+          var h2 = dx * dx + dz * dz;
+          if (pos.y < 0.38 || pos.y > 1.92) {
+            return;
+          }
+          if (h2 > 3.85) {
+            return;
+          }
+          var d = Math.sqrt(h2 + dy * dy);
+          if (d >= NT_TERMINAL_R) {
+            return;
+          }
+          if (d < 1e-5) {
+            sampleAmbientNtSpawnNearActiveZone(pos);
+            return;
+          }
+          var s = (NT_TERMINAL_R + 0.09) / d;
+          pos.x = dx * s;
+          pos.y = cy + dy * s;
+          pos.z = dz * s;
+          pos.y -= 0.06;
+          if (pos.y < NT_AZ_SPAWN_Y0 - 0.04) {
+            pos.y = NT_AZ_SPAWN_Y0;
+          }
+        }
+
+        function isPointNearPostMembrane(p) {
+          _nTmp2.subVectors(p, _postCenter);
+          var d = _nTmp2.length();
+          if (Math.abs(d - _postR) > 0.15) {
+            return false;
+          }
+          return p.y <= _postCenter.y + 0.08 && p.y >= _postCenter.y - 2.4;
+        }
+
+        function makePsdBumpTexture() {
+          var sz = 64;
+          var cv = document.createElement("canvas");
+          cv.width = sz;
+          cv.height = sz;
+          var ctx = cv.getContext("2d");
+          var img = ctx.createImageData(sz, sz);
+          for (var i = 0; i < sz * sz; i++) {
+            var v = 110 + ((Math.random() * 2 - 1) * 75) | 0;
+            v = Math.max(40, Math.min(220, v));
+            var j = i * 4;
+            img.data[j] = v;
+            img.data[j + 1] = v;
+            img.data[j + 2] = v;
+            img.data[j + 3] = 255;
+          }
+          ctx.putImageData(img, 0, 0);
+          var tex = new THREE.CanvasTexture(cv);
+          tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+          tex.repeat.set(2, 2);
+          tex.needsUpdate = true;
+          return tex;
+        }
+
+        function applyNaChrBaseToMaterial(mat) {
+          if (!mat) {
+            return;
+          }
+          if (mat.color) {
+            mat.color.setHex(nAChR_COLOR);
+          }
+          if (mat.emissive) {
+            mat.emissive.setHex(nAChR_EMISSIVE);
+            if (mat.emissiveIntensity !== undefined) {
+              mat.emissiveIntensity = nAChR_EMI_I;
+            }
+          }
+          if (mat.roughness !== undefined) {
+            mat.roughness = Math.max(nAChR_ROUGH, mat.roughness * 0.5 + 0.2);
+          }
+          if (mat.metalness !== undefined) {
+            mat.metalness = 0.05;
+          }
+          if (mat.clearcoat !== undefined) {
+            mat.clearcoat = 0.35;
+          }
+        }
+
+        /** Pick ±90° rotation about X/Z that maximises world Y extent so the channel stands upright on the PSD. */
+        function alignNicotinicReceptorUpright(rec) {
+          var bestEy = -1;
+          var bestQ = new THREE.Quaternion();
+          var ax = [_axisX, _axisX, _axisX, _axisZ, _axisZ];
+          var ang = [0, -Math.PI * 0.5, Math.PI * 0.5, Math.PI * 0.5, -Math.PI * 0.5];
+          var ai;
+          for (ai = 0; ai < ang.length; ai++) {
+            _qP.setFromAxisAngle(ax[ai], ang[ai]);
+            rec.quaternion.copy(_qP);
+            rec.updateMatrixWorld(true);
+            var bx = new THREE.Box3().setFromObject(rec);
+            var sz = new THREE.Vector3();
+            bx.getSize(sz);
+            if (sz.y > bestEy) {
+              bestEy = sz.y;
+              bestQ.copy(_qP);
+            }
+          }
+          rec.quaternion.copy(bestQ);
+        }
+
+        function clampReceptorCenterWithinPsd(rec) {
+          var maxCenterR = Math.max(0.04, PSD_DISPLAY_RADIUS - RECEPTOR_PSD_EDGE);
+          rec.updateMatrixWorld(true);
+          var b = new THREE.Box3().setFromObject(rec);
+          var sz = new THREE.Vector3();
+          b.getSize(sz);
+          var halfW = 0.5 * Math.sqrt(sz.x * sz.x + sz.z * sz.z);
+          var px = rec.position.x;
+          var pz = rec.position.z;
+          var d = Math.sqrt(px * px + pz * pz);
+          var lim = Math.max(0.02, maxCenterR - halfW);
+          if (d > lim) {
+            var f = lim / d;
+            rec.position.x *= f;
+            rec.position.z *= f;
+            rec.updateMatrixWorld(true);
+          }
+        }
+
+        function addFallbackCylinderReceptors() {
+          var rSpots = generateReceptorPsdDiscLayout(RECEPTOR_COUNT);
+          for (var ri = 0; ri < RECEPTOR_COUNT; ri++) {
+            var rGeo = new THREE.CylinderGeometry(0.118, 0.094, 0.37, 28, 1, false);
+            rGeo.computeVertexNormals();
+            var sp = rSpots[ri];
+            var rec = new THREE.Mesh(
+              rGeo,
+              new THREE.MeshPhysicalMaterial({
+                color: nAChR_COLOR,
+                emissive: nAChR_EMISSIVE,
+                emissiveIntensity: nAChR_EMI_I,
+                clearcoat: 0.35,
+                roughness: 0.28,
+              })
+            );
+            rec.quaternion.identity();
+            var sScale = RECEPTOR_VISUAL_SCALE * 0.85 * sp.s;
+            rec.scale.setScalar(sScale);
+            var cylHalfH = 0.185 * sScale;
+            var sink = 0.012;
+            rec.position.set(sp.x, sp.y + cylHalfH - sink, sp.z);
+            clampReceptorCenterWithinPsd(rec);
+            rec.castShadow = false;
+            rec.userData.label = "Receptor";
+            rec.userData.flashTimer = 0;
+            rec.userData.bindUntil = 0;
+            rec.userData.bindSparkT = 0;
+            rec.userData.baseColor = nAChR_COLOR;
+            rec.userData.baseEmissive = nAChR_EMISSIVE;
+            rec.userData.baseEmissiveI = nAChR_EMI_I;
+            rec.userData.meshMats = [rec.material];
+            registerLabel(rec, "Receptor");
+            receptors.push(rec);
+            viewGroup.add(rec);
+          }
+          applyReceptorPaletteForTheme(isDay());
+        }
+
+        function loadNicotinicReceptorsGlb() {
+          if (typeof THREE.GLTFLoader !== "function" || !viewGroup) {
+            addFallbackCylinderReceptors();
+            return;
+          }
+          var url = "nicotinic_acetylcholine_receptor.glb";
+          var GLTFLoader = THREE.GLTFLoader;
+          var loader = new GLTFLoader();
+          loader.load(
+            url,
+            function (gltf) {
+              if (!gltf || !gltf.scene) {
+                addFallbackCylinderReceptors();
+                return;
+              }
+              var b = new THREE.Box3();
+              b.setFromObject(gltf.scene);
+              var sz = new THREE.Vector3();
+              b.getSize(sz);
+              var maxD = Math.max(sz.x, sz.y, sz.z);
+              if (!isFinite(maxD) || maxD < 0.0001) {
+                maxD = 1;
+              }
+              var u0 = (0.28 * RECEPTOR_VISUAL_SCALE) / maxD;
+              var rSpots = generateReceptorPsdDiscLayout(RECEPTOR_COUNT);
+              for (var ri = 0; ri < RECEPTOR_COUNT; ri++) {
+                var sp = rSpots[ri];
+                var rec = gltf.scene.clone(true);
+                rec.traverse(function (n) {
+                  if (n.isMesh) {
+                    n.castShadow = false;
+                    n.receiveShadow = false;
+                  }
+                });
+                var scaleF = u0 * sp.s;
+                rec.scale.setScalar(scaleF);
+                rec.quaternion.identity();
+                alignNicotinicReceptorUpright(rec);
+                rec.position.set(0, 0, 0);
+                rec.updateMatrixWorld(true);
+                var rBox = new THREE.Box3().setFromObject(rec);
+                var sinkG = 0.012;
+                rec.position.set(sp.x, sp.y - rBox.min.y - sinkG, sp.z);
+                clampReceptorCenterWithinPsd(rec);
+                storeReceptorMaterialRefs(rec);
+                forEachReceptorMat(rec, applyNaChrBaseToMaterial);
+                rec.userData.label = "Receptor";
+                rec.userData.flashTimer = 0;
+                rec.userData.bindUntil = 0;
+                rec.userData.bindSparkT = 0;
+                rec.userData.baseColor = nAChR_COLOR;
+                rec.userData.baseEmissive = nAChR_EMISSIVE;
+                rec.userData.baseEmissiveI = nAChR_EMI_I;
+                registerLabel(rec, "Receptor");
+                receptors.push(rec);
+                viewGroup.add(rec);
+              }
+              applyReceptorPaletteForTheme(isDay());
+            },
+            undefined,
+            function () {
+              addFallbackCylinderReceptors();
+            }
+          );
+        }
+
+        // Nicotinic AChR (ionotropic) — cool lavender / indigo; tall axis = membrane normal (+Y).
+        var nAChR_COLOR = 0x5a4a7a;
+        var nAChR_EMISSIVE = 0x1a1028;
+        var nAChR_EMI_I = 0.44;
+        var nAChR_ROUGH = 0.3;
+
+        function applyReceptorPaletteForTheme(isDayMode) {
+          if (!receptors || !receptors.length) {
+            return;
+          }
+          var dayC = 0x993355;
+          var dayE = 0x1a0c10;
+          var dayEI = 0.2;
+          var ri;
+          for (ri = 0; ri < receptors.length; ri++) {
+            var rec = receptors[ri];
+            if (isDayMode) {
+              forEachReceptorMat(rec, function (m) {
+                if (m.color) {
+                  m.color.setHex(dayC);
+                }
+                if (m.emissive) {
+                  m.emissive.setHex(dayE);
+                }
+                if (m.emissiveIntensity !== undefined) {
+                  m.emissiveIntensity = dayEI;
+                }
+              });
+              rec.userData.baseColor = dayC;
+              rec.userData.baseEmissive = dayE;
+              rec.userData.baseEmissiveI = dayEI;
+            } else {
+              forEachReceptorMat(rec, function (m) {
+                if (m.color) {
+                  m.color.setHex(nAChR_COLOR);
+                }
+                if (m.emissive) {
+                  m.emissive.setHex(nAChR_EMISSIVE);
+                }
+                if (m.emissiveIntensity !== undefined) {
+                  m.emissiveIntensity = nAChR_EMI_I;
+                }
+              });
+              rec.userData.baseColor = nAChR_COLOR;
+              rec.userData.baseEmissive = nAChR_EMISSIVE;
+              rec.userData.baseEmissiveI = nAChR_EMI_I;
+            }
+          }
+        }
+
+        var MITO_COUNT = 5;
+        // Presynaptic interior: loosely along the microtubule bundle (aligned with lowered terminal ~y 1.0–2.1);
+        // two high near the "roof", two mid, one lower by the synaptic-vesicle pool. Per-organelle s ≈0.88–1.08.
+        var MITO_SPOTS = [
+          { x: -0.28, y: 2.08, z: 0.12, rx: 0.18, ry: 0.62, rz: -0.12, s: 1.08 },
+          { x: 0.42, y: 1.8, z: -0.2, rx: 0.11, ry: -0.38, rz: 0.2, s: 0.92 },
+          { x: -0.55, y: 1.46, z: 0.08, rx: -0.15, ry: 0.85, rz: 0.09, s: 1.0 },
+          { x: 0.25, y: 1.16, z: 0.32, rx: 0.22, ry: 0.12, rz: -0.18, s: 0.88 },
+          { x: -0.12, y: 0.98, z: -0.38, rx: 0.08, ry: -0.7, rz: 0.14, s: 0.95 },
+        ];
+
+        function addFallbackSausageMitochondria() {
+          var outerMitoMat = new THREE.MeshPhysicalMaterial({
+            color: 0xff1a1a,
+            emissive: 0xaa0808,
+            emissiveIntensity: 1.25,
+            roughness: 0.32,
+            metalness: 0,
+            clearcoat: 0.08,
+            clearcoatRoughness: 0.45,
+          });
+          var innerMitoMat = new THREE.MeshPhysicalMaterial({
+            color: 0xff8833,
+            emissive: 0xff5500,
+            emissiveIntensity: 1.05,
+            roughness: 0.4,
+            metalness: 0,
+          });
+          for (var mi = 0; mi < MITO_COUNT; mi++) {
+            var mGeo = new THREE.SphereGeometry(0.3, 20, 16);
+            mGeo.computeVertexNormals();
+            var mOuter = new THREE.Mesh(mGeo, outerMitoMat);
+            var innerGeo = new THREE.SphereGeometry(0.3, 16, 12);
+            innerGeo.computeVertexNormals();
+            var mInner = new THREE.Mesh(innerGeo, innerMitoMat);
+            mInner.scale.setScalar(0.56);
+            var grp = new THREE.Group();
+            grp.add(mOuter);
+            grp.add(mInner);
+            var sp = MITO_SPOTS[mi % MITO_SPOTS.length];
+            var w = 0.85 * sp.s;
+            grp.scale.set(1.75 * w, 0.5 * w, 0.55 * w);
+            grp.castShadow = false;
+            grp.receiveShadow = false;
+            mOuter.castShadow = false;
+            mOuter.receiveShadow = false;
+            mInner.castShadow = false;
+            mInner.receiveShadow = false;
+            grp.position.set(sp.x, sp.y, sp.z);
+            grp.rotation.set(sp.rx, sp.ry, sp.rz);
+            registerLabel(grp, "Mitochondria");
+            viewGroup.add(grp);
+          }
+          applyMitochondriaThemeForView(isDay());
+        }
+
+        function loadMitochondriaGlb() {
+          if (typeof THREE.GLTFLoader !== "function") {
+            addFallbackSausageMitochondria();
+            return;
+          }
+          if (!viewGroup) {
+            return;
+          }
+          var GLTFLoader = THREE.GLTFLoader;
+          var loader = new GLTFLoader();
+          var url = "mitocondrias.glb";
+          loader.load(
+            url,
+            function (gltf) {
+              if (!gltf || !gltf.scene) {
+                addFallbackSausageMitochondria();
+                return;
+              }
+              var b = new THREE.Box3();
+              b.setFromObject(gltf.scene);
+              var sz = new THREE.Vector3();
+              b.getSize(sz);
+              var maxD = Math.max(sz.x, sz.y, sz.z);
+              if (!isFinite(maxD) || maxD < 0.0001) {
+                maxD = 1;
+              }
+              var uniform = 0.5 / maxD;
+              for (var mi = 0; mi < MITO_COUNT; mi++) {
+                var sp = MITO_SPOTS[mi % MITO_SPOTS.length];
+                var root = gltf.scene.clone(true);
+                root.traverse(function (n) {
+                  if (n.isMesh) {
+                    n.castShadow = false;
+                    n.receiveShadow = false;
+                    if (n.material) {
+                      var mat = n.material;
+                      var mats = Array.isArray(mat) ? mat : [mat];
+                      var nameLower = (n.name || "").toLowerCase();
+                      var isInner =
+                        /inner|interior|interieur|crist|matrix|inside|nucleo|core|medula|medulla|juice|lumen|matri/.test(
+                          nameLower
+                        );
+                      var mIdx;
+                      for (mIdx = 0; mIdx < mats.length; mIdx++) {
+                        var mm = mats[mIdx];
+                        if (!mm) {
+                          continue;
+                        }
+                        if (isInner) {
+                          if (mm.color) {
+                            mm.color.setHex(0xff8833);
+                          }
+                          if (mm.emissive) {
+                            mm.emissive.setHex(0xff5500);
+                          }
+                          if (mm.emissiveIntensity !== undefined) {
+                            mm.emissiveIntensity = 1.05;
+                          }
+                          if (mm.roughness !== undefined) {
+                            mm.roughness = Math.min(0.5, Math.max(0.22, mm.roughness || 0.4));
+                          }
+                        } else {
+                          if (mm.color) {
+                            mm.color.setHex(0xff1a1a);
+                          }
+                          if (mm.emissive) {
+                            mm.emissive.setHex(0xaa0808);
+                          }
+                          if (mm.emissiveIntensity !== undefined) {
+                            mm.emissiveIntensity = 1.2;
+                          }
+                          if (mm.roughness !== undefined) {
+                            mm.roughness = Math.min(0.42, Math.max(0.18, mm.roughness || 0.4));
+                          }
+                        }
+                        if (mm.metalness !== undefined) {
+                          mm.metalness = 0;
+                        }
+                        if (mm.envMapIntensity !== undefined) {
+                          mm.envMapIntensity = 0.55;
+                        }
+                        if (mm.clearcoat !== undefined) {
+                          mm.clearcoat = 0.06;
+                        }
+                        if (mm.clearcoatRoughness !== undefined) {
+                          mm.clearcoatRoughness = 0.5;
+                        }
+                      }
+                    }
+                  }
+                });
+                root.scale.setScalar(uniform * sp.s);
+                root.position.set(sp.x, sp.y, sp.z);
+                root.rotation.set(sp.rx, sp.ry, sp.rz);
+                registerLabel(root, "Mitochondria");
+                viewGroup.add(root);
+              }
+              applyMitochondriaThemeForView(isDay());
+            },
+            undefined,
+            function () {
+              addFallbackSausageMitochondria();
+            }
+          );
+        }
+
+        function applyMitochondriaThemeForView(isDayMode) {
+          if (!viewGroup) {
+            return;
+          }
+          viewGroup.traverse(function (node) {
+            if (!node.userData || node.userData.label !== "Mitochondria") {
+              return;
+            }
+            node.traverse(function (n) {
+              if (!n.isMesh || !n.material) {
+                return;
+              }
+              var mat = n.material;
+              var mats = Array.isArray(mat) ? mat : [mat];
+              var nameLower = (n.name || "").toLowerCase();
+              var isInner =
+                /inner|interior|interieur|crist|matrix|inside|nucleo|core|medula|medulla|juice|lumen|matri/.test(nameLower) ||
+                (n.scale && n.scale.x > 0 && n.scale.x < 0.57);
+              var mIdx;
+              for (mIdx = 0; mIdx < mats.length; mIdx++) {
+                var mm = mats[mIdx];
+                if (!mm) {
+                  continue;
+                }
+                if (isDayMode) {
+                  if (mm.color) {
+                    mm.color.setHex(0x992222);
+                  }
+                  if (mm.emissive) {
+                    mm.emissive.setHex(0x280808);
+                  }
+                  if (mm.emissiveIntensity !== undefined) {
+                    mm.emissiveIntensity = 0.35;
+                  }
+                } else if (isInner) {
+                  if (mm.color) {
+                    mm.color.setHex(0xff8833);
+                  }
+                  if (mm.emissive) {
+                    mm.emissive.setHex(0xff5500);
+                  }
+                  if (mm.emissiveIntensity !== undefined) {
+                    mm.emissiveIntensity = 1.05;
+                  }
+                  if (mm.roughness !== undefined) {
+                    mm.roughness = Math.min(0.5, Math.max(0.22, mm.roughness || 0.4));
+                  }
+                } else {
+                  if (mm.color) {
+                    mm.color.setHex(0xff1a1a);
+                  }
+                  if (mm.emissive) {
+                    mm.emissive.setHex(0xaa0808);
+                  }
+                  if (mm.emissiveIntensity !== undefined) {
+                    mm.emissiveIntensity = 1.2;
+                  }
+                  if (mm.roughness !== undefined) {
+                    mm.roughness = Math.min(0.42, Math.max(0.18, mm.roughness || 0.4));
+                  }
+                }
+              }
+            });
+          });
+        }
+
+        function clearSpineIons() {
+          for (var si = 0; si < spineIons.length; si++) {
+            var sm = spineIons[si];
+            if (sm && sm.parent) {
+              sm.parent.remove(sm);
+            }
+          }
+          spineIons.length = 0;
+        }
+
+        function disposerBurst() {
+          while (burstNts.length) {
+            var g = burstNts.pop();
+            if (g && g.parent) {
+              g.parent.remove(g);
+            }
+          }
+          spineNaIonsSpawnedThisCycle = false;
+          spineNaTealResetWhenClear = false;
+          tealCleftResetAfterSpine = false;
+          clearSpineIons();
+          if (fireNtMaterial) {
+            fireNtMaterial.opacity = 0.96;
+            fireNtMaterial.visible = true;
+          }
+        }
+
+        function ensureFireNtMaterial() {
+          if (!fireNtMaterial) {
+            fireNtMaterial = new THREE.MeshStandardMaterial({
+              color: 0x0d4a4a,
+              emissive: 0x1affdd,
+              emissiveIntensity: 0.95,
+              metalness: 0.15,
+              roughness: 0.3,
+              transparent: true,
+              opacity: 0.96,
+              depthWrite: true,
+            });
+          } else {
+            fireNtMaterial.opacity = 0.96;
+            fireNtMaterial.transparent = true;
+          }
+          if (!fireNtGeo) {
+            fireNtGeo = new THREE.SphereBufferGeometry(FIRE_NT_SPHERE_R, 16, 12);
+          }
+        }
+
+        function reuptakeTargetY() {
+          if (terminalMesh) {
+            return Math.max(1.15, terminalMesh.position.y - 0.25);
+          }
+          return 1.35;
+        }
+
+        function yOnOuterPostSurface(px, pz) {
+          var h = _postR * _postR - px * px - pz * pz;
+          if (h <= 0) {
+            return null;
+          }
+          return _postCenter.y - Math.sqrt(h);
+        }
+
+        function isTealAtDendriteSpineSurface(pt) {
+          var yO = yOnOuterPostSurface(pt.x, pt.z);
+          if (yO == null) {
+            return false;
+          }
+          if (pt.y < _postCenter.y - 2.35 || pt.y > _postCenter.y + 0.06) {
+            return false;
+          }
+          return Math.abs(pt.y - yO) < 0.085;
+        }
+
+        function ensurePresynCalciumGeoms() {
+          if (presynCaGeoms.init) {
+            return;
+          }
+          presynCaGeoms.core = new THREE.SphereBufferGeometry(0.02, 10, 8);
+          presynCaGeoms.shell = new THREE.SphereBufferGeometry(0.078, 20, 16);
+          presynCaGeoms.init = true;
+        }
+
+        function buildAtomicPresynCalciumGroup() {
+          ensurePresynCalciumGeoms();
+          var g = new THREE.Group();
+          g.userData.isPresynCalcium = true;
+          g.userData.arrivedAtPool = false;
+          g.name = "AtomicPresynCalcium";
+          g.userData.matsForFade = [];
+          var mShell = new THREE.MeshStandardMaterial({
+            color: 0x4a0d8a,
+            emissive: 0x8a3aff,
+            emissiveIntensity: 0.45,
+            metalness: 0.0,
+            roughness: 0.18,
+            transparent: true,
+            opacity: 0.2,
+            depthWrite: false,
+            side: THREE.DoubleSide,
+          });
+          g.userData.matsForFade.push(mShell);
+          var shellM = new THREE.Mesh(presynCaGeoms.shell, mShell);
+          shellM.renderOrder = 0;
+          g.add(shellM);
+          var t0 = Math.random() * Math.PI * 2;
+          var rOff = 0.016;
+          for (var ci = 0; ci < 3; ci++) {
+            var ang = t0 + (ci * Math.PI * 2) / 3;
+            var mc = new THREE.MeshStandardMaterial({
+              color: 0xc4cad4,
+              emissive: 0x1a1c22,
+              emissiveIntensity: 0.04,
+              metalness: 0.98,
+              roughness: 0.05,
+              transparent: true,
+              opacity: 1.0,
+            });
+            g.userData.matsForFade.push(mc);
+            var cM = new THREE.Mesh(presynCaGeoms.core, mc);
+            cM.position.set(
+              Math.cos(ang) * rOff * 0.95,
+              Math.sin(ang) * rOff * 0.95,
+              (ci - 1) * 0.0065
+            );
+            cM.renderOrder = 1;
+            g.add(cM);
+          }
+          g.frustumCulled = false;
+          g.traverse(function (o) {
+            o.castShadow = false;
+            o.receiveShadow = false;
+            o.frustumCulled = false;
+          });
+          return g;
+        }
+
+        function startPresynCalciumInflux() {
+          if (!ionGroup) {
+            return;
+          }
+          if (!G) {
+            signalState = "ca_influx";
+            setTimeout(function () {
+              if (signalState === "ca_influx") {
+                startDockVesicles();
+              }
+            }, 500);
+            return;
+          }
+          disposerBurst();
+          clearPresynCalciumClusters();
+          caInfluxArrivalCount = 0;
+          caInfluxRetreat = false;
+          caTealCleftLatched = false;
+          resetDockingPoolDiscVisual();
+          var termY = terminalMesh ? terminalMesh.position.y : 1.5;
+          var rimY = termY - 0.14;
+          var rimR = 1.96;
+          var tgx = 0.14;
+          var tgz = 0.1;
+          var tgy = 0.1;
+          for (var ii = 0; ii < N_PRESYN_CA; ii++) {
+            (function (idx) {
+              var g = buildAtomicPresynCalciumGroup();
+              var th0 = (idx / N_PRESYN_CA) * Math.PI * 2 + 0.18 * (Math.random() * 2 - 1);
+              g.position.set(
+                Math.cos(th0) * rimR,
+                rimY + 0.1 * (Math.random() * 2 - 1) + 0.03 * (idx % 3),
+                Math.sin(th0) * rimR
+              );
+              g.userData._target = new THREE.Vector3(
+                caVesiclePool.x + tgx * (Math.random() * 2 - 1),
+                caVesiclePool.y + tgy * (Math.random() * 2 - 1),
+                caVesiclePool.z + tgz * (Math.random() * 2 - 1)
+              );
+              var duration = 0.39 + Math.random() * 0.46;
+              var dly = 0.018 * (idx % 5) + 0.03 * (Math.random() * 0.3);
+              ionGroup.add(g);
+              presynCaClusters.push(g);
+              var tw = G.to(g.position, {
+                x: g.userData._target.x,
+                y: g.userData._target.y,
+                z: g.userData._target.z,
+                delay: dly,
+                duration: duration,
+                ease: "power2.in",
+              });
+              g.userData._caInfluxTween = tw;
+            })(ii);
+          }
+          signalState = "ca_influx";
+        }
+
+        function bumpDockingPoolVioletPulse(strength) {
+          dockingVioletPulse = Math.min(1, dockingVioletPulse + (strength != null ? strength : 0.16));
+        }
+
+        function resetDockingPoolDiscVisual() {
+          dockingVioletPulse = 0;
+          if (dockingPoolDiscMesh && dockingPoolDiscMesh.material) {
+            var m = dockingPoolDiscMesh.material;
+            m.opacity = dockingPoolDiscMesh.userData.baseOpacity;
+            m.emissiveIntensity = dockingPoolDiscMesh.userData.baseEmissiveI;
+            m.emissive.setHex(dockingPoolDiscMesh.userData.baseEmissiveHex);
+          }
+        }
+
+        function updateDockingPoolDiscVisual() {
+          if (!dockingPoolDiscMesh || !dockingPoolDiscMesh.material) {
+            return;
+          }
+          var m = dockingPoolDiscMesh.material;
+          if (dockingVioletPulse > 0.004) {
+            dockingVioletPulse *= 0.915;
+            var w = Math.min(1, dockingVioletPulse);
+            m.opacity = dockingPoolDiscMesh.userData.baseOpacity + 0.42 * w;
+            m.emissiveIntensity = dockingPoolDiscMesh.userData.baseEmissiveI + 1.35 * w;
+            m.emissive.setRGB(0.22 + 0.55 * w, 0.04 + 0.2 * w, 0.55 + 0.35 * w);
+          } else {
+            dockingVioletPulse = 0;
+            m.opacity = dockingPoolDiscMesh.userData.baseOpacity;
+            m.emissiveIntensity = dockingPoolDiscMesh.userData.baseEmissiveI;
+            m.emissive.setHex(dockingPoolDiscMesh.userData.baseEmissiveHex);
+          }
+        }
+
+        function markCalciumArrivalAtPool(g) {
+          if (!g || g.userData.arrivedAtPool) {
+            return;
+          }
+          g.userData.arrivedAtPool = true;
+          if (G && g.userData._caInfluxTween) {
+            g.userData._caInfluxTween = null;
+          }
+          if (G) {
+            G.killTweensOf(g.position);
+          }
+          caInfluxArrivalCount++;
+          bumpDockingPoolVioletPulse(0.18);
+          if (caInfluxArrivalCount === N_PRESYN_CA) {
+            bumpDockingPoolVioletPulse(0.35);
+            setTimeout(function () {
+              if (signalState === "ca_influx") {
+                startDockVesicles();
+              }
+            }, 400);
+          }
+        }
+
+        function tryPostSynapticDepolarization() {
+          var tNow = clock.getElapsedTime();
+          if (tNow - lastCupDepolT >= CUP_DEPOL_STAGGER) {
+            lastCupDepolT = tNow;
+            cupSurfacePulse = 1.0;
+          } else {
+            cupSurfacePulse = Math.min(1, cupSurfacePulse + 0.4);
+          }
+        }
+
+        function clearPresynCalciumClusters() {
+          if (!ionGroup) {
+            return;
+          }
+          if (G && G.killTweensOf) {
+            for (var ci = 0; ci < presynCaClusters.length; ci++) {
+              G.killTweensOf(presynCaClusters[ci].position);
+            }
+          }
+          for (var cj = 0; cj < presynCaClusters.length; cj++) {
+            var el = presynCaClusters[cj];
+            if (el && el.parent) {
+              el.parent.remove(el);
+            }
+          }
+          presynCaClusters.length = 0;
+        }
+
+        function updateSodiumIons() {
+          if (caInfluxRetreat) {
+            for (var c = presynCaClusters.length - 1; c >= 0; c--) {
+              var g = presynCaClusters[c];
+              if (!g) {
+                presynCaClusters.splice(c, 1);
+                continue;
+              }
+              g.scale.multiplyScalar(0.965);
+              for (var mi = 0; mi < g.userData.matsForFade.length; mi++) {
+                var mat = g.userData.matsForFade[mi];
+                if (mat && mat.opacity > 0.01) {
+                  mat.opacity = Math.max(0, mat.opacity * 0.95);
+                }
+                if (mat) {
+                  mat.transparent = mat.opacity < 0.99;
+                }
+                if (mat && mat.emissiveIntensity > 0.01) {
+                  mat.emissiveIntensity = Math.max(0, mat.emissiveIntensity * 0.9);
+                }
+              }
+              if (g.scale.x < 0.04) {
+                if (ionGroup && g.parent) {
+                  ionGroup.remove(g);
+                }
+                presynCaClusters.splice(c, 1);
+              }
+            }
+            return;
+          }
+          for (var ci = 0; ci < presynCaClusters.length; ci++) {
+            var ch = presynCaClusters[ci];
+            if (
+              (signalState === "ca_influx" || signalState === "docking") &&
+              ch &&
+              ch.position &&
+              !ch.userData.arrivedAtPool
+            ) {
+              _nTmp.copy(ch.position).sub(caVesiclePool);
+              if (_nTmp.lengthSq() < (CA_POOL_R + 0.028) * (CA_POOL_R + 0.028)) {
+                markCalciumArrivalAtPool(ch);
+              }
+            }
+          }
+        }
+
+        function startNTPReuptake(p) {
+          p.userData.reuptake = true;
+          p.userData.velX = 0;
+          p.userData.velY = 0.0042;
+          p.userData.velZ = 0;
+          p.userData.rupT = 0;
+          if (p.material) {
+            p.material.transparent = true;
+            if (p.material.opacity > 0.15) {
+              p.material.opacity = 0.88;
+            }
+          }
+        }
+
+        function registerParticleTargetHit() {
+          bindHitsThisCycle++;
+          if (bindHitsThisCycle === 3) {
+            spineFeedforwardPulse = 1.0;
+          }
+        }
+
+        function spawnBurst(cx, cz) {
+          if (!burstGroup) return;
+          ensureFireNtMaterial();
+          var burstEmitY = AZ_MESH_Y_BOT - FIRE_NT_SPHERE_R - AZ_NT_SURFACE_PAD;
+          for (var i = 0; i < NTS_PER_BURST; i++) {
+            var mat = fireNtMaterial.clone();
+            mat.transparent = true;
+            mat.opacity = 0.96;
+            var s = new THREE.Mesh(fireNtGeo, mat);
+            s.userData.reuptake = false;
+            s.userData.velX = (Math.random() - 0.5) * 0.0005;
+            s.userData.velY = -0.0092 - Math.random() * 0.0044;
+            s.userData.velZ = (Math.random() - 0.5) * 0.0005;
+            s.userData.life = 1;
+            s.userData.t = 0.12 * i;
+            s.userData.age = i * 0.35;
+            s.userData.wPh = Math.random() * Math.PI * 2;
+            s.userData.wPh2 = Math.random() * Math.PI * 2;
+            s.userData.wPh3 = Math.random() * Math.PI * 2;
+            s.position.set(
+              cx + (Math.random() - 0.5) * 0.2,
+              burstEmitY - Math.random() * 0.04,
+              cz + (Math.random() - 0.5) * 0.2
+            );
+            snapNeurosphereClearOfActiveZone(s.position, FIRE_NT_SPHERE_R, false);
+            s.castShadow = false;
+            s.receiveShadow = false;
+            burstGroup.add(s);
+            burstNts.push(s);
+          }
+        }
+
+        var spineNaGeo, spineNaMat;
+
+        function ensureSpineNaIons() {
+          if (spineNaIonsInit) {
+            return;
+          }
+          spineNaGeo = new THREE.SphereBufferGeometry(0.03, 6, 5);
+          spineNaMat = new THREE.MeshStandardMaterial({
+            color: 0xfff090,
+            emissive: 0xffe018,
+            emissiveIntensity: 1.45,
+            metalness: 0.12,
+            roughness: 0.28,
+            transparent: true,
+            opacity: 0.98,
+            depthWrite: false,
+          });
+          spineNaIonsInit = true;
+        }
+
+        function trySpawnSpineNaWave() {
+          if (spineNaIonsSpawnedThisCycle) {
+            return;
+          }
+          if (!spineHeadMesh || !spineIonGroup) {
+            return;
+          }
+          ensureSpineNaIons();
+          spineNaIonsSpawnedThisCycle = true;
+          spineNaTealResetWhenClear = true;
+          spineHeadMesh.getWorldPosition(_nTmp);
+          for (var ii = 0; ii < N_SPINE_NA; ii++) {
+            var m = new THREE.Mesh(spineNaGeo, spineNaMat);
+            m.position.set(
+              _nTmp.x + (Math.random() - 0.5) * 0.52,
+              _nTmp.y + (Math.random() - 0.5) * 0.42,
+              _nTmp.z + (Math.random() - 0.5) * 0.52
+            );
+            m.userData.vx = (Math.random() - 0.5) * 0.0012;
+            m.userData.vy = -0.021 - Math.random() * 0.016;
+            m.userData.vz = (Math.random() - 0.5) * 0.0012;
+            m.castShadow = false;
+            m.frustumCulled = false;
+            spineIonGroup.add(m);
+            spineIons.push(m);
+          }
+        }
+
+        function updateSpineIons() {
+          for (var i = spineIons.length - 1; i >= 0; i--) {
+            var m = spineIons[i];
+            if (!m) {
+              spineIons.splice(i, 1);
+              continue;
+            }
+            m.position.x += m.userData.vx;
+            m.position.y += m.userData.vy;
+            m.position.z += m.userData.vz;
+            m.userData.vy -= 0.00022;
+            m.userData.vx *= 0.994;
+            m.userData.vz *= 0.994;
+            if (m.position.y < -5.2) {
+              spineIonGroup.remove(m);
+              spineIons.splice(i, 1);
+            }
+          }
+          if (spineNaTealResetWhenClear && spineIons.length === 0) {
+            spineNaTealResetWhenClear = false;
+            if (spineNaIonsSpawnedThisCycle) {
+              tealCleftResetAfterSpine = true;
+            }
+          }
+        }
+
+        function createApWave() {
+          var g = new THREE.Group();
+          var ring = new THREE.Mesh(
+            new THREE.RingGeometry(0.1, 1.05, 64),
+            new THREE.MeshBasicMaterial({
+              color: 0x66f0ff,
+              transparent: true,
+              opacity: 0.42,
+              side: THREE.DoubleSide,
+              depthWrite: false,
+              blending: THREE.AdditiveBlending,
+            })
+          );
+          ring.rotation.x = -Math.PI * 0.5;
+          g.add(ring);
+          apPointLight = new THREE.PointLight(0x88e8ff, 0, 7, 1.8);
+          g.add(apPointLight);
+          g.position.set(0, 2.16, 0);
+          g.renderOrder = 1;
+          return g;
+        }
+
+        function updateBurstParticles() {
+          if (!burstNts.length) return;
+          var jScale = 0.00085;
+          for (var s = 0; s < burstNts.length; s++) {
+            var p = burstNts[s];
+            if (!p || !p.visible) continue;
+            if (p.userData.reuptake) {
+              p.userData.rupT = (p.userData.rupT || 0) + 0.018;
+              var tUp = reuptakeTargetY();
+              p.position.x *= 0.989;
+              p.position.z *= 0.989;
+              p.position.y += 0.0028 + Math.max(0, tUp - p.position.y) * 0.042;
+              snapNeurosphereClearOfActiveZone(p.position, FIRE_NT_SPHERE_R, true);
+              if (p.material) {
+                p.material.opacity = Math.max(0, p.material.opacity - 0.012);
+              }
+              if (p.position.y > tUp + 0.35 || !p.material || p.material.opacity < 0.035) {
+                p.visible = false;
+                p.userData.life = 0;
+              }
+              continue;
+            }
+            p.userData.t = (p.userData.t || 0) + 0.02;
+            p.userData.age = (p.userData.age || 0) + 0.0185;
+            var ag = p.userData.age;
+            p.userData.velX += (Math.random() - 0.5) * jScale;
+            p.userData.velY += (Math.random() - 0.5) * jScale * 0.3;
+            p.userData.velZ += (Math.random() - 0.5) * jScale;
+            p.userData.velX *= 0.93;
+            p.userData.velZ *= 0.93;
+            p.position.x += p.userData.velX;
+            p.position.y += p.userData.velY;
+            p.position.z += p.userData.velZ;
+            p.userData.velY -= 0.00019;
+            var wob =
+              0.0011 * Math.sin(ag * 2.5 + p.userData.wPh) + 0.00055 * Math.sin(ag * 1.1 + 2.1 * p.userData.wPh2);
+            var wobZ =
+              0.00095 * Math.sin(ag * 2.0 + p.userData.wPh2) + 0.0005 * Math.cos(ag * 1.3 + 1.3 * p.userData.wPh);
+            var wobY = 0.0004 * Math.sin(ag * 1.7 + p.userData.wPh3);
+            p.position.x += wob;
+            p.position.z += wobZ;
+            p.position.y += wobY;
+            pushPointOutOfPresynapticTerminalShell(p.position);
+            snapNeurosphereClearOfActiveZone(p.position, FIRE_NT_SPHERE_R, false);
+            var tHit = clock.getElapsedTime();
+            if (
+              !caTealCleftLatched &&
+              presynCaClusters.length > 0 &&
+              p.position.y < 0.33 &&
+              p.position.y > -0.27
+            ) {
+              caTealCleftLatched = true;
+              caInfluxRetreat = true;
+            }
+            if (tealCleftResetAfterSpine && p.material && !p.userData.reuptake) {
+              if (p.position.y < 0.58 && p.position.y > -0.35) {
+                p.material.opacity = Math.max(0, p.material.opacity - 0.0065);
+                p.userData.velX *= 0.99;
+                p.userData.velZ *= 0.99;
+                p.userData.velY -= 0.00012;
+                if (p.material.opacity < 0.02) {
+                  p.visible = false;
+                  p.userData.life = 0;
+                }
+              }
+            }
+            if (p.position.y < _postCenter.y - 2.65) {
+              p.visible = false;
+              p.userData.life = 0;
+              continue;
+            }
+            if (!p.userData.touchedPostCup) {
+              if (isTealAtDendriteSpineSurface(p.position)) {
+                p.userData.touchedPostCup = true;
+                tryPostSynapticDepolarization();
+                postMemReceiveUntil = tHit + POST_MEM_RECEIVE_SEC;
+                if (postResponsePulse < 0.55) {
+                  postResponsePulse = 0.55;
+                }
+              }
+            }
+            if (p.position.y < _postCenter.y + 0.5) {
+              var posP = p.position;
+              var hitC = false;
+              for (var rj = 0; rj < receptors.length; rj++) {
+                var rec = receptors[rj];
+                if (posP.distanceTo(rec.position) < 0.28 * RECEPTOR_VISUAL_SCALE) {
+                  rec.userData.bindUntil = tHit + RECEPTOR_BIND_SEC;
+                  rec.userData.bindSparkT = RECEPTOR_BIND_SPARK_SEC;
+                  postResponsePulse = 1.0;
+                  postMemReceiveUntil = tHit + POST_MEM_RECEIVE_SEC;
+                  p.userData.touchedPostCup = true;
+                  registerParticleTargetHit();
+                  tryPostSynapticDepolarization();
+                  trySpawnSpineNaWave();
+                  startNTPReuptake(p);
+                  hitC = true;
+                  break;
+                }
+              }
+              if (!hitC) {
+                if (isPointNearPsd(posP) || isPointNearPostMembrane(posP)) {
+                  pulseNearestReceptor(posP, tHit);
+                  postResponsePulse = 1.0;
+                  postMemReceiveUntil = tHit + POST_MEM_RECEIVE_SEC;
+                  p.userData.touchedPostCup = true;
+                  registerParticleTargetHit();
+                  tryPostSynapticDepolarization();
+                  startNTPReuptake(p);
+                }
+              }
+            }
+          }
+          if (tealCleftResetAfterSpine && burstNts.length) {
+            var cleftLeft = false;
+            for (var uu = 0; uu < burstNts.length; uu++) {
+              var bp = burstNts[uu];
+              if (!bp || !bp.visible) {
+                continue;
+              }
+              if (bp.userData.reuptake) {
+                continue;
+              }
+              if (bp.position.y < 0.58 && bp.position.y > -0.35 && bp.material && bp.material.opacity > 0.04) {
+                cleftLeft = true;
+                break;
+              }
+            }
+            if (!cleftLeft) {
+              tealCleftResetAfterSpine = false;
+            }
+          }
+        }
+
+        function onSignalCompleteIdle() {
+          signalState = "idle";
+          signalBlockNt = false;
+          releaseCounter = 0;
+          postResponsePulse = 0;
+          postMemReceiveUntil = 0;
+          cupSurfacePulse = 0;
+          bindHitsThisCycle = 0;
+          spineFeedforwardPulse = 0;
+          lastCupDepolT = -1;
+          caInfluxRetreat = false;
+          caTealCleftLatched = false;
+          spineNaIonsSpawnedThisCycle = false;
+          spineNaTealResetWhenClear = false;
+          tealCleftResetAfterSpine = false;
+          clearSpineIons();
+          if (postMembraneMesh) {
+            if (isDay()) {
+              postMembraneMesh.material.emissive.setHex(0x000000);
+              postMembraneMesh.material.emissiveIntensity = 0;
+            } else {
+              postMembraneMesh.material.emissive.setHex(postEmissiveHex);
+              postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase;
+            }
+          }
+          if (psdMesh) {
+            psdMesh.material.color.setHex(isDay() ? PSD_BASE_COLOR_DAY : PSD_BASE_COLOR_NIGHT);
+            psdMesh.material.emissive.setHex(isDay() ? 0x0c0c0c : 0x0a0a0a);
+            psdMesh.material.emissiveIntensity = isDay() ? 0.1 : 0.08;
+          }
+          applySpineIdleVisual();
+          if (postInteriorLight) {
+            postInteriorLight.intensity = 0;
+            postInteriorLight.color.setHex(postInteriorColorHex);
+          }
+          if (cupRippleMesh) {
+            cupRippleMesh.visible = false;
+            if (cupRippleMesh.material) {
+              cupRippleMesh.material.opacity = 0;
+            }
+          }
+          if (spineFeedRippleMesh) {
+            spineFeedRippleMesh.visible = false;
+            if (spineFeedRippleMesh.material) {
+              spineFeedRippleMesh.material.opacity = 0;
+            }
+          }
+          clearPresynCalciumClusters();
+          resetDockingPoolDiscVisual();
+          nts.forEach(function (m) {
+            m.visible = true;
+          });
+          if (apWave) {
+            apWave.visible = false;
+            apWave.position.set(0, 2.18, 0);
+            if (apPointLight) apPointLight.intensity = 0;
+          }
+          var bf = document.getElementById("btn-fire");
+          if (bf) bf.disabled = false;
+          disposerBurst();
+          scheduleAutoSignalAfterIdle();
+        }
+
+        function clearAutoSignalSchedule() {
+          if (autoSignalTimeout) {
+            clearTimeout(autoSignalTimeout);
+            autoSignalTimeout = null;
+          }
+        }
+
+        function scheduleAutoSignalAfterIdle() {
+          var ac = document.getElementById("auto-signal");
+          if (!ac || !ac.checked || !G) {
+            return;
+          }
+          clearAutoSignalSchedule();
+          autoSignalTimeout = setTimeout(function () {
+            autoSignalTimeout = null;
+            var ac2 = document.getElementById("auto-signal");
+            if (ac2 && ac2.checked && signalState === "idle") {
+              startSignalCycle();
+            }
+          }, 4000);
+        }
+
+        function beginFadeAndReset() {
+          signalState = "fade";
+          if (!G) {
+            resetVesicleHomesGsap();
+            return;
+          }
+          var toTween = [];
+          for (var fbi = 0; fbi < burstNts.length; fbi++) {
+            if (burstNts[fbi] && burstNts[fbi].material) {
+              toTween.push(burstNts[fbi].material);
+            }
+          }
+          if (!toTween.length) {
+            resetVesicleHomesGsap();
+            return;
+          }
+          var nFin = 0;
+          for (var fj = 0; fj < toTween.length; fj++) {
+            (function (mat) {
+              G.to(mat, {
+                opacity: 0,
+                duration: 0.6,
+                ease: "power1.out",
+                onComplete: function () {
+                  if (mat) {
+                    mat.opacity = 0.96;
+                  }
+                  nFin++;
+                  if (nFin === toTween.length) {
+                    resetVesicleHomesGsap();
+                  }
+                },
+              });
+            })(toTween[fj]);
+          }
+        }
+
+        function resetVesicleHomesGsap() {
+          disposerBurst();
+          var done = 0;
+          var nv = Math.min(N_SIGNAL_V, vesicleMeshes.length);
+          if (!nv) {
+            onSignalCompleteIdle();
+            return;
+          }
+          for (var si = 0; si < nv; si++) {
+            (function (v) {
+              v.visible = true;
+              v.scale.set(1, 1, 1);
+              if (!v.userData.homePos) {
+                v.userData.homePos = v.position.clone();
+              }
+              vec3Gsap(
+                v.position,
+                v.userData.homePos.x,
+                v.userData.homePos.y,
+                v.userData.homePos.z,
+                {
+                  dur: 0.8,
+                  ease: "power2.inOut",
+                  onComplete: function () {
+                    done++;
+                    if (done === nv) {
+                      onSignalCompleteIdle();
+                    }
+                  },
+                }
+              );
+            })(vesicleMeshes[si]);
+          }
+        }
+
+        function onVesicleArrived(v, total) {
+          if (!v.userData.homePos) v.userData.homePos = v.position.clone();
+          var px = v.position.x;
+          var pz = v.position.z;
+          v.visible = false;
+          spawnBurst(px, pz);
+          releaseCounter++;
+          if (releaseCounter === total) {
+            signalState = "release";
+            setTimeout(function () {
+              if (signalState === "release") {
+                beginFadeAndReset();
+              }
+            }, 3000);
+          }
+        }
+
+        function startDockVesicles() {
+          if (!G) return;
+          releaseCounter = 0;
+          signalState = "docking";
+          nts.forEach(function (m) {
+            m.visible = false;
+          });
+          var n = Math.min(N_SIGNAL_V, vesicleMeshes.length);
+          /** Golden-angle offset so slots are not perfectly cardinal to terminal features. */
+          var slotPhase = 2.39996323;
+          for (var j = 0; j < n; j++) {
+            (function (idx) {
+              var v = vesicleMeshes[idx];
+              if (!v.userData.homePos) {
+                v.userData.homePos = v.position.clone();
+              }
+              var h = v.userData.homePos;
+              var ang = (Math.PI * 2 * idx) / n + slotPhase;
+              var ring = 1 + (idx % 3) * 0.045;
+              var sx = Math.cos(ang) * VESICLE_DOCK_SLOT_R * ring;
+              var sz = Math.sin(ang) * VESICLE_DOCK_SLOT_R * ring;
+              var rNow = Math.sqrt(sx * sx + sz * sz);
+              if (rNow > AZ_DISC_R - 0.12) {
+                var s = (AZ_DISC_R - 0.12) / rNow;
+                sx *= s;
+                sz *= s;
+              }
+              var homeY = h.y;
+              var del = 0.16 * idx;
+              vec3Gsap(v.position, sx, homeY, sz, {
+                dur: 0.58,
+                delay: del,
+                ease: "power2.inOut",
+                onComplete: function () {
+                  vec3Gsap(v.position, sx, RELEASE_Y, sz, {
+                    dur: 0.42,
+                    ease: "power1.in",
+                    onComplete: function () {
+                      onVesicleArrived(v, n);
+                    },
+                  });
+                },
+              });
+            })(j);
+          }
+        }
+
+        function startSignalCycle() {
+          if (signalState !== "idle") return;
+          if (!G || !apWave) {
+            return;
+          }
+          clearAutoSignalSchedule();
+          var bf = document.getElementById("btn-fire");
+          if (bf) bf.disabled = true;
+          releaseCounter = 0;
+          bindHitsThisCycle = 0;
+          spineFeedforwardPulse = 0;
+          signalState = "ap";
+          disposerBurst();
+          signalBlockNt = true;
+          nts.forEach(function (m) {
+            m.visible = false;
+          });
+          apWave.visible = true;
+          apWave.position.set(0, 2.16, 0);
+          if (apPointLight) apPointLight.intensity = 0;
+          var apY = { y: 2.16 };
+          G.to(apY, {
+            y: 0.98,
+            duration: 0.8,
+            ease: "power1.in",
+            onUpdate: function () {
+              apWave.position.y = apY.y;
+              if (apPointLight) {
+                apPointLight.intensity = 1.45 * Math.max(0, 1.0 - (apY.y - 0.98) / 1.2);
+              }
+            },
+            onComplete: function () {
+              apWave.position.y = 0.98;
+              if (apPointLight) {
+                apPointLight.intensity = 0;
+              }
+              apWave.visible = false;
+              setTimeout(function () {
+                if (signalState === "ap") {
+                  startPresynCalciumInflux();
+                }
+              }, 140);
+            },
+          });
+        }
+
+        function setupSignalUi() {
+          var bf = document.getElementById("btn-fire");
+          var ac = document.getElementById("auto-signal");
+          if (bf) {
+            bf.addEventListener("click", function () {
+              if (typeof gsap === "undefined") {
+                return;
+              }
+              startSignalCycle();
+            });
+          }
+          if (ac) {
+            ac.addEventListener("change", function () {
+              clearAutoSignalSchedule();
+              if (ac.checked) {
+                if (signalState === "idle" && G) {
+                  startSignalCycle();
+                }
+              }
+            });
+          }
+        }
+
+        function setupSynapseHelpUi() {
+          var help = document.getElementById("synapse-activate-help");
+          var btnHelp = document.getElementById("btn-synapse-help");
+          var btnClose = document.getElementById("synapse-help-close");
+          if (!help || !btnHelp) {
+            return;
+          }
+          function closeHelp() {
+            help.setAttribute("hidden", "hidden");
+            help.setAttribute("aria-hidden", "true");
+            btnHelp.setAttribute("aria-expanded", "false");
+          }
+          function openHelp() {
+            help.removeAttribute("hidden");
+            help.setAttribute("aria-hidden", "false");
+            btnHelp.setAttribute("aria-expanded", "true");
+          }
+          btnHelp.setAttribute("aria-expanded", "false");
+          btnHelp.setAttribute("aria-controls", "synapse-activate-help");
+          btnHelp.addEventListener("click", function () {
+            if (help.hasAttribute("hidden")) {
+              openHelp();
+            } else {
+              closeHelp();
+            }
+          });
+          if (btnClose) {
+            btnClose.addEventListener("click", function () {
+              closeHelp();
+            });
+          }
+          document.addEventListener("keydown", function (ev) {
+            if (ev.key === "Escape" && !help.hasAttribute("hidden")) {
+              closeHelp();
+            }
+          });
+        }
+
+        function buildScene() {
+          var cleftVoidGeo = new THREE.CircleGeometry(2.4, 72);
+          var cleftVoidMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            polygonOffset: true,
+            polygonOffsetFactor: 1,
+            polygonOffsetUnits: 1,
+          });
+          cleftVoidMat.colorWrite = false;
+          cleftVoidMesh = new THREE.Mesh(cleftVoidGeo, cleftVoidMat);
+          cleftVoidMesh.rotation.x = -Math.PI * 0.5;
+          cleftVoidMesh.position.set(0, 0.5, 0);
+          cleftVoidMesh.renderOrder = -5;
+          viewGroup.add(cleftVoidMesh);
+
+          var SPH = 64;
+          var terminalGeo = new THREE.SphereGeometry(2.2, SPH, SPH, 0, Math.PI * 2, 0, Math.PI * 0.55);
+          if (terminalGeo.computeVertexNormals) {
+            terminalGeo.computeVertexNormals();
+          }
+          terminalMesh = new THREE.Mesh(
+            terminalGeo,
+            new THREE.MeshPhysicalMaterial({
+              color: 0x1c2a40,
+              emissive: 0x3568b0,
+              emissiveIntensity: 0.18,
+              roughness: 0.48,
+              metalness: 0.0,
+              transmission: 0.08,
+              thickness: 1.0,
+              ior: 1.38,
+              transparent: true,
+              opacity: 0.9,
+              side: THREE.DoubleSide,
+              clearcoat: 0.22,
+              clearcoatRoughness: 0.28,
+            })
+          );
+          terminalMesh.rotation.x = Math.PI;
+          terminalMesh.position.y = 1.5;
+          registerLabel(terminalMesh, "Presynaptic Terminal");
+          viewGroup.add(terminalMesh);
+
+          var vGeo = new THREE.SphereGeometry(0.1296, 24, 20);
+          vGeo.computeVertexNormals();
+          var vMat = new THREE.MeshPhysicalMaterial({
+            color: 0xf0d080,
+            emissive: 0xffaa33,
+            emissiveIntensity: 0.16,
+            roughness: 0.32,
+            metalness: 0.0,
+            clearcoat: 0.28,
+            clearcoatRoughness: 0.32,
+            transparent: true,
+            opacity: 0.96,
+            depthWrite: true,
+          });
+          var vCount = 0;
+          var vGuard = 0;
+          var termCy = terminalMesh.position.y;
+          var termRad = 2.2;
+          var vesShellInset = 0.28;
+          var vesicleRadius = 0.13;
+          var rin = termRad - vesShellInset - vesicleRadius;
+          var vesYMin = 1.1;
+          var vesYMax = termCy + 0.82;
+          while (vCount < 22 && vGuard < 25000) {
+            vGuard++;
+            var y = vesYMin + Math.random() * (vesYMax - vesYMin);
+            var dy = y - termCy;
+            var horizMaxSq = rin * rin - dy * dy;
+            if (horizMaxSq < 0.014) {
+              continue;
+            }
+            var horizMax = Math.sqrt(horizMaxSq);
+            var r = Math.sqrt(Math.random()) * (horizMax - 0.02);
+            if (r < 0.08) {
+              continue;
+            }
+            if (r < 0.38 && Math.random() < 0.38) {
+              continue;
+            }
+            var th = Math.random() * Math.PI * 2.0;
+            var x = Math.cos(th) * r;
+            var z = Math.sin(th) * r;
+            var v = new THREE.Mesh(vGeo, vMat.clone());
+            v.position.set(x, y, z);
+            v.castShadow = false;
+            v.receiveShadow = false;
+            v.userData.index = vCount;
+            registerLabel(v, "Synaptic Vesicle");
+            vesicleMeshes.push(v);
+            viewGroup.add(v);
+            vCount++;
+          }
+
+          var azGeo = new THREE.CylinderGeometry(1.1, 1.1, AZ_MESH_HALF_H * 2, 32);
+          azGeo.computeVertexNormals();
+          var az = new THREE.Mesh(
+            azGeo,
+            new THREE.MeshPhysicalMaterial({
+              color: 0xe08822,
+              emissive: 0xff6210,
+              emissiveIntensity: 0.4,
+              roughness: 0.36,
+              metalness: 0.0,
+              clearcoat: 0.15,
+            })
+          );
+          az.position.y = AZ_MESH_CENTER_Y;
+          az.castShadow = false;
+          registerLabel(az, "Active Zone");
+          viewGroup.add(az);
+          activeZoneMesh = az;
+
+          var ntGeo = new THREE.SphereGeometry(NT_AMBIENT_SPHERE_R, 24, 18);
+          ntGeo.computeVertexNormals();
+          var ntMat = new THREE.MeshBasicMaterial({
+            color: isDay() ? ntColorDay : ntColorNight,
+          });
+          for (var ni = 0; ni < 12; ni++) {
+            var ntm = new THREE.Mesh(ntGeo, ntMat.clone());
+            sampleAmbientNtSpawnNearActiveZone(ntm.position);
+            ntm.userData.vy = -0.0072 - Math.random() * 0.0022;
+            ntm.userData.vx = (Math.random() - 0.5) * 0.0022;
+            ntm.userData.vz = (Math.random() - 0.5) * 0.0022;
+            ntm.userData.label = "Neurotransmitter";
+            ntm.frustumCulled = false;
+            ntm.castShadow = false;
+            registerLabel(ntm, "Neurotransmitter");
+            nts.push(ntm);
+            viewGroup.add(ntm);
+          }
+
+          var postGeo = new THREE.SphereGeometry(2.2, 32, 32, 0, Math.PI * 2, Math.PI * 0.5, Math.PI * 0.5);
+          postGeo.computeVertexNormals();
+          var post = new THREE.Mesh(
+            postGeo,
+            new THREE.MeshLambertMaterial({
+              color: 0xc4a870,
+              emissive: 0x1a1000,
+              emissiveIntensity: 0.2,
+              transparent: true,
+              opacity: 0.82,
+              side: THREE.DoubleSide,
+            })
+          );
+          post.castShadow = false;
+          post.receiveShadow = false;
+          post.layers.set(1);
+          post.position.y = -0.5;
+          post.userData.label = "Postsynaptic Membrane";
+          postMembraneMesh = post;
+          registerLabel(post, "Postsynaptic Membrane");
+          viewGroup.add(post);
+
+          var psdGeo = new THREE.CylinderGeometry(1.1, 1.1, 0.1, 64, 1, false);
+          psdGeo.computeVertexNormals();
+          var psdBump = makePsdBumpTexture();
+          var psd = new THREE.Mesh(
+            psdGeo,
+            new THREE.MeshPhysicalMaterial({
+              color: 0x1a1a1c,
+              emissive: 0x0a0a0a,
+              emissiveIntensity: 0.08,
+              roughness: 0.98,
+              metalness: 0.0,
+              clearcoat: 0.0,
+              clearcoatRoughness: 0.8,
+              bumpMap: psdBump,
+              bumpScale: 0.042,
+            })
+          );
+          psd.userData.bumpTexture = psdBump;
+          psd.position.y = -0.42;
+          psdMesh = psd;
+          registerLabel(psd, "Postsynaptic Density");
+          viewGroup.add(psd);
+
+          var spineMat = new THREE.MeshLambertMaterial({
+            color: 0x9a7a4a,
+            emissive: 0x100800,
+            emissiveIntensity: 0.15,
+            transparent: false,
+            opacity: 1,
+            fog: false,
+          });
+          var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 1.4, 2.0, 24), spineMat);
+          neck.position.y = -2.0;
+          neck.castShadow = false;
+          neck.receiveShadow = false;
+          neck.layers.set(1);
+          neck.userData.label = "Spine Neck";
+          scene.add(neck);
+          registerLabel(neck, "Spine Neck");
+          var head = new THREE.Mesh(new THREE.SphereGeometry(0.9, 24, 16), spineMat);
+          head.position.y = -3.1;
+          head.castShadow = false;
+          head.receiveShadow = false;
+          head.layers.set(1);
+          head.userData.label = "Dendritic Spine";
+          scene.add(head);
+          registerLabel(head, "Dendritic Spine");
+          spineStemMesh = neck;
+          spineHeadMesh = head;
+          var sfrG = new THREE.RingGeometry(0.1, 0.5, 72);
+          var sfrM = new THREE.MeshBasicMaterial({
+            color: isDay() ? SPINE_RIPPLE_COLOR_DAY : SPINE_RIPPLE_COLOR_NIGHT,
+            transparent: true,
+            opacity: 0,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+          });
+          spineFeedRippleMesh = new THREE.Mesh(sfrG, sfrM);
+          spineFeedRippleMesh.rotation.x = -Math.PI * 0.5;
+          spineFeedRippleMesh.position.set(0, 0, 0);
+          spineFeedRippleMesh.visible = false;
+          spineFeedRippleMesh.renderOrder = 4;
+          spineHeadMesh.add(spineFeedRippleMesh);
+
+          spineIonGroup = new THREE.Group();
+          spineIonGroup.name = "SpineNaIons";
+          viewGroup.add(spineIonGroup);
+
+          ionGroup = new THREE.Group();
+          ionGroup.name = "PresynapticCalciumInflux";
+          viewGroup.add(ionGroup);
+
+          var dpGeo = new THREE.CircleGeometry(0.52, 48);
+          var dpMat = new THREE.MeshStandardMaterial({
+            color: 0x120818,
+            emissive: 0x3a0a78,
+            emissiveIntensity: 0.2,
+            metalness: 0.0,
+            roughness: 0.9,
+            transparent: true,
+            opacity: 0.09,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+          });
+          dockingPoolDiscMesh = new THREE.Mesh(dpGeo, dpMat);
+          dockingPoolDiscMesh.rotation.x = -Math.PI * 0.5;
+          dockingPoolDiscMesh.position.set(0, caVesiclePool.y - 0.02, 0);
+          dockingPoolDiscMesh.userData.baseOpacity = 0.09;
+          dockingPoolDiscMesh.userData.baseEmissiveI = 0.2;
+          dockingPoolDiscMesh.userData.baseEmissiveHex = 0x3a0a78;
+          dockingPoolDiscMesh.renderOrder = 2;
+          dockingPoolDiscMesh.frustumCulled = false;
+          viewGroup.add(dockingPoolDiscMesh);
+
+          var ripG = new THREE.RingGeometry(0.1, 0.58, 64);
+          var ripM = new THREE.MeshBasicMaterial({
+            color: 0xfff0cc,
+            transparent: true,
+            opacity: 0,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+          });
+          cupRippleMesh = new THREE.Mesh(ripG, ripM);
+          cupRippleMesh.rotation.x = -Math.PI * 0.5;
+          cupRippleMesh.position.set(0, 1.12, 0);
+          cupRippleMesh.visible = false;
+          cupRippleMesh.renderOrder = 3;
+          cupRippleMesh.userData.label = "Postsynaptic Membrane";
+          registerLabel(cupRippleMesh, "Postsynaptic Membrane");
+          viewGroup.add(cupRippleMesh);
+
+          burstGroup = new THREE.Group();
+          viewGroup.add(burstGroup);
+          apWave = createApWave();
+          apWave.visible = false;
+          viewGroup.add(apWave);
+          var nSV = Math.min(N_SIGNAL_V, vesicleMeshes.length);
+          for (var sv = 0; sv < nSV; sv++) {
+            var vv2 = vesicleMeshes[sv];
+            vv2.userData.homePos = vv2.position.clone();
+            vv2.userData.isSignalV = true;
+          }
+
+          if (postMembraneMesh) {
+            _postCenter.set(0, postMembraneMesh.position.y, 0);
+            if (cleftLight) {
+              cleftLight.position.set(0, postMembraneMesh.position.y + 0.46, 0);
+            }
+            if (postInteriorLight) {
+              postInteriorLight.position.set(0, postMembraneMesh.position.y + 0.14, 0.05);
+            }
+            if (preInteriorLight) {
+              preInteriorLight.position.set(0, 1.58, 0.05);
+            }
+            if (cupRippleMesh) {
+              cupRippleMesh.position.y = postMembraneMesh.position.y + 0.3;
+            }
+          }
+        }
+
+        function updatePinnedAnatomicalTooltip() {
+          if (!tooltip || !renderer || !camera) {
+            return;
+          }
+          var k = lastTooltipLabel;
+          var spinePin = k === "Dendritic Spine" || k === "Spine Neck";
+          if (k !== "Presynaptic Terminal" && !spinePin) {
+            return;
+          }
+          var anchor =
+            k === "Presynaptic Terminal" ? terminalMesh : k === "Spine Neck" ? spineStemMesh : spineHeadMesh;
+          if (!anchor) {
+            return;
+          }
+          anchor.getWorldPosition(_vPin);
+          _vPin.y += k === "Presynaptic Terminal" ? 0.58 : k === "Spine Neck" ? 0.65 : 0.5;
+          _vPin.project(camera);
+          if (Math.abs(_vPin.x) > 0.98 || Math.abs(_vPin.y) > 0.98) {
+            tooltip.style.display = "none";
+            return;
+          }
+          var rect = renderer.domElement.getBoundingClientRect();
+          var px = (_vPin.x * 0.5 + 0.5) * rect.width + rect.left;
+          var py = (-_vPin.y * 0.5 + 0.5) * rect.height + rect.top;
+          var tw = 200;
+          tooltip.style.display = "block";
+          tooltip.style.left = Math.max(4, Math.min(window.innerWidth - tw - 4, px - tw * 0.5)) + "px";
+          tooltip.style.top = Math.max(4, py - 36) + "px";
+          tooltip.style.right = "auto";
+          tooltip.style.bottom = "auto";
+        }
+
+        function onPointerMove(e) {
+          pointerX = e.clientX;
+          pointerY = e.clientY;
+          var rect = renderer.domElement.getBoundingClientRect();
+          mouseNdc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseNdc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        }
+
+        function onClick(e) {
+          var rect = renderer.domElement.getBoundingClientRect();
+          var ndc = {
+            x: ((e.clientX - rect.left) / rect.width) * 2 - 1,
+            y: -((e.clientY - rect.top) / rect.height) * 2 + 1,
+          };
+          raycaster.setFromCamera(new THREE.Vector2(ndc.x, ndc.y), camera);
+          var hit = raycaster.intersectObjects(labeledMeshes, true);
+          if (!hit.length) return;
+          var stack = buildOrderedUniqueLabelHits(hit);
+          if (!stack.length) return;
+          /** Second click of a double-click (`detail` 2) selects the next distinct labeled object along the ray. */
+          var detail = e.detail || 1;
+          var pickIndex = stack.length === 1 ? 0 : (detail - 1) % stack.length;
+          var k = findRootLabel(stack[pickIndex].object);
+          if (!k) return;
+          openPanelKey = k;
+          panelName.textContent = labelForKey(k);
+          panelDesc.textContent = textForKey(k);
+          resetInfoPanelBodyScroll();
+          infoPanel.classList.add("open");
+          infoPanel.setAttribute("aria-hidden", "false");
+        }
+
+        function onResize() {
+          var sz = getViewportSize();
+          var w = sz.w;
+          var h = sz.h;
+          var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+          renderer.setPixelRatio(dpr);
+          renderer.setSize(w, h);
+          if (composer) {
+            composer.setPixelRatio(dpr);
+            composer.setSize(w, h);
+          }
+        }
+
+        function updateTooltip() {
+          if (networkFrame % 2 !== 0) return;
+          /** While the info panel is open, keep the hover chip title in sync with the picked part (incl. double-click depth). */
+          if (infoPanel && infoPanel.classList.contains("open") && openPanelKey && tooltip) {
+            lastTooltipLabel = openPanelKey;
+            tooltip.textContent = labelForKey(openPanelKey);
+            tooltip.style.display = "block";
+            return;
+          }
+          raycaster.setFromCamera(mouseNdc, camera);
+          var hit = raycaster.intersectObjects(labeledMeshes, true);
+          if (hit.length) {
+            var stack = buildOrderedUniqueLabelHits(hit);
+            var k = stack.length ? findRootLabel(stack[0].object) : findRootLabel(hit[0].object);
+            if (k) {
+              lastTooltipLabel = k;
+              tooltip.textContent = labelForKey(k);
+              tooltip.style.display = "block";
+            } else {
+              lastTooltipLabel = null;
+              tooltip.style.display = "none";
+            }
+          } else {
+            lastTooltipLabel = null;
+            tooltip.style.display = "none";
+          }
+        }
+
+        function tick() {
+          var dt = typeof clock.getDelta === "function" ? Math.min(0.12, Math.max(0.001, clock.getDelta())) : 0.016;
+          var t = clock.getElapsedTime();
+          networkFrame++;
+
+          if (viewGroup) {
+            viewGroup.rotation.y += 0.0003;
+            viewGroup.rotation.x = 0;
+          }
+          if (starField) {
+            starField.rotation.y += 0.00012;
+          }
+          if (networkFrame % 2 === 0) {
+            updateTooltip();
+          }
+          if (tooltip && tooltip.style.display === "block") {
+            if (
+              lastTooltipLabel === "Dendritic Spine" ||
+              lastTooltipLabel === "Spine Neck" ||
+              lastTooltipLabel === "Presynaptic Terminal"
+            ) {
+              updatePinnedAnatomicalTooltip();
+            } else {
+              tooltip.style.right = "auto";
+              tooltip.style.bottom = "auto";
+              tooltip.style.left = pointerX + 15 + "px";
+              tooltip.style.top = pointerY + 15 + "px";
+            }
+          }
+
+          if (terminalMesh) {
+            var ts = 1 + 0.015 * Math.sin(t * 1.2);
+            terminalMesh.scale.setScalar(ts);
+          }
+          for (var vi = 0; vi < vesicleMeshes.length; vi++) {
+            var v = vesicleMeshes[vi];
+            if (v.userData.isSignalV && signalState !== "idle") {
+              v.scale.set(1, 1, 1);
+            } else {
+              var s = 1 + 0.08 * Math.sin(t * 2 + vi * 0.5);
+              v.scale.setScalar(s);
+            }
+          }
+          if (burstNts.length) {
+            updateBurstParticles();
+          }
+          if (tealCleftResetAfterSpine && !burstNts.length) {
+            tealCleftResetAfterSpine = false;
+          }
+          updateSpineIons();
+          updateSodiumIons();
+          updateDockingPoolDiscVisual();
+          for (var ri2 = 0; ri2 < receptors.length; ri2++) {
+            var rec = receptors[ri2];
+            var bSpark = rec.userData.bindSparkT;
+            if (bSpark != null && bSpark > 0) {
+              rec.userData.bindSparkT = Math.max(0, bSpark - dt);
+              if (rec.userData.bindSparkT > 0) {
+                var sp = rec.userData.bindSparkT / RECEPTOR_BIND_SPARK_SEC;
+                var aSpark = 1.0 - Math.max(0, Math.min(1, sp));
+                forEachReceptorMat(rec, function (m) {
+                  if (m.color) {
+                    m.color.setRGB(0.98, 0.95 + 0.04 * aSpark, 0.25);
+                  }
+                  if (m.emissive) {
+                    m.emissive.setRGB(1, 0.99, 0.18);
+                  }
+                  if (m.emissiveIntensity !== undefined) {
+                    m.emissiveIntensity = 2.7 * aSpark + (rec.userData.baseEmissiveI || 0) * (1 - aSpark);
+                  }
+                });
+                continue;
+              }
+            }
+            var bindEnd = rec.userData.bindUntil || 0;
+            if (t < bindEnd) {
+              var w = (bindEnd - t) / RECEPTOR_BIND_SEC;
+              if (w > 1) {
+                w = 1;
+              }
+              var w2 = w * w;
+              forEachReceptorMat(rec, function (m) {
+                if (m.color) {
+                  m.color.setRGB(0.55 + 0.4 * w2, 0.52 + 0.4 * w2, 0.12 + 0.12 * w2);
+                }
+                if (m.emissive) {
+                  m.emissive.setRGB(0.99, 0.94, 0.12 + 0.1 * w2);
+                }
+                if (m.emissiveIntensity !== undefined) {
+                  m.emissiveIntensity = 0.38 + 1.75 * w2;
+                }
+              });
+            } else if (rec.userData.flashTimer > 0) {
+              forEachReceptorMat(rec, function (m) {
+                if (m.color) {
+                  m.color.setHex(rec.userData.baseColor);
+                }
+                if (m.emissive) {
+                  m.emissive.setHex(rec.userData.baseEmissive);
+                }
+                if (m.emissiveIntensity !== undefined) {
+                  m.emissiveIntensity =
+                    rec.userData.baseEmissiveI +
+                    (1.2 - rec.userData.baseEmissiveI) * (rec.userData.flashTimer / 60);
+                }
+              });
+              rec.userData.flashTimer -= 1;
+            } else {
+              forEachReceptorMat(rec, function (m) {
+                if (m.color) {
+                  m.color.setHex(rec.userData.baseColor);
+                }
+                if (m.emissive) {
+                  m.emissive.setHex(rec.userData.baseEmissive);
+                }
+                if (m.emissiveIntensity !== undefined) {
+                  m.emissiveIntensity = rec.userData.baseEmissiveI;
+                }
+              });
+            }
+          }
+          if (cupSurfacePulse > 0.01 && postMembraneMesh) {
+            var wCup = Math.min(1, cupSurfacePulse);
+            if (!isDay()) {
+              _eBasePost.setHex(postEmissiveHex);
+              _eWarmPost.setRGB(0.95, 0.92, 0.78);
+              postMembraneMesh.material.emissive.copy(_eWarmPost).lerp(_eBasePost, 1.0 - wCup);
+              postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase + 0.78 * wCup;
+            } else {
+              postMembraneMesh.material.emissive.setHex(0x000000);
+              postMembraneMesh.material.emissiveIntensity = 0;
+            }
+            if (psdMesh) {
+              _eBasePost.setHex(isDay() ? 0x0c0c0c : 0x0a0a0a);
+              _eWarmPost.setRGB(0.75, 0.62, 0.4);
+              psdMesh.material.emissive.copy(_eWarmPost).lerp(_eBasePost, 1.0 - wCup);
+              psdMesh.material.emissiveIntensity = (isDay() ? 0.1 : 0.08) + 0.38 * wCup;
+            }
+            if (!isDay() && spineStemMesh && spineStemMesh.material && spineStemMesh.material.emissive) {
+              _eBasePost.setHex(0x100800);
+              _eWarmPost.setRGB(0.55, 0.45, 0.28);
+              spineStemMesh.material.emissive.copy(_eWarmPost).lerp(_eBasePost, 1.0 - wCup);
+              spineStemMesh.material.emissiveIntensity = 0.15 + 0.45 * wCup;
+            } else if (isDay() && spineStemMesh && spineStemMesh.material && spineStemMesh.material.emissive) {
+              spineStemMesh.material.emissive.setHex(0x000000);
+              spineStemMesh.material.emissiveIntensity = 0;
+            }
+            if (postInteriorLight) {
+              postInteriorLight.intensity = 0;
+            }
+            if (cupRippleMesh && cupRippleMesh.material) {
+              cupRippleMesh.visible = true;
+              var rsc = 0.55 + (1.0 - wCup) * 1.5;
+              cupRippleMesh.scale.setScalar(rsc);
+              cupRippleMesh.material.opacity = 0.4 * wCup;
+            }
+            cupSurfacePulse *= CUP_PULSE_DECAY;
+          } else if (t < postMemReceiveUntil && postMembraneMesh) {
+            if (psdMesh) {
+              psdMesh.material.color.setHex(isDay() ? PSD_BASE_COLOR_DAY : PSD_BASE_COLOR_NIGHT);
+              psdMesh.material.emissive.setHex(isDay() ? 0x0c0c0c : 0x0a0a0a);
+              psdMesh.material.emissiveIntensity = isDay() ? 0.1 : 0.08;
+            }
+            applySpineIdleVisual();
+            if (cupRippleMesh) {
+              cupRippleMesh.visible = false;
+              if (cupRippleMesh.material) {
+                cupRippleMesh.material.opacity = 0;
+              }
+            }
+            var uR = (postMemReceiveUntil - t) / POST_MEM_RECEIVE_SEC;
+            if (uR > 1) {
+              uR = 1;
+            }
+            var wR = uR * uR;
+            if (!isDay()) {
+              postMembraneMesh.material.emissive.setRGB(0.3 + 0.26 * wR, 0.2 + 0.2 * wR, 0.07 + 0.1 * wR);
+              postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase + 0.5 * wR;
+            } else {
+              postMembraneMesh.material.emissive.setHex(0x000000);
+              postMembraneMesh.material.emissiveIntensity = 0;
+            }
+            if (postInteriorLight) {
+              postInteriorLight.intensity = 0;
+            }
+          } else if (postResponsePulse > 0.008) {
+            if (psdMesh) {
+              psdMesh.material.color.setHex(isDay() ? PSD_BASE_COLOR_DAY : PSD_BASE_COLOR_NIGHT);
+              psdMesh.material.emissive.setHex(isDay() ? 0x0c0c0c : 0x0a0a0a);
+              psdMesh.material.emissiveIntensity = isDay() ? 0.1 : 0.08;
+            }
+            applySpineIdleVisual();
+            if (cupRippleMesh) {
+              cupRippleMesh.visible = false;
+              if (cupRippleMesh.material) {
+                cupRippleMesh.material.opacity = 0;
+              }
+            }
+            var prFrame = postResponsePulse;
+            var tBlend = 1.0 - prFrame;
+            _eBasePost.setHex(postEmissiveHex);
+            if (isDay()) {
+              _eWarmPost.setRGB(0.5, 0.22, 0.1);
+            } else {
+              _eWarmPost.setRGB(0.4, 0.11, 0.06);
+            }
+            if (postMembraneMesh) {
+              if (!isDay()) {
+                postMembraneMesh.material.emissive.copy(_eWarmPost).lerp(_eBasePost, tBlend);
+                postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase + 0.5 * prFrame;
+              } else {
+                postMembraneMesh.material.emissive.setHex(0x000000);
+                postMembraneMesh.material.emissiveIntensity = 0;
+              }
+            }
+            if (postInteriorLight) {
+              postInteriorLight.intensity = 0;
+            }
+            postResponsePulse *= 0.88;
+          } else {
+            if (postResponsePulse > 0) {
+              postResponsePulse = 0;
+              if (postMembraneMesh) {
+                if (isDay()) {
+                  postMembraneMesh.material.emissive.setHex(0x000000);
+                  postMembraneMesh.material.emissiveIntensity = 0;
+                } else {
+                  postMembraneMesh.material.emissive.setHex(postEmissiveHex);
+                  postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase;
+                }
+              }
+              applySpineIdleVisual();
+              if (postInteriorLight) {
+                postInteriorLight.intensity = 0;
+                postInteriorLight.color.setHex(postInteriorColorHex);
+              }
+            } else {
+              if (postMemReceiveUntil > 0 && t >= postMemReceiveUntil) {
+                postMemReceiveUntil = 0;
+                if (postMembraneMesh) {
+                  if (isDay()) {
+                    postMembraneMesh.material.emissive.setHex(0x000000);
+                    postMembraneMesh.material.emissiveIntensity = 0;
+                  } else {
+                    postMembraneMesh.material.emissive.setHex(postEmissiveHex);
+                    postMembraneMesh.material.emissiveIntensity = postMemEmissiveBase;
+                  }
+                }
+                applySpineIdleVisual();
+                if (postInteriorLight) {
+                  postInteriorLight.intensity = 0;
+                  postInteriorLight.color.setHex(postInteriorColorHex);
+                }
+              }
+            }
+          }
+          if (spineFeedforwardPulse > 0.012) {
+            var sfp = Math.min(1, spineFeedforwardPulse);
+            var fp = sfp * sfp;
+            if (!isDay()) {
+              if (spineStemMesh && spineStemMesh.material && spineStemMesh.material.emissive) {
+                spineStemMesh.material.emissive.setRGB(0.2 + 0.55 * fp, 0.1 + 0.35 * fp, 0.03 + 0.12 * fp);
+                spineStemMesh.material.emissiveIntensity = 0.16 + 0.68 * sfp;
+              }
+              if (spineFeedRippleMesh && spineFeedRippleMesh.material) {
+                spineFeedRippleMesh.visible = true;
+                var rads = (0.45 + 1.65 * (1.0 - sfp)) * 0.52;
+                spineFeedRippleMesh.scale.setScalar(rads);
+                spineFeedRippleMesh.material.opacity = 0.58 * sfp;
+              }
+            } else {
+              applySpineIdleVisual();
+              if (spineFeedRippleMesh) {
+                spineFeedRippleMesh.visible = false;
+                if (spineFeedRippleMesh.material) {
+                  spineFeedRippleMesh.material.opacity = 0;
+                }
+              }
+            }
+            spineFeedforwardPulse *= 0.88;
+          } else {
+            if (spineFeedRippleMesh) {
+              spineFeedRippleMesh.visible = false;
+              if (spineFeedRippleMesh.material) {
+                spineFeedRippleMesh.material.opacity = 0;
+              }
+            }
+          }
+          if (cupSurfacePulse <= 0.012) {
+            if (cupRippleMesh) {
+              cupRippleMesh.visible = false;
+              if (cupRippleMesh.material) {
+                cupRippleMesh.material.opacity = 0;
+              }
+            }
+          }
+          if (!signalBlockNt) {
+            for (var n = 0; n < nts.length; n++) {
+              var nm = nts[n];
+              if (!nm.visible) continue;
+              nm.position.x += nm.userData.vx;
+              nm.position.z += nm.userData.vz;
+              nm.position.y += nm.userData.vy;
+              if (Math.random() < 0.02) {
+                nm.userData.vx = (Math.random() - 0.5) * 0.0022;
+                nm.userData.vz = (Math.random() - 0.5) * 0.0022;
+              }
+              pushPointOutOfPresynapticTerminalShell(nm.position);
+              snapNeurosphereClearOfActiveZone(nm.position, NT_AMBIENT_SPHERE_R, false);
+              if (nm.position.y < _postCenter.y + 0.22) {
+                for (var rj = 0; rj < receptors.length; rj++) {
+                  if (nm.position.distanceTo(receptors[rj].position) < 0.5 * RECEPTOR_VISUAL_SCALE) {
+                    receptors[rj].userData.flashTimer = 60;
+                    break;
+                  }
+                }
+                sampleAmbientNtSpawnNearActiveZone(nm.position);
+                nm.userData.vy = -0.0072 - Math.random() * 0.0022;
+                nm.userData.vx = (Math.random() - 0.5) * 0.0022;
+                nm.userData.vz = (Math.random() - 0.5) * 0.0022;
+              }
+            }
+          }
+
+          controls.update();
+          if (composer) {
+            composer.render();
+          } else {
+            renderer.render(scene, camera);
+          }
+        }
+
+        function animLoop() {
+          requestAnimationFrame(animLoop);
+          tick();
+        }
+
+        init();
+        animLoop();
+      })();
+    </script>
+  </body>
+</html>

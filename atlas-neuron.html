@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Neuron atlas</title>
+    <script src="page-base.js"></script>
+    <script>
+      (function () {
+        function go() {
+          try {
+            var u = new URL("neuronatlas/index.html", document.baseURI || location.href);
+            var th = document.documentElement.getAttribute("data-theme");
+            if (th !== "day" && th !== "night") {
+              try {
+                th = localStorage.getItem("neyron_theme");
+              } catch (e) {}
+            }
+            if (th === "day" || th === "night") u.searchParams.set("theme", th);
+            var lg;
+            try {
+              lg = localStorage.getItem("neyron_lang");
+            } catch (e) {}
+            if (lg === "az" || lg === "en") u.searchParams.set("lang", lg);
+            location.replace(u.toString());
+          } catch (err) {
+            location.replace("neuronatlas/index.html");
+          }
+        }
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go);
+        else go();
+      })();
+    </script>
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body data-page="atlas">
+    <p style="margin: 2rem; font-family: system-ui, sans-serif; color: #ccc">Opening neuron viewer…</p>
+  </body>
+</html>

@@ -12,6 +12,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { PART_DESCRIPTIONS } from "./partDescriptions.js";
 
 const canvas = document.querySelector("#scene");
 const statusEl = document.querySelector("#status");
@@ -273,15 +274,15 @@ const partDisplayNames = {
   node_ranvier: "Node of Ranvier",
 };
 
-/** Future: non-empty strings show under the part name on hover. */
-const partDescriptions = {
-  soma: "",
-  dendrites: "",
-  axon: "",
-  axon_hillock: "",
-  myelin_sheath: "",
-  axon_terminal: "",
-  node_ranvier: "",
+/** Maps inferPartKeyFromName() keys to PART_DESCRIPTIONS keys. */
+const partKeyToDescKey = {
+  soma: "Soma",
+  dendrites: "Dendrites",
+  axon: "Axon",
+  axon_hillock: "Axon Hillock",
+  myelin_sheath: "Myelin Sheath",
+  axon_terminal: "Axon Terminal",
+  node_ranvier: "Node of Ranvier",
 };
 
 function inferPartKeyFromName(str) {
@@ -328,9 +329,11 @@ function partKeyForHit(mesh, hit) {
 function updatePartCaption(mesh, hit) {
   if (!partCaptionEl || !partNameEl || !partDescEl) return;
   const key = mesh && hit ? partKeyForHit(mesh, hit) : null;
-  const title = key ? partDisplayNames[key] : "";
+  const descKey = key ? partKeyToDescKey[key] : null;
+  const block = descKey ? PART_DESCRIPTIONS[descKey] : null;
+  const title = block?.name ?? (key ? partDisplayNames[key] : "");
   partNameEl.textContent = title;
-  const desc = key && partDescriptions[key] ? String(partDescriptions[key]).trim() : "";
+  const desc = block?.desc ? String(block.desc).trim() : "";
   if (desc) {
     partDescEl.textContent = desc;
     partDescEl.hidden = false;
