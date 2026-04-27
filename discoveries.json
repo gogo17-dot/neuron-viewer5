@@ -1,0 +1,122 @@
+[
+  {
+    "link": "https://braininitiative.nih.gov/",
+    "ariaLabel": "NIH BRAIN Initiative (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/BRAIN%20Initiative%20(35718683826).png?width=330",
+    "imgAlt": "BRAIN Initiative graphic",
+    "nameEn": "NIH BRAIN Initiative",
+    "nameAz": "NIH BRAIN Initiative",
+    "textEn": "Since 2013 the U.S. BRAIN Initiative has funded tool-building and circuit-level mapping across species—connectomics, next probes, and data standards meant to make whole brains legible at new resolution.",
+    "textAz": "2013-cü ildən ABS BRAIN Initiative alətlərin yaradılmasını və dövrələr üzrə xəritələməni maliyyələşdirir — konnektomika, yeni prob və bütün beyinləri daha yüksək dəqiqlikdə oxuna bilən məlumat standartları."
+  },
+  {
+    "link": "https://www.humanconnectomeproject.org/",
+    "ariaLabel": "Human Connectome Project (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Connectome.jpg?width=330",
+    "imgAlt": "Brain white-matter tractography (connectome-style rendering)",
+    "nameEn": "Human Connectome Project",
+    "nameAz": "İnsan Konnektom Layihəsi",
+    "textEn": "The HCP consortium (2010s onward) released open diffusion and functional MRI from hundreds of healthy adults—defining reference wiring diagrams that labs worldwide still reuse for psychiatry and development studies.",
+    "textAz": "HCP konsorsiumu (2010-cu illər və sonrası) yüzlərlə sağlam yetkin insandan açıq diffuziya və funksional MRI yayıb — bütün dünyada psixiatriya və inkişaf tədqiqatlarında istifadə olunan istinad örtük diaqramları yaradıb."
+  },
+  {
+    "link": "https://alphafold.ebi.ac.uk/",
+    "ariaLabel": "AlphaFold database (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/AlphaFold%202.png?width=330",
+    "imgAlt": "AlphaFold 2 performance and architecture diagram",
+    "nameEn": "AlphaFold & structural proteomics",
+    "nameAz": "AlphaFold və struktur proteomika",
+    "textEn": "DeepMind / EMBL-EBI's AlphaFold (2020–2021) began predicting millions of protein 3D structures from sequence alone; neuroscientists now fold ion channels, receptors, and scaffolds into models of synaptic disease much faster than before.",
+    "textAz": "DeepMind / EMBL-EBI AlphaFold (2020–2021) milyonlarla zülalın 3D strukturunu yalnız ardıcıllıqdan proqnozlaşdırmağa başladı; neyroelməçilər ion kanallarını, reseptorları və skeletləri sinaptik xəstəlik modellərinə əvvəllərindən çox daha sürətli daxil edir."
+  },
+  {
+    "link": "https://en.wikipedia.org/wiki/Optogenetics",
+    "ariaLabel": "Wikipedia: Optogenetics (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Example_of_optogenetic_activation_of_prefrontal_cortex.jpg?width=330",
+    "imgAlt": "Laboratory recording related to optogenetic manipulation of cortical activity",
+    "nameEn": "Optogenetics in living circuits",
+    "nameAz": "Canlı dövrələrdə optogenetika",
+    "textEn": "Channelrhodopsins fused to genetics (mid-2000s onward) let labs switch defined cell types with millisecond light pulses in awake mice—turning causal tests of memory, motivation, and clinical targets into a mainstream technique.",
+    "textAz": "Kanalrodopsinlər genetika ilə birləşdirilərək (2000-ci illərin ortasından) laboratoriyalara oyaq siçanlarda millisaniyəlik işıq impulsları ilə müəyyən hüceyrə tiplərini açıb-bağlamağa imkan verir — yaddaş, motivasiya və klinik hədəflərin səbəb-nəticə sınaqlarını adi texnikaya çevirir."
+  },
+  {
+    "link": "https://www.nature.com/articles/nmeth.3330",
+    "ariaLabel": "CLARITY tissue imaging (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Connectome.jpg?width=330",
+    "imgAlt": "Brain imaging and connectome-style visualization",
+    "nameEn": "CLARITY & whole-tissue imaging",
+    "nameAz": "CLARITY və bütöv toxuma görüntüləməsi",
+    "textEn": "Hydrogel–embedding methods turned opaque organs into optically transparent volumes so light-sheet microscopes can trace long-range circuits in intact mouse and human tissue without slicing artifacts.",
+    "textAz": "Hidrojelə qərq üsulları qeyri-şəffaf orqanları optik cəhətdən şəffaf həcimlərə çevirir ki, işıq lövhəli mikroskoplar siçan və insan toxumasında dilimləmə artefaktları olmadan uzaq məsafəli dövrələri izləyə bilsin."
+  },
+  {
+    "link": "https://www.neuropixels.org/",
+    "ariaLabel": "Neuropixels probes (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/AlphaFold%202.png?width=330",
+    "imgAlt": "Structural biology and neural tool-building (illustrative)",
+    "nameEn": "Neuropixels & dense recordings",
+    "nameAz": "Neuropixels və sıx qeydiyyat",
+    "textEn": "CMOS-based probes now capture spikes from hundreds to thousands of sites simultaneously in freely moving animals—scaling electrophysiology toward population-wide dynamics during natural behavior.",
+    "textAz": "CMOS əsaslı prob indi sərbəst hərəkət edən heyvanlarda yüzlərlə və minlərlə nöqtədən eyni vaxtda impulsları qeydə alır — təbii davranış zamanı elektrofiziologiyanı populyasiya miqyasına qaldırır."
+  },
+  {
+    "link": "https://www.bci-society.org/",
+    "ariaLabel": "Brain–computer interfaces (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/BRAIN%20Initiative%20(35718683826).png?width=330",
+    "imgAlt": "BRAIN Initiative graphic",
+    "nameEn": "Clinical brain–computer interfaces",
+    "nameAz": "Kliniki beyin–kompüter interfeysləri",
+    "textEn": "Implanted and non-invasive BCIs translate cortical patterns into cursor, speech, or robotic control—moving from lab demos toward trials for paralysis and communication restoration.",
+    "textAz": "İmplanta və invaziv olmayan BKI kortikal nümunələri kursor, nitq və ya robot idarəetməsinə çevirir — laboratoriya nümayişlərindən iflic və ünsiyyətin bərpası sınaqlarına doğru irəliləyir."
+  },
+  {
+    "link": "https://www.nature.com/subjects/neural-organoids",
+    "ariaLabel": "Neural organoid research (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Example_of_optogenetic_activation_of_prefrontal_cortex.jpg?width=330",
+    "imgAlt": "Laboratory recording related to cortical activity",
+    "nameEn": "Neural organoids & disease models",
+    "nameAz": "Neyral organoidlər və xəstəlik modelləri",
+    "textEn": "Stem-cell-derived mini-brains recapitulate aspects of development and circuit formation—used to study autism risk genes, viral infection, and drug screening with human-relevant cell types.",
+    "textAz": "Stamm hüceyrəli mini-beyinlər inkişaf və dövrə formalaşmasının aspektlərini təkrarlayır — autizm risk genləri, virus infeksiyası və dərman seçimi üçün insan tipli hüceyrələrlə öyrənmədə istifadə olunur."
+  },
+  {
+    "link": "https://www.microns-explorer.org/",
+    "ariaLabel": "MICrONS connectomics (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Connectome.jpg?width=330",
+    "imgAlt": "Brain white-matter tractography (connectome-style rendering)",
+    "nameEn": "Volume EM connectomics",
+    "nameAz": "Həcm EM konnektomikası",
+    "textEn": "Serial-section electron microscopy pipelines reconstruct nanometer synapses across millimeters of cortex—yielding wiring diagrams used to constrain computational models of visual coding.",
+    "textAz": "Ardıcıl dilim elektron mikroskopiyası boru xətləri korteksin millimetrləri boyu nanometr sinapsları bərpa edir — vizual kodlaşdırmanın hesablama modellərini məhdudlaşdırmaq üçün istifadə olunan örtük diaqramları verir."
+  },
+  {
+    "link": "https://www.hhmi.org/news/doublecortin-like-kinase-helps-brains-wiring",
+    "ariaLabel": "Open microscopy resources (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/Example_of_optogenetic_activation_of_prefrontal_cortex.jpg?width=330",
+    "imgAlt": "Laboratory recording related to optogenetic manipulation of cortical activity",
+    "nameEn": "In vivo calcium imaging at scale",
+    "nameAz": "Geniş miqyasda in vivo kalsium görüntüləməsi",
+    "textEn": "Miniaturized microscopes and genetically encoded indicators let researchers watch thousands of neurons across weeks in behaving mice—linking cell assemblies to learning and sleep.",
+    "textAz": "Miniatürləşdirilmiş mikroskoplar və genetik kodlu indikatorlar tədqiqatçılara davranan siçanlarda həftələr boyu minlərlə neyronu izləməyə imkan verir — hüceyrə birləşmələrini öyrənmə və yuxu ilə əlaqələndirir."
+  },
+  {
+    "link": "https://www.ninds.nih.gov/health-information/disorders/stroke",
+    "ariaLabel": "Stroke recovery research (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/BRAIN%20Initiative%20(35718683826).png?width=330",
+    "imgAlt": "BRAIN Initiative graphic",
+    "nameEn": "Stroke recovery & plasticity",
+    "nameAz": "İnsultun bərpası və plastiklik",
+    "textEn": "Large rehabilitation trials combine brain stimulation, robotics, and biomarkers to predict who benefits—closing the gap between acute care and long-term motor and language recovery.",
+    "textAz": "Geniş reabilitasiya sınaqları beyin stimulyasiyası, robototexnika və biomarkerləri birləşdirərək kimə fayda verdiyini proqnozlaşdırır — kəskin qayğı ilə uzunmüddətli motor və nitq bərpası arasındakı boşluğu azaldır."
+  },
+  {
+    "link": "https://www.sfn.org/",
+    "ariaLabel": "Society for Neuroscience (opens in new tab)",
+    "imgSrc": "https://commons.wikimedia.org/wiki/Special:FilePath/GolgiStainedPyramidalCell.jpg?width=330",
+    "imgAlt": "Golgi-stained cortical pyramidal neuron",
+    "nameEn": "Open data & preregistration norms",
+    "nameAz": "Açıq məlumat və preregistrasiya normları",
+    "textEn": "Journals and funders increasingly require data sharing, registered reports, and diversity in cohorts—raising reproducibility so positive findings in neuroscience survive independent replication.",
+    "textAz": "Jurnallar və maliyyələşdiricilər getdikcə məlumat paylaşımı, qeydiyyatdan keçmiş hesabatlar və kohortalarda müxtəlifliyi tələb edir — neyroelmədə müsbət tapıntıların müstəqil təkrarlanmasını artırır."
+  }
+]
