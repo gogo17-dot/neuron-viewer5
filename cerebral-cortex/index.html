@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Brain structures</title>
+    <meta name="description" content="Explore cerebral lobes, deep nuclei, and related brain structures in interactive 3D." />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:title" content="NEYRON — Brain structures" />
+    <meta property="og:description" content="Explore cerebral lobes, deep nuclei, and related brain structures in interactive 3D." />
+    <meta name="twitter:card" content="summary" />
+    <script src="../page-base.js"></script>
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search).get("theme");
+          if (p !== "day" && p !== "night") p = localStorage.getItem("neyron_theme");
+          if (p === "day" || p === "night") document.documentElement.setAttribute("data-theme", p);
+          else document.documentElement.setAttribute("data-theme", "night");
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "night");
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="../site.css?v=nav17" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/",
+          "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body class="cerebral-cortex-structure-page" data-page="atlas">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="../index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="../atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="../brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="../brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="../hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="../articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="../book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="../publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="../about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="cerebral-cortex-structure-main" aria-label="Brain structures viewer">
+        <div id="app" class="page page--viewer">
+          <canvas id="scene"></canvas>
+
+          <button type="button" class="reset-view-btn" id="reset-view" data-en="Reset view" data-az="Baxışı sıfırla">Reset view</button>
+
+          <button
+            type="button"
+            class="structure-browser-toggle"
+            id="structure-browser-toggle"
+            aria-expanded="false"
+            aria-controls="structure-browser"
+            data-en="Structures"
+            data-az="Strukturlar"
+          >
+            Structures
+          </button>
+
+          <aside class="structure-browser" id="structure-browser" aria-label="Structure browser" hidden>
+            <div class="structure-browser__head">
+              <div class="structure-browser__title-row">
+                <h2 class="structure-browser__title" data-en="Structures" data-az="Strukturlar">Structures</h2>
+                <button type="button" class="structure-browser__close" id="structure-browser-close" aria-label="Close">×</button>
+              </div>
+              <label class="structure-browser__search">
+                <span class="visually-hidden" data-en="Search structures" data-az="Struktur axtar">Search structures</span>
+                <input id="structure-search" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" data-en-placeholder="Search…" data-az-placeholder="Axtar…" />
+              </label>
+            </div>
+            <div class="structure-browser__list" id="structure-list"></div>
+          </aside>
+
+          <div class="viewer-dock" id="viewer-dock">
+            <div class="explode-control" id="explode-control">
+              <label class="explode-control__label" for="explode-slider">
+                <span data-en="Isolate" data-az="Ayır">Isolate</span>
+                <span class="explode-control__value" id="explode-value">0%</span>
+              </label>
+              <input id="explode-slider" class="explode-control__slider" type="range" min="0" max="100" value="0" step="1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" />
+            </div>
+          </div>
+
+          <aside class="info-panel" id="info-panel" hidden aria-live="polite">
+            <button class="info-panel__close" id="info-close" type="button" aria-label="Close">×</button>
+            <p class="info-panel__category" id="info-category"></p>
+            <h2 class="info-panel__title" id="info-title"></h2>
+            <p class="info-panel__overview" id="info-overview"></p>
+            <button class="info-panel__more" id="info-more" type="button" aria-expanded="false" hidden data-en="Clinical detail" data-az="Klinik təfərrüat">Clinical detail</button>
+            <div class="info-panel__detail-wrap" id="info-detail-wrap" hidden>
+              <p class="info-panel__detail" id="info-detail"></p>
+            </div>
+            <h3 class="info-panel__related-heading" id="info-related-heading" hidden data-en="Related" data-az="Əlaqəli">Related</h3>
+            <div class="info-panel__related" id="info-related"></div>
+            <a class="info-panel__scan-link" id="info-scan-link" hidden data-en="View on MRI →" data-az="MRT-də bax →">View on MRI →</a>
+          </aside>
+
+          <div class="structure-label" id="structure-label" hidden></div>
+
+          <div class="viewer-tip" id="viewer-tip" hidden>
+            <p class="viewer-tip__text" data-en="Drag to rotate · Pinch or scroll to zoom · Tap a structure or use the list · Isolate to pull layers apart" data-az="Fırlatmaq üçün dartın · Böyütmək üçün çimdikləyin və ya sürüşdürün · Struktura və ya siyahıya toxunun · Təbəqələri ayırın">
+              Drag to rotate · Pinch or scroll to zoom · Tap a structure or use the list · Isolate to pull layers apart
+            </p>
+            <button class="viewer-tip__dismiss" id="tip-dismiss" type="button" data-en="Got it" data-az="Anladım">Got it</button>
+          </div>
+
+          <p class="loading-banner" id="loading-banner" data-en="Loading anatomical models…" data-az="Anatomik modellər yüklənir…">Loading anatomical models…</p>
+
+          <footer class="copyright">© Omar Garagozov 2026</footer>
+        </div>
+      </main>
+    </div>
+
+    <script src="../site-shell.js"></script>
+    <script src="../particles-bg.js"></script>
+    <script type="module" src="cerebralCortex.js?v=9"></script>
+  </body>
+</html>

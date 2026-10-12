@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Brain Bee — Brain Bee patient diagnosis</title>
+    <meta
+      name="description"
+      content="Brain Bee preparation: practice the IBB patient diagnosis round. Order three tests, type the diagnosis — no word bank."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Brain Bee patient diagnosis" />
+    <meta
+      property="og:description"
+      content="Practice IBB-style patient diagnosis on NEYRON. Free, bilingual, independent."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/brain-bee-diagnosis.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/brain-bee-diagnosis.html" />
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav23" />
+  </head>
+  <body data-page="brain-bee" class="about-page">
+    <div id="page">
+      <nav class="site-nav" aria-label="Brain Bee">
+        <a class="brand" href="brain-bee.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Brain Bee
+        </a>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main" style="padding-top: 96px">
+        <div class="tag" data-en="IBB exam section" data-az="IBB imtahan bölməsi">IBB exam section</div>
+        <h1 class="section-title about-title" data-en="Patient diagnosis" data-az="Pasiyent diaqnozu">Patient diagnosis</h1>
+        <p
+          class="section-desc"
+          data-en="You see a common presentation, not a rare variant. Choose exactly three tests, read only those results, then type the diagnosis. The real exam does not give a word bank."
+          data-az="Nadir variant yox, adi təqdimat görürsünüz. Dəqiq üç test seçin, yalnız onları oxuyun, sonra diaqnozu yazın. Real imtahanda cavab siyahısı olmur."
+        >
+          You see a common presentation, not a rare variant. Choose exactly three tests, read only those results, then type the diagnosis. The real exam does not give a word bank.
+        </p>
+
+        <div class="bb-toolbar">
+          <p class="bb-score" id="bb-progress">Case —</p>
+          <p class="bb-score"><span data-en="Score" data-az="Nəticə">Score</span> <span class="bb-score__n" id="bb-score">0 / 0</span></p>
+        </div>
+
+        <div id="bb-app"></div>
+
+        <p class="bb-back">
+          <a class="about-action about-action--ghost" href="brain-bee.html" data-en="← Brain Bee prep" data-az="← Brain Bee hazırlığı">← Brain Bee prep</a>
+        </p>
+      </section>
+
+    </div>
+
+    <script src="site-shell.js"></script>
+    <script type="module" src="brain-bee-diagnosis.js"></script>
+  </body>
+</html>

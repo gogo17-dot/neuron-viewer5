@@ -1,75 +1,70 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
-import { PART_DESCRIPTIONS } from "./partDescriptions.js";
-
-const PART_DESCRIPTIONS_AZ = {
-  Soma: {
-    name: "Soma",
-    desc: "Soma (hüceyrə gövdəsi, perikaryon) nüvəni və biosintetik orqanelllərin çoxunu saxlayan neyron hissəsidir. Əsas funksiyası dendritlərdən gələn elektrik və biokimyəvi siqnalları inteqrasiya etmək, hüceyrəni saxlamaq və bütün neyron üçün zülal və membran təchizatıdır. İşıq mikroskopiyasında soma diametri hüceyrə tipindən asılıdır: məsələn kiçik serebellar granula hüceyrələrində təxminən 5–8 mikrometr, bir çox kortikal piramidal somalarda təxminən 10–30 mikrometr, iri motor və ya Purkinje neyronlarında isə istisna hallarda təxminən 100 mikrometrə yaxın və ya daha böyük ölçülərə çata bilər. Standart tək ölçü yoxdur, çünki forma dövrə roluna uyğunlaşır. Transkripsiya və translasyon metabolik yükünün böyük hissəsi somada cəmləndiyi üçün soma sinaptik gücün uzunmüddətli dəyişiklikləri ilə sıx bağlıdır.",
-  },
-  Nucleus: {
-    name: "Nüvə",
-    desc: "Nüvə genomu saxlayır və transkripsiyanı aparır: DNT-RNT, RNT emalı və sitoplazmaya translasyon üçün ixrac. Neyronlarda nüvə adətən dairəvi və ya ovaldır; bir çox orta ölçülü mərkəzi neyronlarda diametri təxminən 5–10 mikrometr səviyyəsindədir, iri neyronlarda isə daha böyük ola bilər (təxminən 15–20 mikrometrə qədər və daha böyük nüvələr mümkündür). Nüvə zarı transkripsiya və splicingi sitoplazmadakı translasyondan ayırır. Beynin çox regionlarında yetkin neyronlar postmitotik olduğundan nüvə bölünməyə hazırlaşmır; əksinə, plastislik, təmir və metabolizmi onilliklər boyu dəstəkləyən gen ifadə proqramlarını davam etdirir. Xromatin quruluşu fəaliyyət və təcrübəyə cavab verir.",
-  },
-  Dendrites: {
-    name: "Dendritlər",
-    desc: "Dendritlər budaqlı proseslərdir və əksər excitator və inhibitor sinaptik girişi qəbul edib siqnalları soma və akson ilkin seqmentinə yönləndirir. Somaya yaxın proximal dendrit çöhrəsi adətən təxminən 1–5 mikrometr qalınlığında olur, sonra incə distal budaqlara keçir ki, eni bir mikrometrdən az ola bilər. Tək dendritik ağac neyron tipindən asılı olaraq onlarla mikrometrdən təxminən millimetrə qədər və ya daha çox məsafəni əhatə edə bilər. Funksional olaraq dendritlər sinaptik potensialların passiv yayılmasını aparır, bir çox hüceyrədə isə aktiv gücləndirmə (dendrit spike, gərginliyə həssas kanallar) ilə girişin yeri və zamanı çıxışa təsir edir. Minlərlə yığılan sinaps üçün əsas anatomik substratdırlar.",
-  },
-  "Dendritic Spine": {
-    name: "Dendritik Tikan",
-    desc: "Dendritik tikan dendrit çöhrəsindən çıxan kiçik postsinaptik çıxıntıdır və adətən başında bir excitator sinaps daşıyır. Memalıların korteksi və hipokampusunda elektron mikroskopiya ilə ölçüləndə tikan başının diametri adətən təxminən 0.5–1.0 mikrometr (tikan sinfinə görə dəyişir), boyunun diametri təxminən 0.05–0.3 mikrometr, boyunun uzunluğu isə incə, göbələk və ya qısa formadan asılı olaraq təxminən 0.05–2 mikrometr aralığında olur. Boyun biokimyəvi və elektrik “boğazı” rolunu oynayır: baş kompartimentində kalsium və siqnal molekulları bütün dendritlə dərhal tarazlanmır. Fəaliyyətə cavab olaraq tikalar yenidən qurulur; ona görə də öyrənmə və yaddaşın sinaptik modellərində mərkəzi yer tuturlar.",
-  },
-  "Axon Hillock": {
-    name: "Akson Təpəciyi",
-    desc: "Akson təpəciyi somanın aksona keçdiyi daralan zonadır. Funksional olaraq dərhal aşağı axındakı akson ilkin seqmentlə birlikdə işləyir; burada gərginliyə həssas natrium kanallarının çox yüksək sıxlığı olduğuna görə adətən aksiyon potensialları məhz burada başlanır. Təpəcik və ilkin seqment birlikdə bir çox hüceyrə tipində akson boyu təxminən onlarla mikrometr məsafəni əhatə edir (ilkin seqmentin uzunluğu üçün təxminən 20–100 mikrometr aralığı tez-tez göstərilir, hüceyrədən asılıdır). Bu bölgənin vəzifəsi dendrit və somadan gələn ümumi sinaptik sürünməni hədd ilə müqayisə etmək və hədd keçəndə regenerativ natrium spike-i başlatmaqdır. Burada və ya ilkin seqmentdə həddin aşağı düşməsi hiperexcitabilitəyə töhfə verə bilər.",
-  },
-  Axon: {
-    name: "Akson",
-    desc: "Akson başlanğıc zonasından presinaptik terminala qədər aksiyon potensiallarının sürətli və etibarlı ötürülməsi üçün ixtisaslaşmış tək uzun prosesdir. Uzunluq yerli interneyronlarda millimetrin altından insanın aşağı motor neyronunda onurğadan əzələyə qədər bir metrdən çoxa qədər dəyişir. Diametr də geniş aralıqdadır: iri mielinli periferik motor aksonları təxminən 10–20 mikrometr səviyyəsində ola bilər, bir çox kortikal aksonlar isə adətən submikrometr ilə bir neçə mikrometr arasında olur. Ötürülmə sürəti diametr və mielinləşmə ilə artır; mielinli liflər saniyədə onlarla metr səviyyəsində keçirə bilər, nazik mielinsiz C lifləri isə yavaşdır. Akson həmçinin mikrotubullar boyu orqanelle, mRNK və membran zülallarını hər iki istiqamətdə daşıyır.",
-  },
-  "Myelin Sheath": {
-    name: "Mielin Qılafı",
-    desc: "Periferik sinir sistemində mielin qılafı Şvan hüceyrəsinin membranlarının akson seqmenti ətrafında konsentrik bükülməsindən yaranan, lipidlərlə zəngin və sıxılmış zülallar (məsələn mielin zülalı sıfır) təbəqəsidir. Bir mielinləşdirici Şvan hüceyrəsi adətən bir internodal seqmenti əhatə edir; insan periferik sinirində internodal uzunluq lif sinfindən asılı olaraq təxminən yüzlərlə mikrometrdən bir neçə millimetrə qədər ola bilər. Qılaf altındakı akson membranını elektrik cəhətdən izolyasiya edir ki, aksiyon potensialı həmin məsafə boyu fasiləsiz yenilənməsin. Bu, bir vahid uzunluq üçün tutumu azaldır və Ranvye düyünləri arasında saltator keçiriciliyə imkan verir — oxşar xarici diametrli mielinsiz liflə müqayisədə sürəti və enerji səmərəliliyini böyük artırır. Demielinizasiya xəstəlikləri bu geometriyanı pozur.",
-  },
-  "Node of Ranvier": {
-    name: "Ranvye Düyünü",
-    desc: "Ranvye düyünü iki mielin internodu arasında akson plazma membranının açıq qaldığı və gərginliyə həssas natrium kanallarının (və digər kanalların) sıx yığın olduğu qısa boşluqdur. Lif boyu üzrə hər düyünün uzunluğu adətən təxminən 0.5–2 mikrometr aralığındadır (növ və lif tipindən asılıdır). Gələn aksiyon potensialı düyünü kifayət qədər depolarizasiya edir ki, növbəti internoda elektrotonik yayılma ilə növbəti düyündə yenidən spike başlatsın; bu ardıcıl regenerasiya saltator keçiricilikdir. Düyünlər dekorativ boşluq deyil, dalğanın aktiv bərpa stansiyalarıdır. Nodal kanal klastrları və ya paranodal birləşmələr pozulsa, keçiricilik bloklana və ya kəsik-kəsik ola bilər.",
-  },
-  "Axon Terminal": {
-    name: "Akson Terminası",
-    desc: "Akson terminası aksonun (və ya budağının) sonunda gələn aksiyon potensialını nörotransmitter ifrazına çevirən presinaptik ixtisaslaşmadır. Terminallar tez-tez şişkinlik zəncirləri kimi təşkil olunur; mərkəzi dövrələrdə tək sinaptik düymələr adətən təxminən 1–5 mikrometr enində olur, əlaqə tipindən asılı olaraq geniş yayılır. İçəridə sinaptik vezikullar (onlarla nanometr diametr), aktiv zona aparatı, mitoxondriumlar və kalsium kanalları var. Aksiyon potensialı daxil olanda gərginliyə həssas kalsium kanalları açılır, lokal kalsium mikrosaniyə–millisaniyə miqyasında artır və vezikullar aktiv zonada birləşərək yarığa transmitter buraxır. Çox neyronlar hədəflərinə məhz bu kimyəvi siqnalla birləşir.",
-  },
-  "Synaptic Bouton": {
-    name: "Sinaptik Düymə",
-    desc: "Sinaptik düymə postsinaptik tərəflə aralarında dar sinaptik yarıq (mərkəzi sinapslarda tez-tez onlarla nanometr eni) olan soğanabənzər presinaptik sonlanmadır. Düymələr nörotransmitteri sinaptik vezikullarda saxlayır (klassik kiçik şəffaf vezikullar adətən onlarla nanometr diametrindədir) və onları postsinaptik reseptorların qarşısında düzülmüş zülallı aktiv zona membranına yerləşdirir. Tək akson bir neçədən minlərlə düyməyə qədər sinaps yarada bilər. Hər düymə vezikul hovuzları və kalsium dinamikası əsasında öz qısamüddətli plastisliyini (facilitasiya, depressiya) idarə edə bilər; ona görə neyron vahid çıxış qurğusu deyil, yayılmış ifrazə məntəqələri şəbəkəsidir.",
-  },
-  Mitochondria: {
-    name: "Mitoxondriya",
-    desc: "Mitoxondriumlar xarici və daxili membranlı orqanellelərdir; oksidativ fosforilasiya ilə ATP bərpa edir, həmçinin kalsium idarəçiliyi, lipid metabolizmi və siqnal yollarında iştirak edir. Neyronlarda adətən uzunsov olur və metabolik tələbatla uyğunlaşmaq üçün dendrit və aksonlar boyu daşınır; toxuma şəkillərində uzunluq təxminən 0.5–5 mikrometr, en isə orientasiya və füzyon-fissiya vəziyyətindən asılı olaraq adətən submikrometrdən təxminən bir mikrometrə qədər olur. Beyin bədənin istirahət qlükozasının böyük hissəsini istehlak edir; mitoxondriumlar ion nasosu, vezikul dövrü və sitoskelet daşınması üçün ATP təmin edir. Disfunksiya və ya keyfiyyət nəzarətinin pozulması bir çox neyrodegenerativ vəziyyətlərlə əlaqələndirilir.",
-  },
-  "Nissl Body": {
-    name: "Nissl Cisimciyi",
-    desc: "Nissl cisimcikləri soma və proximal dendritlərdə bazofil topaclar kimi görünür və ribosomlarla örtülü kobud endoplazmatik retikulum yığınları ilə sərbəst polisomlara uyğun gəlir. Ayrıca orqanelle kimi tək sabit “uzunluq və en” yoxdur, çünki paylanmış fabriklərdir: bir-birinə qarışmış bir çox RER sisternası və Golji zonası. Onların funksiyası keçiricilik, reseptorlar, struktur zülalları və neyroötürülmə ilə plastislik üçün zülal sintezidir. Akson zədələnməsindən sonra Nissl maddəsinin nizamlı paylanması xromatolizdə dağıla bilər; bu, hüceyrənin stres və təmir proqramlarına keçdiyinin sitoloji əlamətidir.",
-  },
-  "Schwann Cell": {
-    name: "Şvan Hüceyrəsi",
-    desc: "Şvan hüceyrələri periferik sinir sisteminin mielinləşdirici qliyasıdır. Bir mielinləşdirici Şvan hüceyrəsi adətən bir aksonun bir seqmentini sarıyır və akson boyu üzrə mielin internodu yaradır; internodal uzunluq lif kalibrindən asılı olaraq təxminən yüzlərlə mikrometrdən təxminən millimetrə qədər ola bilər. Hüceyrə gövdəsinin ölçüsü təxminən onlarla mikrometr səviyyəsindədir. Şvan hüceyrələri membranı akson ətrafında çox bükür və kompakt mielin üçün bükülmələr arası sitoplazmanı istisna edir. Kiçik aksonları sarmayan mielinsiz örtücü Şvan hüceyrələri də var. Periferik sinir əzməsi və ya kəsilməsindən sonra Şvan hüceyrələri zədələri təmizləməyə, bazal membran izlərinə və trofik siqnallarla regrowth-a kömək edir; buna görə də bir çox mərkəzi aksonlardan yaxşı periferik regenerasiya mümkün olur.",
-  },
-};
+import { PART_DESCRIPTIONS, PART_DESCRIPTIONS_AZ } from "./partDescriptions.js";
 
 const panel = document.getElementById("info-panel");
 const panelName = document.getElementById("panel-name");
-const panelDesc = document.getElementById("panel-desc");
+const panelOverview = document.getElementById("panel-overview");
+const panelDetail = document.getElementById("panel-detail");
+const panelDetailWrap = document.getElementById("panel-detail-wrap");
+const panelMore = document.getElementById("panel-more");
 const closeBtn = document.getElementById("panel-close");
 
 /** Part key for the open info panel — keeps hover tooltip text in sync when picking through (double-click). */
 let panelOpenPickLabel = null;
+let panelDetailExpanded = false;
+
+const PANEL_UI = {
+  en: { clinicalDetail: "Clinical detail", showLess: "Show less" },
+  az: { clinicalDetail: "Klinik təfərrüat", showLess: "Daha az göstər" },
+};
+
+function splitClinicalText(description = "") {
+  const parts = String(description)
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+  return {
+    overview: parts[0] || "",
+    detail: parts.slice(1).join("\n\n"),
+  };
+}
+
+function fillNeuronPanel(data) {
+  if (!data || !panelName || !panelOverview) return;
+  const { overview, detail } = splitClinicalText(data.desc || "");
+  panelName.textContent = data.name;
+  panelOverview.textContent = overview || data.desc || "";
+  if (panelDetail) panelDetail.textContent = detail;
+  panelDetailExpanded = false;
+  if (panelDetailWrap) panelDetailWrap.hidden = true;
+  if (panelMore) {
+    const hasDetail = Boolean(detail);
+    panelMore.hidden = !hasDetail;
+    panelMore.textContent = PANEL_UI[currentLang]?.clinicalDetail || "Clinical detail";
+    panelMore.setAttribute("aria-expanded", "false");
+  }
+  panel.style.right = "max(12px, env(safe-area-inset-right, 0px))";
+  panel.classList.add("is-open");
+}
 
 if (closeBtn && panel) {
   closeBtn.addEventListener("click", () => {
     panel.style.right = "-320px";
+    panel.classList.remove("is-open");
     panelOpenPickLabel = null;
+    panelDetailExpanded = false;
+  });
+}
+
+if (panelMore) {
+  panelMore.addEventListener("click", () => {
+    panelDetailExpanded = !panelDetailExpanded;
+    if (panelDetailWrap) panelDetailWrap.hidden = !panelDetailExpanded;
+    const ui = PANEL_UI[currentLang] || PANEL_UI.en;
+    panelMore.textContent = panelDetailExpanded ? ui.showLess : ui.clinicalDetail;
+    panelMore.setAttribute("aria-expanded", panelDetailExpanded ? "true" : "false");
   });
 }
 
@@ -81,32 +76,26 @@ function neuronSetLang(lang) {
 
   const descriptions = lang === "en" ? PART_DESCRIPTIONS : PART_DESCRIPTIONS_AZ;
   /** Prefer the mesh key from the last click (incl. double-click depth) so title + body stay aligned. */
-  if (panelOpenPickLabel && panelName && panelDesc) {
+  if (panelOpenPickLabel && panelName && panelOverview) {
     const data = descriptions[panelOpenPickLabel];
-    if (data) {
-      panelName.textContent = data.name;
-      panelDesc.textContent = data.desc;
-    }
+    if (data) fillNeuronPanel(data);
   } else {
     const currentName = panelName ? panelName.textContent : "";
-    if (currentName && panelName && panelDesc) {
+    if (currentName && panelName && panelOverview) {
       for (const key in PART_DESCRIPTIONS) {
         if (
           PART_DESCRIPTIONS[key].name === currentName ||
           PART_DESCRIPTIONS_AZ[key]?.name === currentName
         ) {
           const data = descriptions[key];
-          if (data) {
-            panelName.textContent = data.name;
-            panelDesc.textContent = data.desc;
-          }
+          if (data) fillNeuronPanel(data);
           break;
         }
       }
     }
   }
   if (panelOpenPickLabel) {
-    const tip = document.querySelector(".neyron-hover-tooltip");
+    const tip = document.querySelector(".structure-label");
     if (tip) {
       tip.textContent = tooltipNames[lang][panelOpenPickLabel] || panelOpenPickLabel;
     }
@@ -459,26 +448,12 @@ function init() {
   root.appendChild(wrap);
 
   const tooltip = document.createElement("div");
-  tooltip.className = "neyron-hover-tooltip";
-  tooltip.style.cssText = `
-    position: fixed;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.35);
-    color: #ffffff;
-    font-family: monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    padding: 5px 12px;
-    border-radius: 4px;
-    pointer-events: none;
-    display: none;
-    text-transform: uppercase;
-    z-index: 200;
-  `;
-  document.body.appendChild(tooltip);
+  tooltip.className = "structure-label";
+  tooltip.hidden = true;
+  wrap.appendChild(tooltip);
 
   const scene = new THREE.Scene();
-  const nightBg = 0x000000;
+  const nightBg = 0x020810;
   scene.background = new THREE.Color(nightBg);
   const fog = new THREE.FogExp2(nightBg, 0.008);
   scene.fog = fog;
@@ -488,19 +463,22 @@ function init() {
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
+    alpha: false,
     powerPreference: "high-performance",
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.25;
+  // Match meninges / diencephalon / synapse — flat exact #020810 / #faf8f4
+  renderer.toneMapping = THREE.NoToneMapping;
+  renderer.toneMappingExposure = 1;
   wrap.appendChild(renderer.domElement);
 
   const ndcScratch = new THREE.Vector2();
 
   function syncCanvasSize() {
-    const rect = wrap.getBoundingClientRect();
+    const rect = root.getBoundingClientRect();
     const w = Math.max(1, Math.floor(rect.width));
     const h = Math.max(1, Math.floor(rect.height));
+    if (w < 2 || h < 2) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -508,7 +486,7 @@ function init() {
   }
   syncCanvasSize();
   const resizeObs = new ResizeObserver(() => syncCanvasSize());
-  resizeObs.observe(wrap);
+  resizeObs.observe(root);
   window.addEventListener("resize", syncCanvasSize);
 
   renderer.domElement.addEventListener("click", (e) => {
@@ -542,11 +520,9 @@ function init() {
       }
       const descriptions = currentLang === "en" ? PART_DESCRIPTIONS : PART_DESCRIPTIONS_AZ;
       const data = descriptions[label];
-      if (data && panel && panelName && panelDesc) {
+      if (data && panel && panelName && panelOverview) {
         panelOpenPickLabel = label;
-        panelName.textContent = data.name;
-        panelDesc.textContent = data.desc;
-        panel.style.right = "max(12px, env(safe-area-inset-right, 0px))";
+        fillNeuronPanel(data);
       }
     }
   });
@@ -571,11 +547,9 @@ function init() {
     if (!lab2) return;
     const descriptions2 = currentLang === "en" ? PART_DESCRIPTIONS : PART_DESCRIPTIONS_AZ;
     const data2 = descriptions2[lab2];
-    if (data2 && panel && panelName && panelDesc) {
+    if (data2 && panel && panelName && panelOverview) {
       panelOpenPickLabel = lab2;
-      panelName.textContent = data2.name;
-      panelDesc.textContent = data2.desc;
-      panel.style.right = "max(12px, env(safe-area-inset-right, 0px))";
+      fillNeuronPanel(data2);
     }
   });
 
@@ -998,20 +972,29 @@ function init() {
   let pulseT = 0;
 
   neuronGroup.updateMatrixWorld(true);
+  // Frame the whole neuron in the viewport without moving or altering meshes.
   const neuronBounds = new THREE.Box3().setFromObject(neuronGroup);
-  const neuronSphere = neuronBounds.getBoundingSphere(new THREE.Sphere());
-  const neuronCenter = neuronSphere.center.clone();
-  const neuronRadius = Math.max(neuronSphere.radius, 0.5);
+  const neuronCenter = new THREE.Vector3();
+  const neuronSize = new THREE.Vector3();
+  neuronBounds.getCenter(neuronCenter);
+  neuronBounds.getSize(neuronSize);
+  const maxDim = Math.max(neuronSize.x, neuronSize.y, neuronSize.z, 1);
   const fovRad = (camera.fov * Math.PI) / 180;
-  const fitPadding = 1.22;
-  const fitDist = (neuronRadius / Math.sin(fovRad / 2)) * fitPadding;
-  const viewDir = new THREE.Vector3(0.42, 0.2, 1).normalize();
-  camera.position.copy(neuronCenter.clone().add(viewDir.multiplyScalar(fitDist)));
+  const fitPadding = 1.15;
+  const fitDist = ((maxDim / 2) / Math.tan(fovRad / 2)) * fitPadding;
+  camera.position.set(neuronCenter.x, neuronCenter.y, neuronCenter.z + fitDist);
   camera.near = Math.max(0.05, fitDist / 1000);
   camera.far = Math.max(500, fitDist * 15);
   camera.updateProjectionMatrix();
   controls.target.copy(neuronCenter);
   controls.update();
+  // Re-sync canvas after layout settles so the neuron stays framed in the full viewport.
+  requestAnimationFrame(() => {
+    syncCanvasSize();
+    controls.target.copy(neuronCenter);
+    camera.position.set(neuronCenter.x, neuronCenter.y, neuronCenter.z + fitDist);
+    controls.update();
+  });
 
   // --- 10. LIGHTING ---
   const ambLight = new THREE.AmbientLight(0x1a3050, 2.05);
@@ -1034,92 +1017,6 @@ function init() {
   const accentLight = new THREE.PointLight(0x00ffcc, 1.15, 35);
   accentLight.position.set(3, -3, 5);
   scene.add(accentLight);
-
-  // --- 11. NEURAL NETWORK BACKGROUND ---
-  const netGroup = new THREE.Group();
-  scene.add(netGroup);
-  const netRadius = 16;
-  const netNodes = [];
-  const netNodeMat = new THREE.MeshBasicMaterial({
-    color: 0x00ffcc,
-    transparent: true,
-    opacity: 0.35,
-  });
-
-  for (let n = 0; n < 50; n++) {
-    const theta = random(0, Math.PI * 2);
-    const phi = Math.acos(random(-1, 1));
-    const r = netRadius * Math.cbrt(Math.random());
-    const p = new THREE.Vector3(
-      r * Math.sin(phi) * Math.cos(theta),
-      r * Math.sin(phi) * Math.sin(theta),
-      r * Math.cos(phi)
-    );
-    const ng = new THREE.SphereGeometry(0.05, 6, 6);
-    const nm = new THREE.Mesh(ng, netNodeMat);
-    nm.position.copy(p);
-    netGroup.add(nm);
-    netNodes.push({
-      base: p.clone(),
-      mesh: nm,
-      phase: random(0, Math.PI * 2),
-      freq: random(0.4, 1.2),
-      amp: 0.35,
-    });
-  }
-
-  const netEdges = [];
-  const lineVerts = [];
-  for (let i = 0; i < netNodes.length; i++) {
-    for (let j = i + 1; j < netNodes.length; j++) {
-      if (netNodes[i].base.distanceTo(netNodes[j].base) < 5) {
-        netEdges.push(i, j);
-        lineVerts.push(
-          netNodes[i].base.x,
-          netNodes[i].base.y,
-          netNodes[i].base.z,
-          netNodes[j].base.x,
-          netNodes[j].base.y,
-          netNodes[j].base.z
-        );
-      }
-    }
-  }
-  const lineGeom = new THREE.BufferGeometry();
-  const linePos = new Float32Array(lineVerts);
-  lineGeom.setAttribute("position", new THREE.BufferAttribute(linePos, 3));
-  const lineMat = new THREE.LineBasicMaterial({
-    color: 0x00ffcc,
-    transparent: true,
-    opacity: 0.06,
-  });
-  const netLines = new THREE.LineSegments(lineGeom, lineMat);
-  netGroup.add(netLines);
-
-  // --- 12. STAR FIELD ---
-  const starPositions = new Float32Array(1000 * 3);
-  for (let s = 0; s < 1000; s++) {
-    const u = Math.random() * 2 - 1;
-    const t = Math.random() * Math.PI * 2;
-    const rr = 90 * Math.cbrt(Math.random());
-    const sq = Math.sqrt(1 - u * u);
-    starPositions[s * 3] = rr * sq * Math.cos(t);
-    starPositions[s * 3 + 1] = rr * u;
-    starPositions[s * 3 + 2] = rr * sq * Math.sin(t);
-  }
-  const starGeom = new THREE.BufferGeometry();
-  starGeom.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
-  const starMat = new THREE.PointsMaterial({
-    color: 0xc8dcff,
-    size: 0.055,
-    transparent: true,
-    opacity: 0.8,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    sizeAttenuation: true,
-  });
-  const stars = new THREE.Points(starGeom, starMat);
-  scene.add(stars);
 
   function registerNightMaterialsFromGroup(group) {
     group.traverse((o) => {
@@ -1147,18 +1044,12 @@ function init() {
     } catch (e) {}
 
     if (isDay) {
-      scene.background.setHex(0xffffff);
-      fog.color.setHex(0xffffff);
+      scene.background.setHex(0xfaf8f4);
+      fog.color.setHex(0xfaf8f4);
       fog.density = 0.0016;
-      starMat.color.setHex(0xff7722);
-      starMat.opacity = 0.48;
-      netNodeMat.color.setHex(0xff8833);
-      netNodeMat.opacity = 0.62;
-      lineMat.color.setHex(0xe05a10);
-      lineMat.opacity = 0.16;
       accentLight.color.setHex(0xff9944);
       accentLight.intensity = 0.95;
-      renderer.toneMappingExposure = 1.05;
+      renderer.toneMappingExposure = 1;
       ambLight.color.setHex(0xffffff);
       ambLight.intensity = 0.58;
       hemiLight.color.setHex(0xfffaf6);
@@ -1205,18 +1096,12 @@ function init() {
       scene.background.setHex(nightBg);
       fog.color.setHex(nightBg);
       fog.density = 0.008;
-      starMat.color.setHex(0xc8dcff);
-      starMat.opacity = 0.8;
-      netNodeMat.color.setHex(0x00ffcc);
-      netNodeMat.opacity = 0.35;
-      lineMat.color.setHex(0x00ffcc);
-      lineMat.opacity = 0.06;
       pulseCoreMat.color.setHex(0x00ffcc);
       pulseHaloMat.color.setHex(0x00ffcc);
       pulseLight.color.setHex(0x00ffcc);
       accentLight.color.setHex(0x00ffcc);
       accentLight.intensity = 1.15;
-      renderer.toneMappingExposure = 1.25;
+      renderer.toneMappingExposure = 1;
       ambLight.color.setHex(0x1a3050);
       ambLight.intensity = 2.05;
       hemiLight.color.setHex(0x8eb4d4);
@@ -1269,16 +1154,56 @@ function init() {
     }
   });
 
-  // --- 13. HOVER LABELS ---
+  // --- 13. HOVER LABELS (pinned to structure like meninges) ---
   const raycaster = new THREE.Raycaster();
   const pointerNdc = new THREE.Vector2(2, 2);
-  let lastClientX = -1;
-  let lastClientY = -1;
+  const labelBox = new THREE.Box3();
+  const labelWorld = new THREE.Vector3();
+  const labelNdc = new THREE.Vector3();
+
+  function findMeshByLabel(label) {
+    for (let i = 0; i < rayMeshes.length; i++) {
+      if (rayMeshes[i].userData.label === label) return rayMeshes[i];
+    }
+    return null;
+  }
+
+  function updateFloatingStructureLabel(labelKey) {
+    if (!labelKey) {
+      tooltip.hidden = true;
+      return;
+    }
+    const mesh = findMeshByLabel(labelKey);
+    if (!mesh || !mesh.visible) {
+      tooltip.hidden = true;
+      return;
+    }
+    labelBox.setFromObject(mesh, true);
+    if (labelBox.isEmpty()) {
+      tooltip.hidden = true;
+      return;
+    }
+    labelWorld.set(
+      (labelBox.min.x + labelBox.max.x) * 0.5,
+      labelBox.max.y,
+      (labelBox.min.z + labelBox.max.z) * 0.5
+    );
+    labelNdc.copy(labelWorld).project(camera);
+    if (labelNdc.z > 1 || Math.abs(labelNdc.x) > 1.15 || Math.abs(labelNdc.y) > 1.15) {
+      tooltip.hidden = true;
+      return;
+    }
+    const rect = renderer.domElement.getBoundingClientRect();
+    const x = (labelNdc.x * 0.5 + 0.5) * rect.width;
+    const y = (-labelNdc.y * 0.5 + 0.5) * rect.height;
+    const displayName = tooltipNames[currentLang][labelKey] || labelKey;
+    tooltip.textContent = displayName;
+    tooltip.hidden = false;
+    tooltip.style.transform = `translate(${x}px, ${y}px) translate(-50%, -130%)`;
+  }
 
   function onPointerMove(event) {
     clientToNdc(event.clientX, event.clientY, renderer.domElement, pointerNdc);
-    lastClientX = event.clientX;
-    lastClientY = event.clientY;
   }
   renderer.domElement.addEventListener("mousemove", onPointerMove);
 
@@ -1291,12 +1216,10 @@ function init() {
   renderer.domElement.addEventListener("pointerleave", () => {
     controls.autoRotate = true;
     pointerNdc.set(2, 2);
-    tooltip.style.display = "none";
+    if (!panelOpenPickLabel) tooltip.hidden = true;
   });
 
   const clock = new THREE.Clock();
-  let netLineFrame = 0;
-
   function animate() {
     requestAnimationFrame(animate);
     const time = clock.getElapsedTime();
@@ -1312,46 +1235,13 @@ function init() {
     const pulsePos = axonCurve.getPointAt(pulseT);
     pulseGroup.position.copy(pulsePos);
 
-    for (const node of netNodes) {
-      const o = node.amp * Math.sin(time * node.freq + node.phase);
-      node.mesh.position.set(
-        node.base.x + o * 0.3,
-        node.base.y + o * 0.25,
-        node.base.z + o * 0.28
-      );
-    }
-    netLineFrame++;
-    if (netLineFrame % 2 === 0) {
-      const lp = lineGeom.attributes.position;
-      let vi = 0;
-      for (let e = 0; e < netEdges.length; e += 2) {
-        const a = netNodes[netEdges[e]].mesh.position;
-        const b = netNodes[netEdges[e + 1]].mesh.position;
-        lp.setXYZ(vi++, a.x, a.y, a.z);
-        lp.setXYZ(vi++, b.x, b.y, b.z);
-      }
-      lp.needsUpdate = true;
-    }
-
     raycaster.setFromCamera(pointerNdc, camera);
     const hits = raycaster.intersectObjects(rayMeshes, false);
-    if (panelOpenPickLabel) {
-      const displayName =
-        tooltipNames[currentLang][panelOpenPickLabel] || panelOpenPickLabel;
-      tooltip.textContent = displayName;
-      tooltip.style.display = "block";
-      tooltip.style.left = `${lastClientX + 15}px`;
-      tooltip.style.top = `${lastClientY + 15}px`;
-    } else if (hits.length > 0 && hits[0].object.userData.label) {
-      const label = hits[0].object.userData.label;
-      const displayName = tooltipNames[currentLang][label] || label;
-      tooltip.textContent = displayName;
-      tooltip.style.display = "block";
-      tooltip.style.left = `${lastClientX + 15}px`;
-      tooltip.style.top = `${lastClientY + 15}px`;
-    } else {
-      tooltip.style.display = "none";
+    let labelKey = panelOpenPickLabel;
+    if (!labelKey && hits.length > 0 && hits[0].object.userData.label) {
+      labelKey = hits[0].object.userData.label;
     }
+    updateFloatingStructureLabel(labelKey);
 
     controls.update();
     renderer.render(scene, camera);

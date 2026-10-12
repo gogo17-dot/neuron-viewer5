@@ -11,8 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav17" />
     <style>
       body.synapse-atlas-page {
         overflow-x: hidden;
@@ -24,7 +26,7 @@
         height: 100%;
         z-index: 1;
       }
-      /* Part info panel — match `neuronatlas/index.html` + `neuronatlas/styles.css` (neuron structure viewer). */
+      /* Part info panel ? match `neuronatlas/index.html` + `neuronatlas/styles.css` (neuron structure viewer). */
       #info-panel {
         box-sizing: border-box;
         position: fixed;
@@ -39,13 +41,35 @@
         display: flex;
         flex-direction: column;
         pointer-events: auto;
-        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        visibility: hidden;
+        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.5s;
       }
       #info-panel.open {
         right: max(12px, env(safe-area-inset-right, 0px));
+        visibility: visible;
+        transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+      }
+      @media (max-width: 640px) {
+        #info-panel {
+          top: auto;
+          bottom: max(5.5rem, calc(4.5rem + env(safe-area-inset-bottom, 0px)));
+          left: 0.75rem;
+          right: 0.75rem;
+          width: auto;
+          max-height: 38vh;
+          transform: none;
+          translate: 0 110%;
+          transition: translate 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.4s;
+        }
+        #info-panel.open {
+          right: 0.75rem;
+          translate: 0 0;
+          transition: translate 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+        }
       }
       #panel-name,
-      #panel-desc {
+      #panel-overview,
+      #panel-detail {
         overflow-wrap: break-word;
         word-wrap: break-word;
         max-width: 100%;
@@ -71,7 +95,8 @@
         padding-right: 28px;
         color: rgba(255, 255, 255, 0.92);
       }
-      #panel-desc {
+      #panel-overview,
+      #panel-detail {
         font-family: ui-monospace, monospace;
         font-size: 0.68rem;
         font-weight: 300;
@@ -80,6 +105,31 @@
         margin: 0;
         color: rgba(200, 200, 200, 0.88);
         white-space: pre-line;
+      }
+      .panel-more {
+        display: inline-block;
+        margin: 0.75rem 0 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: #7af0e0;
+        font-family: ui-monospace, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .panel-more:hover { text-decoration: underline; }
+      .panel-more[hidden] { display: none !important; }
+      .panel-detail-wrap {
+        margin-top: 0.65rem;
+        padding-top: 0.65rem;
+        border-top: 1px solid rgba(126, 207, 179, 0.22);
+      }
+      .panel-detail-wrap[hidden] { display: none !important; }
+      html[data-theme="day"] .panel-more { color: #e05a10; }
+      html[data-theme="day"] .panel-detail-wrap {
+        border-top-color: rgba(10, 10, 10, 0.15);
       }
       #panel-close {
         position: absolute;
@@ -134,35 +184,47 @@
         color: #5c4a3a !important;
       }
 
-      html[data-theme="day"] #panel-desc {
+      html[data-theme="day"] #panel-overview,
+      html[data-theme="day"] #panel-detail {
         color: #0a0a0a;
         font-weight: 600;
         -webkit-text-stroke: 0.45px #fffef4;
         paint-order: stroke fill;
         text-shadow: 0.03em 0.03em 0 rgba(10, 10, 10, 0.12);
       }
-      /* Hover labels: same look as `neuronatlas/app.js` neuron scene tooltip (Atlas → Neuron). */
+            /* Floating structure name ? same as meninges / white-matter */
+      #tooltip.structure-label,
       #tooltip {
-        position: fixed;
-        z-index: 200;
+        position: absolute;
+        z-index: 22;
+        left: 0;
+        top: 0;
         display: none;
         pointer-events: none;
-        background: rgba(255, 255, 255, 0.08);
+        max-width: min(16rem, 70vw);
+        padding: 5px 12px;
         border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
         color: #ffffff;
         font-family: monospace;
         font-size: 11px;
         letter-spacing: 0.15em;
-        padding: 5px 12px;
-        border-radius: 4px;
         text-transform: uppercase;
-        max-width: 18rem;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         line-height: 1.35;
         text-align: left;
-        transition: left 0.15s, top 0.15s, bottom 0.15s;
       }
-      /* Day: match info panel — black “marker” label, cream card, heavy black outline. */
+      html[data-theme="day"] #tooltip {
+        background: #fffef4;
+        border: 3px solid #0a0a0a;
+        color: #0a0a0a;
+        font-weight: 600;
+        box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.12);
+      }
+      /* Day: match info panel ? black ?marker? label, cream card, heavy black outline. */
       html[data-theme="day"] #tooltip {
         background: #fffef4;
         border: 3px solid #0a0a0a;
@@ -367,17 +429,22 @@
     <div id="page">
       <nav class="site-nav" aria-label="Primary">
         <a class="brand" href="index.html">
-          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-mark" aria-hidden="true"></span>
           NEYRON
         </a>
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
         <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
         <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
         <div class="nav-center" id="primary-navigation">
-          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
-          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
-          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
-          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana s?hif?">Home</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanlari">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="M?qal?l?r">Articles</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="N?sr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqinda">About</a>
         </div>
         <div class="nav-tools">
           <div class="lang-switch" role="group" aria-label="Language">
@@ -398,16 +465,15 @@
       </nav>
 
       <main class="atlas-embed-page">
-        <p class="atlas-embed-note" data-en="Synapse" data-az="Sinaps">Synapse</p>
         <div class="atlas-embed-frame synapse-embed-wrap">
-          <div id="canvas-container"></div>
+          <div id="canvas-container"><div id="tooltip" class="structure-label" hidden></div></div>
           <div
             id="creator-credit"
             style="
               position: absolute;
               left: 16px;
               bottom: 14px;
-              z-index: 10;
+              z-index: 15;
               color: #ffffff;
               font-family: monospace;
               font-size: 10px;
@@ -429,87 +495,87 @@
               hidden
             >
               <div class="synapse-help-popover__header">
-                <h3 class="synapse-help-popover__title" id="synapse-help-title" data-en="What “Activate synapse” shows" data-az="“Sinapsı aktivləşdir” nə göstərir">
-                  What “Activate synapse” shows
+                <h3 class="synapse-help-popover__title" id="synapse-help-title" data-en="What ?Activate synapse? shows" data-az="?Sinapsi aktivl?sdir? n? g?st?rir">
+                  What ?Activate synapse? shows
                 </h3>
-                <button type="button" class="synapse-help-popover__close" id="synapse-help-close" aria-label="Close">✕</button>
+                <button type="button" class="synapse-help-popover__close" id="synapse-help-close" aria-label="Close">?</button>
               </div>
               <div
                 class="synapse-help-popover__body"
                 data-en="Pressing Activate synapse runs a didactic sequence of chemical synaptic transmission (not a literal molecular dynamics simulation, but the order matches textbooks).
 
-1. Presynaptic excitation — the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
+1. Presynaptic excitation ? the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
 
-2. Calcium entry — Ca²⁺ influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca²⁺ channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
+2. Calcium entry ? Ca?? influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca?? channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
 
-3. Vesicle docking and fusion — primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a “quantum” of neurotransmitter: that is the physical meaning of quantal release.
+3. Vesicle docking and fusion ? primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a ?quantum? of neurotransmitter: that is the physical meaning of quantal release.
 
-4. Cleft diffusion — transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
+4. Cleft diffusion ? transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
 
-5. Receptor binding and postsynaptic response — binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
+5. Receptor binding and postsynaptic response ? binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
 
 Auto, when enabled, repeats the full sequence on a timer so you can watch the cycle without clicking each time."
-                data-az="«Sinapsı aktivləşdir» düyməsi kimyəvi sinaptik ötürülmənin tədris ardıcıllığını işə salır (həqiqi molekulyar dinamika simulyasiyası deyil, lakin ardıcıllıq dərsliyə uyğundur).
+                data-az="?Sinapsi aktivl?sdir? d?ym?si kimy?vi sinaptik ?t?r?lm?nin t?dris ardicilligini is? salir (h?qiqi molekulyar dinamika simulyasiyasi deyil, lakin ardicilliq d?rsliy? uygundur).
 
-1. Presinaptik həyəcanlanma — model boutona tərəf hərəkət edən fəallığı animasiya edir; bu, terminala daxil olan aksiyon potensialı və presinaptik membranın depolyarizasiyasının sxematik təsviridir.
+1. Presinaptik h?y?canlanma ? model boutona t?r?f h?r?k?t ed?n f?alligi animasiya edir; bu, terminala daxil olan aksiyon potensiali v? presinaptik membranin depolyarizasiyasinin sxematik t?sviridir.
 
-2. Kalsium girişi — aktiv zona yaxınlığında Ca²⁺ axını terminalda lokal artım kimi göstərilir. Həqiqi sinapslarda gərginliyə həssas Ca²⁺ kanalları söykənmiş vezikulların üzbəüzü klasterləşir; yaranan mikrodomen millisaniyə miqyasında ifrazata imkan verir.
+2. Kalsium girisi ? aktiv zona yaxinliginda Ca?? axini terminalda lokal artim kimi g?st?rilir. H?qiqi sinapslarda g?rginliy? h?ssas Ca?? kanallari s?yk?nmis vezikullarin ?zb??z? klasterl?sir; yaranan mikrodomen millisaniy? miqyasinda ifrazata imkan verir.
 
-3. Vezikul söykənməsi və füzyonu — primlənmiş vezikullar aktiv zona diskə yaxınlaşır və membranla birləşir (exositoz). Hər vezikul neyrotransmitterin “kvant”ını buraxır — bu da kvantal ifrazanın fiziki mənasıdır.
+3. Vezikul s?yk?nm?si v? f?zyonu ? priml?nmis vezikullar aktiv zona disk? yaxinlasir v? membranla birl?sir (exositoz). H?r vezikul neyrotransmitterin ?kvant?ini buraxir ? bu da kvantal ifrazanin fiziki m?nasidir.
 
-4. Yarıqda diffuziya — neyrotransmitter molekulları təxminən ~20 nm sinoptik yarığı diffuziya ilə keçir və postsinaptik reseptorlara çatır. Transmitterin kimliyi (burada stilizə edilib) hədəf hüceyrədə həyəcanlandırma və ya tormuzlamanı müəyyən edir.
+4. Yariqda diffuziya ? neyrotransmitter molekullari t?xmin?n ~20 nm sinoptik yarigi diffuziya il? ke?ir v? postsinaptik reseptorlara ?atir. Transmitterin kimliyi (burada stiliz? edilib) h?d?f h?ceyr?d? h?y?canlandirma v? ya tormuzlamani m??yy?n edir.
 
-5. Reseptor bağlanması və postsinaptik cavab — bağlanma ion kanallarını açır və ya modulyasiya edir; səhnədə reseptor tərəfində bağlanma impulsları və membran/tikan cavabı bu kimyanın yenidən elektrikə çevrilməsinin sadələşdirilmiş oxunuşudur.
+5. Reseptor baglanmasi v? postsinaptik cavab ? baglanma ion kanallarini a?ir v? ya modulyasiya edir; s?hn?d? reseptor t?r?find? baglanma impulslari v? membran/tikan cavabi bu kimyanin yenid?n elektrik? ?evrilm?sinin sad?l?sdirilmis oxunusudur.
 
-Avto rejimi yandıranda bütün ardıcıllıq taymerlə təkrarlanır ki, hər dəfə klikləmədən dövrü izləyə biləsiniz."
+Avto rejimi yandiranda b?t?n ardicilliq taymerl? t?krarlanir ki, h?r d?f? klikl?m?d?n d?vr? izl?y? bil?siniz."
               >
                 Pressing Activate synapse runs a didactic sequence of chemical synaptic transmission (not a literal molecular dynamics simulation, but the order matches textbooks).
 
-1. Presynaptic excitation — the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
+1. Presynaptic excitation ? the model animates activity sweeping toward the bouton, standing in for an action potential invading the terminal and depolarising the presynaptic membrane.
 
-2. Calcium entry — Ca²⁺ influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca²⁺ channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
+2. Calcium entry ? Ca?? influx near the active zone is shown as a local rise inside the terminal. In real synapses, voltage-gated Ca?? channels cluster opposite docked vesicles; the resulting microdomain is what permits release on millisecond timescales.
 
-3. Vesicle docking and fusion — primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a “quantum” of neurotransmitter: that is the physical meaning of quantal release.
+3. Vesicle docking and fusion ? primed vesicles approach the active-zone disc and merge with the membrane (exocytosis). Each vesicle releases a ?quantum? of neurotransmitter: that is the physical meaning of quantal release.
 
-4. Cleft diffusion — transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
+4. Cleft diffusion ? transmitter molecules cross the ~20 nm synaptic cleft by diffusion and reach postsynaptic receptors. Identity of the transmitter (here stylised) determines excitation versus inhibition in the target cell.
 
-5. Receptor binding and postsynaptic response — binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
+5. Receptor binding and postsynaptic response ? binding opens or modulates ion channels; the scene shows receptor-side binding pulses and membrane/spine responses as a simplified readout of that chemistry becoming electricity again.
 
 Auto, when enabled, repeats the full sequence on a timer so you can watch the cycle without clicking each time.
               </div>
             </aside>
             <div class="ui-signal" aria-label="Synapse activation">
               <div class="ui-signal__row">
-                <button type="button" class="btn-synapse-help" id="btn-synapse-help" data-i18n-en="Info" data-i18n-az="Məlumat">
+                <button type="button" class="btn-synapse-help" id="btn-synapse-help" data-i18n-en="Info" data-i18n-az="M?lumat">
                   Info
                 </button>
-                <button type="button" class="btn-fire" id="btn-fire" data-i18n-en="Activate synapse" data-i18n-az="Sinapsı aktivləşdir">
+                <button type="button" class="btn-fire" id="btn-fire" data-i18n-en="Activate synapse" data-i18n-az="Sinapsi aktivl?sdir">
                   Activate synapse
                 </button>
               </div>
               <label
                 class="auto-cb"
                 data-title-en="Auto: run Activate synapse every 4 seconds while idle"
-                data-title-az="Avto: boşdaykən 4 saniyədə bir sinapsı aktivləşdir"
+                data-title-az="Avto: bosdayk?n 4 saniy?d? bir sinapsi aktivl?sdir"
                 ><input type="checkbox" id="auto-signal" /> <span data-i18n-en="auto" data-i18n-az="avto">auto</span></label
               >
             </div>
           </div>
         </div>
       </main>
-
-      <footer class="site-footer">
-        <div class="footer-brand">NEYRON</div>
-        <div class="footer-center">© 2026 neyron.atlas.az</div>
-      </footer>
     </div>
 
-    <div id="tooltip"></div>
     <div id="info-panel" aria-hidden="true">
-      <button type="button" id="panel-close" aria-label="Close">✕</button>
+      <button type="button" id="panel-close" aria-label="Close">?</button>
       <div id="panel-name"></div>
       <div id="info-panel-body">
-        <div id="panel-desc"></div>
+        <div id="panel-overview"></div>
+        <button type="button" class="panel-more" id="panel-more" hidden aria-expanded="false">
+          Clinical detail
+        </button>
+        <div class="panel-detail-wrap" id="panel-detail-wrap" hidden>
+          <div id="panel-detail"></div>
+        </div>
       </div>
     </div>
 
@@ -529,11 +595,11 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
       (function () {
         var descriptions = {
           "Presynaptic Terminal":
-            "The presynaptic terminal (bouton) is the axon ending specialised for regulated neurotransmitter release. In many central synapses a single bouton is on the order of about 1–5 micrometres across; neuromuscular and other specialised synapses can be much larger. The cytoplasm organises synaptic vesicles into functional pools (for example docked or primed vesicles at the active zone and reserve vesicles deeper in the bouton), positions mitochondria for ATP-intensive steps such as vesicle cycling, and concentrates presynaptic voltage-gated calcium channels. When an action potential invades the terminal, depolarisation opens those channels; the resulting local calcium transient on the submillisecond-to-millisecond scale triggers SNARE-mediated fusion of primed vesicles at the active zone so transmitter enters the synaptic cleft.",
+            "The presynaptic terminal (bouton) is the axon ending specialised for regulated neurotransmitter release. In many central synapses a single bouton is on the order of about 1?5 micrometres across; neuromuscular and other specialised synapses can be much larger. The cytoplasm organises synaptic vesicles into functional pools (for example docked or primed vesicles at the active zone and reserve vesicles deeper in the bouton), positions mitochondria for ATP-intensive steps such as vesicle cycling, and concentrates presynaptic voltage-gated calcium channels. When an action potential invades the terminal, depolarisation opens those channels; the resulting local calcium transient on the submillisecond-to-millisecond scale triggers SNARE-mediated fusion of primed vesicles at the active zone so transmitter enters the synaptic cleft.",
           Mitochondria:
-            "Mitochondria inside boutons are usually elongated organelles on the order of about 0.5–5 micrometres long and submicrometre across the short axis in typical tissue images—far larger than a single synaptic vesicle (tens of nanometres). They regenerate ATP for vesicle priming and refilling, clathrin-mediated and bulk endocytosis of fused membranes, and ion pumping that restores gradients after activity. They also participate in local calcium handling during trains of stimuli. Impaired mitochondrial transport, membrane potential, or quality control in terminals is associated with synaptic depression and contributes to pathology in several neurodegenerative disorders.",
+            "Mitochondria inside boutons are usually elongated organelles on the order of about 0.5?5 micrometres long and submicrometre across the short axis in typical tissue images?far larger than a single synaptic vesicle (tens of nanometres). They regenerate ATP for vesicle priming and refilling, clathrin-mediated and bulk endocytosis of fused membranes, and ion pumping that restores gradients after activity. They also participate in local calcium handling during trains of stimuli. Impaired mitochondrial transport, membrane potential, or quality control in terminals is associated with synaptic depression and contributes to pathology in several neurodegenerative disorders.",
           "Synaptic Vesicle":
-            "Small clear synaptic vesicles that store classic small-molecule transmitters are roughly about 35–50 nanometres in diameter depending on synapse class and preparation. Each vesicle can package on the order of about 10³–10⁴ neurotransmitter molecules depending on transporter expression, luminal ionic conditions, and vesicle size. Vesicles pass through a trafficking cycle including endocytosis after fusion, refilling, transport back toward the active zone, docking, and priming. Calcium-evoked fusion at the active zone releases transmitter into the cleft; the vesicle membrane then becomes part of the presynaptic surface or is retrieved on timescales that set short-term plasticity.",
+            "Small clear synaptic vesicles that store classic small-molecule transmitters are roughly about 35?50 nanometres in diameter depending on synapse class and preparation. Each vesicle can package on the order of about 10??104 neurotransmitter molecules depending on transporter expression, luminal ionic conditions, and vesicle size. Vesicles pass through a trafficking cycle including endocytosis after fusion, refilling, transport back toward the active zone, docking, and priming. Calcium-evoked fusion at the active zone releases transmitter into the cleft; the vesicle membrane then becomes part of the presynaptic surface or is retrieved on timescales that set short-term plasticity.",
           "Active Zone":
             "The active zone is a dense protein specialization of the presynaptic plasma membrane that couples voltage-gated calcium channels to release-ready vesicles. Electron microscopy shows it as a paramembranous ribbon or grid whose lateral extent is typically on the order of a few hundred nanometres, varying by synapse type. Scaffold proteins (for example RIM, Munc13, Bassoon, RIM-BP) together with calcium channels organise the distance between channels and vesicles, set baseline release probability, and support forms of short-term facilitation and depression observed electrophysiologically.",
           Neurotransmitter:
@@ -541,46 +607,46 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           "Postsynaptic Membrane":
             "The postsynaptic membrane is the lipid bilayer of the receiving cell that faces the cleft. It contains neurotransmitter receptors, auxiliary subunits that modulate channel gating, and adhesion molecules that align pre- and postsynaptic specialisations. On dendritic spines the postsynaptic membrane forms the curved head surface, commonly on the order of about half to one micrometre across for many excitatory synapses. Synaptic currents through receptors in this membrane produce excitatory or inhibitory postsynaptic potentials that spread along dendrites toward the axon initial segment, where they are integrated with other inputs.",
           "Postsynaptic Density":
-            "The postsynaptic density (PSD) is an electron-dense cytoskeletal structure located just beneath the postsynaptic membrane opposite the presynaptic active zone. At excitatory spine synapses its lateral size is commonly measured in the hundreds of nanometres (roughly about 250–500 nanometres depending on synapse class). Scaffold proteins such as PSD-95, GKAP, Shank, and Homer anchor transmembrane receptors to the actin cytoskeleton and recruit signalling enzymes. That architecture makes the PSD a structural hub for long-term changes in synaptic strength during plasticity.",
+            "The postsynaptic density (PSD) is an electron-dense cytoskeletal structure located just beneath the postsynaptic membrane opposite the presynaptic active zone. At excitatory spine synapses its lateral size is commonly measured in the hundreds of nanometres (roughly about 250?500 nanometres depending on synapse class). Scaffold proteins such as PSD-95, GKAP, Shank, and Homer anchor transmembrane receptors to the actin cytoskeleton and recruit signalling enzymes. That architecture makes the PSD a structural hub for long-term changes in synaptic strength during plasticity.",
           Receptor:
-            "Postsynaptic receptors are transmembrane proteins with ligand-binding domains exposed to the cleft. Their role is to bind released neurotransmitter and, depending on receptor class, open ion channels directly (ionotropic receptors), alter channel properties through second messengers (metabotropic pathways), or both. Without receptor activation, presynaptic release would not reliably produce changes in postsynaptic voltage or downstream biochemistry. Nicotinic acetylcholine receptors, one well-studied ionotropic class, are pentameric ligand-gated channels with overall dimensions on the order of about 10 nanometres along the axis normal to the membrane—nanometre-scale, not micrometre-scale. Proteins do not have a single intrinsic colour like paint; in transmission electron microscopy they appear as dense protein in the membrane, and colours in figures are chosen for clarity.",
+            "Postsynaptic receptors are transmembrane proteins with ligand-binding domains exposed to the cleft. Their role is to bind released neurotransmitter and, depending on receptor class, open ion channels directly (ionotropic receptors), alter channel properties through second messengers (metabotropic pathways), or both. Without receptor activation, presynaptic release would not reliably produce changes in postsynaptic voltage or downstream biochemistry. Nicotinic acetylcholine receptors, one well-studied ionotropic class, are pentameric ligand-gated channels with overall dimensions on the order of about 10 nanometres along the axis normal to the membrane?nanometre-scale, not micrometre-scale. Proteins do not have a single intrinsic colour like paint; in transmission electron microscopy they appear as dense protein in the membrane, and colours in figures are chosen for clarity.",
           "Dendritic Spine":
-            "A dendritic spine is a micron-scale protrusion from a dendrite shaft that forms a partially isolated biochemical compartment. In mammalian cortex and hippocampus measured by electron microscopy, spine heads are commonly about 0.5–1.0 micrometres in diameter, neck diameters often about 0.05–0.3 micrometres, and neck lengths roughly about 0.05–2 micrometres depending on spine class (thin, mushroom, stubby). The head carries the postsynaptic density and the highest density of receptors for the synapse. Spine geometry influences how synaptic currents shape local voltage and how calcium and second messengers are compartmentalised relative to the parent dendrite.",
+            "A dendritic spine is a micron-scale protrusion from a dendrite shaft that forms a partially isolated biochemical compartment. In mammalian cortex and hippocampus measured by electron microscopy, spine heads are commonly about 0.5?1.0 micrometres in diameter, neck diameters often about 0.05?0.3 micrometres, and neck lengths roughly about 0.05?2 micrometres depending on spine class (thin, mushroom, stubby). The head carries the postsynaptic density and the highest density of receptors for the synapse. Spine geometry influences how synaptic currents shape local voltage and how calcium and second messengers are compartmentalised relative to the parent dendrite.",
           "Spine Neck":
             "The spine neck is the narrow cytosolic bridge between the spine head and the dendritic shaft. Because it is thin and can be long, it increases axial resistance between head and shaft, which attenuates how somatically recorded electrical signals sample synaptic currents generated at the head. It also slows diffusion of ions and small molecules between head and shaft, supporting biochemical compartmentalisation of calcium and second messengers during synaptic activity. Population measurements of neck dimensions in hippocampus and cortex therefore correlate with coupling strength between spine head and dendrite and with plasticity-related remodelling.",
         };
 
         var descriptionsAz = {
           "Presynaptic Terminal":
-            "Presinaptik terminal (bouton) neyrotransmitterin tənzimlənən ifrazı üçün ixtisaslaşmış axon sonudur. Bir çox mərkəzi sinapslarda tək boutonun eni adətən təxminən 1–5 mikrometr səviyyəsindədir; əzələ-sinir və digər ixtisaslaşmış sinapslar daha böyük ola bilər. Sitoplazma sinaptik vezikulları funksional hovuzlara təşkil edir (məsələn aktiv zonada söykənmiş və ya primlənmiş vezikullar və boutonun dərinliyində ehtiyat vezikullar), vezikul dövrü kimi ATP tələbkar addımlar üçün mitoxondriumları yerləşdirir və presinaptik gərginliyə həssas kalsium kanallarını sıxlaşdırır. Aksiyon potensialı terminala daxil olduqda depolarizasiya bu kanalları açır; yaranan lokal kalsium dalğası millisaniyə və daha aşağı miqyasında aktiv zonada primlənmiş vezikulların SNARE vasitəli birləşməsini işə salır ki, transmitter sinaptik yarığa keçsin.",
+            "Presinaptik terminal (bouton) neyrotransmitterin t?nziml?n?n ifrazi ???n ixtisaslasmis axon sonudur. Bir ?ox m?rk?zi sinapslarda t?k boutonun eni ad?t?n t?xmin?n 1?5 mikrometr s?viyy?sind?dir; ?z?l?-sinir v? dig?r ixtisaslasmis sinapslar daha b?y?k ola bil?r. Sitoplazma sinaptik vezikullari funksional hovuzlara t?skil edir (m?s?l?n aktiv zonada s?yk?nmis v? ya priml?nmis vezikullar v? boutonun d?rinliyind? ehtiyat vezikullar), vezikul d?vr? kimi ATP t?l?bkar addimlar ???n mitoxondriumlari yerl?sdirir v? presinaptik g?rginliy? h?ssas kalsium kanallarini sixlasdirir. Aksiyon potensiali terminala daxil olduqda depolarizasiya bu kanallari a?ir; yaranan lokal kalsium dalgasi millisaniy? v? daha asagi miqyasinda aktiv zonada priml?nmis vezikullarin SNARE vasit?li birl?sm?sini is? salir ki, transmitter sinaptik yariga ke?sin.",
           Mitochondria:
-            "Bouton daxilindəki mitoxondriumlar adətən təxminən 0.5–5 mikrometr uzunluğunda uzunsov orqanellelər və en kəsiyində tipik toxuma şəkillərində submikrometr ölçülüdür — tək sinaptik vezikuladan (onlarla nanometr) orders böyükdür. Onlar vezikul priminqi və doldurulması, birləşmiş membranın klastrin vasitəli və kütləvi endositozu və fəaliyyətdən sonra gradientlərin bərpası üçün ion nasosları üçün ATP bərpa edir. Həm də stimul seriyaları zamanı lokal kalsium idarəçiliyində iştirak edir. Terminallarda mitoxondriumların daşınması, membran potensialı və ya keyfiyyət nəzarətinin pozulması sinaptil depressiya ilə əlaqələndirilir və bir neçə neyrodegenerativ vəziyyətdə patologiyaya töhfə verir.",
+            "Bouton daxilind?ki mitoxondriumlar ad?t?n t?xmin?n 0.5?5 mikrometr uzunlugunda uzunsov orqanellel?r v? en k?siyind? tipik toxuma s?kill?rind? submikrometr ?l??l?d?r ? t?k sinaptik vezikuladan (onlarla nanometr) orders b?y?kd?r. Onlar vezikul priminqi v? doldurulmasi, birl?smis membranin klastrin vasit?li v? k?tl?vi endositozu v? f?aliyy?td?n sonra gradientl?rin b?rpasi ???n ion nasoslari ???n ATP b?rpa edir. H?m d? stimul seriyalari zamani lokal kalsium idar??iliyind? istirak edir. Terminallarda mitoxondriumlarin dasinmasi, membran potensiali v? ya keyfiyy?t n?zar?tinin pozulmasi sinaptil depressiya il? ?laq?l?ndirilir v? bir ne?? neyrodegenerativ v?ziyy?td? patologiyaya t?hf? verir.",
           "Synaptic Vesicle":
-            "Klassik kiçik molekullu transmitterləri saxlayan kiçik şəffaf sinaptik vezikullar sinaps sinfindən və preparatdan asılı olaraq təxminən 35–50 nanometr diametrində olur. Hər vezikul transporter ifadəsi, luminal ion şəraiti və ölçüdən asılı olaraq təxminən 10³–10⁴ neyrotransmitter molekulu paketləyə bilər. Vezikullar füzyondan sonra endositoz, doldurulma, aktiv zonaya geri nəqliyyat, söykənmə və primləmə daxil olmaqla trafik dövründən keçir. Aktiv zonada kalsiumla təhrik olunan füzyon transmitteri yarığa buraxır; vezikul membranı sonra presinaptik səthin bir hissəsinə çevrilir və ya qısamüddətli plastikliyin müəyyən etdiyi vaxt miqyasında geri alınır.",
+            "Klassik ki?ik molekullu transmitterl?ri saxlayan ki?ik s?ffaf sinaptik vezikullar sinaps sinfind?n v? preparatdan asili olaraq t?xmin?n 35?50 nanometr diametrind? olur. H?r vezikul transporter ifad?si, luminal ion s?raiti v? ?l??d?n asili olaraq t?xmin?n 10??104 neyrotransmitter molekulu paketl?y? bil?r. Vezikullar f?zyondan sonra endositoz, doldurulma, aktiv zonaya geri n?qliyyat, s?yk?nm? v? priml?m? daxil olmaqla trafik d?vr?nd?n ke?ir. Aktiv zonada kalsiumla t?hrik olunan f?zyon transmitteri yariga buraxir; vezikul membrani sonra presinaptik s?thin bir hiss?sin? ?evrilir v? ya qisam?dd?tli plastikliyin m??yy?n etdiyi vaxt miqyasinda geri alinir.",
           "Active Zone":
-            "Aktiv zona presinaptik plazma membranının gərginliyə həssas kalsium kanallarını ifrazə üçün hazır vezikullarla birləşdirən sıx zülal ixtisaslaşmasıdır. Elektron mikroskopiyada o, sinaps tipindən asılı olaraq adətən bir neçə yüz nanometr enində paramembran zolaq və ya tor kimi görünür. Skelet zülalları (məsələn RIM, Munc13, Bassoon, RIM-BP) kalsium kanalları ilə birlikdə kanallar ilə vezikullar arasındakı məsafəni təşkil edir, bazal ifraz ehtimalını təyin edir və elektrofiziologiyada müşahidə olunan qısamüddətli facilitasiya və depressiya formalarını dəstəkləyir.",
+            "Aktiv zona presinaptik plazma membraninin g?rginliy? h?ssas kalsium kanallarini ifraz? ???n hazir vezikullarla birl?sdir?n six z?lal ixtisaslasmasidir. Elektron mikroskopiyada o, sinaps tipind?n asili olaraq ad?t?n bir ne?? y?z nanometr enind? paramembran zolaq v? ya tor kimi g?r?n?r. Skelet z?lallari (m?s?l?n RIM, Munc13, Bassoon, RIM-BP) kalsium kanallari il? birlikd? kanallar il? vezikullar arasindaki m?saf?ni t?skil edir, bazal ifraz ehtimalini t?yin edir v? elektrofiziologiyada m?sahid? olunan qisam?dd?tli facilitasiya v? depressiya formalarini d?st?kl?yir.",
           Neurotransmitter:
-            "Exositozdan sonra transmitter molekulları suyu sinaptik yarıqda diffuziya edir. Bir çox mərkəzi sinapslarda yarığın eni onlarla nanometr səviyyəsindədir (tipik mərkəzi dəyər kimi tez-tez təxminən 20 nanometr göstərilir, bioloji dəyişkənlik ilə). Tək transmitter molekulları subnanometr ölçüdə olduğundan belə dar boşluqda təmiz diffuziya postsinaptik əhəmiyyətli bağlanmaya başlamazdan əvvəl onlarla mikrosaniyə səviyyəsində vaxt alır. Hansı transmitterin buraxılması (məsələn qlutamat, GABA, asetilkolin) postsinaptik cavabın həyəcanlandırıcı, tormuzlayıcı və ya müəyyən reseptor tipləri vasitəsilə modulyator olmasını təyin edir.",
+            "Exositozdan sonra transmitter molekullari suyu sinaptik yariqda diffuziya edir. Bir ?ox m?rk?zi sinapslarda yarigin eni onlarla nanometr s?viyy?sind?dir (tipik m?rk?zi d?y?r kimi tez-tez t?xmin?n 20 nanometr g?st?rilir, bioloji d?yisk?nlik il?). T?k transmitter molekullari subnanometr ?l??d? oldugundan bel? dar bosluqda t?miz diffuziya postsinaptik ?h?miyy?tli baglanmaya baslamazdan ?vv?l onlarla mikrosaniy? s?viyy?sind? vaxt alir. Hansi transmitterin buraxilmasi (m?s?l?n qlutamat, GABA, asetilkolin) postsinaptik cavabin h?y?canlandirici, tormuzlayici v? ya m??yy?n reseptor tipl?ri vasit?sil? modulyator olmasini t?yin edir.",
           "Postsynaptic Membrane":
-            "Postsinaptik membran yarığa baxan qəbul edən hüceyrənin lipid ikili qatıdır. Neyrotransmitter reseptorlarını, kanal qapagını modulyasiya edən köməkçi subvahidləri və pre- və postsinaptik ixtisaslaşmaları düzən adeziya molekullarını ehtiva edir. Dendritik tikalarda postsinaptik membran əyilmiş baş səthini əmələ gətirir; bir çox excitator sinapslarda bu baş adətən təxminən yarım ilə bir mikrometr enində olur. Bu membrandakı reseptorlar vasitəsilə sinaptik cərəyanlar həyəcanlandırıcı və ya inhibitor postsinaptik potensiallar yaradır ki, onlar dendritlər boyu akson ilkin seqmentinə tərəf yayılaraq digər girişlərlə inteqrasiya olunur.",
+            "Postsinaptik membran yariga baxan q?bul ed?n h?ceyr?nin lipid ikili qatidir. Neyrotransmitter reseptorlarini, kanal qapagini modulyasiya ed?n k?m?k?i subvahidl?ri v? pre- v? postsinaptik ixtisaslasmalari d?z?n adeziya molekullarini ehtiva edir. Dendritik tikalarda postsinaptik membran ?yilmis bas s?thini ?m?l? g?tirir; bir ?ox excitator sinapslarda bu bas ad?t?n t?xmin?n yarim il? bir mikrometr enind? olur. Bu membrandaki reseptorlar vasit?sil? sinaptik c?r?yanlar h?y?canlandirici v? ya inhibitor postsinaptik potensiallar yaradir ki, onlar dendritl?r boyu akson ilkin seqmentin? t?r?f yayilaraq dig?r girisl?rl? inteqrasiya olunur.",
           "Postsynaptic Density":
-            "Postsinaptik sıxlıq (PSD) presinaptik aktiv zonanın üzbəüzündə postsinaptik membranın altında yerləşən elektron sıx sitoskelet quruluşudur. Excitator tikan sinapslarında onun yan ölçüsü adətən yüzlərlə nanometr ilə ölçülür (sinaps sinfindən asılı olaraq təxminən 250–500 nanometr). PSD-95, GKAP, Shank, Homer kimi skelet zülalları transmembran reseptorları aktin sitoskeletinə bağlayır və siqnal fermentlərini cəlb edir. Bu memarlıq plastiklik zamanı sinaptik gücün uzunmüddətli dəyişməsində struktur mərkəz rolunu oynayır.",
+            "Postsinaptik sixliq (PSD) presinaptik aktiv zonanin ?zb??z?nd? postsinaptik membranin altinda yerl?s?n elektron six sitoskelet qurulusudur. Excitator tikan sinapslarinda onun yan ?l??s? ad?t?n y?zl?rl? nanometr il? ?l??l?r (sinaps sinfind?n asili olaraq t?xmin?n 250?500 nanometr). PSD-95, GKAP, Shank, Homer kimi skelet z?lallari transmembran reseptorlari aktin sitoskeletin? baglayir v? siqnal fermentl?rini c?lb edir. Bu memarliq plastiklik zamani sinaptik g?c?n uzunm?dd?tli d?yism?sind? struktur m?rk?z rolunu oynayir.",
           Receptor:
-            "Postsinaptik reseptorlar yarığa açılan bağlama domenləri olan transmembran zülallarıdır. Onların rolu buraxılmış neyrotransmitterə bağlanmaq və reseptor sinfindən asılı olaraq birbaşa ion kanallarını açmaq (ionotrop reseptorlar), ikinci messencerlər vasitəsilə kanal xassələrini dəyişdirmək (metabotrop yollar) və ya hər ikisidir. Reseptor aktivləşməsi olmadan presinaptik ifraz postsinaptik gərginlikdə və ya aşağı axında etibarlı dəyişiklik yaratmazdı. Yaxşı öyrənilmiş ionotrop siniflərdən biri olan nikotin asetilkolin reseptorları pentamerik ion kanalıdır; membran normalına görə ümumi ölçüləri təxminən 10 nanometr səviyyəsində oxunan oxlar boyunca nanometr miqyasındadır, mikrometr deyil. Zülalların boya kimi tək inherent rəngi yoxdur; ötürücü elektron mikroskopiyada onlar membranda sıx zülal kimi görünür, şəkillərdəki rənglər isə adətən aydınlıq üçündür.",
+            "Postsinaptik reseptorlar yariga a?ilan baglama domenl?ri olan transmembran z?lallaridir. Onlarin rolu buraxilmis neyrotransmitter? baglanmaq v? reseptor sinfind?n asili olaraq birbasa ion kanallarini a?maq (ionotrop reseptorlar), ikinci messencerl?r vasit?sil? kanal xass?l?rini d?yisdirm?k (metabotrop yollar) v? ya h?r ikisidir. Reseptor aktivl?sm?si olmadan presinaptik ifraz postsinaptik g?rginlikd? v? ya asagi axinda etibarli d?yisiklik yaratmazdi. Yaxsi ?yr?nilmis ionotrop sinifl?rd?n biri olan nikotin asetilkolin reseptorlari pentamerik ion kanalidir; membran normalina g?r? ?mumi ?l??l?ri t?xmin?n 10 nanometr s?viyy?sind? oxunan oxlar boyunca nanometr miqyasindadir, mikrometr deyil. Z?lallarin boya kimi t?k inherent r?ngi yoxdur; ?t?r?c? elektron mikroskopiyada onlar membranda six z?lal kimi g?r?n?r, s?kill?rd?ki r?ngl?r is? ad?t?n aydinliq ???nd?r.",
           "Dendritic Spine":
-            "Dendritik tikan dendrit çöhrəsindən çıxan və qismən təcrid olunmuş biokimyəvi kompartment yaradan mikron miqyasında çıxıntıdır. Memalıların korteksi və hipokampusunda elektron mikroskopiya ilə ölçüləndə tikan başlarının diametri adətən təxminən 0.5–1.0 mikrometr, boyun diametri təxminən 0.05–0.3 mikrometr, boyun uzunluğu isə incə, göbələk və ya qısa sinfdən asılı olaraq təxminən 0.05–2 mikrometr olur. Baş PSD-ni və sinaps üçün ən yüksək reseptor sıxlığını daşıyır. Tikan geometriyası sinaptik cərəyanların lokal gərginliyi necə formalaşdırdığını və kalsium ilə ikinci messencerlərin ana dendritə nisbətən kompartmantallaşdırılmasını təsir edir.",
+            "Dendritik tikan dendrit ??hr?sind?n ?ixan v? qism?n t?crid olunmus biokimy?vi kompartment yaradan mikron miqyasinda ?ixintidir. Memalilarin korteksi v? hipokampusunda elektron mikroskopiya il? ?l??l?nd? tikan baslarinin diametri ad?t?n t?xmin?n 0.5?1.0 mikrometr, boyun diametri t?xmin?n 0.05?0.3 mikrometr, boyun uzunlugu is? inc?, g?b?l?k v? ya qisa sinfd?n asili olaraq t?xmin?n 0.05?2 mikrometr olur. Bas PSD-ni v? sinaps ???n ?n y?ks?k reseptor sixligini dasiyir. Tikan geometriyasi sinaptik c?r?yanlarin lokal g?rginliyi nec? formalasdirdigini v? kalsium il? ikinci messencerl?rin ana dendrit? nisb?t?n kompartmantallasdirilmasini t?sir edir.",
           "Spine Neck":
-            "Tikan boynu tikan başı ilə dendrit çöhrəsi arasında dar sitoplazma körpüsüdür. Nazik və bəzən uzun olduğuna görə baş ilə çöhrə arasında oxial müqaviməti artırır; bu da başda yaranan sinaptik cərəyanların somada qeydə alınan elektrik siqnallarına necə ötürülməsini zəiflədir. Həmçinin ionların və kiçik molekulların baş ilə çöhrə arasında diffuziyasını yavaşladaraq sinaptik fəaliyyət zamanı kalsium və ikinci messencerlərin biokimyəvi kompartmantallaşdırmasını dəstəkləyir. Hipokampus və korteksdə boyun ölçülərinin populyasiya ölçüləri ona görə baş ilə dendrit arasındakı əlaqə gücü və plastikliklə bağlı yenidənqurulma ilə korrelyasiya olunur.",
+            "Tikan boynu tikan basi il? dendrit ??hr?si arasinda dar sitoplazma k?rp?s?d?r. Nazik v? b?z?n uzun olduguna g?r? bas il? ??hr? arasinda oxial m?qavim?ti artirir; bu da basda yaranan sinaptik c?r?yanlarin somada qeyd? alinan elektrik siqnallarina nec? ?t?r?lm?sini z?ifl?dir. H?m?inin ionlarin v? ki?ik molekullarin bas il? ??hr? arasinda diffuziyasini yavasladaraq sinaptik f?aliyy?t zamani kalsium v? ikinci messencerl?rin biokimy?vi kompartmantallasdirmasini d?st?kl?yir. Hipokampus v? korteksd? boyun ?l??l?rinin populyasiya ?l??l?ri ona g?r? bas il? dendrit arasindaki ?laq? g?c? v? plastiklikl? bagli yenid?nqurulma il? korrelyasiya olunur.",
         };
 
         var nameAz = {
           "Presynaptic Terminal": "Presinaptik Terminal",
           Mitochondria: "Mitoxondriya",
-          "Synaptic Vesicle": "Sinaptik Vezikül",
+          "Synaptic Vesicle": "Sinaptik Vezik?l",
           "Active Zone": "Aktiv Zona",
-          Neurotransmitter: "Nörotransmitter",
+          Neurotransmitter: "N?rotransmitter",
           "Postsynaptic Membrane": "Postsinaptik Membran",
-          "Postsynaptic Density": "Postsinaptik Sıxlıq",
+          "Postsynaptic Density": "Postsinaptik Sixliq",
           Receptor: "Reseptor",
           "Dendritic Spine": "Dendritik Tikan",
           "Spine Neck": "Tikan boynu",
@@ -590,7 +656,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         var SYNAPSE_SCENE_BG_NIGHT = 0x000000;
         /** Day: slightly below pure white to reduce overexposure on cream UI. */
         var SYNAPSE_SCENE_BG_DAY = 0xebe6dc;
-        /** Dendritic spine (stem+head): unlit solid fill — orange day, green neon night. */
+        /** Dendritic spine (stem+head): unlit solid fill ? orange day, green neon night. */
         /** Spine feed ripple (warm; no cyan). */
         var SPINE_RIPPLE_COLOR_DAY = 0xd0b8a0;
         var SPINE_RIPPLE_COLOR_NIGHT = 0xc4a078;
@@ -609,7 +675,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         var presynCaClusters = [];
         var ionGroup;
         var presynCaGeoms = { init: false };
-        /** Deeper terminal interior: Ca²⁺ influx “locks” on this region before exocytosis. */
+        /** Deeper terminal interior: Ca?? influx ?locks? on this region before exocytosis. */
         var caVesiclePool = new THREE.Vector3(0, 1.24, 0);
         var CA_POOL_R = 0.38;
         var N_PRESYN_CA = 12;
@@ -635,7 +701,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         /** Matches PSD disc radius in buildScene; used to clamp receptor footprints inside the disc. */
         var PSD_DISPLAY_RADIUS = 1.1;
         var RECEPTOR_PSD_EDGE = 0.24;
-        /** Vesicle fusion / burst height — aligned with active zone disc (~0.28). */
+        /** Vesicle fusion / burst height ? aligned with active zone disc (~0.28). */
         var RELEASE_Y = 0.31;
         /** Active zone disc radius (`CylinderGeometry` 1.1); dock targets stay well inside for a clean pass-through. */
         var AZ_DISC_R = 1.1;
@@ -685,7 +751,15 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         var tooltip = document.getElementById("tooltip");
         var infoPanel = document.getElementById("info-panel");
         var panelName = document.getElementById("panel-name");
-        var panelDesc = document.getElementById("panel-desc");
+        var panelOverview = document.getElementById("panel-overview");
+        var panelDetail = document.getElementById("panel-detail");
+        var panelDetailWrap = document.getElementById("panel-detail-wrap");
+        var panelMore = document.getElementById("panel-more");
+        var panelDetailExpanded = false;
+        var PANEL_UI = {
+          en: { clinicalDetail: "Clinical detail", showLess: "Show less" },
+          az: { clinicalDetail: "Klinik t?f?rr?at", showLess: "Daha az g?st?r" },
+        };
         var labeledMeshes = [];
         var receptors = [];
         var RECEPTOR_COUNT = 20;
@@ -751,7 +825,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         }
 
         /**
-         * Presynaptic terminal on day: same as atlas Soma after `applyAtlasTheme("day")` —
+         * Presynaptic terminal on day: same as atlas Soma after `applyAtlasTheme("day")` ?
          * `applyDayPhysicalHeroLook` + translucent branch (`neuronatlas/app.js` NEYRON_DAY_PHYS, opacity under 0.98).
          */
         function applyPresynapticTerminalDaySomaMaterial() {
@@ -782,7 +856,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           }
         }
 
-        /** Day: postsynaptic membrane + spine — opaque, no emissive (no self-glow). Terminal uses soma day look separately. */
+        /** Day: postsynaptic membrane + spine ? opaque, no emissive (no self-glow). Terminal uses soma day look separately. */
         function applyDayMatteTerminalMembraneSpine() {
           if (!isDay()) {
             return;
@@ -803,7 +877,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           }
         }
 
-        /** Dendritic spine stem+head share one unlit material — fully opaque; no emissive. */
+        /** Dendritic spine stem+head share one unlit material ? fully opaque; no emissive. */
         function applySpineIdleVisual() {
           if (!spineStemMesh || !spineStemMesh.material) {
             return;
@@ -877,7 +951,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         var starColorNight = 0xa8b8d8;
         var starColorDay = 0xcc6633;
 
-        /** Day: lit Lambert so NTs are not full-brightness BasicMaterial “LEDs”; night keeps Basic cyan. */
+        /** Day: lit Lambert so NTs are not full-brightness BasicMaterial ?LEDs?; night keeps Basic cyan. */
         function applyNeurotransmitterMaterialsForTheme(isDayMode) {
           if (!nts || !nts.length) {
             return;
@@ -946,7 +1020,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
               renderer.toneMappingExposure = 0.86;
             }
             if (bloomPass) {
-              /** Hero page has no bloom — disable in day for the same crisp, bright look. */
+              /** Hero page has no bloom ? disable in day for the same crisp, bright look. */
               bloomPass.strength = 0;
               bloomPass.radius = 0.16;
               bloomPass.threshold = 1;
@@ -1122,8 +1196,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           }
           applySynapseAtlasBackgroundTheme(d);
           if (openPanelKey) {
-            panelName.textContent = labelForKey(openPanelKey);
-            panelDesc.textContent = textForKey(openPanelKey);
+            fillSynapsePanel(openPanelKey);
           }
         }
 
@@ -1245,9 +1318,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
             setTheme();
             applyI18nStatic();
             if (openPanelKey) {
-              panelName.textContent = labelForKey(openPanelKey);
-              panelDesc.textContent = textForKey(openPanelKey);
-              resetInfoPanelBodyScroll();
+              fillSynapsePanel(openPanelKey);
             }
           }).observe(document.documentElement, {
             attributes: true,
@@ -1264,8 +1335,23 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           document.getElementById("panel-close").addEventListener("click", function () {
             infoPanel.classList.remove("open");
             openPanelKey = null;
+            panelDetailExpanded = false;
+            if (panelDetailWrap) panelDetailWrap.hidden = true;
             infoPanel.setAttribute("aria-hidden", "true");
+            if (!lastTooltipLabel && tooltip) {
+              tooltip.style.display = "none";
+              tooltip.hidden = true;
+            }
           });
+          if (panelMore) {
+            panelMore.addEventListener("click", function () {
+              panelDetailExpanded = !panelDetailExpanded;
+              if (panelDetailWrap) panelDetailWrap.hidden = !panelDetailExpanded;
+              var ui = PANEL_UI[getLang() === "az" ? "az" : "en"] || PANEL_UI.en;
+              panelMore.textContent = panelDetailExpanded ? ui.showLess : ui.clinicalDetail;
+              panelMore.setAttribute("aria-expanded", panelDetailExpanded ? "true" : "false");
+            });
+          }
           setTheme();
           applyI18nStatic();
           setupSignalUi();
@@ -1535,7 +1621,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           return py - sphereR < AZ_MESH_Y_TOP && py + sphereR > AZ_MESH_Y_BOT;
         }
 
-        /** Push NT sphere centers out of the AZ slab (falling → cleft side; reuptake → terminal side). */
+        /** Push NT sphere centers out of the AZ slab (falling ? cleft side; reuptake ? terminal side). */
         function snapNeurosphereClearOfActiveZone(pos, sphereR, rising) {
           if (!sphereIntersectsActiveZoneDisc(pos.x, pos.y, pos.z, sphereR)) {
             return;
@@ -1648,7 +1734,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           }
         }
 
-        /** Pick ±90° rotation about X/Z that maximises world Y extent so the channel stands upright on the PSD. */
+        /** Pick ?90? rotation about X/Z that maximises world Y extent so the channel stands upright on the PSD. */
         function alignNicotinicReceptorUpright(rec) {
           var bestEy = -1;
           var bestQ = new THREE.Quaternion();
@@ -1794,7 +1880,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           );
         }
 
-        // Nicotinic AChR (ionotropic) — cool lavender / indigo; tall axis = membrane normal (+Y).
+        // Nicotinic AChR (ionotropic) ? cool lavender / indigo; tall axis = membrane normal (+Y).
         var nAChR_COLOR = 0x5a4a7a;
         var nAChR_EMISSIVE = 0x1a1028;
         var nAChR_EMI_I = 0.44;
@@ -1845,8 +1931,8 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         }
 
         var MITO_COUNT = 5;
-        // Presynaptic interior: loosely along the microtubule bundle (aligned with lowered terminal ~y 1.0–2.1);
-        // two high near the "roof", two mid, one lower by the synaptic-vesicle pool. Per-organelle s ≈0.88–1.08.
+        // Presynaptic interior: loosely along the microtubule bundle (aligned with lowered terminal ~y 1.0?2.1);
+        // two high near the "roof", two mid, one lower by the synaptic-vesicle pool. Per-organelle s ?0.88?1.08.
         var MITO_SPOTS = [
           { x: -0.28, y: 2.08, z: 0.12, rx: 0.18, ry: 0.62, rz: -0.12, s: 1.08 },
           { x: 0.42, y: 1.8, z: -0.2, rx: 0.11, ry: -0.38, rz: 0.2, s: 0.92 },
@@ -3309,36 +3395,92 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           }
         }
 
+
+        function splitClinicalText(description) {
+          var parts = String(description || "")
+            .split(/\n\s*\n/)
+            .map(function (p) { return p.trim(); })
+            .filter(Boolean);
+          if (parts.length >= 2) {
+            return { overview: parts[0], detail: parts.slice(1).join("\n\n") };
+          }
+          var text = String(description || "").trim();
+          var m = text.match(/^(.{40,}?[.!?])\s+(.+)$/);
+          if (m && m[2].length > 40) {
+            return { overview: m[1], detail: m[2] };
+          }
+          return { overview: text, detail: "" };
+        }
+
+        function fillSynapsePanel(key) {
+          if (!key || !panelName || !panelOverview) return;
+          var ui = PANEL_UI[getLang() === "az" ? "az" : "en"] || PANEL_UI.en;
+          var split = splitClinicalText(textForKey(key));
+          panelName.textContent = labelForKey(key);
+          panelOverview.textContent = split.overview || textForKey(key);
+          if (panelDetail) panelDetail.textContent = split.detail;
+          panelDetailExpanded = false;
+          if (panelDetailWrap) panelDetailWrap.hidden = true;
+          if (panelMore) {
+            var hasDetail = Boolean(split.detail);
+            panelMore.hidden = !hasDetail;
+            panelMore.textContent = ui.clinicalDetail;
+            panelMore.setAttribute("aria-expanded", "false");
+          }
+          openPanelKey = key;
+          infoPanel.classList.add("open");
+          infoPanel.setAttribute("aria-hidden", "false");
+          resetInfoPanelBodyScroll();
+        }
+
+        function findLabeledMesh(key) {
+          for (var i = 0; i < labeledMeshes.length; i++) {
+            if (labeledMeshes[i].userData.label === key) return labeledMeshes[i];
+          }
+          return null;
+        }
+
         function updatePinnedAnatomicalTooltip() {
-          if (!tooltip || !renderer || !camera) {
+          if (!tooltip || !renderer || !camera || !lastTooltipLabel) {
             return;
           }
           var k = lastTooltipLabel;
-          var spinePin = k === "Dendritic Spine" || k === "Spine Neck";
-          if (k !== "Presynaptic Terminal" && !spinePin) {
-            return;
-          }
           var anchor =
-            k === "Presynaptic Terminal" ? terminalMesh : k === "Spine Neck" ? spineStemMesh : spineHeadMesh;
+            k === "Presynaptic Terminal" && terminalMesh
+              ? terminalMesh
+              : k === "Spine Neck" && spineStemMesh
+                ? spineStemMesh
+                : k === "Dendritic Spine" && spineHeadMesh
+                  ? spineHeadMesh
+                  : findLabeledMesh(k);
           if (!anchor) {
+            tooltip.style.display = "none";
+            tooltip.hidden = true;
             return;
           }
-          anchor.getWorldPosition(_vPin);
-          _vPin.y += k === "Presynaptic Terminal" ? 0.58 : k === "Spine Neck" ? 0.65 : 0.5;
-          _vPin.project(camera);
-          if (Math.abs(_vPin.x) > 0.98 || Math.abs(_vPin.y) > 0.98) {
+          var box = new THREE.Box3().setFromObject(anchor, true);
+          if (box.isEmpty()) {
             tooltip.style.display = "none";
+            tooltip.hidden = true;
+            return;
+          }
+          _vPin.set((box.min.x + box.max.x) * 0.5, box.max.y, (box.min.z + box.max.z) * 0.5);
+          _vPin.project(camera);
+          if (_vPin.z > 1 || Math.abs(_vPin.x) > 1.15 || Math.abs(_vPin.y) > 1.15) {
+            tooltip.style.display = "none";
+            tooltip.hidden = true;
             return;
           }
           var rect = renderer.domElement.getBoundingClientRect();
-          var px = (_vPin.x * 0.5 + 0.5) * rect.width + rect.left;
-          var py = (-_vPin.y * 0.5 + 0.5) * rect.height + rect.top;
-          var tw = 200;
+          var px = (_vPin.x * 0.5 + 0.5) * rect.width;
+          var py = (-_vPin.y * 0.5 + 0.5) * rect.height;
+          tooltip.hidden = false;
           tooltip.style.display = "block";
-          tooltip.style.left = Math.max(4, Math.min(window.innerWidth - tw - 4, px - tw * 0.5)) + "px";
-          tooltip.style.top = Math.max(4, py - 36) + "px";
+          tooltip.style.left = "0";
+          tooltip.style.top = "0";
           tooltip.style.right = "auto";
           tooltip.style.bottom = "auto";
+          tooltip.style.transform = "translate(" + px + "px, " + py + "px) translate(-50%, -130%)";
         }
 
         function onPointerMove(e) {
@@ -3365,12 +3507,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           var pickIndex = stack.length === 1 ? 0 : (detail - 1) % stack.length;
           var k = findRootLabel(stack[pickIndex].object);
           if (!k) return;
-          openPanelKey = k;
-          panelName.textContent = labelForKey(k);
-          panelDesc.textContent = textForKey(k);
-          resetInfoPanelBodyScroll();
-          infoPanel.classList.add("open");
-          infoPanel.setAttribute("aria-hidden", "false");
+          fillSynapsePanel(k);
         }
 
         function onResize() {
@@ -3394,6 +3531,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           if (infoPanel && infoPanel.classList.contains("open") && openPanelKey && tooltip) {
             lastTooltipLabel = openPanelKey;
             tooltip.textContent = labelForKey(openPanelKey);
+            tooltip.hidden = false;
             tooltip.style.display = "block";
             return;
           }
@@ -3405,14 +3543,17 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
             if (k) {
               lastTooltipLabel = k;
               tooltip.textContent = labelForKey(k);
+              tooltip.hidden = false;
               tooltip.style.display = "block";
             } else {
               lastTooltipLabel = null;
               tooltip.style.display = "none";
+              tooltip.hidden = true;
             }
           } else {
             lastTooltipLabel = null;
             tooltip.style.display = "none";
+            tooltip.hidden = true;
           }
         }
 
@@ -3431,19 +3572,8 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           if (networkFrame % 2 === 0) {
             updateTooltip();
           }
-          if (tooltip && tooltip.style.display === "block") {
-            if (
-              lastTooltipLabel === "Dendritic Spine" ||
-              lastTooltipLabel === "Spine Neck" ||
-              lastTooltipLabel === "Presynaptic Terminal"
-            ) {
-              updatePinnedAnatomicalTooltip();
-            } else {
-              tooltip.style.right = "auto";
-              tooltip.style.bottom = "auto";
-              tooltip.style.left = pointerX + 15 + "px";
-              tooltip.style.top = pointerY + 15 + "px";
-            }
+          if (tooltip && tooltip.style.display === "block" && lastTooltipLabel) {
+            updatePinnedAnatomicalTooltip();
           }
 
           if (terminalMesh) {

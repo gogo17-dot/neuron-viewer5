@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — About</title>
+    <meta
+      name="description"
+      content="About NEYRON — a bilingual atlas built to make neuroscience clearer and more popular: interactive 3D anatomy, clinical notes, scans, and open reading."
+    />
+    <meta name="author" content="Omar Garagozov" />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — About" />
+    <meta
+      property="og:description"
+      content="A bilingual atlas built to make neuroscience clearer, closer, and more popular — 3D anatomy, clinical notes, scans, and open reading."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/about.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/about.html" />
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav17" />
+  </head>
+  <body data-page="about" class="about-page">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main" style="padding-top: 96px">
+        <div class="tag" data-en="About" data-az="Haqqında">About</div>
+        <h1 class="section-title about-title" data-en="About NEYRON" data-az="NEYRON haqqında">About NEYRON</h1>
+        <p
+          class="section-desc about-lead"
+          data-en="NEYRON exists to make neuroscience more popular and easier to learn. It is a bilingual atlas where you can turn 3D structure, read short clinical notes beside the models, explore MRI-style scans, and keep papers and open textbooks in one place — so more people can see how the nervous system works."
+          data-az="NEYRON neyroelmi daha populyar və öyrənilməsi asan etmək üçün yaradılıb. Bu, 3D strukturu fırlada, modellərin yanında qısa klinik qeydlər oxuya, MRT üslubunda skanlara baxa və məqalə ilə açıq dərslikləri bir yerdə saxlaya biləcəyiniz ikidilli atlasdır — daha çox insan sinir sisteminin necə işlədiyini görə bilsin."
+        >
+          NEYRON exists to make neuroscience more popular and easier to learn. It is a bilingual atlas where you can turn
+          3D structure, read short clinical notes beside the models, explore MRI-style scans, and keep papers and open
+          textbooks in one place — so more people can see how the nervous system works.
+        </p>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="Who it is for" data-az="Kimlər üçündür">Who it is for</h2>
+          <p
+            data-en="Students, educators, publishers, researchers, and curious readers with a strong interest in neuroscience and neurobiology. The UI stays bilingual so learners in Azerbaijan and readers abroad can use the same atlas."
+            data-az="Neyroelm və neyrobiologiyaya güclü marağı olan tələbələr, müəllimlər, naşirlər, tədqiqatçılar və maraqlı oxucular üçün. İnterfeys ikidillidir ki, Azərbaycanda və xaricdə eyni atlasdan istifadə olunsun."
+          >
+            Students, educators, publishers, researchers, and curious readers with a strong interest in neuroscience and
+            neurobiology. The UI stays bilingual so learners in Azerbaijan and readers abroad can use the same atlas.
+          </p>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="What you will find" data-az="Nə tapa bilərsiniz">What you will find</h2>
+          <ul class="about-list">
+            <li>
+              <a href="atlas.html" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <span
+                data-en=" — 3D viewers for neuron, synapse, meninges, cortex, brainstem, pathways, and more."
+                data-az=" — neyron, sinaps, meninges, qabıq, beyin sapı, yollar və digər 3D baxışlar."
+              >
+                — 3D viewers for neuron, synapse, meninges, cortex, brainstem, pathways, and more.
+              </span>
+            </li>
+            <li>
+              <a href="brain-bee.html" data-en="Brain Bee prep" data-az="Brain Bee hazırlığı">Brain Bee prep</a>
+              <span
+                data-en=" — anatomy and function quizzes with 3D atlas links, plus a patient-diagnosis drill."
+                data-az=" — 3D atlas keçidləri ilə anatomiya və funksiya testləri, həmçinin pasiyent diaqnozu məşqi."
+              >
+                — anatomy and function quizzes with 3D atlas links, plus a patient-diagnosis drill.
+              </span>
+            </li>
+            <li>
+              <a href="brain-scans/index.html" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <span
+                data-en=" — MRI-style exploration with region context."
+                data-az=" — region konteksti ilə MRT üslubunda kəşf."
+              >
+                — MRI-style exploration with region context.
+              </span>
+            </li>
+            <li>
+              <a href="articles.html" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <span
+                data-en=" — a curated shelf with original commentary and legal access links only."
+                data-az=" — orijinal şərh və yalnız qanuni giriş keçidləri olan seçilmiş rəf."
+              >
+                — a curated shelf with original commentary and legal access links only.
+              </span>
+            </li>
+            <li>
+              <a href="book.html" data-en="Books" data-az="Kitablar">Books</a>
+              <span
+                data-en=" — open textbooks you can read here when redistribution is allowed, plus link-only sources when it is not."
+                data-az=" — yenidən yayım icazəli olduqda burada oxunan açıq dərsliklər; əks halda yalnız keçid mənbələri."
+              >
+                — open textbooks you can read here when redistribution is allowed, plus link-only sources when it is
+                not.
+              </span>
+            </li>
+            <li>
+              <a href="publish.html" data-en="Publish" data-az="Nəşr et">Publish</a>
+              <span
+                data-en=" — propose a paper, book, or 3D atlas structure for review."
+                data-az=" — yoxlama üçün məqalə, kitab və ya 3D atlas strukturu təklif edin."
+              >
+                — propose a paper, book, or 3D atlas structure for review.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="How proposals are reviewed" data-az="Təkliflər necə yoxlanır">
+            How proposals are reviewed
+          </h2>
+          <p
+            data-en="Publish is a review workflow, not an open upload. You can propose a research article, a book, or a 3D atlas structure. Submit the details and licence answers (articles and books also include a short original summary). Next, the site author receives the proposal, checks accuracy and rights, then decides whether the proposed work gets published on this site."
+            data-az="Nəşr et açıq yükləmə deyil, baxış axınıdır. Tədqiqat məqaləsi, kitab və ya 3D atlas strukturu təklif edə bilərsiniz. Məlumatları və lisenziya cavablarını göndərin (məqalə və kitablar üçün qısa orijinal xülasə də lazımdır). Bundan sonra sayt müəllifi təklifi alır, dəqiqliyi və hüquqları yoxlayır, sonra təklif edilən əsərin bu saytda dərc olunub-olunmayacağına qərar verir."
+          >
+            Publish is a review workflow, not an open upload. You can propose a research article, a book, or a 3D atlas
+            structure. Submit the details and licence answers (articles and books also include a short original summary).
+            Next, the site author receives the proposal, checks accuracy and rights, then decides whether the proposed
+            work gets published on this site.
+          </p>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="Author" data-az="Müəllif">Author</h2>
+          <p
+            data-en="NEYRON is built and curated by Omar Garagozov."
+            data-az="NEYRON Omar Qaragözov tərəfindən qurulub və seçilib."
+          >
+            NEYRON is built and curated by Omar Garagozov.
+          </p>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="Licences &amp; teaching use" data-az="Lisenziyalar və tədris istifadəsi">
+            Licences &amp; teaching use
+          </h2>
+          <p
+            data-en="We host open textbooks only when the licence clearly allows redistribution (Creative Commons or public domain), with attribution. Several hosted titles are NonCommercial (NC) — while those files are on NEYRON, this site does not carry advertising or sell products tied to them. Free-to-read works without redistribution rights stay as external links. Article summaries are original commentary, not publisher abstracts."
+            data-az="Açıq dərslikləri yalnız lisenziya yenidən yayımı aydın icazə verdikdə (Creative Commons və ya ictimai domen), atributla host edirik. Host edilən bəzi əsərlər NonCommercial (NC)-dir — bu fayllar NEYRON-da olduğu müddətdə saytda reklam və ya onlara bağlı satış yoxdur. Yenidən yayım hüququ olmayan pulsuz oxunan əsərlər xarici keçid olaraq qalır. Məqalə xülasələri orijinal şərhdir, nəşriyyat abstraktı deyil."
+          >
+            We host open textbooks only when the licence clearly allows redistribution (Creative Commons or public
+            domain), with attribution. Several hosted titles are NonCommercial (NC) — while those files are on NEYRON,
+            this site does not carry advertising or sell products tied to them. Free-to-read works without redistribution
+            rights stay as external links. Article summaries are original commentary, not publisher abstracts.
+          </p>
+        </div>
+
+        <div class="about-block about-block--contact">
+          <h2 class="about-block__title" data-en="Contact" data-az="Əlaqə">Contact</h2>
+          <p class="about-contact">
+            <a href="mailto:omargaragozov@gmail.com">omargaragozov@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="about-actions">
+          <a class="about-action" href="atlas.html" data-en="Open the atlases" data-az="Atlasları aç">Open the atlases</a>
+          <a class="about-action about-action--ghost" href="publish.html" data-en="Propose a work" data-az="Əsər təklif et">
+            Propose a work
+          </a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">atlas.neyron.az</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
+      </footer>
+    </div>
+
+    <script src="site-shell.js"></script>
+    <script src="particles-bg.js"></script>
+  </body>
+</html>

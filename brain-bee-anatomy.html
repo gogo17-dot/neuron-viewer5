@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Brain Bee — Brain Bee neuroanatomy drill</title>
+    <meta
+      name="description"
+      content="Brain Bee identification practice: a structure is lit on a 3D atlas and you type its name, with no word bank."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Brain Bee neuroanatomy drill" />
+    <meta
+      property="og:description"
+      content="Name structures on the 3D atlases the way the identification round asks for it. Free bilingual prep on NEYRON."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/brain-bee-anatomy.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/brain-bee-anatomy.html" />
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav23" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+          "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body data-page="brain-bee" class="about-page">
+    <div id="page">
+      <nav class="site-nav" aria-label="Brain Bee">
+        <a class="brand" href="brain-bee.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Brain Bee
+        </a>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main" style="padding-top: 96px">
+        <div class="tag" data-en="IBB exam section" data-az="IBB imtahan bölməsi">IBB exam section</div>
+        <h1 class="section-title about-title" data-en="Neuroanatomy identification" data-az="Neyroanatomik tanınma">Neuroanatomy identification</h1>
+        <p
+          class="section-desc"
+          data-en="In the identification round a structure is pinned on a specimen, a section or a slide, and you write down what it is. Nobody hands you a list of options. This drill runs the same way on the 3D atlases: pick a region, one structure lights up, name it, then read what it does."
+          data-az="Tanınma turunda preparatda, kəsikdə və ya slaydda bir struktur işarələnir və siz onun nə olduğunu yazırsınız. Sizə variant siyahısı verilmir. Bu məşq 3D atlaslarda eyni qaydada işləyir: bölgə seçin, bir struktur işıqlanır, adını yazın, sonra funksiyasını oxuyun."
+        >
+          In the identification round a structure is pinned on a specimen, a section or a slide, and you write down what it is. Nobody hands you a list of options. This drill runs the same way on the 3D atlases: pick a region, one structure lights up, name it, then read what it does.
+        </p>
+
+        <div id="bb-anatomy-head"></div>
+
+        <div class="bb-stage" id="bb-anatomy-stage" hidden>
+          <canvas class="bb-stage__canvas" id="bb-stage-canvas"></canvas>
+          <p
+            class="bb-stage__note"
+            id="bb-stage-note"
+            data-en="Loading the 3D model…"
+            data-az="3D model yüklənir…"
+          >
+            Loading the 3D model…
+          </p>
+        </div>
+
+        <div id="bb-anatomy"></div>
+
+        <p
+          class="bb-disclaimer-inline"
+          data-en="Structures here are drawn from the same anatomical models as the atlases on this site. This is an independent educational project and is not affiliated with or endorsed by the International Brain Bee."
+          data-az="Buradaki strukturlar bu saytdaki atlaslarla eyni anatomik modellərdən götürülüb. Bu müstəqil tədris layihəsidir və Beynəlxalq Brain Bee ilə əlaqəli deyil, onun tərəfindən təsdiqlənməyib."
+        >
+          Structures here are drawn from the same anatomical models as the atlases on this site. This is an independent educational project and is not affiliated with or endorsed by the International Brain Bee.
+        </p>
+
+        <p class="bb-back">
+          <a class="about-action about-action--ghost" href="brain-bee.html" data-en="← Brain Bee prep" data-az="← Brain Bee hazırlığı">← Brain Bee prep</a>
+        </p>
+      </section>
+
+    </div>
+
+    <script src="site-shell.js"></script>
+    <script src="brain-bee-structures.js"></script>
+    <script src="brain-bee-core.js"></script>
+    <script type="module" src="brain-bee-anatomy.js"></script>
+  </body>
+</html>

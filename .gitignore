@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+_shot-*.png
+_push.cmd
+_push.log
+push-to-github.cmd
+push-to-github.log
+push-to-github-2.cmd
+push-to-github-2.log
+public/books/introduction-behavioral-neuroscience.pdf
+public/books/introduction-to-neuroscience.pdf
+push-to-github-*.cmd
+push-to-github-*.log

@@ -275,7 +275,7 @@
         offset: String(offset),
         sort: "published",
         order: "desc",
-        mailto: "hello@neyron.atlas.az",
+        mailto: "omargaragozov@gmail.com",
       }).toString();
     return fetch(url, { credentials: "omit", cache: "no-store" })
       .then(function (r) {

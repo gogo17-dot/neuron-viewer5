@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Publish</title>
+    <meta
+      name="description"
+      content="Propose a research article, book, or 3D atlas structure for NEYRON. Submissions are reviewed before anything is published."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Publish" />
+    <meta
+      property="og:description"
+      content="Submit a library proposal for review. Nothing goes live until verified."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/publish.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/publish.html" />
+    <script src="page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav17" />
+  </head>
+  <body data-page="publish" class="publish-page">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="publish-shell">
+        <header class="publish-reg-header">
+          <p class="publish-reg-kicker" data-en="Proposal" data-az="Təklif">Proposal</p>
+          <h1 class="publish-reg-title" data-en="Publish" data-az="Nəşr et">Publish</h1>
+          <p
+            class="publish-reg-lead"
+            data-en="Complete each step. Your proposal is reviewed before anything appears on Atlases, Articles, or Books."
+            data-az="Hər addımı tamamlayın. Təklifiniz Atlaslar, Məqalələr və ya Kitablar səhifəsində görünməzdən əvvəl yoxlanılır."
+          >
+            Complete each step. Your proposal is reviewed before anything appears on Atlases, Articles, or Books.
+          </p>
+        </header>
+
+        <div class="publish-progress" aria-label="Progress">
+          <div class="publish-progress__meta">
+            <span id="publish-step-label">Step 1 of 5</span>
+            <span id="publish-step-name" data-en="Getting started" data-az="Başlanğıc">Getting started</span>
+          </div>
+          <div class="publish-progress__bar" aria-hidden="true">
+            <div class="publish-progress__fill" id="publish-progress-fill"></div>
+          </div>
+        </div>
+
+        <form class="publish-panel" id="publish-form" novalidate>
+          <!-- Step 1 -->
+          <div class="publish-step is-active" data-step="0">
+            <h2 class="publish-step__title" data-en="Getting started" data-az="Başlanğıc">Getting started</h2>
+            <p
+              class="publish-step__help"
+              data-en="Tell us what you want to propose and how we can reach you."
+              data-az="Nə təklif etmək istədiyinizi və sizinlə necə əlaqə saxlaya biləcəyimizi bildirin."
+            >
+              Tell us what you want to propose and how we can reach you.
+            </p>
+
+            <div class="publish-q">
+              <p class="publish-q__label" id="workType-label" data-en="What are you proposing?" data-az="Nə təklif edirsiniz?">
+                What are you proposing?
+              </p>
+              <div class="publish-choice" role="radiogroup" aria-labelledby="workType-label">
+                <label class="publish-choice__item">
+                  <input type="radio" name="workType" value="article" checked />
+                  <span class="publish-choice__box">
+                    <span class="publish-choice__title" data-en="Research article" data-az="Tədqiqat məqaləsi">Research article</span>
+                    <span class="publish-choice__hint" data-en="Any research or scholarly paper" data-az="İstənilən tədqiqat və ya elmi məqalə">Any research or scholarly paper</span>
+                  </span>
+                </label>
+                <label class="publish-choice__item">
+                  <input type="radio" name="workType" value="book" />
+                  <span class="publish-choice__box">
+                    <span class="publish-choice__title" data-en="Book or textbook" data-az="Kitab və ya dərslik">Book or textbook</span>
+                    <span class="publish-choice__hint" data-en="Open textbook or authored volume" data-az="Açıq dərslik və ya müəllif kitabı">Open textbook or authored volume</span>
+                  </span>
+                </label>
+                <label class="publish-choice__item">
+                  <input type="radio" name="workType" value="atlas" />
+                  <span class="publish-choice__box">
+                    <span class="publish-choice__title" data-en="3D atlas structure" data-az="3D atlas strukturu">3D atlas structure</span>
+                    <span class="publish-choice__hint" data-en="Interactive anatomy model" data-az="Interaktiv anatomiya modeli">Interactive anatomy model</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="publish-q">
+              <label class="publish-q__label" for="contactName"
+                ><span data-en="Your full name" data-az="Tam adınız">Your full name</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <p class="publish-q__hint" data-en="As it should appear if we follow up about this proposal." data-az="Bu təklif barədə əlaqə saxlasaq necə görünməlidir.">
+                As it should appear if we follow up about this proposal.
+              </p>
+              <input class="publish-input" id="contactName" name="contactName" type="text" required autocomplete="name" maxlength="120" />
+            </div>
+
+            <div class="publish-q">
+              <label class="publish-q__label" for="contactEmail"
+                ><span data-en="Email address" data-az="E-poçt ünvanı">Email address</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <p class="publish-q__hint" data-en="We will only use this to discuss your proposal." data-az="Yalnız təklifinizi müzakirə etmək üçün istifadə olunacaq.">
+                We will only use this to discuss your proposal.
+              </p>
+              <input class="publish-input" id="contactEmail" name="contactEmail" type="email" required autocomplete="email" maxlength="160" />
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="publish-step" data-step="1" hidden>
+            <h2 class="publish-step__title" data-en="Work details" data-az="Əsər məlumatları">Work details</h2>
+            <p
+              class="publish-step__help"
+              data-en="Enter the details. Fields marked * are required. Optional IDs and links help when you have them."
+              data-az="Məlumatları daxil edin. * ilə işarələnənlər məcburidir. İstəyə bağlı identifikator və keçidlər varsa yazın."
+            >
+              Enter the details. Fields marked * are required. Optional IDs and links help when you have them.
+            </p>
+
+            <div class="publish-q">
+              <label class="publish-q__label" for="title"
+                ><span data-en="Title" data-az="Başlıq">Title</span><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <input class="publish-input" id="title" name="title" type="text" required maxlength="300" />
+            </div>
+            <div class="publish-q">
+              <label class="publish-q__label" for="authors"
+                ><span data-en="Author(s)" data-az="Müəllif(lər)">Author(s)</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <p class="publish-q__hint" data-en="List all authors, separated by commas." data-az="Bütün müəllifləri vergüllə ayıraraq yazın.">
+                List all authors, separated by commas.
+              </p>
+              <input class="publish-input" id="authors" name="authors" type="text" required maxlength="400" />
+            </div>
+            <div class="publish-q publish-q--third">
+              <label class="publish-q__label" for="year"
+                ><span data-en="Year" data-az="İl">Year</span><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <input class="publish-input" id="year" name="year" type="text" required inputmode="numeric" maxlength="12" placeholder="2024" />
+            </div>
+
+            <div data-for-type="article">
+              <div class="publish-q">
+                <label class="publish-q__label" for="journal"
+                  ><span data-en="Journal" data-az="Jurnal">Journal</span>
+                  <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                >
+                <input class="publish-input" id="journal" name="journal" type="text" maxlength="200" />
+              </div>
+              <div class="publish-row">
+                <div class="publish-q">
+                  <label class="publish-q__label" for="doi"
+                    >DOI <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                  >
+                  <input class="publish-input" id="doi" name="doi" type="text" maxlength="120" placeholder="10.…" />
+                </div>
+                <div class="publish-q">
+                  <label class="publish-q__label" for="pmid"
+                    >PMID <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                  >
+                  <input class="publish-input" id="pmid" name="pmid" type="text" maxlength="40" />
+                </div>
+              </div>
+              <div class="publish-q">
+                <label class="publish-q__label" for="sourceUrl"
+                  ><span data-en="Link (PubMed, publisher, or PMC)" data-az="Keçid (PubMed, nəşriyyat və ya PMC)"
+                    >Link (PubMed, publisher, or PMC)</span
+                  >
+                  <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                >
+                <p
+                  class="publish-q__hint"
+                  data-en="Helpful if you have one — not every paper has a PubMed ID. A publisher or DOI link is enough."
+                  data-az="Varsa faydalıdır — hər məqalədə PubMed ID olmur. Nəşriyyat və ya DOI keçidi kifayətdir."
+                >
+                  Helpful if you have one — not every paper has a PubMed ID. A publisher or DOI link is enough.
+                </p>
+                <input class="publish-input" id="sourceUrl" name="sourceUrl" type="url" maxlength="500" placeholder="https://" />
+              </div>
+            </div>
+
+            <div data-for-type="book" hidden>
+              <div class="publish-q">
+                <label class="publish-q__label" for="publisher"
+                  ><span data-en="Publisher" data-az="Nəşriyyat">Publisher</span>
+                  <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                >
+                <input class="publish-input" id="publisher" name="publisher" type="text" maxlength="200" />
+              </div>
+              <div class="publish-q">
+                <label class="publish-q__label" for="bookId"
+                  ><span data-en="ISBN or source URL" data-az="ISBN və ya mənbə URL">ISBN or source URL</span>
+                  <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                >
+                <input class="publish-input" id="bookId" name="bookId" type="text" maxlength="300" />
+              </div>
+              <div class="publish-q">
+                <label class="publish-q__label" for="bookFormat"
+                  ><span data-en="Preferred format" data-az="Üstünlük verilən format">Preferred format</span>
+                  <span class="publish-opt" data-en="(optional)" data-az="(istəyə bağlı)">(optional)</span></label
+                >
+                <select class="publish-input" id="bookFormat" name="bookFormat">
+                  <option value="pdf" data-en="PDF" data-az="PDF">PDF</option>
+                  <option value="epub" data-en="EPUB" data-az="EPUB">EPUB</option>
+                  <option value="link" data-en="Link only" data-az="Yalnız keçid">Link only</option>
+                  <option value="other" data-en="Other" data-az="Digər">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div data-for-type="atlas" hidden>
+              <div class="publish-q">
+                <label class="publish-q__label" for="atlasRegion"
+                  ><span data-en="What does the model show?" data-az="Model nəyi göstərir?">What does the model show?</span
+                  ><span class="publish-req" aria-hidden="true">*</span></label
+                >
+                <p
+                  class="publish-q__hint"
+                  data-en="e.g. meninges, brainstem nuclei, visual pathway, custom dissection."
+                  data-az="məs. meninges, beyin sapı nüvələri, görmə yolu, xüsusi disseksiya."
+                >
+                  e.g. meninges, brainstem nuclei, visual pathway, custom dissection.
+                </p>
+                <input class="publish-input" id="atlasRegion" name="atlasRegion" type="text" required maxlength="300" />
+              </div>
+              <div class="publish-q">
+                <label class="publish-q__label" for="modelUrl"
+                  ><span data-en="Link to model files" data-az="Model fayllarına keçid">Link to model files</span
+                  ><span class="publish-req" aria-hidden="true">*</span></label
+                >
+                <p
+                  class="publish-q__hint"
+                  data-en="Drive, GitHub, Sketchfab, or another share link we can review."
+                  data-az="Baxış üçün Drive, GitHub, Sketchfab və ya digər paylaşım keçidi."
+                >
+                  Drive, GitHub, Sketchfab, or another share link we can review.
+                </p>
+                <input class="publish-input" id="modelUrl" name="modelUrl" type="url" required maxlength="500" placeholder="https://" />
+              </div>
+              <div class="publish-q">
+                <label class="publish-q__label" for="modelFormat"
+                  ><span data-en="File format" data-az="Fayl formatı">File format</span
+                  ><span class="publish-req" aria-hidden="true">*</span></label
+                >
+                <select class="publish-input" id="modelFormat" name="modelFormat" required>
+                  <option value="glb" data-en="GLB / glTF" data-az="GLB / glTF">GLB / glTF</option>
+                  <option value="obj" data-en="OBJ / FBX (needs conversion)" data-az="OBJ / FBX (çevirmə lazımdır)">OBJ / FBX (needs conversion)</option>
+                  <option value="other" data-en="Other" data-az="Digər">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="publish-step" data-step="2" hidden>
+            <h2 class="publish-step__title" data-en="Rights and access" data-az="Hüquqlar və giriş">Rights and access</h2>
+            <p
+              class="publish-step__help"
+              data-en="These answers decide whether we can host files on NEYRON or only link to your source."
+              data-az="Bu cavablar faylları NEYRON-da host edə biləcəyimizi, yoxsa yalnız mənbəyə keçid verəcəyimizi müəyyən edir."
+            >
+              These answers decide whether we can host files on NEYRON or only link to your source.
+            </p>
+
+            <div class="publish-q">
+              <label class="publish-q__label" for="licence"
+                ><span data-en="Licence" data-az="Lisenziya">Licence</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <select class="publish-input" id="licence" name="licence" required>
+                <option value="" data-en="Select one" data-az="Birini seçin">Select one</option>
+                <option value="cc-by" data-en="CC BY" data-az="CC BY">CC BY</option>
+                <option value="cc-by-nc" data-en="CC BY-NC / BY-NC-SA" data-az="CC BY-NC / BY-NC-SA">CC BY-NC / BY-NC-SA</option>
+                <option value="cc-by-sa" data-en="CC BY-SA" data-az="CC BY-SA">CC BY-SA</option>
+                <option value="public-domain" data-en="Public domain" data-az="İctimai domen">Public domain</option>
+                <option
+                  value="all-rights"
+                  data-en="All rights reserved (link only)"
+                  data-az="Bütün hüquqlar qorunur (yalnız keçid)"
+                >
+                  All rights reserved (link only)
+                </option>
+                <option value="unsure" data-en="Not sure" data-az="Əmin deyiləm">Not sure</option>
+              </select>
+            </div>
+            <div class="publish-q">
+              <label class="publish-q__label" for="hosting"
+                ><span data-en="May NEYRON host a file?" data-az="NEYRON faylı host edə bilərmi?">May NEYRON host a file?</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <select class="publish-input" id="hosting" name="hosting" required>
+                <option value="" data-en="Select one" data-az="Birini seçin">Select one</option>
+                <option
+                  value="host"
+                  data-en="Yes — open licence / my rights allow hosting"
+                  data-az="Bəli — açıq lisenziya / hüquqlarım host etməyə icazə verir"
+                >
+                  Yes — open licence / my rights allow hosting
+                </option>
+                <option
+                  value="link"
+                  data-en="No — link to the source only"
+                  data-az="Xeyr — yalnız mənbəyə keçid"
+                >
+                  No — link to the source only
+                </option>
+                <option
+                  value="unsure"
+                  data-en="Unsure — please advise"
+                  data-az="Əmin deyiləm — məsləhət verin"
+                >
+                  Unsure — please advise
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="publish-step" data-step="3" hidden>
+            <h2
+              class="publish-step__title"
+              data-not-type="atlas"
+              data-en="Reader summary"
+              data-az="Oxucu xülasəsi"
+            >
+              Reader summary
+            </h2>
+            <h2
+              class="publish-step__title"
+              data-for-type="atlas"
+              hidden
+              data-en="Credit and notes"
+              data-az="Kredit və qeydlər"
+            >
+              Credit and notes
+            </h2>
+            <p
+              class="publish-step__help"
+              data-not-type="atlas"
+              data-en="Write in your own words. Do not paste a publisher abstract."
+              data-az="Öz sözlərinizlə yazın. Nəşriyyat abstraktını yapışdırmayın."
+            >
+              Write in your own words. Do not paste a publisher abstract.
+            </p>
+            <p
+              class="publish-step__help"
+              data-for-type="atlas"
+              hidden
+              data-en="Choose whether your credit appears on the atlas viewer, and add any notes for review."
+              data-az="Kreditin atlas baxışında görünüb-görünməyəcəyini seçin və yoxlama üçün istəyə bağlı qeyd yazın."
+            >
+              Choose whether your credit appears on the atlas viewer, and add any notes for review.
+            </p>
+
+            <div class="publish-q" data-not-type="atlas">
+              <label class="publish-q__label" for="summary"
+                ><span data-en="Short summary" data-az="Qısa xülasə">Short summary</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <p
+                class="publish-q__hint"
+                data-en="Explain what you are proposing and why it belongs on NEYRON."
+                data-az="Nə təklif etdiyinizi və niyə NEYRON-da yer almalı olduğunu izah edin."
+              >
+                Explain what you are proposing and why it belongs on NEYRON.
+              </p>
+              <textarea class="publish-input publish-input--area" id="summary" name="summary" rows="8" required maxlength="4000"></textarea>
+            </div>
+
+            <div class="publish-q" data-for-type="atlas" hidden>
+              <label class="publish-q__label" for="viewerCredit"
+                ><span data-en="Show your credit in the atlas viewer?" data-az="Kreditiniz atlas baxışında göstərilsin?">Show your credit in the atlas viewer?</span
+                ><span class="publish-req" aria-hidden="true">*</span></label
+              >
+              <p
+                class="publish-q__hint"
+                data-en="If yes, we put your author name(s), year, and © in the lower-right corner — e.g. © Your Name 2026."
+                data-az="Bəli seçsəniz, müəllif adı, il və © aşağı sağ küncdə görünər — məs. © Adınız 2026."
+              >
+                If yes, we put your author name(s), year, and © in the lower-right corner — e.g. © Your Name 2026.
+              </p>
+              <select class="publish-input" id="viewerCredit" name="viewerCredit" required>
+                <option value="" data-en="Select one" data-az="Birini seçin">Select one</option>
+                <option
+                  value="yes"
+                  data-en="Yes — show name, year, and © in the lower-right corner"
+                  data-az="Bəli — ad, il və © aşağı sağ küncdə göstərilsin"
+                >
+                  Yes — show name, year, and © in the lower-right corner
+                </option>
+                <option
+                  value="no"
+                  data-en="No — do not show a credit line"
+                  data-az="Xeyr — kredit sətri göstərilməsin"
+                >
+                  No — do not show a credit line
+                </option>
+              </select>
+            </div>
+
+            <div class="publish-q">
+              <label class="publish-q__label" for="notes" data-en="Notes for the reviewer (optional)" data-az="Yoxlayan üçün qeydlər (istəyə bağlı)">
+                Notes for the reviewer (optional)
+              </label>
+              <textarea class="publish-input publish-input--area" id="notes" name="notes" rows="4" maxlength="2000"></textarea>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="publish-step" data-step="4" hidden>
+            <h2 class="publish-step__title" data-en="Review and submit" data-az="Yoxla və göndər">Review and submit</h2>
+            <p
+              class="publish-step__help"
+              data-en="Check your answers. Nothing is published until the site author verifies this proposal."
+              data-az="Cavablarınızı yoxlayın. Sayt müəllifi təsdiqləyənə qədər heç nə dərc olunmur."
+            >
+              Check your answers. Nothing is published until the site author verifies this proposal.
+            </p>
+
+            <dl class="publish-review" id="publish-review"></dl>
+
+            <div class="publish-q publish-q--checks">
+              <label class="publish-check">
+                <input name="rightsOk" type="checkbox" required />
+                <span
+                  data-en="I have the right to propose this work, and the licence and link details are accurate."
+                  data-az="Bu əsəri təklif etmək hüququm var və lisenziya ilə keçid məlumatları doğrudur."
+                >
+                  I have the right to propose this work, and the licence and link details are accurate.
+                </span>
+              </label>
+              <label class="publish-check">
+                <input name="reviewOk" type="checkbox" required />
+                <span
+                  data-en="I understand this is only a proposal and will not go live automatically."
+                  data-az="Bunun yalnız təklif olduğunu və avtomatik canlıya keçməyəcəyini başa düşürəm."
+                >
+                  I understand this is only a proposal and will not go live automatically.
+                </span>
+              </label>
+              <label class="publish-check" data-not-type="atlas">
+                <input name="summaryOk" type="checkbox" required />
+                <span
+                  data-en="The summary is original wording (not copied from elsewhere)."
+                  data-az="Xülasə orijinal mətndir (başqa yerdən kopyalanmayıb)."
+                >
+                  The summary is original wording (not copied from elsewhere).
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <label class="publish-hp" aria-hidden="true">
+            <span>Company website</span>
+            <input name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          </label>
+
+          <p class="publish-status" id="publish-status" hidden role="status"></p>
+
+          <div class="publish-nav">
+            <button type="button" class="publish-btn publish-btn--ghost" id="publish-back" hidden data-en="Back" data-az="Geri">
+              Back
+            </button>
+            <div class="publish-nav__spacer"></div>
+            <button type="button" class="publish-btn publish-btn--primary" id="publish-next" data-en="Continue" data-az="Davam et">
+              Continue
+            </button>
+            <button type="submit" class="publish-btn publish-btn--primary" id="publish-send" hidden data-en="Submit proposal" data-az="Təklifi göndər">
+              Submit proposal
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">atlas.neyron.az</a>
+                    <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
+      </footer>
+    </div>
+
+    <script src="publish-config.js"></script>
+    <script src="site-shell.js"></script>
+    <script src="particles-bg.js"></script>
+    <script src="publish.js?v=3"></script>
+  </body>
+</html>

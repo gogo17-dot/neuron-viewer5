@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Brain scans</title>
+    <meta
+      name="description"
+      content="Explore MRI and atlas overlays in the browser — crosshair readout, labelled regions, and links into NEYRON 3D brain structures."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Brain scans" />
+    <meta
+      property="og:description"
+      content="Interactive MRI / atlas brain scans with region labels and 3D links."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/brain-scans/" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/brain-scans/" />
+    <script src="../page-base.js"></script>
+    <script>
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search).get("theme");
+          if (p !== "day" && p !== "night") p = localStorage.getItem("neyron_theme");
+          if (p === "day" || p === "night") document.documentElement.setAttribute("data-theme", p);
+          else document.documentElement.setAttribute("data-theme", "night");
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "night");
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="../site.css?v=nav17" />
+    <link rel="stylesheet" href="style.css?v=stage-stable-8" />
+  </head>
+  <body class="brain-scans-page" data-page="brain-scans">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="../index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="../atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="../brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="../brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="../hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="../articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="../book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="../publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="../about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="brain-scans-main" aria-label="Brain scans viewer">
+        <div id="app" class="page page--scans">
+<div class="scans-wrap">
+        <p class="space-notice" id="space-notice" hidden></p>
+
+        <div class="controls">
+          <div class="row" id="row-scan">
+            <span class="row-label" data-i18n="scans.row.scan">Scan</span>
+          </div>
+          <div class="row" id="row-atlas">
+            <span class="row-label" data-i18n="scans.row.overlay">Overlay</span>
+          </div>
+          <div class="row">
+            <span class="row-label" data-i18n="scans.row.view">View</span>
+            <div id="row-view" class="row-view"></div>
+            <div class="slider-wrap" id="opacity-wrap" hidden>
+              <span class="slider-label" data-i18n="scans.opacity">opacity</span>
+              <input type="range" id="opacity" min="0" max="1" step="0.05" value="0.65" />
+              <span id="opacity-val">0.65</span>
+            </div>
+            <div class="slider-wrap" id="frame-wrap" hidden>
+              <span class="slider-label" data-i18n="scans.frame">time</span>
+              <input type="range" id="frame" min="0" max="0" step="1" value="0" />
+              <span id="frame-val">1 / 1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="viewer-tip scans-tip" id="viewer-tip" hidden>
+            <p class="viewer-tip__text" id="tip-text" data-i18n="scans.tip">
+              Coloured atlas regions are on. The crosshair starts on a labelled structure — drag to explore.
+            </p>
+            <button class="viewer-tip__dismiss" id="tip-dismiss" type="button" data-i18n="scans.tipGotIt">
+              Got it
+            </button>
+          </div>
+          <canvas id="gl"></canvas>
+          <div class="overlay" id="overlay">
+            <div class="msg" id="overlay-msg" data-i18n="scans.loadingViewer">Loading viewer…</div>
+          </div>
+          <div class="hint" hidden aria-hidden="true"></div>
+          <footer class="copyright">© Omar Garagozov 2026</footer>
+        </div>
+
+        <div class="readout">
+          <div class="cell cell--region">
+            <div class="k" data-i18n="scans.region">Region</div>
+            <div class="v accent" id="out-label">—</div>
+            <p class="region-note" id="region-note" hidden></p>
+            <a class="region-3d-link" id="region-3d-link" hidden data-i18n="scans.open3d">Open in Brain structures →</a>
+          </div>
+          <div class="cell">
+            <div class="k" data-i18n="scans.mni">MNI (mm)</div>
+            <div class="v" id="out-mm">—</div>
+          </div>
+          <div class="cell">
+            <div class="k" data-i18n="scans.voxel">Voxel</div>
+            <div class="v dim" id="out-vox">—</div>
+          </div>
+          <div class="cell">
+            <div class="k" data-i18n="scans.intensity">Intensity</div>
+            <div class="v dim" id="out-val">—</div>
+          </div>
+        </div>
+
+        <footer
+          class="scans-footer"
+          data-i18n="scans.footer"
+          data-i18n-html
+        >
+          Imaging data courtesy of Chris Rorden, McCausland Center for Brain Imaging
+          (CC&nbsp;BY-NC&nbsp;4.0), the ICBM&nbsp;152 Nonlinear atlases, and the respective atlas
+          authors. Rendering by
+          <a href="https://niivue.com" target="_blank" rel="noopener">NiiVue</a>. For education only
+          — not for diagnostic use.
+        </footer>
+      </div>
+    </div>
+    
+        </div>
+      </main>
+    </div>
+
+    <script src="../site-shell.js"></script>
+    <script src="../particles-bg.js"></script>
+    <script type="module" src="scans.js?v=stage-stable-8"></script>
+  </body>
+</html>

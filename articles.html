@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>NEYRON — Articles</title>
+    <meta
+      name="description"
+      content="Curated neuroscience research library on NEYRON — original commentary with legal access links."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Articles" />
+    <meta
+      property="og:description"
+      content="A curated research library — original commentary on papers worth reading, with legal access links only."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/articles.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/articles.html" />
     <script src="page-base.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,15 +27,17 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav17" />
   </head>
-  <body data-page="articles">
+  <body data-page="articles" class="articles-page">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
     <div id="page">
       <nav class="site-nav" aria-label="Primary">
         <a class="brand" href="index.html">
-          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-mark" aria-hidden="true"></span>
           NEYRON
         </a>
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -27,9 +45,14 @@
         <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
         <div class="nav-center" id="primary-navigation">
           <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
-          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
           <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
-          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
         </div>
         <div class="nav-tools">
           <div class="lang-switch" role="group" aria-label="Language">
@@ -49,31 +72,90 @@
         </div>
       </nav>
 
-      <section class="content-section io-fade page-narrow" style="padding-top: 96px">
-        <div class="tag" data-en="Reading" data-az="Oxu">Reading</div>
+      <section class="content-section io-fade page-narrow articles-main" style="padding-top: 96px">
+        <div class="tag" data-en="Library" data-az="Kitabxana">Library</div>
         <h2 class="section-title" data-en="Articles" data-az="Məqalələr">Articles</h2>
         <p
           class="section-desc"
-          data-en="Curated papers, reviews, and atlases — tied to the structures you explore in the Atlas."
-          data-az="Seçilmiş məqalələr, icmallar və atlaslar — Atlasda araşdırdığınız strukturlarla əlaqələndirilmiş."
+          data-en="A curated research library — original commentary on papers worth reading, with legal access links only."
+          data-az="Seçilmiş tədqiqat kitabxanası — oxumağa dəyər məqalələr haqqında orijinal şərh və yalnız qanuni giriş keçidləri."
         >
-          Curated papers, reviews, and atlases — tied to the structures you explore in the Atlas.
+          A curated research library — original commentary on papers worth reading, with legal access links only.
         </p>
-        <div class="research-card">
-          <p data-en="Research papers coming soon..." data-az="Tədqiqat məqalələri tezliklə...">Research papers coming soon...</p>
+
+        <div class="articles-toolbar" role="search">
+          <label class="articles-search">
+            <span class="visually-hidden" data-en="Search" data-az="Axtarış">Search</span>
+            <input
+              id="articles-search"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              data-en-placeholder="Search title, author, summary…"
+              data-az-placeholder="Başlıq, müəllif, xülasə axtar…"
+              placeholder="Search title, author, summary…"
+            />
+          </label>
+          <div class="articles-sort" role="group" aria-label="Sort">
+            <span class="articles-toolbar__label" data-en="Sort" data-az="Sırala">Sort</span>
+            <button type="button" class="articles-sort__btn is-active" data-sort="year" data-en="Year" data-az="İl">
+              Year
+            </button>
+            <button type="button" class="articles-sort__btn" data-sort="title" data-en="Title" data-az="Başlıq">
+              Title
+            </button>
+          </div>
         </div>
-        <p style="margin-top: 48px; max-width: 520px; color: var(--text-muted); font-size: 0.85rem">
-          <a href="atlas.html"><span data-en="← Back to Atlas" data-az="← Atlasə qayıt">← Back to Atlas</span></a>
+
+        <div class="articles-topics" id="articles-topics" role="group" aria-label="Topics"></div>
+        <p class="articles-count" id="articles-count" hidden></p>
+        <div id="articles-list" class="articles-list"></div>
+        <p
+          class="articles-empty"
+          id="articles-empty"
+          hidden
+          data-en="No articles match these filters."
+          data-az="Bu filtrlərə uyğun məqalə yoxdur."
+        >
+          No articles match these filters.
         </p>
+
+        <footer class="articles-legal">
+          <p
+            data-en="Summaries on this page are original commentary by the site author — not publisher abstracts. Hosted PDFs are limited to Creative Commons / PMC Open Access Subset titles. Paywalled and free-to-read-but-not-redistributable papers are linked only."
+            data-az="Bu səhifədəki xülasələr sayt müəllifinin orijinal şərhidir — nəşriyyat abstraktları deyil. Host edilən PDF-lər yalnız Creative Commons / PMC Open Access Subset əsərləridir. Ödənişli və yenidən yayıla bilməyən məqalələr yalnız keçidlə verilir."
+          >
+            Summaries on this page are original commentary by the site author — not publisher abstracts. Hosted PDFs
+            are limited to Creative Commons / PMC Open Access Subset titles. Paywalled and
+            free-to-read-but-not-redistributable papers are linked only.
+          </p>
+        </footer>
       </section>
 
       <footer class="site-footer">
-        <div class="footer-brand">NEYRON</div>
-        <div class="footer-center">© 2026 neyron.atlas.az</div>
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">atlas.neyron.az</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
       </footer>
     </div>
 
     <script src="site-shell.js"></script>
     <script src="particles-bg.js"></script>
+    <script src="articles.js"></script>
   </body>
 </html>

@@ -3,7 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>NEYRON — Book</title>
+    <title>NEYRON — Books</title>
+    <meta
+      name="description"
+      content="Open neuroscience textbooks and NEYRON reading — hostable licences with attribution."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Books" />
+    <meta
+      property="og:description"
+      content="Read open neuroscience books on NEYRON — Creative Commons and public-domain titles with clear attribution."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/book.html" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/book.html" />
     <script src="page-base.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,15 +27,17 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=nav17" />
   </head>
-  <body data-page="book">
+  <body data-page="book" class="books-page">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
     <div id="page">
       <nav class="site-nav" aria-label="Primary">
         <a class="brand" href="index.html">
-          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-mark" aria-hidden="true"></span>
           NEYRON
         </a>
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -27,9 +45,14 @@
         <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
         <div class="nav-center" id="primary-navigation">
           <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
-          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
           <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
-          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
         </div>
         <div class="nav-tools">
           <div class="lang-switch" role="group" aria-label="Language">
@@ -49,21 +72,87 @@
         </div>
       </nav>
 
-      <section class="content-section io-fade page-narrow" style="padding-top: 96px">
-        <div class="tag" data-en="Publication" data-az="Nəşr">Publication</div>
-        <h2 class="section-title" data-en="The Book" data-az="Kitab">The Book</h2>
-        <div class="research-card">
-          <p data-en="Coming soon." data-az="Tezliklə.">Coming soon.</p>
+      <section class="content-section io-fade page-narrow books-main" style="padding-top: 96px">
+        <div class="tag" data-en="Library" data-az="Kitabxana">Library</div>
+        <h2 class="section-title" data-en="Books" data-az="Kitablar">Books</h2>
+        <p
+          class="section-desc"
+          data-en="Open textbooks you can read here, plus free sources we link out to when redistribution is not allowed."
+          data-az="Burada oxuya biləcəyiniz açıq dərsliklər və yenidən yayımı icazəsiz olan pulsuz mənbələrə keçidlər."
+        >
+          Open textbooks you can read here, plus free sources we link out to when redistribution is not allowed.
+        </p>
+
+        <div class="books-section" aria-labelledby="author-books-heading">
+          <h3 id="author-books-heading" class="books-section__title" data-en="By the author" data-az="Müəllifdən">
+            By the author
+          </h3>
+          <div id="author-books" class="books-list"></div>
         </div>
+
+        <div class="books-section" aria-labelledby="library-books-heading">
+          <h3
+            id="library-books-heading"
+            class="books-section__title"
+            data-en="Open neuroscience library"
+            data-az="Açıq neyroelm kitabxanası"
+          >
+            Open neuroscience library
+          </h3>
+          <p
+            class="books-section__note"
+            data-en="Hostable titles are served from this site. Link-only titles open at their source — we do not mirror them."
+            data-az="Host edilə bilən əsərlər bu saytdan verilir. Yalnız-keçid əsərlər mənbədə açılır — onları yerli saxlamırıq."
+          >
+            Hostable titles are served from this site. Link-only titles open at their source — we do not mirror them.
+          </p>
+          <div id="library-books" class="books-list"></div>
+        </div>
+
+        <footer class="books-legal" aria-labelledby="books-legal-heading">
+          <h3
+            id="books-legal-heading"
+            class="books-section__title"
+            data-en="Licences & attributions"
+            data-az="Lisenziyalar və atributlar"
+          >
+            Licences &amp; attributions
+          </h3>
+          <ul id="books-attributions" class="books-attributions"></ul>
+          <p
+            class="books-legal__site"
+            data-en="NEYRON books page © Omar Garagozov 2026. Educational use."
+            data-az="NEYRON kitablar səhifəsi © Omar Garagozov 2026. Tədris məqsədilə."
+          >
+            NEYRON books page © Omar Garagozov 2026. Educational use.
+          </p>
+        </footer>
       </section>
 
       <footer class="site-footer">
-        <div class="footer-brand">NEYRON</div>
-        <div class="footer-center">© 2026 neyron.atlas.az</div>
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">atlas.neyron.az</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
       </footer>
     </div>
 
     <script src="site-shell.js"></script>
     <script src="particles-bg.js"></script>
+    <script src="books.js"></script>
   </body>
 </html>

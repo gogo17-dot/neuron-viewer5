@@ -1,0 +1,22 @@
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+This folder holds streamline / tractography files derived from:
+
+  HCP-1065 population-averaged tractography atlas (Yeh, 2022)
+  https://github.com/frankyeh/data-atlas/releases/tag/hcp1065
+
+derived from Human Connectome Project young-adult diffusion MRI data.
+
+Licence text: https://creativecommons.org/licenses/by-sa/4.0/
+
+Required attribution (also shown on fibres.html):
+
+  Tractography from the HCP-1065 population-averaged atlas (Yeh, 2022),
+  derived from Human Connectome Project data, licensed CC BY-SA 4.0.
+
+ShareAlike applies to these atlas-derived files and adaptations of them.
+Other NEYRON pages and code outside this folder are not automatically
+relicensed by placing these files here.
+
+When distributing these files, include the attribution above and
+acknowledge the WU-Minn HCP open-access data use terms.

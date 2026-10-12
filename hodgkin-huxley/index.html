@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NEYRON — Neuron simulator</title>
+    <meta
+      name="description"
+      content="Interactive neuron simulator: inject current, watch the action potential, and see how Na⁺ and K⁺ gating (m, h, n) shape the spike — Hodgkin–Huxley teaching model."
+    />
+    <meta name="author" content="Omar Garagozov" />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Neuron simulator" />
+    <meta
+      property="og:description"
+      content="Watch membrane voltage and gating variables, block channels with TTX/TEA, and learn why a spike looks the way it does."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/hodgkin-huxley/" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/hodgkin-huxley/" />
+    <script src="../page-base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="../site.css?v=nav17" />
+  </head>
+  <body data-page="hodgkin-huxley" class="hh-page">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NEYRON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="../index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="../atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="../brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="../brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="../hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+          <a class="nav-link" href="../articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+          <a class="nav-link" href="../book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="../publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="../about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="hh-app">
+        <header class="hh-app__head">
+          <div class="hh-app__titles">
+            <div class="tag" data-en="Action potential model" data-az="Aksiyon potensialı modeli">Action potential model</div>
+            <h1 class="hh-app__title" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</h1>
+            <p
+              class="hh-app__lead"
+              data-en="Inject current into a model neuron and watch why the spike shape follows from Na⁺ and K⁺ gating — m rises fast, h falls, n lags. Pick Squid axon for the classic 1952 equations, or Mammalian-like for a faster cortical-style rate set."
+              data-az="Model neyrona cərəyan verin və spike formasının Na⁺ və K⁺ qapılarından niyə çıxdığını izləyin — m sürətli yüksəlir, h enir, n geridə qalır. Klassik 1952 tənlikləri üçün Kalamar aksonunu, daha sürətli kortikal üslub üçün Məməlilərə oxşar rejimini seçin."
+            >
+              Inject current into a model neuron and watch why the spike shape follows from Na⁺ and K⁺ gating — m rises fast, h falls, n lags. Pick Squid axon for the classic 1952 equations, or Mammalian-like for a faster cortical-style rate set.
+            </p>
+            <p class="hh-related">
+              <a
+                href="../neuron-dynamics.html"
+                data-en="Prefer the basics first? Open the Simple spike model (LIF) →"
+                data-az="Əvvəlcə əsaslar? Sadə spike modelini (LIF) açın →"
+                >Prefer the basics first? Open the Simple spike model (LIF) →</a
+              >
+            </p>
+          </div>
+        </header>
+
+        <div class="hh-layout">
+          <div class="hh-stage publish-panel">
+            <div class="hh-stage__meta">
+              <span class="hh-readout"
+                >V <strong id="hh-v">−65.0</strong><span class="hh-unit">mV</span></span
+              >
+              <span class="hh-readout"
+                >m <strong id="hh-m">0.05</strong></span
+              >
+              <span class="hh-readout"
+                >h <strong id="hh-h">0.60</strong></span
+              >
+              <span class="hh-readout"
+                >n <strong id="hh-n">0.32</strong></span
+              >
+              <span class="hh-status" id="hh-status" data-en="Resting" data-az="Sakit">Resting</span>
+            </div>
+
+            <canvas id="hh-plot" width="900" height="520" aria-label="Membrane potential and gating variables over time"></canvas>
+
+            <div class="hh-legend" aria-hidden="true">
+              <span class="hh-legend__item hh-legend__item--v"><i></i> V</span>
+              <span class="hh-legend__item hh-legend__item--m"><i></i> m</span>
+              <span class="hh-legend__item hh-legend__item--h"><i></i> h</span>
+              <span class="hh-legend__item hh-legend__item--n"><i></i> n</span>
+              <span class="hh-legend__item hh-legend__item--ina is-hidden" id="hh-leg-ina" hidden><i></i> I<sub>Na</sub></span>
+              <span class="hh-legend__item hh-legend__item--ik is-hidden" id="hh-leg-ik" hidden><i></i> I<sub>K</sub></span>
+            </div>
+
+            <p
+              class="hh-caption"
+              id="hh-pair-hint"
+              data-en="Paired pulse: at short intervals the second spike fails because h has not recovered — watch the gating panel."
+              data-az="Cüt impuls: qısa intervallarda ikinci spike uğursuz olur, çünki h hələ bərpa olunmayıb — qapı panelə baxın."
+            >
+              Paired pulse: at short intervals the second spike fails because h has not recovered — watch the gating panel.
+            </p>
+          </div>
+
+          <aside class="hh-controls publish-panel" aria-label="Simulator controls">
+            <h2 class="hh-controls__title" data-en="Model" data-az="Model">Model</h2>
+            <div class="hh-speed hh-model" role="group" aria-label="Neuron model preset">
+              <button
+                type="button"
+                class="hh-btn hh-model__btn is-active"
+                id="hh-mode-squid"
+                data-mode="squid"
+                data-en="Squid axon"
+                data-az="Kalamar aksonu"
+              >
+                Squid axon
+              </button>
+              <button
+                type="button"
+                class="hh-btn hh-btn--ghost hh-model__btn"
+                id="hh-mode-mammal"
+                data-mode="mammal"
+                data-en="Mammalian-like"
+                data-az="Məməlilərə oxşar"
+              >
+                Mammalian-like
+              </button>
+            </div>
+            <p class="hh-drug-hint" id="hh-mode-hint"
+              data-en="Classic Hodgkin–Huxley squid giant axon (1952) at cold reference temperature."
+              data-az="Klassik Hodgkin–Huxley kalamar nəhəng aksonu (1952), soyuq istinad temperaturunda."
+            >
+              Classic Hodgkin–Huxley squid giant axon (1952) at cold reference temperature.
+            </p>
+
+            <h2 class="hh-controls__title hh-controls__title--gap" data-en="Stimulus" data-az="Stimul">Stimulus</h2>
+
+            <label class="hh-slider">
+              <span class="hh-slider__label">
+                <span data-en="Amplitude" data-az="Amplituda">Amplitude</span>
+                <strong id="hh-amp-val">10.0</strong>
+                <span class="hh-unit">µA/cm²</span>
+              </span>
+              <input id="hh-amp" type="range" min="0" max="50" step="0.5" value="10" />
+            </label>
+
+            <label class="hh-slider">
+              <span class="hh-slider__label">
+                <span data-en="Duration" data-az="Müddət">Duration</span>
+                <strong id="hh-dur-val">1.0</strong>
+                <span class="hh-unit">ms</span>
+              </span>
+              <input id="hh-dur" type="range" min="0.1" max="5" step="0.1" value="1" />
+            </label>
+
+            <label class="hh-slider">
+              <span class="hh-slider__label">
+                <span data-en="Pair interval" data-az="Cüt interval">Pair interval</span>
+                <strong id="hh-gap-val">5.0</strong>
+                <span class="hh-unit">ms</span>
+              </span>
+              <input id="hh-gap" type="range" min="1" max="20" step="0.5" value="5" />
+            </label>
+
+            <div class="hh-actions">
+              <button type="button" class="hh-btn" id="hh-inject" data-en="Inject" data-az="Ver">Inject</button>
+              <button type="button" class="hh-btn" id="hh-paired" data-en="Paired pulse" data-az="Cüt impuls">Paired pulse</button>
+            </div>
+
+            <label class="hh-check">
+              <input type="checkbox" id="hh-hold-on" />
+              <span data-en="Continuous holding current" data-az="Davamlı saxlama cərəyanı">Continuous holding current</span>
+            </label>
+            <label class="hh-slider">
+              <span class="hh-slider__label">
+                <span data-en="Holding I" data-az="Saxlama I">Holding I</span>
+                <strong id="hh-hold-val">0.0</strong>
+                <span class="hh-unit">µA/cm²</span>
+              </span>
+              <input id="hh-hold" type="range" min="0" max="20" step="0.2" value="0" />
+            </label>
+
+            <h2 class="hh-controls__title hh-controls__title--gap" data-en="Channel blockers" data-az="Kanal blokatorları">Channel blockers</h2>
+            <p
+              class="hh-drug-hint"
+              data-en="TTX blocks voltage-gated Na⁺ channels. TEA blocks delayed-rectifier K⁺ channels."
+              data-az="TTX gərginliklə idarə olunan Na⁺ kanallarını bloklayır. TEA gecikmiş rektifikator K⁺ kanallarını bloklayır."
+            >
+              TTX blocks voltage-gated Na⁺ channels. TEA blocks delayed-rectifier K⁺ channels.
+            </p>
+            <div class="hh-actions">
+              <button type="button" class="hh-btn hh-btn--toggle" id="hh-ttx" aria-pressed="false" title="Tetrodotoxin → gNa = 0">
+                TTX
+              </button>
+              <button type="button" class="hh-btn hh-btn--toggle" id="hh-tea" aria-pressed="false" title="Tetraethylammonium → gK = 0">
+                TEA
+              </button>
+            </div>
+
+            <h2 class="hh-controls__title hh-controls__title--gap" data-en="Temperature" data-az="Temperatur">Temperature</h2>
+            <label class="hh-slider" id="hh-temp-wrap">
+              <span class="hh-slider__label">
+                <span data-en="T" data-az="T">T</span>
+                <strong id="hh-temp-val">6.3</strong>
+                <span class="hh-unit">°C</span>
+                <span class="hh-phi">φ <strong id="hh-phi-val">1.00</strong></span>
+              </span>
+              <input id="hh-temp" type="range" min="5" max="22" step="0.1" value="6.3" />
+            </label>
+            <p class="hh-drug-hint" id="hh-temp-mammal-note" hidden
+              data-en="Mammalian-like mode uses a cortical-style rate set (already warm kinetics). Temperature Q₁₀ on the squid equations is disabled here."
+              data-az="Məməlilərə oxşar rejim kortikal üslubda sürət dəstindən istifadə edir (artıq isti kinetika). Burada kalamar tənliklərinin temperatur Q₁₀-u söndürülüb."
+            >
+              Mammalian-like mode uses a cortical-style rate set (already warm kinetics). Temperature Q₁₀ on the squid equations is disabled here.
+            </p>
+
+            <h2 class="hh-controls__title hh-controls__title--gap" data-en="Playback" data-az="Oxutma">Playback</h2>
+            <div class="hh-speed" role="group" aria-label="Simulation speed">
+              <button type="button" class="hh-btn hh-btn--ghost hh-speed__btn" data-speed="0.25">0.25×</button>
+              <button type="button" class="hh-btn hh-speed__btn is-active" data-speed="1">1×</button>
+              <button type="button" class="hh-btn hh-btn--ghost hh-speed__btn" data-speed="4">4×</button>
+            </div>
+
+            <label class="hh-check">
+              <input type="checkbox" id="hh-show-i" />
+              <span data-en="Show INa &amp; IK panel" data-az="INa və IK panelini göstər">Show INa &amp; IK panel</span>
+            </label>
+
+            <div class="hh-actions hh-actions--foot">
+              <button type="button" class="hh-btn hh-btn--ghost" id="hh-reset" data-en="Reset" data-az="Sıfırla">Reset</button>
+            </div>
+          </aside>
+        </div>
+
+        <article class="hh-prose publish-panel">
+          <h2
+            class="hh-prose__title"
+            data-en="Why the spike looks like that"
+            data-az="Spike niyə belə görünür"
+          >
+            Why the spike looks like that
+          </h2>
+          <p
+            data-en="Press Inject with the defaults (10 µA/cm², 1 ms). In the top panel the membrane climbs past rest (−65 mV). Once Na⁺ activation (m) surges in the bottom panel, inward Na⁺ current becomes regenerative: depolarization opens more m, which opens more current — the rising phase. Near the peak, m is high but h is already falling, so Na⁺ conductance collapses even while voltage is still elevated. At the same time n rises more slowly, building outward K⁺ current. The falling phase is therefore h-inactivation plus n-activation working together, not a mysterious timer. After the spike undershoots toward EK because n is still elevated — residual K⁺ conductance — then n relaxes and V returns to rest. Try a 2 µA pulse to see a subthreshold bump with almost no m surge; enable TTX to erase spikes entirely; enable TEA to watch repolarization drag; use paired pulses at 2 ms vs 15 ms and watch whether h has recovered before the second stimulus."
+            data-az="Defoltlarla (10 µA/cm², 1 ms) Inject basın. Üst paneldə membran sakitlikdən (−65 mV) yuxarı qalxır. Alt paneldə Na⁺ aktivasiyası (m) sürətlə artanda daxilə yönələn Na⁺ cərəyanı regenerativ olur: depolyarizasiya daha çox m açır, o da daha çox cərəyan — yüksələn fazadır. Zirvəyə yaxın m yüksəkdir, amma h artıq enir, ona görə Na⁺ keçiriciliyi gərginlik hələ yüksək olsa belə çökür. Eyni zamanda n daha yavaş artır və xaricə K⁺ cərəyanı qurur. Enən faza gizli taymer deyil — h-inaktivasiya ilə n-aktivasiyanın birgə işidir. Spike-dan sonra EK-yə doğru undershoot olur, çünki n hələ yüksəkdir — qalıq K⁺ keçiriciliyi — sonra n rahatlaşır və V sakitliyə qayıdır. 2 µA impuls ilə demək olar ki, m artımı olmadan alt-hədd qabarını görün; TTX ilə spike-ları tam silin; TEA ilə repolarizasiyanın uzandığını izləyin; 2 ms və 15 ms cüt impulslarla ikinci stimuldan əvvəl h-ın bərpa olub-olmadığını yoxlayın."
+          >
+            Press Inject with the defaults (10 µA/cm², 1 ms). In the top panel the membrane climbs past rest (−65 mV). Once Na⁺ activation (m) surges in the bottom panel, inward Na⁺ current becomes regenerative: depolarization opens more m, which opens more current — the rising phase. Near the peak, m is high but h is already falling, so Na⁺ conductance collapses even while voltage is still elevated. At the same time n rises more slowly, building outward K⁺ current. The falling phase is therefore h-inactivation plus n-activation working together, not a mysterious timer. After the spike undershoots toward EK because n is still elevated — residual K⁺ conductance — then n relaxes and V returns to rest. Try a 2 µA pulse to see a subthreshold bump with almost no m surge; enable TTX to erase spikes entirely; enable TEA to watch repolarization drag; use paired pulses at 2 ms vs 15 ms and watch whether h has recovered before the second stimulus.
+          </p>
+          <p
+            class="hh-prose__note"
+            id="hh-model-note"
+            data-en="Model note (Squid): classic Hodgkin–Huxley squid giant axon at 6.3 °C. Use Mammalian-like for a faster cortical-style Na⁺/K⁺ rate set — still a single-compartment teaching scaffold, not a morphologically detailed cortical cell."
+            data-az="Model qeydi (Kalamar): klassik Hodgkin–Huxley kalamar nəhəng aksonu, 6.3 °C. Daha sürətli kortikal üslubda Na⁺/K⁺ sürət dəsti üçün Məməlilərə oxşar rejimini seçin — yenə tək kompartmentli tədris skeleti, morfoloji cəhətdən ətraflı kortikal hüceyrə deyil."
+          >
+            Model note (Squid): classic Hodgkin–Huxley squid giant axon at 6.3 °C. Use Mammalian-like for a faster cortical-style Na⁺/K⁺ rate set — still a single-compartment teaching scaffold, not a morphologically detailed cortical cell.
+          </p>
+          <p class="hh-credit">© Omar Garagozov 2026</p>
+        </article>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="../index.html">atlas.neyron.az</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="../atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="../brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="../brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="../hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="../publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="../articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="../book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="../about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
+      </footer>
+    </div>
+
+    <script src="../site-shell.js"></script>
+    <script src="../particles-bg.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

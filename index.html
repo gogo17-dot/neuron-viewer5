@@ -7,6 +7,22 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>NEYRON — Home</title>
+    <meta
+      name="description"
+      content="NEYRON — bilingual interactive neuroscience atlas: 3D anatomy, brain scans, neuron simulator, articles, and open books."
+    />
+    <meta property="og:site_name" content="NEYRON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NEYRON — Home" />
+    <meta
+      property="og:description"
+      content="Making neuroscience truly compelling — interactive atlases, MRI-style scans, and teaching simulators."
+    />
+    <meta property="og:url" content="https://atlas.neyron.az/" />
+    <meta property="og:image" content="https://atlas.neyron.az/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://atlas.neyron.az/logo.png" />
+    <link rel="canonical" href="https://atlas.neyron.az/" />
     <script src="page-base.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,18 +30,20 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="data:," />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="site.css?v=nav21" />
   </head>
   <body data-page="home">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
     <div id="page">
       <nav class="site-nav" aria-label="Primary">
         <a class="brand" href="index.html">
-          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-mark" aria-hidden="true"></span>
           NEYRON
         </a>
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -33,9 +51,14 @@
         <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
         <div class="nav-center" id="primary-navigation">
           <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
-          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlas" data-az="Atlas">Atlas</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="hodgkin-huxley/" data-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
           <a class="nav-link" href="articles.html" data-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
-          <a class="nav-link" href="book.html" data-nav="book" data-en="Book" data-az="Kitab">Book</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="publish.html" data-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
         </div>
         <div class="nav-tools">
           <div class="lang-switch" role="group" aria-label="Language">
@@ -63,10 +86,68 @@
               <span data-en="Explore the Human" data-az="İnsan beynini">Explore the Human</span><br />
               <span class="line-accent" data-en="Brain" data-az="Kəşf Edin">Brain</span>
             </h1>
-            <p class="hero-sub" data-en="Making Neuroscience Truly Compelling" data-az="Neyroelməni həqiqətən cəlbedici edirik">
-              Making Neuroscience Truly Compelling
-            </p>
+            <div class="hero-tagline">
+              <p class="hero-sub" data-en="Brain Bee prep and 3D neuroanatomy for students in Azerbaijan" data-az="Azərbaycanda şagirdlər üçün Brain Bee hazırlığı və 3D neyroanatomiya">
+                Brain Bee prep and 3D neuroanatomy for students in Azerbaijan
+              </p>
+              <span class="hero-rule" aria-hidden="true"></span>
+            </div>
+            <div class="hero-actions">
+              <a class="hero-cta hero-cta--primary" href="brain-bee.html" data-en="Start Brain Bee prep" data-az="Brain Bee hazırlığına başla">Start Brain Bee prep</a>
+              <a class="hero-cta hero-cta--ghost" href="atlas.html" data-en="Open 3D atlases" data-az="3D atlasları aç">Open 3D atlases</a>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section id="explore" class="content-section io-fade home-explore" aria-label="Explore NEYRON">
+        <div class="tag" data-en="Inside NEYRON" data-az="NEYRON-un içi">Inside NEYRON</div>
+        <h2 class="section-title" data-en="More than one page" data-az="Bir səhifədən daha çoxu">More than one page</h2>
+        <p
+          class="section-desc"
+          data-en="Interactive 3D atlases, MRI-style scans, a neuron simulator, Brain Bee prep, articles, and open books — pick a door and go in."
+          data-az="İnteraktiv 3D atlaslar, MRT tipli skanlar, neyron simulyatoru, Brain Bee hazırlığı, məqalələr və açıq kitablar — bir qapı seçin və içinə girin."
+        >
+          Interactive 3D atlases, MRI-style scans, a neuron simulator, Brain Bee prep, articles, and open books — pick a door and go in.
+        </p>
+        <div class="home-explore-grid">
+          <a class="home-explore-card" href="brain-bee.html">
+            <span class="home-explore-card__meta" data-en="Competition prep" data-az="Yarış hazırlığı">Competition prep</span>
+            <h3 class="home-explore-card__title" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</h3>
+            <p class="home-explore-card__hint" data-en="Lessons, anatomy drills, diagnosis cases, and exam-style practice for Brain Bee students." data-az="Brain Bee tələbələri üçün dərslər, anatomiya məşqləri, diaqnostika halları və imtahan tipli praktika.">Lessons, anatomy drills, diagnosis cases, and exam-style practice for Brain Bee students.</p>
+            <span class="home-explore-card__cta" data-en="Start Brain Bee →" data-az="Brain Bee-yə başla →">Start Brain Bee →</span>
+          </a>
+          <a class="home-explore-card" href="atlas.html">
+            <span class="home-explore-card__meta" data-en="12 interactive viewers" data-az="12 interaktiv baxış">12 interactive viewers</span>
+            <h3 class="home-explore-card__title" data-en="Atlases" data-az="Atlaslar">Atlases</h3>
+            <p class="home-explore-card__hint" data-en="Neuron, synapse, meninges, cortex, brainstem, pathways, and more — click structures for clinical notes." data-az="Neyron, sinaps, meninges, korteks, beyin gövdəsi, yollar və digərləri — struktura klikləyin, klinik qeydləri oxuyun.">Neuron, synapse, meninges, cortex, brainstem, pathways, and more — click structures for clinical notes.</p>
+            <span class="home-explore-card__cta" data-en="Open atlases →" data-az="Atlasları aç →">Open atlases →</span>
+          </a>
+          <a class="home-explore-card" href="brain-scans/index.html">
+            <span class="home-explore-card__meta" data-en="MRI · CT · atlases" data-az="MRT · KT · atlaslar">MRI · CT · atlases</span>
+            <h3 class="home-explore-card__title" data-en="Brain scans" data-az="Beyin skanları">Brain scans</h3>
+            <p class="home-explore-card__hint" data-en="Move the crosshair through real imaging space and read labelled regions as you explore." data-az="Crosshair-i real görüntüləmə fəzasında hərəkət etdirin və işarələnmiş bölgələri oxuyun.">Move the crosshair through real imaging space and read labelled regions as you explore.</p>
+            <span class="home-explore-card__cta" data-en="Open scans →" data-az="Skanları aç →">Open scans →</span>
+          </a>
+          <a class="home-explore-card" href="hodgkin-huxley/">
+            <span class="home-explore-card__meta" data-en="Live simulation" data-az="Canlı simulyasiya">Live simulation</span>
+            <h3 class="home-explore-card__title" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</h3>
+            <p class="home-explore-card__hint" data-en="Watch membrane voltage and ion gates — inject current, try TTX/TEA, compare squid and mammalian-like models." data-az="Membran potensialı və ion qapılarına baxın — cərəyan verin, TTX/TEA sınayın, modeləri müqayisə edin.">Watch membrane voltage and ion gates — inject current, try TTX/TEA, compare squid and mammalian-like models.</p>
+            <span class="home-explore-card__cta" data-en="Run simulator →" data-az="Simulyatoru aç →">Run simulator →</span>
+          </a>
+          
+          <a class="home-explore-card" href="articles.html">
+            <span class="home-explore-card__meta" data-en="Library" data-az="Kitabxana">Library</span>
+            <h3 class="home-explore-card__title" data-en="Articles and books" data-az="Məqalələr və kitablar">Articles and books</h3>
+            <p class="home-explore-card__hint" data-en="Curated papers with original commentary, plus open textbooks you can read on NEYRON." data-az="Orijinal şərhli seçilmiş məqalələr və NEYRON-da oxuna bilən açıq dərsliklər.">Curated papers with original commentary, plus open textbooks you can read on NEYRON.</p>
+            <span class="home-explore-card__cta" data-en="Browse library →" data-az="Kitabxanaya bax →">Browse library →</span>
+          </a>
+          <a class="home-explore-card" href="publish.html">
+            <span class="home-explore-card__meta" data-en="Contribute" data-az="Töhfə ver">Contribute</span>
+            <h3 class="home-explore-card__title" data-en="Publish" data-az="Nəşr et">Publish</h3>
+            <p class="home-explore-card__hint" data-en="Propose an article, book, or atlas structure — reviewed before anything goes live." data-az="Məqalə, kitab və ya atlas strukturu təklif edin — canlıya çıxmazdan əvvəl yoxlanılır.">Propose an article, book, or atlas structure — reviewed before anything goes live.</p>
+            <span class="home-explore-card__cta" data-en="Submit a proposal →" data-az="Təklif göndər →">Submit a proposal →</span>
+          </a>
         </div>
       </section>
 
@@ -75,10 +156,10 @@
         <h2 class="section-title" data-en="History of Neuroscience" data-az="Neyroelm tarixi">History of Neuroscience</h2>
         <p
           class="section-desc"
-          data-en="In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology. The interactive neuron in the hero inherits that arc—orbit it as you like—while the section below tracks what the field is doing today."
-          data-az="Platonun Afınasında «Timey» artıq başın iliyə oxşar yollarını ruh və bədənin görüşdüyü yer kimi təsəvvür edirdi — təcrübəsiz, lakin mikroskopdan əvvəl beyinin idarə orqanı olduğu fikrini işarə edirdi. Qədim Roma anatomiyası olan Galen irsi, son antiklik və orta əsrlər boyu saxlanıb mübahisə edildi; ventrikullar və sinirləri hiss və hərəkətə bağladı. İslamın qızıl dövrü həkimləri kranial müşahidələri klinika və şərhlərdə dəqiqləşdirdi. İntibah disseksiyaları bükülü serebrumu sistematik çəkməyə açdı; XIX əsr hüceyrə doktrinası və elektrofiziologiya əlavə etdi — qədim fəlsəfəni ölçülə bilən biologiyaya çevirdi. Qəhrəmandakı interaktiv neyron bu qövsü davam etdirir — istədiyiniz kimi orbit edin; aşağıdakı bölmə isə sahənin bu gün nə etdiyini izləyir."
+          data-en="In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology."
+          data-az="Platonun Afınasında «Timey» artıq başın iliyə oxşar yollarını ruh və bədənin görüşdüyü yer kimi təsəvvür edirdi — təcrübəsiz, lakin mikroskopdan əvvəl beyinin idarə orqanı olduğu fikrini işarə edirdi. Qədim Roma anatomiyası olan Galen irsi, son antiklik və orta əsrlər boyu saxlanıb mübahisə edildi; ventrikullar və sinirləri hiss və hərəkətə bağladı. İslamın qızıl dövrü həkimləri kranial müşahidələri klinika və şərhlərdə dəqiqləşdirdi. İntibah disseksiyaları bükülü serebrumu sistematik çəkməyə açdı; XIX əsr hüceyrə doktrinası və elektrofiziologiya əlavə etdi — qədim fəlsəfəni ölçülə bilən biologiyaya çevirdi."
         >
-          In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology. The interactive neuron in the hero inherits that arc—orbit it as you like—while the section below tracks what the field is doing today.
+          In Plato’s Athens, the Timaeus already imagined the marrow‑pathways of the head as a seat where soul and body meet—speculative, yet pointing toward the brain as the organ of command long before microscopy. Galen’s Roman anatomy, preserved and debated through late antiquity and the medieval world, tied ventricles and nerves to sensation and motion; Islamic Golden Age physicians refined cranial observations in clinics and commentary, carrying classical questions forward with new precision. Renaissance dissections opened the folded cerebrum to systematic drawing; the nineteenth century added the cell doctrine and electrophysiology, turning philosophy’s old guess into measurable biology.
         </p>
         <div class="discoveries-now">
           <h3 class="discoveries-now__title" data-en="What’s happening now" data-az="Bu gün nə baş verir">What’s happening now</h3>
@@ -87,8 +168,24 @@
       </section>
 
       <footer class="site-footer">
-        <div class="footer-brand">NEYRON</div>
-        <div class="footer-center">© 2026 neyron.atlas.az</div>
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">atlas.neyron.az</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 atlas.neyron.az</div>
       </footer>
     </div>
 
@@ -171,7 +268,7 @@
         });
 
         window.addEventListener("resize", function () {
-          if (window.innerWidth > 900) {
+          if (window.innerWidth > 1180) {
             var nt = document.getElementById("nav-toggle");
             if (nt) nt.checked = false;
             document.body.classList.remove("nav-menu-open");
@@ -350,9 +447,16 @@
         controls.dampingFactor = 0.06;
         controls.minDistance = 0.35;
         controls.maxDistance = 120;
-        controls.enablePan = true;
+        controls.enablePan = false;
+        controls.enableZoom = false;
+        controls.enableRotate = false;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.65;
+
+        hero.addEventListener("click", function () {
+          var next = document.getElementById("history");
+          if (next) next.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
 
         var starField = null;
         var neuralNetBg = null;
@@ -818,6 +922,7 @@
         }
       })();
     </script>
+    <script src="particles-bg.js"></script>
     <script src="discoveries-feed.js?v=3"></script>
   </body>
 </html>

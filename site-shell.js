@@ -13,6 +13,18 @@
     });
   }
 
+  /** Footer site links: hide the page you are already on. */
+  function hideCurrentFooterNav() {
+    var page = document.body.getAttribute("data-page");
+    if (!page) return;
+    document.querySelectorAll(".footer-links a[data-footer-nav]").forEach(function (el) {
+      var match = el.getAttribute("data-footer-nav") === page;
+      el.hidden = match;
+      if (match) el.setAttribute("aria-hidden", "true");
+      else el.removeAttribute("aria-hidden");
+    });
+  }
+
   function getLang() {
     return document.documentElement.getAttribute("lang") === "az" ? "az" : "en";
   }
@@ -22,6 +34,10 @@
     localStorage.setItem(LS_LANG, lang === "az" ? "az" : "en");
     document.querySelectorAll("[data-en][data-az]").forEach(function (el) {
       el.textContent = lang === "az" ? el.getAttribute("data-az") : el.getAttribute("data-en");
+    });
+    document.querySelectorAll("[data-en-placeholder][data-az-placeholder]").forEach(function (el) {
+      var ph = lang === "az" ? el.getAttribute("data-az-placeholder") : el.getAttribute("data-en-placeholder");
+      if (ph != null) el.setAttribute("placeholder", ph);
     });
     var en = document.getElementById("lang-en");
     var az = document.getElementById("lang-az");
@@ -33,6 +49,7 @@
       if (a && b) el.title = lang === "az" ? b + " / " + a : a + " / " + b;
     });
     setNavActive();
+    hideCurrentFooterNav();
     if (typeof window.__neyronPostStructuresLang === "function") {
       window.__neyronPostStructuresLang();
     }
@@ -98,7 +115,7 @@
   });
 
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 900) {
+    if (window.innerWidth > 1180) {
       var nt = document.getElementById("nav-toggle");
       if (nt) nt.checked = false;
       document.body.classList.remove("nav-menu-open");
@@ -107,6 +124,7 @@
 
   initLang();
   initTheme();
+  hideCurrentFooterNav();
 
   if (document.querySelector(".io-fade")) {
     if (typeof IntersectionObserver !== "undefined") {
