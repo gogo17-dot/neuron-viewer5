@@ -4,7 +4,7 @@
  */
 export const SITE = {
   name: 'NEYRON',
-  url: 'https://atlas.neyron.az',
+  url: 'https://gogo17-dot.github.io/neuron-viewer5',
   themeColorNight: '#020810',
   themeColorDay: '#faf8f4',
 };

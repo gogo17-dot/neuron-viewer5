@@ -84,7 +84,7 @@
     },
     {
       id: 'hedges-intro',
-      licenceTier: 'hostable',
+      licenceTier: 'link-only',
       title: 'Introduction to Neuroscience',
       authors: 'Valerie Hedges, Michigan State University',
       year: 2022,
@@ -96,11 +96,10 @@
       attribution:
         'Introduction to Neuroscience © 2022 by Valerie Hedges, licensed under CC BY-NC-SA.',
       sourceUrl: 'https://openbooks.lib.msu.edu/introneuroscience1',
-      localPath: 'public/books/introduction-to-neuroscience.pdf',
     },
     {
       id: 'openstax-behavioral',
-      licenceTier: 'hostable',
+      licenceTier: 'link-only',
       title: 'Introduction to Behavioral Neuroscience',
       authors:
         'Elizabeth D. Kirby, Melissa J. Glenn, Noah J. Sandstrom & Christina L. Williams (OpenStax)',
@@ -113,7 +112,6 @@
       attribution:
         'Introduction to Behavioral Neuroscience by Kirby, Glenn, Sandstrom & Williams. OpenStax. Access for free at https://openstax.org/books/introduction-behavioral-neuroscience/pages/1-introduction. Licensed under CC BY-NC-SA 4.0.',
       sourceUrl: 'https://openstax.org/details/books/introduction-behavioral-neuroscience',
-      localPath: 'public/books/introduction-behavioral-neuroscience.pdf',
     },
     {
       id: 'gray-anatomy',
