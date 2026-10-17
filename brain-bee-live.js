@@ -212,7 +212,7 @@ function renderQuestion(locked) {
   } else {
     var head = lastOutcome === "right" ? t("right") : lastOutcome === "timeout" ? t("timeout") : t("wrong");
     html += '<article class="bb-panel"><p class="bb-panel__title">' + BB.esc(head) + "</p>";
-    html += '<p class="bb-panel__text">' + BB.esc(BB.loc(q.why)) + "</p>";
+    html += '<p class="bb-panel__text">' + BB.whyHtml(BB.loc(q.why)) + "</p>";
     if (q.see) {
       html +=
         '<p class="bb-see"><a class="bb-link" href="' +

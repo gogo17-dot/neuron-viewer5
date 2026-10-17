@@ -107,6 +107,28 @@ function esc(s) {
     .replace(/"/g, "&quot;")
 }
 
+/* Explanation display: first sentence in bold (the key reason), rest as detail. Text unchanged. */
+// Returns [lead, rest]; lead is the first sentence, rest may be "".
+function splitLead(s) {
+  s = String(s == null ? "" : s);
+  var re = /[.!?](?=\s+["“(]?[A-ZÀ-ÖØ-ÞÇƏĞİÖŞÜ0-9])/g, m;
+  while ((m = re.exec(s))) {
+    var before = s.slice(0, m.index + 1);
+    var word = (before.match(/(\S+)$/) || [""])[0];
+    if (/^(e\.g|i\.e|vs|approx|cf|etc|Dr|St|Mr|Ms|No|Fig|ca)\.$/i.test(word)) continue;
+    if (/\.[A-Za-z]\.$/.test(word)) continue;          // "e.g." variants
+    var lead = before.trim(), rest = s.slice(m.index + 1).trim();
+    if (lead.split(/\s+/).length < 3) continue;        // too short to stand alone
+    return [lead, rest];
+  }
+  return [s.trim(), ""];
+}
+
+function whyHtml(text) {
+  const parts = splitLead(text)
+  return "<strong>" + esc(parts[0]) + "</strong>" + (parts[1] ? " " + esc(parts[1]) : "")
+}
+
 function current() {
   return session?.questions[qi] || null
 }
@@ -306,7 +328,7 @@ function feedbackHtml() {
     '</p><p class="bb-panel__label">' +
     esc(t("why")) +
     '</p><p class="bb-panel__text">' +
-    esc(feedbackExplanation()) +
+    whyHtml(feedbackExplanation()) +
     "</p>" +
     (lastGrade.correct ? "" : '<p class="bb-hint">' + esc(t("readWhy")) + "</p>") +
     "</div>" +

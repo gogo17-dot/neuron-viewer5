@@ -168,7 +168,7 @@ function render() {
       BB.esc(t("check")) +
       "</button></div>";
   } else {
-    html += '<article class="bb-panel"><p class="bb-panel__text">' + BB.esc(BB.loc(q.why)) + "</p>";
+    html += '<article class="bb-panel"><p class="bb-panel__text">' + BB.whyHtml(BB.loc(q.why)) + "</p>";
     if (q.see) {
       html +=
         '<p class="bb-see"><a class="bb-link" href="' +

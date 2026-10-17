@@ -159,6 +159,28 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
+/* Explanation display: first sentence in bold (the key reason), rest as detail. Text unchanged. */
+// Returns [lead, rest]; lead is the first sentence, rest may be "".
+function splitLead(s) {
+  s = String(s == null ? "" : s);
+  var re = /[.!?](?=\s+["“(]?[A-ZÀ-ÖØ-ÞÇƏĞİÖŞÜ0-9])/g, m;
+  while ((m = re.exec(s))) {
+    var before = s.slice(0, m.index + 1);
+    var word = (before.match(/(\S+)$/) || [""])[0];
+    if (/^(e\.g|i\.e|vs|approx|cf|etc|Dr|St|Mr|Ms|No|Fig|ca)\.$/i.test(word)) continue;
+    if (/\.[A-Za-z]\.$/.test(word)) continue;          // "e.g." variants
+    var lead = before.trim(), rest = s.slice(m.index + 1).trim();
+    if (lead.split(/\s+/).length < 3) continue;        // too short to stand alone
+    return [lead, rest];
+  }
+  return [s.trim(), ""];
+}
+
+function whyHtml(text) {
+  const parts = splitLead(text);
+  return "<strong>" + esc(parts[0]) + "</strong>" + (parts[1] ? " " + esc(parts[1]) : "");
+}
+
 var deck = shuffle(cases);
 var index = 0;
 var correct = 0;
@@ -285,7 +307,7 @@ function render() {
       '<p class="bb-panel__label">' +
       (lastOk ? esc(t("correct")) : esc(t("incorrect")) + " " + esc(c.answer)) +
       "</p>";
-    html += '<p class="bb-panel__text">' + esc(c.explanation) + "</p></article>";
+    html += '<p class="bb-panel__text">' + whyHtml(c.explanation) + "</p></article>";
     html += '<h2 class="about-block__title">' + esc(t("missedTitle")) + "</h2>";
     html += '<p class="bb-hint">' + esc(t("missedHint")) + "</p>";
     missed.forEach(function (k) {

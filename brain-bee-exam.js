@@ -265,7 +265,7 @@ function renderDone() {
         "</span> " +
         BB.esc(givenText) +
         "</p>";
-      html += '<p class="bb-missed__why">' + BB.esc(BB.loc(q.why)) + "</p>";
+      html += '<p class="bb-missed__why">' + BB.whyHtml(BB.loc(q.why)) + "</p>";
       if (q.see) {
         html +=
           '<p class="bb-see"><a class="bb-link" href="' +
