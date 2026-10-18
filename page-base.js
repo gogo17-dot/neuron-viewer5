@@ -31,3 +31,17 @@
     document.head.insertBefore(b, document.head.firstChild);
   } catch (e) {}
 })();
+
+/**
+ * Apply the saved theme and language before first paint. Pages ship with
+ * data-theme="night"; without this, light-theme visitors saw a dark frame
+ * and a 0.5s fade. site-shell.js still owns toggling later.
+ */
+(function () {
+  try {
+    var t = localStorage.getItem("neyron_theme");
+    if (t === "day" || t === "night") document.documentElement.setAttribute("data-theme", t);
+    var l = localStorage.getItem("neyron_lang");
+    if (l === "az" || l === "en") document.documentElement.lang = l;
+  } catch (e) {}
+})();

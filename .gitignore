@@ -15,3 +15,6 @@ public/books/introduction-behavioral-neuroscience.pdf
 public/books/introduction-to-neuroscience.pdf
 push-to-github-*.cmd
 push-to-github-*.log
+_update-history/
+neyron-*.patch
+push-retry.cmd

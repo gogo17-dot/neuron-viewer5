@@ -143,10 +143,47 @@
     if (match) match.scrollIntoView({ block: "center" });
   }
 
+  /* Display-only: break a long paragraph into short chunks of whole
+     sentences (~2-3 each). The lesson text itself is unchanged. */
+  function sentences(text) {
+    var out = [], start = 0, m;
+    var re = /[.!?](?=\s+["“(]?[A-ZÀ-ÖØ-ÞÇƏĞİÖŞÜ0-9])/g;
+    while ((m = re.exec(text))) {
+      var piece = text.slice(start, m.index + 1);
+      var word = (piece.match(/(\S+)$/) || [""])[0];
+      if (/^(e\.g|i\.e|vs|approx|cf|etc|Dr|St|Mr|Ms|No|Fig|ca)\.$/i.test(word)) continue;
+      if (/\.[A-Za-z]\.$/.test(word)) continue;
+      out.push(piece.trim());
+      start = m.index + 1;
+    }
+    var rest = text.slice(start).trim();
+    if (rest) out.push(rest);
+    return out;
+  }
+
+  function chunks(text) {
+    var words = function (x) { return x.split(/\s+/).filter(Boolean).length; };
+    if (words(text) <= 45) return [text];
+    var groups = [], cur = [];
+    sentences(text).forEach(function (sn) {
+      cur.push(sn);
+      if (words(cur.join(" ")) >= 30) { groups.push(cur.join(" ")); cur = []; }
+    });
+    if (cur.length) {
+      if (groups.length && words(cur.join(" ")) < 15) groups[groups.length - 1] += " " + cur.join(" ");
+      else groups.push(cur.join(" "));
+    }
+    return groups;
+  }
+
   function bodyHtml(lesson) {
     var html = '<div class="about-block bb-lesson-body">';
     (lesson.body || []).forEach(function (block) {
-      if (block.type === "p") html += "<p>" + esc(pick(block.text)) + "</p>";
+      if (block.type === "p") {
+        chunks(String(pick(block.text) || "")).forEach(function (c) {
+          html += "<p>" + esc(c) + "</p>";
+        });
+      }
     });
     html += "</div>";
     return html;
