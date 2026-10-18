@@ -46,8 +46,8 @@
       body {
         margin: 0;
         min-height: 100%;
-        font-family: "Share Tech Mono", ui-monospace, monospace;
-        font-size: 15px;
+        font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 16px;
         line-height: 1.55;
         background: var(--bg);
         color: var(--text);
@@ -3619,4 +3619,30 @@ body.hh-page #page {
   }
 }
 
-
+/* Typography split: readable sans for running text (body, above); the mono
+   face is kept for short labels, tags, buttons and readouts. */
+.hero-sub,
+.tag,
+.pill-tag,
+.nav-center .nav-link,
+.lang-switch button,
+.landing-kicker,
+.home-explore-card__cta,
+.atlas-choice-card__cta,
+.atlas-embed-note,
+.publish-reg-kicker,
+.publish-progress__meta,
+.publish-q__label,
+.publish-review dt,
+.ndyn-status,
+.hh-status,
+.bb-levels__n,
+.bb-habit__kicker,
+.bb-lesson-card__badge,
+.bb-lesson-card__pill,
+.bb-lesson-card__miss,
+.bb-panel__label,
+.bb-missed__tag,
+.bb-score {
+  font-family: "Share Tech Mono", ui-monospace, monospace;
+}
