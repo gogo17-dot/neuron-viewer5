@@ -59,6 +59,9 @@ const UI = {
   type: { en: "Type an answer", az: "Cavab yazın" },
   click: { en: "Click the labelled region.", az: "İşarələnmiş sahəyə klikləyin." },
   allModules: { en: "All modules", az: "Bütün modullar" },
+  topic: { en: "Topic:", az: "Mövzu:" },
+  changeTopic: { en: "Change ▾", az: "Dəyiş ▾" },
+  hideTopics: { en: "Hide ▴", az: "Gizlət ▴" },
   drill: { en: "Drill from your misses", az: "Səhvlərdən məşq" },
   startLessons: { en: "Start with the lessons →", az: "Dərslərdən başla →" },
   readFirst: { en: "Read the lesson first →", az: "Əvvəl dərsi oxu →" },
@@ -73,6 +76,7 @@ const scoreEl = document.getElementById("bb-score")
 const modes = ["learn", "review", "mixed", "mock"]
 let mode = params.get("mode") || "learn"
 let moduleId = params.get("module") || ""
+let topicsOpen = false
 let screen = "setup"
 let session = null
 let qi = 0
@@ -380,24 +384,37 @@ function renderSetup() {
   })
   html += "</div>"
   if (mods.length) {
-    html += '<div class="articles-topics bb-quiz-filters" role="group">'
+    // One compact line; the full topic list opens only on request.
     html +=
-      '<button type="button" class="articles-topic' +
-      (!moduleId ? " is-active" : "") +
-      '" data-module="">' +
-      esc(t("allModules")) +
-      "</button>"
-    mods.forEach((id) => {
+      '<p class="bb-hint bb-topic-line">' +
+      esc(t("topic")) +
+      " <strong>" +
+      esc(moduleId ? pick(moduleLabel(moduleId)) : t("allModules")) +
+      '</strong> <button type="button" class="articles-topic" id="bb-topics-toggle" aria-expanded="' +
+      (topicsOpen ? "true" : "false") +
+      '">' +
+      esc(topicsOpen ? t("hideTopics") : t("changeTopic")) +
+      "</button></p>"
+    if (topicsOpen) {
+      html += '<div class="articles-topics bb-quiz-filters" role="group">'
       html +=
         '<button type="button" class="articles-topic' +
-        (moduleId === id ? " is-active" : "") +
-        '" data-module="' +
-        esc(id) +
-        '">' +
-        esc(pick(moduleLabel(id))) +
+        (!moduleId ? " is-active" : "") +
+        '" data-module="">' +
+        esc(t("allModules")) +
         "</button>"
-    })
-    html += "</div>"
+      mods.forEach((id) => {
+        html +=
+          '<button type="button" class="articles-topic' +
+          (moduleId === id ? " is-active" : "") +
+          '" data-module="' +
+          esc(id) +
+          '">' +
+          esc(pick(moduleLabel(id))) +
+          "</button>"
+      })
+      html += "</div>"
+    }
   }
   if (!questions.length) {
     html += '<article class="bb-panel"><p class="bb-panel__text">' + esc(t("empty")) + "</p></article>"
@@ -657,8 +674,14 @@ app.addEventListener("click", (e) => {
     render()
     return
   }
+  if (btn.id === "bb-topics-toggle") {
+    topicsOpen = !topicsOpen
+    render()
+    return
+  }
   if (btn.hasAttribute("data-module")) {
     moduleId = btn.getAttribute("data-module") || ""
+    topicsOpen = false
     render()
     return
   }
