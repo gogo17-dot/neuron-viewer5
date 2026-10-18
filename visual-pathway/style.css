@@ -465,7 +465,7 @@ a {
   box-shadow: 0 0 0 1px rgba(0, 255, 204, 0.1), 0 10px 36px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(10px);
   color: rgba(200, 200, 200, 0.88);
-  font-family: 'Share Tech Mono', ui-monospace, monospace;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 [data-theme='day'] .structure-popup {
   background: #fffef4;

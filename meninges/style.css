@@ -447,3 +447,9 @@ a {
     touch-action: none;
   }
 }
+
+/* Readable sans for the description text; labels keep the mono face. */
+.info-panel__detail,
+.info-panel__detail-wrap {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}

@@ -10,9 +10,9 @@
         --text: #c8f0e0;
         --text-muted: rgba(200, 240, 224, 0.45);
         --nav-bg: rgba(2, 8, 16, 0.88);
-        --border: rgba(0, 255, 140, 0.12);
-        --card-bg: rgba(128, 128, 128, 0.04);
-        --card-bg-hover: rgba(128, 128, 128, 0.08);
+        --border: rgba(200, 240, 224, 0.12);
+        --card-bg: #070d14; /* opaque: same look, background lines stay behind */
+        --card-bg-hover: #0c1219;
         --particle-line: rgba(0, 255, 140, 0.4);
         --particle-dot: rgba(0, 255, 140, 0.35);
         --hero-bg: #020810;
@@ -25,9 +25,9 @@
         --text: #2a1a08;
         --text-muted: rgba(42, 26, 8, 0.68);
         --nav-bg: rgba(250, 248, 244, 0.92);
-        --border: rgba(200, 80, 10, 0.12);
-        --card-bg: rgba(128, 128, 128, 0.04);
-        --card-bg-hover: rgba(128, 128, 128, 0.08);
+        --border: rgba(42, 26, 8, 0.12);
+        --card-bg: #f5f3ef;
+        --card-bg-hover: #f0eeeb;
         --particle-line: rgba(224, 90, 16, 0.3);
         --particle-dot: rgba(224, 90, 16, 0.45);
         --hero-bg: #faf8f4;
@@ -565,7 +565,7 @@
         border: 1px solid var(--border);
         border-radius: 12px;
         overflow: hidden;
-        background: rgba(128, 128, 128, 0.04);
+        background: var(--card-bg);
         transition: border-color 0.2s ease, transform 0.2s ease;
       }
 
@@ -618,7 +618,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 24px;
-        background: rgba(128, 128, 128, 0.04);
+        background: var(--card-bg);
       }
 
       .research-card p {
@@ -938,7 +938,9 @@
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-right: 1px solid var(--border);
-          box-shadow: inset 3px 0 0 var(--accent), 12px 0 40px rgba(0, 0, 0, 0.22);
+          /* Outer shadow only while open: when closed the drawer sits off-screen
+             and its shadow used to leak onto the page as a grey smudge. */
+          box-shadow: inset 3px 0 0 var(--accent);
           z-index: 54;
           transform: translate3d(-100%, 0, 0);
           transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
@@ -948,6 +950,7 @@
 
         #nav-toggle:checked ~ .nav-center {
           transform: translate3d(0, 0, 0);
+          box-shadow: inset 3px 0 0 var(--accent), 12px 0 40px rgba(0, 0, 0, 0.22);
         }
 
         .nav-center .nav-link {
@@ -1418,7 +1421,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   padding: 1.25rem 1.35rem;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(128, 128, 128, 0.04);
+  background: var(--card-bg);
 }
 
 .book-card--author {
@@ -1574,7 +1577,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: rgba(128, 128, 128, 0.04);
+  background: var(--card-bg);
   color: var(--text);
   font-family: inherit;
   font-size: 0.88rem;
@@ -1607,7 +1610,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
   cursor: pointer;
-  background: rgba(128, 128, 128, 0.04);
+  background: var(--card-bg);
   color: var(--text-muted);
   border: 1px solid var(--border);
 }
@@ -1653,7 +1656,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .article-choice-card:hover {
   border-color: var(--accent);
-  background: rgba(128, 128, 128, 0.08);
+  background: var(--card-bg-hover);
   transform: translateY(-2px);
 }
 
@@ -2255,7 +2258,8 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   opacity: 0.92;
 }
 
-.about-action--ghost {
+.about-action--ghost,
+[data-theme='day'] .about-action--ghost {
   background: transparent;
   color: var(--accent);
 }
@@ -3652,4 +3656,24 @@ body.hh-page #page {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Accent restraint: the accent colour is kept for the brand, the headline
+   accent word, buttons, links, active states and scores. Headings use the
+   text colour; small kicker labels use the muted colour. */
+.about-block__title,
+.bb-panel__title,
+.bb-result__name {
+  color: var(--text);
+}
+
+.tag,
+.pill-tag,
+.home-explore-card__meta,
+.bb-panel__label,
+.bb-lesson-card__badge,
+.bb-lesson-card__pill,
+.bb-missed__tag,
+.bb-levels__n {
+  color: var(--text-muted);
 }
