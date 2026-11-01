@@ -4032,3 +4032,26 @@ body.hh-page #page {
 [data-theme="day"] .hx-prev--quiz { color: #2a1a08; }
 [data-theme="day"] .hx-quiz__opt { border-color: rgba(42, 26, 8, 0.16); background: #faf8f4; }
 [data-theme="day"] .hx-quiz__opt.is-right { border-color: #e05a10; background: rgba(224, 90, 16, 0.12); color: #b8460a; }
+
+/* ===== Atlases page: every card spins its own 3D model ===== */
+.atlas-hub-section .atlas-choice-grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+.atlas-choice-card--live {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.atlas-choice-card--live .hx-prev {
+  aspect-ratio: 16 / 10;
+  margin-bottom: 4px;
+}
+@media (max-width: 560px) {
+  .atlas-hub-section .atlas-choice-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .atlas-choice-card--live { padding: 10px; }
+  .atlas-choice-card--live .atlas-choice-card__hint,
+  .atlas-choice-card--live .atlas-choice-card__cta { display: none; }
+  .atlas-choice-card--live .atlas-choice-card__title { font-size: 1.05rem; margin: 2px 0 0; }
+}
+.atlas-hub-section.page-narrow { max-width: 1120px; }
