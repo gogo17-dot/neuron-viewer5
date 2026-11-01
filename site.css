@@ -4010,3 +4010,25 @@ body.hh-page #page {
   color: var(--text-muted);
 }
 .about-founder > p + p { margin-top: 10px; }
+
+/* ===== Shorter hero: let the video title peek in on the first screen ===== */
+#hero { min-height: 84vh; min-height: 84svh; }
+.hero-overlay { min-height: calc(84vh - 60px); min-height: calc(84svh - 60px); padding-bottom: 28px; }
+@media (max-width: 760px) {
+  #hero { min-height: 78svh; }
+  .hero-overlay { min-height: calc(78svh - 60px - env(safe-area-inset-top, 0px)); padding-bottom: 20px; }
+}
+.home-video { padding-top: 0; }
+@media (max-width: 760px) and (max-height: 780px) {
+  #hero { min-height: 88svh; }
+  .hero-overlay { min-height: calc(88svh - 60px - env(safe-area-inset-top, 0px)); }
+}
+
+/* ===== Day mode: live card previews switch to cream + orange ===== */
+[data-theme="day"] .hx-prev {
+  background: #f5f3ef;
+  border-color: rgba(42, 26, 8, 0.12);
+}
+[data-theme="day"] .hx-prev--quiz { color: #2a1a08; }
+[data-theme="day"] .hx-quiz__opt { border-color: rgba(42, 26, 8, 0.16); background: #faf8f4; }
+[data-theme="day"] .hx-quiz__opt.is-right { border-color: #e05a10; background: rgba(224, 90, 16, 0.12); color: #b8460a; }
