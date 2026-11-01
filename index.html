@@ -36,7 +36,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="stylesheet" href="site.css?v=design1" />
+    <link rel="stylesheet" href="site.css?v=video1" />
   </head>
   <body data-page="home">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -96,6 +96,26 @@
         </div>
       </section>
 
+      <section id="intro-video" class="home-video" aria-label="NEYRON intro video">
+        <div class="home-video__frame">
+          <video
+            id="home-video"
+            class="home-video__player"
+            playsinline
+            preload="none"
+            poster="media/neyron-intro-poster.jpg?v=1"
+            width="1920"
+            height="1080"
+            data-src-en="media/neyron-intro-en.mp4?v=1"
+            data-src-az="media/neyron-intro-az.mp4?v=1"
+          ></video>
+          <button type="button" class="home-video__play" id="home-video-play" aria-label="Play the NEYRON video" data-tooltip-en="Play video" data-tooltip-az="Videonu oynat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          </button>
+        </div>
+        <p class="home-video__note" data-en="From a tiny worm to you · 0:49" data-az="Kiçik bir qurddan sənə qədər · 0:47">From a tiny worm to you · 0:49</p>
+      </section>
+
       <section id="explore" class="content-section io-fade home-explore" aria-label="Explore NEYRON">
         <div class="tag" data-en="Inside NEYRON" data-az="NEYRON-un içi">Inside NEYRON</div>
         <h2 class="section-title" data-en="More than one page" data-az="Bir səhifədən daha çoxu">More than one page</h2>
@@ -144,13 +164,6 @@
             <p class="home-explore-card__hint" data-en="Propose an article, book, or atlas structure — reviewed before anything goes live." data-az="Məqalə, kitab və ya atlas strukturu təklif edin — canlıya çıxmazdan əvvəl yoxlanılır.">Propose an article, book, or atlas structure — reviewed before anything goes live.</p>
             <span class="home-explore-card__cta" data-en="Submit a proposal →" data-az="Təklif göndər →">Submit a proposal →</span>
           </a>
-        </div>
-      </section>
-
-      <section id="history" class="content-section io-fade">
-        <div class="discoveries-now">
-          <h3 class="discoveries-now__title" data-en="What’s happening now" data-az="Bu gün nə baş verir">What’s happening now</h3>
-          <div class="discovery-grid" role="list"></div>
         </div>
       </section>
 
@@ -912,6 +925,32 @@
       })();
     </script>
     <script src="particles-bg.js?v=r1"></script>
-    <script src="discoveries-feed.js?v=r1"></script>
+    <script>
+      /* Intro video: Azerbaijani voice (Ibrahim Mammadli) or English (Michael), following the site language. */
+      (function () {
+        var v = document.getElementById("home-video");
+        var btn = document.getElementById("home-video-play");
+        var note = document.querySelector(".home-video__note");
+        if (!v || !btn) return;
+        function lang() { return document.documentElement.getAttribute("lang") === "az" ? "az" : "en"; }
+        function srcFor(l) { return v.getAttribute("data-src-" + l); }
+        function setSrc(keepTime) {
+          var want = srcFor(lang());
+          if (v.getAttribute("src") === want) return;
+          var wasPlaying = !v.paused, t = v.currentTime || 0;
+          v.setAttribute("src", want);
+          if (note) note.textContent = lang() === "az" ? note.getAttribute("data-az") : note.getAttribute("data-en");
+          if (wasPlaying) { v.currentTime = keepTime ? t : 0; v.play().catch(function () {}); }
+        }
+        btn.addEventListener("click", function () {
+          setSrc(false);
+          v.controls = true;
+          btn.hidden = true;
+          v.play().catch(function () { btn.hidden = false; });
+        });
+        v.addEventListener("ended", function () { v.controls = false; btn.hidden = false; v.load(); });
+        new MutationObserver(function () { if (v.getAttribute("src")) setSrc(false); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      })();
+    </script>
   </body>
 </html>

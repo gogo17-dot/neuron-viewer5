@@ -3677,3 +3677,76 @@ body.hh-page #page {
 .bb-levels__n {
   color: var(--text-muted);
 }
+
+/* ===== Homepage intro video (right under the hero) ===== */
+.home-video {
+  position: relative;
+  z-index: 2;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 8px 20px 48px;
+}
+.home-video__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #020810;
+  box-shadow: 0 0 60px rgba(0, 255, 140, 0.08);
+}
+.home-video__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #020810;
+}
+.home-video__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 84px;
+  height: 84px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: #00ff8c; /* always the video's own green: the button sits on the dark film in both themes */
+  color: #020810;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 10px rgba(0, 255, 140, 0.15), 0 0 40px rgba(0, 255, 140, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.home-video__play svg {
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  fill: currentColor;
+}
+.home-video__play:hover,
+.home-video__play:focus-visible {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 0 14px rgba(0, 255, 140, 0.2), 0 0 56px rgba(0, 255, 140, 0.6);
+}
+.home-video__play[hidden] {
+  display: none;
+}
+.home-video__note {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+@media (max-width: 640px) {
+  .home-video { padding: 0 16px 32px; }
+  .home-video__frame { border-radius: 10px; }
+  .home-video__play { width: 68px; height: 68px; }
+  .home-video__play svg { width: 28px; height: 28px; }
+}
+
+[data-theme="day"] .home-video__frame {
+  border-color: rgba(42, 26, 8, 0.18);
+  box-shadow: 0 12px 40px rgba(42, 26, 8, 0.18);
+}
