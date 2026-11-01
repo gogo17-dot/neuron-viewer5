@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&family=Mansalva&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="favicon.png" type="image/png" />
@@ -36,7 +36,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="stylesheet" href="site.css?v=video1" />
+    <link rel="stylesheet" href="site.css?v=alive2" />
   </head>
   <body data-page="home">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -97,6 +97,22 @@
       </section>
 
       <section id="intro-video" class="home-video" aria-label="NEYRON intro video">
+        <svg class="crayon-defs" width="0" height="0" aria-hidden="true" focusable="false">
+          <filter id="crayon" x="-5%" y="-20%" width="110%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d" />
+            <feTurbulence type="fractalNoise" baseFrequency="1.7" numOctaves="1" seed="3" result="g" />
+            <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 2" result="holes" />
+            <feComposite in="d" in2="holes" operator="in" />
+          </filter>
+        </svg>
+        <div class="home-video__crayon">
+          <h2 class="home-video__title" data-en="The brain’s 500-million-year story" data-az="Beynin 500 milyon illik hekayəsi">The brain’s 500-million-year story</h2>
+          <svg class="home-video__arrow" viewBox="0 0 120 90" aria-hidden="true" focusable="false">
+            <path d="M8 10 C 40 6, 78 18, 92 56" />
+            <path d="M78 46 L 93 60 L 103 40" />
+          </svg>
+        </div>
         <div class="home-video__frame">
           <video
             id="home-video"
@@ -116,6 +132,28 @@
         <p class="home-video__note" data-en="From a tiny worm to you · 0:49" data-az="Kiçik bir qurddan sənə qədər · 0:47">From a tiny worm to you · 0:49</p>
       </section>
 
+      <section class="home-stats io-fade" aria-label="NEYRON in numbers">
+        <div class="home-stats__grid">
+          <div class="home-stats__item"><span class="home-stats__n" data-count="429">429</span><span class="home-stats__label" data-en="practice questions" data-az="məşq sualı">practice questions</span></div>
+          <div class="home-stats__item"><span class="home-stats__n" data-count="149">149</span><span class="home-stats__label" data-en="brain structures" data-az="beyin strukturu">brain structures</span></div>
+          <div class="home-stats__item"><span class="home-stats__n" data-count="27">27</span><span class="home-stats__label" data-en="patient cases" data-az="pasiyent halı">patient cases</span></div>
+          <div class="home-stats__item"><span class="home-stats__n" data-count="14">14</span><span class="home-stats__label" data-en="3D atlases" data-az="3D atlas">3D atlases</span></div>
+        </div>
+      </section>
+
+      <section class="qotd io-fade" id="qotd" aria-label="Question of the day">
+        <div class="qotd__card">
+          <div class="qotd__head">
+            <span class="qotd__tag" data-en="Question of the day" data-az="Günün sualı">Question of the day</span>
+            <span class="qotd__streak" id="qotd-streak" hidden></span>
+          </div>
+          <p class="qotd__q" id="qotd-q" aria-live="polite">…</p>
+          <div class="qotd__choices" id="qotd-choices"></div>
+          <p class="qotd__why" id="qotd-why" hidden></p>
+          <a class="qotd__more" id="qotd-more" href="practice.html" hidden data-en="Keep practising →" data-az="Məşqə davam et →">Keep practising →</a>
+        </div>
+      </section>
+
       <section id="explore" class="content-section io-fade home-explore" aria-label="Explore NEYRON">
         <div class="tag" data-en="Inside NEYRON" data-az="NEYRON-un içi">Inside NEYRON</div>
         <h2 class="section-title" data-en="More than one page" data-az="Bir səhifədən daha çoxu">More than one page</h2>
@@ -126,32 +164,33 @@
         >
           Interactive 3D atlases, MRI-style scans, a neuron simulator, Brain Bee prep, articles, and open books — pick a door and go in.
         </p>
-        <div class="home-explore-grid">
-          <a class="home-explore-card" href="brain-bee.html">
+        <div class="home-explore-grid home-explore-grid--live">
+          <a class="home-explore-card home-explore-card--live" href="brain-bee.html"><div class="hx-prev hx-prev--quiz" aria-hidden="true"><p class="hx-quiz__q"></p><div class="hx-quiz__opts"></div></div>
             <span class="home-explore-card__meta" data-en="Competition prep" data-az="Yarış hazırlığı">Competition prep</span>
             <h3 class="home-explore-card__title" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</h3>
             <p class="home-explore-card__hint" data-en="Lessons, anatomy drills, diagnosis cases, and exam-style practice for Brain Bee students." data-az="Brain Bee tələbələri üçün dərslər, anatomiya məşqləri, diaqnostika halları və imtahan tipli praktika.">Lessons, anatomy drills, diagnosis cases, and exam-style practice for Brain Bee students.</p>
             <span class="home-explore-card__cta" data-en="Start Brain Bee →" data-az="Brain Bee-yə başla →">Start Brain Bee →</span>
           </a>
-          <a class="home-explore-card" href="atlas.html">
+          <a class="home-explore-card home-explore-card--live" href="atlas.html"><div class="hx-prev" aria-hidden="true"><video class="hx-loop" muted loop playsinline preload="none" poster="media/preview-brain.jpg?v=1" data-src="media/preview-brain.mp4?v=1"></video></div>
             <span class="home-explore-card__meta" data-en="14 interactive viewers" data-az="14 interaktiv baxış">14 interactive viewers</span>
             <h3 class="home-explore-card__title" data-en="Atlases" data-az="Atlaslar">Atlases</h3>
             <p class="home-explore-card__hint" data-en="Neuron, synapse, meninges, cortex, brainstem, pathways, and more — click structures for clinical notes." data-az="Neyron, sinaps, meninges, korteks, beyin gövdəsi, yollar və digərləri — struktura klikləyin, klinik qeydləri oxuyun.">Neuron, synapse, meninges, cortex, brainstem, pathways, and more — click structures for clinical notes.</p>
             <span class="home-explore-card__cta" data-en="Open atlases →" data-az="Atlasları aç →">Open atlases →</span>
           </a>
-          <a class="home-explore-card" href="brain-scans/index.html">
+          <a class="home-explore-card home-explore-card--live" href="brain-scans/index.html"><div class="hx-prev" aria-hidden="true"><video class="hx-loop" muted loop playsinline preload="none" poster="media/preview-mri.jpg?v=1" data-src="media/preview-mri.mp4?v=1"></video></div>
             <span class="home-explore-card__meta" data-en="MRI · CT · atlases" data-az="MRT · KT · atlaslar">MRI · CT · atlases</span>
             <h3 class="home-explore-card__title" data-en="Brain scans" data-az="Beyin skanları">Brain scans</h3>
             <p class="home-explore-card__hint" data-en="Move the crosshair through real imaging space and read labelled regions as you explore." data-az="Crosshair-i real görüntüləmə fəzasında hərəkət etdirin və işarələnmiş bölgələri oxuyun.">Move the crosshair through real imaging space and read labelled regions as you explore.</p>
             <span class="home-explore-card__cta" data-en="Open scans →" data-az="Skanları aç →">Open scans →</span>
           </a>
-          <a class="home-explore-card" href="hodgkin-huxley/">
+          <a class="home-explore-card home-explore-card--live" href="hodgkin-huxley/"><div class="hx-prev" aria-hidden="true"><canvas class="hx-trace" width="560" height="360"></canvas></div>
             <span class="home-explore-card__meta" data-en="Live simulation" data-az="Canlı simulyasiya">Live simulation</span>
             <h3 class="home-explore-card__title" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</h3>
             <p class="home-explore-card__hint" data-en="Watch membrane voltage and ion gates — inject current, try TTX/TEA, compare squid and mammalian-like models." data-az="Membran potensialı və ion qapılarına baxın — cərəyan verin, TTX/TEA sınayın, modeləri müqayisə edin.">Watch membrane voltage and ion gates — inject current, try TTX/TEA, compare squid and mammalian-like models.</p>
             <span class="home-explore-card__cta" data-en="Run simulator →" data-az="Simulyatoru aç →">Run simulator →</span>
           </a>
-          
+        </div>
+        <div class="home-explore-grid home-explore-grid--compact">
           <a class="home-explore-card" href="articles.html">
             <span class="home-explore-card__meta" data-en="Library" data-az="Kitabxana">Library</span>
             <h3 class="home-explore-card__title" data-en="Articles and books" data-az="Məqalələr və kitablar">Articles and books</h3>
@@ -851,6 +890,67 @@
         initTheme();
         applyViewTheme(document.documentElement.getAttribute("data-theme") === "day" ? "day" : "night");
 
+
+        /* Firing pulse: a glow travels from the cell body down the axon every few seconds. */
+        var neuronPulse = null;
+        function createNeuronPulse(root) {
+          root.updateMatrixWorld(true);
+          var pts = [], v = new THREE.Vector3();
+          root.traverse(function (o) {
+            if (!o.isMesh || o.isPoints || !o.geometry || !o.geometry.attributes.position) return;
+            var pos = o.geometry.attributes.position, stride = Math.max(1, Math.floor(pos.count / 6000));
+            for (var i = 0; i < pos.count; i += stride) { v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); pts.push(v.clone()); }
+          });
+          if (pts.length < 50) return null;
+          var c = new THREE.Vector3(); pts.forEach(function (p) { c.add(p); }); c.multiplyScalar(1 / pts.length);
+          /* main axis by power iteration on the covariance */
+          var cov = [[0,0,0],[0,0,0],[0,0,0]];
+          pts.forEach(function (p) { var d = [p.x - c.x, p.y - c.y, p.z - c.z]; for (var a = 0; a < 3; a++) for (var b = 0; b < 3; b++) cov[a][b] += d[a] * d[b]; });
+          var ax = [1, 0.3, 0.2];
+          for (var it = 0; it < 30; it++) { var n = [0,0,0]; for (var a2 = 0; a2 < 3; a2++) for (var b2 = 0; b2 < 3; b2++) n[a2] += cov[a2][b2] * ax[b2]; var l = Math.hypot(n[0], n[1], n[2]) || 1; ax = [n[0]/l, n[1]/l, n[2]/l]; }
+          var axis = new THREE.Vector3(ax[0], ax[1], ax[2]);
+          var ts = pts.map(function (p) { return p.clone().sub(c).dot(axis); });
+          var tmin = Math.min.apply(null, ts), tmax = Math.max.apply(null, ts), NB = 40, bins = [];
+          for (var k = 0; k < NB; k++) bins.push({ s: new THREE.Vector3(), n: 0 });
+          pts.forEach(function (p, i) { var bi = Math.min(NB - 1, Math.floor((ts[i] - tmin) / (tmax - tmin) * NB)); bins[bi].s.add(p); bins[bi].n++; });
+          var path = bins.filter(function (b) { return b.n > 0; }).map(function (b) { return b.s.multiplyScalar(1 / b.n); });
+          /* the end with more mesh is the cell body + dendrites: start there */
+          var q = Math.floor(NB / 4), headN = 0, tailN = 0;
+          for (var h = 0; h < q; h++) { headN += bins[h].n; tailN += bins[NB - 1 - h].n; }
+          if (tailN > headN) path.reverse();
+          /* smooth the centreline */
+          var sm = path.map(function (p, i) { var a3 = path[Math.max(0, i - 2)], b3 = path[Math.min(path.length - 1, i + 2)]; return p.clone().add(a3).add(b3).multiplyScalar(1 / 3); });
+          var curve = new THREE.CatmullRomCurve3(sm);
+          var size = tmax - tmin;
+          var cv = document.createElement("canvas"); cv.width = cv.height = 64;
+          var g = cv.getContext("2d"), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+          gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.25, "rgba(255,255,255,0.8)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+          g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+          var tex = new THREE.CanvasTexture(cv), sprites = [];
+          for (var t2 = 0; t2 < 7; t2++) {
+            var m = new THREE.SpriteMaterial({ map: tex, color: 0x00ff8c, transparent: true, depthWrite: false, depthTest: false, toneMapped: false });
+            var sp = new THREE.Sprite(m); sp.scale.setScalar(size * (0.15 - t2 * 0.016)); sp.renderOrder = 10; scene.add(sp); sprites.push(sp);
+          }
+          var light = new THREE.PointLight(0x00ff8c, 0, size * 0.45); scene.add(light);
+          var PERIOD = 3.4, TRAVEL = 1.7;
+          return {
+            update: function (t) {
+              var day = viewTheme === "day", col = day ? 0xe05a10 : 0x00ff8c;
+              var ph = t % PERIOD, k = ph / TRAVEL;
+              for (var i = 0; i < sprites.length; i++) {
+                var kk = k - i * 0.035, sp2 = sprites[i];
+                sp2.material.color.setHex(col);
+                if (kk < 0 || kk > 1) { sp2.material.opacity = 0; continue; }
+                var e = kk < 0.5 ? 2 * kk * kk : 1 - Math.pow(-2 * kk + 2, 2) / 2;
+                sp2.position.copy(curve.getPointAt(Math.min(0.999, e)));
+                var fade = Math.min(1, kk * 6, (1 - kk) * 5);
+                sp2.material.opacity = fade * (1 - i / sprites.length) * 0.95;
+              }
+              if (k >= 0 && k <= 1) { light.color.setHex(col); light.position.copy(sprites[0].position); light.intensity = 2.2 * Math.min(1, k * 6, (1 - k) * 5); }
+              else light.intensity = 0;
+            }
+          };
+        }
         var GLB_URL = "./neuron.glb";
         var loader = new THREE.GLTFLoader();
         loader.load(
@@ -871,6 +971,7 @@
               if (o.isMesh) o.castShadow = false;
             });
             scene.add(root);
+            try { neuronPulse = createNeuronPulse(root); } catch (e) { neuronPulse = null; }
             neuronAuraNet = createOrganicNeuronAura(root);
             var pageTheme = document.documentElement.getAttribute("data-theme") === "day" ? "day" : "night";
             applyViewTheme(pageTheme);
@@ -910,6 +1011,7 @@
           if (starField) starField.rotation.y += 0.00012;
           if (neuralNetBg) neuralNetBg.update(tSec);
           if (neuronAuraNet) neuronAuraNet.update(tSec);
+          if (neuronPulse) neuronPulse.update(tSec);
           renderer.render(scene, camera);
         }
         animate();
@@ -950,6 +1052,155 @@
         });
         v.addEventListener("ended", function () { v.controls = false; btn.hidden = false; v.load(); });
         new MutationObserver(function () { if (v.getAttribute("src")) setSrc(false); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      })();
+    </script>
+    <script>
+      /* Homepage life: count-up numbers, live card previews, question of the day. */
+      (function () {
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        function lang() { return document.documentElement.getAttribute("lang") === "az" ? "az" : "en"; }
+        function onVisible(el, fn, opts) {
+          if (!("IntersectionObserver" in window)) { fn(true); return; }
+          new IntersectionObserver(function (es) { es.forEach(function (e) { fn(e.isIntersecting); }); }, opts || { threshold: 0.25 }).observe(el);
+        }
+
+        /* count-up */
+        document.querySelectorAll(".home-stats__n").forEach(function (el) {
+          var target = +el.getAttribute("data-count"), done = false;
+          if (reduce) return;
+          el.textContent = "0";
+          onVisible(el, function (v) {
+            if (!v || done) return; done = true;
+            var t0 = performance.now(), D = 1400;
+            (function step(now) {
+              var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+              el.textContent = Math.round(target * e);
+              if (k < 1) requestAnimationFrame(step);
+            })(t0);
+          });
+        });
+
+        /* looping preview videos: load and play only while on screen */
+        document.querySelectorAll(".hx-loop").forEach(function (v) {
+          onVisible(v, function (vis) {
+            if (vis) { if (!v.src) v.src = v.getAttribute("data-src"); if (!reduce) v.play().catch(function () {}); }
+            else v.pause();
+          }, { threshold: 0.1 });
+        });
+
+        /* Brain Bee card: sample questions flip, the right answer lights up */
+        var QS = [{"q": {"en": "Which lobe contains primary visual cortex?", "az": "İlkin görmə qabığı hansı paydadır?"}, "c": [{"en": "Parietal", "az": "Parietal"}, {"en": "Temporal", "az": "Temporal"}, {"en": "Occipital", "az": "Oksipital"}, {"en": "Frontal", "az": "Frontal"}], "a": 2}, {"q": {"en": "Which cell provides the sole output of the cerebellar cortex?", "az": "Beyincik qabığının yeganə çıxışını hansı hüceyrə verir?"}, "c": [{"en": "Golgi cell", "az": "Golci hüceyrəsi"}, {"en": "Purkinje cell", "az": "Purkinye hüceyrəsi"}, {"en": "Granule cell", "az": "Dənəvər hüceyrə"}, {"en": "Basket cell", "az": "Səbətvari hüceyrə"}], "a": 1}, {"q": {"en": "Which cranial nerve carries both hearing and balance information?", "az": "Hansı kəllə siniri həm eşitmə, həm tarazlıq məlumatını daşıyır?"}, "c": [{"en": "CN VIII", "az": "CN VIII"}, {"en": "CN V", "az": "CN V"}, {"en": "CN VI", "az": "CN VI"}, {"en": "CN VII", "az": "CN VII"}], "a": 0}, {"q": {"en": "Hair cells that transduce sound sit in the:", "az": "Səsi çevirən tükcüklü hüceyrələr haradadır?"}, "c": [{"en": "Lateral ventricle", "az": "Lateral mədəcik"}, {"en": "Corpus callosum", "az": "Corpus callosum"}, {"en": "Cochlea (inner ear)", "az": "Koxlea (daxili qulaq)"}, {"en": "Optic chiasm", "az": "Optik xiazma"}], "a": 2}, {"q": {"en": "Which sense reaches cortex without first passing through the thalamus?", "az": "Hansı hiss qabığa əvvəlcə talamusdan keçmədən çatır?"}, "c": [{"en": "Touch", "az": "Toxunma"}, {"en": "Smell", "az": "Qoxu"}, {"en": "Vision", "az": "Görmə"}, {"en": "Hearing", "az": "Eşitmə"}], "a": 1}, {"q": {"en": "The red nucleus of the midbrain gives rise to which tract?", "az": "Orta beynin qırmızı nüvəsi hansı yolu başlayır?"}, "c": [{"en": "The medial longitudinal fasciculus", "az": "Medial uzununa dəstə"}, {"en": "The rubrospinal tract", "az": "Rubrospinal yol"}, {"en": "The spinothalamic tract", "az": "Spinotalamik yol"}, {"en": "The lateral corticospinal tract", "az": "Yan kortikospinal yol"}], "a": 1}];
+        var qBox = document.querySelector(".hx-prev--quiz");
+        if (qBox) {
+          var qi = 0, qTimer = null, qEl = qBox.querySelector(".hx-quiz__q"), oEl = qBox.querySelector(".hx-quiz__opts");
+          function showQ() {
+            var q = QS[qi % QS.length], L = lang();
+            qBox.classList.remove("is-in"); void qBox.offsetWidth; qBox.classList.add("is-in");
+            qEl.textContent = q.q[L];
+            oEl.innerHTML = "";
+            q.c.forEach(function (c, k) { var s = document.createElement("span"); s.className = "hx-quiz__opt"; s.textContent = c[L]; if (k === q.a) s.setAttribute("data-right", "1"); oEl.appendChild(s); });
+            setTimeout(function () { var r = oEl.querySelector("[data-right]"); if (r) r.classList.add("is-right"); }, 1600);
+          }
+          showQ();
+          onVisible(qBox, function (v) {
+            clearInterval(qTimer);
+            if (v && !reduce) qTimer = setInterval(function () { qi++; showQ(); }, 3600);
+          });
+          new MutationObserver(showQ).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+        }
+
+        /* Neuron simulator card: a live membrane-voltage trace */
+        document.querySelectorAll(".hx-trace").forEach(function (cv) {
+          var ctx = cv.getContext("2d"), W = cv.width, H = cv.height, buf = [], v = -70, run = false, nextSpike = 30, phase = -1;
+          for (var i = 0; i < W; i++) buf.push(-70);
+          function stepV() {
+            if (phase >= 0) {                        /* action potential shape */
+              phase++;
+              if (phase < 4) v += 32; else if (phase < 9) v -= 26; else if (phase < 16) v += 2.4; else phase = -1;
+            } else {
+              v += (-70 - v) * 0.08 + (Math.random() - 0.5) * 0.8;
+              if (--nextSpike <= 0) { phase = 0; nextSpike = 40 + Math.random() * 70; }
+            }
+            buf.push(v); buf.shift();
+          }
+          function y(mv) { return H * 0.82 - (mv + 80) / 130 * H * 0.72; }
+          function draw() {
+            var night = document.documentElement.getAttribute("data-theme") !== "day";
+            ctx.fillStyle = "#020810"; ctx.fillRect(0, 0, W, H);
+            ctx.strokeStyle = "rgba(200,240,224,0.12)"; ctx.lineWidth = 1;
+            for (var g = 0; g < W; g += 40) { ctx.beginPath(); ctx.moveTo(g, 0); ctx.lineTo(g, H); ctx.stroke(); }
+            for (var h = 0; h < H; h += 40) { ctx.beginPath(); ctx.moveTo(0, h); ctx.lineTo(W, h); ctx.stroke(); }
+            ctx.setLineDash([6, 6]); ctx.strokeStyle = "rgba(200,240,224,0.35)"; ctx.beginPath(); ctx.moveTo(0, y(-70)); ctx.lineTo(W, y(-70)); ctx.stroke(); ctx.setLineDash([]);
+            ctx.font = "16px sans-serif"; ctx.fillStyle = "rgba(200,240,224,0.6)"; ctx.fillText("−70 mV", 10, y(-70) - 8); ctx.fillText("+40 mV", 10, y(40) + 18);
+            ctx.strokeStyle = "#00ff8c"; ctx.lineWidth = 3; ctx.shadowColor = "#00ff8c"; ctx.shadowBlur = 12;
+            ctx.beginPath(); for (var x = 0; x < W; x++) { var yy = y(buf[x]); x ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy); } ctx.stroke(); ctx.shadowBlur = 0;
+            ctx.fillStyle = "#00ff8c"; ctx.beginPath(); ctx.arc(W - 2, y(buf[W - 1]), 5, 0, 7); ctx.fill();
+          }
+          function loop() { if (!run) return; for (var k = 0; k < 3; k++) stepV(); draw(); requestAnimationFrame(loop); }
+          for (var w = 0; w < W / 3; w++) { stepV(); stepV(); stepV(); }
+          draw();
+          onVisible(cv, function (vis) { var was = run; run = vis && !reduce; if (run && !was) loop(); }, { threshold: 0.1 });
+        });
+
+        /* Question of the day (same question for everyone on a given day), with a streak */
+        var qd = document.getElementById("qotd");
+        if (qd) {
+          var LS = "neyron_qotd";
+          function dayKey(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+          function dayNum(d) { return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
+          function load() { try { return JSON.parse(localStorage.getItem(LS)) || {}; } catch (e) { return {}; } }
+          function save(o) { try { localStorage.setItem(LS, JSON.stringify(o)); } catch (e) {} }
+          var Q = null, st = load(), today = new Date(), key = dayKey(today);
+          function streakText() {
+            var n = st.streak || 0, el = document.getElementById("qotd-streak");
+            if (!n) { el.hidden = true; return; }
+            el.hidden = false; el.textContent = lang() === "az" ? n + " günlük seriya" : n + "-day streak";
+          }
+          function render() {
+            if (!Q) return;
+            var L = lang(), li = L === "az" ? 1 : 0;
+            document.getElementById("qotd-q").textContent = L === "az" ? Q[2] : Q[1];
+            var box = document.getElementById("qotd-choices"); box.innerHTML = "";
+            var answered = st.day === key ? st.pick : null;
+            Q[3].forEach(function (c, k) {
+              var b = document.createElement("button"); b.type = "button"; b.className = "qotd__choice"; b.textContent = c[li];
+              if (answered !== null && answered !== undefined) {
+                b.disabled = true;
+                if (k === Q[4]) b.classList.add("is-right"); else if (k === answered) b.classList.add("is-wrong");
+              }
+              b.addEventListener("click", function () { choose(k); });
+              box.appendChild(b);
+            });
+            var why = document.getElementById("qotd-why"), more = document.getElementById("qotd-more");
+            if (answered !== null && answered !== undefined) {
+              why.hidden = false; more.hidden = false;
+              why.textContent = (answered === Q[4] ? (L === "az" ? "Düzdür! " : "Correct! ") : (L === "az" ? "Bu dəfə yox. " : "Not this time. ")) + (L === "az" ? Q[6] : Q[5]);
+              more.textContent = more.getAttribute("data-" + L);
+            } else { why.hidden = true; more.hidden = true; }
+            streakText();
+          }
+          function choose(k) {
+            if (st.day === key) return;
+            var y = new Date(today); y.setDate(y.getDate() - 1);
+            var cont = st.day === dayKey(y);
+            st = { day: key, pick: k, streak: cont ? (st.streak || 0) + 1 : 1 };
+            save(st); render();
+          }
+          function start() {
+            var all = window.NEYRON_QOTD || []; if (!all.length) return;
+            Q = all[((dayNum(today) % all.length) + all.length) % all.length];
+            if (st.day && st.day !== key) {   /* streak breaks if a day was skipped */
+              var y = new Date(today); y.setDate(y.getDate() - 1);
+              if (st.day !== dayKey(y)) st.streak = 0;
+            }
+            render();
+          }
+          onVisible(qd, function (v) {
+            if (!v || window.NEYRON_QOTD || qd.__loading) return; qd.__loading = true;
+            var sc = document.createElement("script"); sc.src = "qotd-data.js?v=1"; sc.onload = start; document.body.appendChild(sc);
+          }, { rootMargin: "300px" });
+          new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+        }
       })();
     </script>
   </body>

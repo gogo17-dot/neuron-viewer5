@@ -275,7 +275,7 @@
         offset: String(offset),
         sort: "published",
         order: "desc",
-        mailto: "omargaragozov@gmail.com",
+        mailto: "neyron.aze@gmail.com",
       }).toString();
     return fetch(url, { credentials: "omit", cache: "no-store" })
       .then(function (r) {
