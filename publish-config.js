@@ -8,5 +8,5 @@
  */
 window.NEYRON_PUBLISH = {
   REVIEW_EMAIL: 'neyron.aze@gmail.com',
-  WEB3FORMS_ACCESS_KEY: '4df1c96f-9dcf-4c89-82b5-9458c3183688',
+  WEB3FORMS_ACCESS_KEY: '93ce2693-f481-4325-aee6-29e68cad5b09',
 };

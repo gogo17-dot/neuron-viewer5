@@ -4204,3 +4204,25 @@ body.hh-page #page {
   .bb-path span { display: none; }
   .bb-path li + li::before { content: "→"; color: var(--text-muted); margin-right: 0.35rem; }
 }
+
+/* ===== Articles on phones: articles visible on first screen ===== */
+@media (max-width: 760px) {
+  .articles-main.content-section { padding-top: 76px !important; }
+  .articles-main .section-title { margin-bottom: 0.4rem; }
+  .articles-main .section-desc { margin-bottom: 0.9rem; font-size: 0.92rem; }
+  .articles-main .articles-toolbar { flex-wrap: nowrap; gap: 0.5rem; margin-bottom: 0.6rem; align-items: center; }
+  .articles-main .articles-search { flex: 1 1 auto; min-width: 0; }
+  .articles-main .articles-toolbar__label { display: none; }
+  .articles-main .articles-sort { flex: 0 0 auto; gap: 0.3rem; }
+  .articles-main .articles-sort__btn { padding: 0.35rem 0.6rem; }
+  .articles-main .articles-topics {
+    flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
+    margin: 0 -16px 0.7rem; padding: 2px 16px 6px; gap: 0.35rem;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%);
+  }
+  .articles-main .articles-topics::-webkit-scrollbar { display: none; }
+  .articles-main .articles-topic { flex: 0 0 auto; white-space: nowrap; }
+  .articles-main .articles-count { margin-bottom: 0.6rem; }
+}
