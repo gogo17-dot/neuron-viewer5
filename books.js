@@ -115,19 +115,18 @@
     },
     {
       id: 'gray-anatomy',
-      licenceTier: 'hostable',
+      licenceTier: 'link-only',
       title: 'Anatomy of the Human Body',
       authors: 'Henry Gray',
       year: 1918,
       description: {
-        en: 'The classic Gray’s Anatomy edition on Project Gutenberg — public-domain descriptive anatomy still useful as a historical and structural reference alongside modern atlases.',
-        az: 'Project Gutenberg-dəki klassik Gray’s Anatomy nəşri — müasir atlaslarla yanaşı tarixi və struktur istinad kimi faydalı ictimai domendə təsviri anatomiya.',
+        en: 'The classic 1918 Gray’s Anatomy (20th edition), scanned by the Internet Archive — public-domain descriptive anatomy still useful as a historical and structural reference alongside modern atlases.',
+        az: 'Internet Archive tərəfindən skan edilmiş klassik 1918 Gray’s Anatomy (20-ci nəşr) — müasir atlaslarla yanaşı tarixi və struktur istinad kimi faydalı ictimai domendə təsviri anatomiya.',
       },
       licenceLabel: 'Public domain',
       attribution:
-        'Anatomy of the Human Body by Henry Gray (1918). Public domain. Project Gutenberg ebook #8172.',
-      sourceUrl: 'https://www.gutenberg.org/ebooks/8172',
-      localPath: 'public/books/anatomy-of-the-human-body.epub',
+        'Anatomy of the Human Body by Henry Gray, 20th ed., rev. Warren H. Lewis (Lea & Febiger, 1918). Public domain. Scan: Internet Archive (anatomyofhumanbo1918gray).',
+      sourceUrl: 'https://archive.org/details/anatomyofhumanbo1918gray',
     },
     {
       id: 'neuroscience-online',
@@ -229,6 +228,21 @@
     throw new Error('Unknown licenceTier for book "' + book.id + '": ' + book.licenceTier);
   }
 
+  /* Real cover images (media/covers/<id>.jpg) — same in day and night. */
+  function renderCover(book) {
+    var cover = document.createElement('div');
+    cover.className = 'book-cover';
+    var img = document.createElement('img');
+    img.src = 'media/covers/' + book.id + '.jpg?v=1';
+    img.alt = book.title + ' cover';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.width = 400;
+    img.height = 600;
+    cover.appendChild(img);
+    return cover;
+  }
+
   function renderBookCard(book) {
     var action = actionForBook(book);
     var article = document.createElement('article');
@@ -289,12 +303,25 @@
     }
     actions.appendChild(link);
 
-    article.appendChild(meta);
-    article.appendChild(title);
-    article.appendChild(desc);
-    article.appendChild(licence);
-    article.appendChild(attribution);
-    article.appendChild(actions);
+    var body = document.createElement('div');
+    body.className = 'book-card__body';
+    body.appendChild(meta);
+    body.appendChild(title);
+    body.appendChild(desc);
+    body.appendChild(licence);
+    body.appendChild(attribution);
+    body.appendChild(actions);
+    var coverLink = document.createElement('a');
+    coverLink.className = 'book-card__cover-link';
+    coverLink.href = action.href;
+    coverLink.tabIndex = -1;
+    if (action.external) {
+      coverLink.target = '_blank';
+      coverLink.rel = 'noopener noreferrer';
+    }
+    coverLink.appendChild(renderCover(book));
+    article.appendChild(coverLink);
+    article.appendChild(body);
 
     if (book.chapters && book.chapters.length) {
       var chapWrap = document.createElement('div');
@@ -320,7 +347,7 @@
       });
       chapWrap.appendChild(chapHeading);
       chapWrap.appendChild(list);
-      article.appendChild(chapWrap);
+      body.appendChild(chapWrap);
     }
 
     return article;

@@ -69,30 +69,30 @@
       journal: 'Archives of Neurology',
       year: 1988,
       doi: '10.1001/archneur.1988.00520310043015',
-      pmid: '3395204',
+      pmid: '3390028',
       topics: ['vestibular', 'clinical', 'neuroanatomy'],
       summary: {
         en: 'This short classic introduces the bedside head-impulse test — a quick way to spot unilateral semicircular-canal failure. If you are exploring the vestibular labyrinth or brainstem relays in the atlas, it connects anatomy to a manoeuvre still used in clinics every day. Worth reading for anyone learning how peripheral vestibular loss looks at the bedside rather than only on a diagram.',
         az: 'Bu qısa klassik yazı yataq başı head-impulse testini təqdim edir — birtərəfli yarımdairevi kanal çatışmazlığını tez tapmaq üçün. Atlasda vestibulyar labirint və ya beyin sapı keçidlərinə baxırsınızsa, anatomiyanı klinikada hələ də istifadə olunan manevrlə bağlayır. Vestibulyar itkini yalnız sxemdən deyil, yataq başından öyrənmək istəyənlər üçün faydalıdır.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/3395204/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/3390028/',
     },
     {
       id: 'lempert-vm-criteria-2012',
       title: 'Vestibular migraine: diagnostic criteria',
-      authors: ['Thomas Lempert', 'Jose A. Lopez-Escamez', 'et al.'],
+      authors: ['Thomas Lempert', 'Jes Olesen', 'Joseph Furman', 'et al.'],
       journal: 'Journal of Vestibular Research',
       year: 2012,
       doi: '10.3233/VES-2012-0453',
-      pmid: '23000604',
+      pmid: '23142830',
       topics: ['vestibular', 'migraine', 'clinical'],
       summary: {
         en: 'The Bárány Society / IHS consensus criteria that made “vestibular migraine” a workable clinical diagnosis. Read this when you want the checklist behind the label — episode length, migrainous features, and what must be excluded. Ideal companion to the vestibular and brainstem atlas modules.',
         az: 'Bárány Cəmiyyəti / IHS konsensus meyarları «vestibulyar miqren»i işlək klinik diaqnoz etdi. Epizod müddəti, miqren xüsusiyyətləri və nəyin istisna edilməli olduğunu bilmək istəyəndə oxuyun. Vestibulyar və beyin sapı atlas modulları ilə yaxşı cütlükdür.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23000604/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23142830/',
     },
     {
       id: 'furman-vestibular-migraine-2013',
@@ -101,14 +101,14 @@
       journal: 'The Lancet Neurology',
       year: 2013,
       doi: '10.1016/S1474-4422(13)70107-8',
-      pmid: '23726665',
+      pmid: '23769597',
       topics: ['vestibular', 'migraine', 'clinical'],
       summary: {
         en: 'A clear review of how migraine and the vestibular system collide — symptoms, proposed mechanisms, and why patients often bounce between ENT and neurology. Useful if you are mapping inner-ear and brainstem structures and want the clinical “why it matters” layer. Linked only; we do not host the publisher PDF.',
         az: 'Miqren və vestibulyar sistemin necə toqquşduğuna dair aydın icmal — simptomlar, ehtimal olunan mexanizmlər və xəstələrin niyə KBB ilə nevrologiya arasında qaldığı. Daxili qulaq və beyin sapı strukturlarını xəritələyib klinik «niyə vacibdir» qatını istəyənlər üçün faydalıdır. Yalnız keçid; nəşriyyat PDF-ini host etmirik.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23726665/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23769597/',
     },
     {
       id: 'lopez-escamez-meniere-2015',
@@ -165,30 +165,30 @@
       journal: 'Nature Reviews Neuroscience',
       year: 2019,
       doi: '10.1038/s41583-019-0153-1',
-      pmid: '30914775',
+      pmid: '30914780',
       topics: ['vestibular', 'neuroanatomy', 'brainstem'],
       summary: {
         en: 'A modern systems view of how vestibular signals are processed for perception and movement — from labyrinth through brainstem nuclei to higher circuits. Use it after you have clicked through the semicircular canals and vestibular nuclei: it explains what those nodes are computing in real motion.',
         az: 'Vestibulyar siqnalların qavrayış və hərəkət üçün necə işləndiyinin müasir sistem baxışı — labirintdən beyin sapı nüvələrinə və yuxarı dövrələrə. Yarımdairevi kanallar və vestibulyar nüvələri kliklədikdən sonra oxuyun: real hərəkətdə bu düyünlərin nə hesab etdiyini izah edir.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/30914775/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/30914780/',
     },
     {
       id: 'dieterich-brandt-vestibular-cortex-2015',
       title: 'The vestibular cortex: its locations, functions, and disorders',
-      authors: ['Marianne Dieterich', 'Thomas Brandt'],
+      authors: ['Thomas Brandt', 'Marianne Dieterich'],
       journal: 'Annals of the New York Academy of Sciences',
-      year: 2015,
-      doi: '10.1111/nyas.12585',
-      pmid: '25721483',
+      year: 1999,
+      doi: '10.1111/j.1749-6632.1999.tb09193.x',
+      pmid: '10372080',
       topics: ['vestibular', 'cortex', 'neuroanatomy', 'clinical'],
       summary: {
         en: 'Maps where vestibular information lands in human cortex and what goes wrong in cortical vestibular syndromes. Bridges peripheral anatomy in the atlas to parietal and insular networks you cannot see in a temporal-bone model alone.',
         az: 'Vestibulyar məlumatın insan qabığında harada yerləşdiyini və kortikal vestibulyar sindromlarda nəyin pozulduğunu xəritələyir. Atlasdakı periferik anatomiyanı tək temporal sümük modelində görünməyən parietal və insular şəbəkələrə bağlayır.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/25721483/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/10372080/',
     },
     {
       id: 'sherman-guillery-thalamus-2011',
@@ -197,14 +197,14 @@
       journal: 'Journal of Neurophysiology',
       year: 2011,
       doi: '10.1152/jn.00429.2011',
-      pmid: '21697476',
+      pmid: '21676936',
       topics: ['diencephalon', 'neuroanatomy', 'cortex'],
       summary: {
         en: 'A crisp argument that thalamus is not only a simple relay — it shapes how cortex talks to cortex. Pair with the diencephalon viewer when you click thalamic nuclei and want the functional story behind the grey blobs.',
         az: 'Talamusun yalnız sadə rele olmadığını — qabığın qabıqla necə danışdığını formalaşdırdığını aydın göstərən arqument. Diensefalon baxışında talamik nüvələri klikləyəndə boz ləkələrin arxasındakı funksional hekayəni istəyənlər üçün.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/21697476/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/21676936/',
     },
     {
       id: 'prasad-galetta-optic-pathway-2011',
@@ -213,14 +213,14 @@
       journal: 'Handbook of Clinical Neurology',
       year: 2011,
       doi: '10.1016/B978-0-444-52903-9.00007-8',
-      pmid: '21601060',
+      pmid: '21601061',
       topics: ['visual', 'neuroanatomy', 'clinical'],
       summary: {
         en: 'Retina → optic nerve → chiasm → tract → LGN → radiation → V1, with the lesion logic clinicians use for field cuts. Read beside the visual pathway viewer so each clickable segment gets a clinical sentence.',
         az: 'Retina → optic sinir → xiazma → trakt → LGN → radiasiya → V1 və klinisistlərin sahə qüsurları üçün istifadə etdiyi zədələnmə məntiqi. Görmə yolu baxışı ilə oxuyun ki, hər kliklənən seqment klinik cümlə alsın.',
       },
       access: 'link',
-      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/21601060/',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/21601061/',
     },
     {
       id: 'agostinelli-brainstem-atlas-2023',
@@ -304,7 +304,7 @@
     },
     {
       id: 'evensmoen-fornix-white-matter-2025',
-      title: 'Inferior and Middle Longitudinal Fasciculus and Fornix Support Allocentric Spatial Learning',
+      title: 'Inferior and Middle Longitudinal Fasciculus and Fornix Support Allocentric Representation',
       authors: ['Hallvard R. Evensmoen', 'Lars M. Rimol', 'Asta Håberg'],
       journal: 'Hippocampus',
       year: 2025,
@@ -579,6 +579,14 @@
     });
   }
 
+  /* Readers don't need licence plumbing in every summary; the page footer covers access rules. */
+  var ACCESS_NOTE = /(Europe PMC|CC BY|CC-BY|Creative Commons|link-?only|linked only|linked, not hosted|not hosted|host (the|edir)|PDF|keçid(lə)? veril|yalnız keçid|host etmirik|host edilmir|lisenziya|nəşriyyat PDF)/i;
+  function cleanSummary(text) {
+    var parts = String(text || '').match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [text];
+    var kept = parts.filter(function (p) { return !ACCESS_NOTE.test(p); });
+    return (kept.length ? kept : parts).join('').trim();
+  }
+
   function renderCard(article) {
     var card = document.createElement('article');
     card.className = 'atlas-choice-card article-choice-card';
@@ -596,7 +604,7 @@
 
     var hint = document.createElement('p');
     hint.className = 'atlas-choice-card__hint';
-    hint.textContent = localized(article.summary);
+    hint.textContent = cleanSummary(localized(article.summary));
 
     var tags = document.createElement('div');
     tags.className = 'article-choice-card__tags';
