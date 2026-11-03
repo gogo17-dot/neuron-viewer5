@@ -78,6 +78,7 @@ let onRelatedSelect = null;
 
 
 function displayTitle(key, rawTitle) {
+  if (currentLang === 'az' && rawTitle && rawTitle !== rawTitle.toUpperCase()) return rawTitle;
   const source = rawTitle || String(key).replace(/^\d+_/, '').replace(/_/g, ' ');
   return source
     .toLowerCase()
@@ -88,7 +89,14 @@ function displayTitle(key, rawTitle) {
     .replace(/\bHeschl'S\b/g, "Heschl's");
 }
 
+const CATEGORY_AZ = {"Outer & middle ear":"Xarici və orta qulaq","Inner ear":"Daxili qulaq","Peripheral nerves":"Periferik sinirlər","Central auditory pathway":"Mərkəzi eşitmə yolu","Temporal bone & canals":"Gicgah sümüyü və kanallar","Brain context":"Beyin konteksti","Special sensory":"Xüsusi hissi","Extraocular motor":"Göz hərəkəti (motor)","Mixed":"Qarışıq","Motor":"Motor","Bone context":"Sümük konteksti","Thalamus":"Talamus","Hypothalamus":"Hipotalamus","Epithalamus":"Epitalamus","Metathalamus":"Metatalamus","Visual pathways":"Görmə yolları","Commissures":"Bitişmələr","Ventricle":"Mədəcik","Medial temporal":"Medial temporal","Limbic pathways":"Limbik yollar","Diencephalic limbic":"Diensefal limbik","Basal forebrain limbic":"Bazal ön beyin limbik","Midline limbic":"Orta xətt limbik","Cingulate":"Qurşaq qırışı","Orbitofrontal limbic":"Orbitofrontal limbik","Ventricles":"Mədəciklər","Choroid plexus":"Damarlı kələf","Globe":"Göz alması","Receptor":"Reseptor","Nerve / tract":"Sinir / trakt","Chiasm":"Kəsişmə","Thalamic relay":"Talamik ötürücü","Midbrain visual":"Orta beyin görmə","Visual cortex":"Görmə qabığı","Cortex context":"Qabıq konteksti","Limbic tracts":"Limbik yollar","Descending motor":"Enən motor","Cerebellar connections":"Beyincik əlaqələri","Sensory tracts":"Hissi yollar","Anatomy":"Anatomiya","Cerebral cortex":"Beyin qabığı","Overview":"Ümumi baxış","Commissure":"Bitişmə","Cranial nerve":"Kəllə siniri","Basal forebrain":"Bazal ön beyin","Diencephalon":"Diensefalon","Basal ganglia":"Bazal qanqliyalar","Ventricles & white matter":"Mədəciklər və ağ maddə","Subcortical":"Subkortikal","Brainstem":"Beyin sütunu"};
+
 function categoryLabel(key) {
+  const en = categoryLabelEn(key);
+  return currentLang === 'az' ? (CATEGORY_AZ[en] || en) : en;
+}
+
+function categoryLabelEn(key) {
   if (visualPathwayStructures[key]?.category) return visualPathwayStructures[key].category;
   if (cranialNervesStructures[key]?.category) return cranialNervesStructures[key].category;
   if (limbicStructures[key]?.category) return limbicStructures[key].category;
@@ -137,7 +145,7 @@ function resolveRelated(key) {
       brainstemDetailStructures[relKey];
     if (!data) return;
     seen.add(relKey);
-    out.push({ key: relKey, title: displayTitle(relKey, data.title) });
+    out.push({ key: relKey, title: displayTitle(relKey, (currentLang === 'az' && data.titleAz) || data.title) });
   };
 
   for (const rel of explicit) pushKey(rel);
