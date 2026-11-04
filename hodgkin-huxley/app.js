@@ -1,5 +1,5 @@
 /**
- * NEYRON — Hodgkin–Huxley squid giant axon teaching simulator.
+ * AXON — Hodgkin–Huxley squid giant axon teaching simulator.
  * Forward Euler, dt = 0.01 ms. Classic 1952 parameters, modern sign convention.
  */
 (function () {

@@ -5,7 +5,7 @@ export function getTheme() {
   return document.documentElement.dataset.theme === 'day' ? 'light' : 'dark';
 }
 
-/** Page theme: 'night' | 'day' (NEYRON site shell). */
+/** Page theme: 'night' | 'day' (AXON site shell). */
 export function getPageTheme() {
   return document.documentElement.dataset.theme === 'day' ? 'day' : 'night';
 }

@@ -1,5 +1,5 @@
 /**
- * NEYRON Publish — multi-step proposal wizard.
+ * AXON Publish — multi-step proposal wizard.
  * Never auto-publishes. Web3Forms if keyed, else mailto REVIEW_EMAIL.
  */
 (function () {
@@ -314,7 +314,7 @@
     var fd = new FormData(form);
     var type = String(fd.get('workType') || 'article');
     var lines = [
-      'NEYRON proposal (manual review required)',
+      'AXON proposal (manual review required)',
       'Type: ' + type,
       'Submitted: ' + new Date().toISOString(),
       '',
@@ -375,7 +375,7 @@
 
     return {
       type: type,
-      subject: '[NEYRON] ' + type + ' proposal: ' + fd.get('title'),
+      subject: '[AXON] ' + type + ' proposal: ' + fd.get('title'),
       body: lines.join('\n'),
       contactEmail: String(fd.get('contactEmail') || ''),
       contactName: String(fd.get('contactName') || ''),
@@ -407,7 +407,7 @@
     var data = {
       access_key: key,
       subject: payload.subject,
-      from_name: payload.contactName || 'NEYRON submitter',
+      from_name: payload.contactName || 'AXON submitter',
       email: payload.contactEmail,
       message: payload.body,
     };

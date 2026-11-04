@@ -1,5 +1,5 @@
 /**
- * NEYRON Book page (neuron-viewer5/book.html).
+ * AXON Book page (neuron-viewer5/book.html).
  *
  * LICENCE RULES (do not loosen without re-checking the source page)
  * ----------------------------------------------------------------
@@ -60,8 +60,8 @@
       az:
         'Çoxları həyatı əsl daxili sakitliyi heç vaxt yaşamadan və əldə etməli olduqları zirvə zehni gücə heç vaxt çatmadan keçirirlər. A Healthy Mind zehni gücün arxasındakı elm və fəlsəfəni araşdırır, neyroelm tarixini izləyərək beynin bizi necə formalaşdırdığını və onu necə yenidən formalaşdıra biləcəyimizi göstərir. Praktik məşqlərlə (mindfulness və neyroplastiklik üsulları daxil olmaqla) bu kitab sizi inam və həqiqi daxili sakitliyə yönəldir. Zehniniz sizin gücünüzdür — ondan istifadə etməyi öyrənin.',
     },
-    licenceLabel: 'All rights reserved · read on NEYRON',
-    attribution: 'A Healthy Mind © Omar Garagozov. All rights reserved. Read on NEYRON (no download).',
+    licenceLabel: 'All rights reserved · read on AXON',
+    attribution: 'A Healthy Mind © Omar Garagozov. All rights reserved. Read on AXON (no download).',
     localPath: 'public/books/a-healthy-mind.pdf',
   };
 

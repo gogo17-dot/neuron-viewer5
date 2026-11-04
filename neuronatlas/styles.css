@@ -186,7 +186,7 @@ html.atlas-day .panel-more {
   color: #e05a10 !important;
 }
 
-/* Night — description card: clear edges, mint/teal frame (matches NEYRON night accents) */
+/* Night — description card: clear edges, mint/teal frame (matches AXON night accents) */
 html:not(.atlas-day) #info-panel {
   background: rgba(6, 14, 26, 0.78) !important;
   border: 1px solid rgba(126, 207, 179, 0.42) !important;

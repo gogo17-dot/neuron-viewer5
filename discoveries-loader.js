@@ -1,6 +1,6 @@
 /**
  * Loads discoveries.json, shuffles, shows a random subset each visit.
- * NEYRON home: replace static .discovery-grid inner HTML with an empty grid, then:
+ * AXON home: replace static .discovery-grid inner HTML with an empty grid, then:
  *   <script src="discoveries-loader.js" defer></script>
  * Optional on .discovery-grid: data-slot-count="4" data-discoveries-src="discoveries.json"
  */

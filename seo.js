@@ -1,9 +1,9 @@
 /**
- * Shared SEO / social meta helpers for NEYRON pages.
+ * Shared SEO / social meta helpers for AXON pages.
  * Call after <title> in static HTML, or leave meta tags inline (preferred for crawlers).
  */
 export const SITE = {
-  name: 'NEYRON',
+  name: 'AXON',
   url: 'https://gogo17-dot.github.io/neuron-viewer5',
   themeColorNight: '#020810',
   themeColorDay: '#faf8f4',

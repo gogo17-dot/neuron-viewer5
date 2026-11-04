@@ -1,5 +1,5 @@
 /**
- * NEYRON — basic leaky integrate-and-fire teaching sim.
+ * AXON — basic leaky integrate-and-fire teaching sim.
  * τ dV/dt = -(V - E_L) + R·I ; spike & reset when V ≥ V_th.
  */
 (function () {

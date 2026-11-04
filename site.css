@@ -2941,7 +2941,7 @@ body.hh-page #page {
   }
 }
 
-/* Brain Bee prep (scoped .bb- so tokens stay on NEYRON night/day) */
+/* Brain Bee prep (scoped .bb- so tokens stay on AXON night/day) */
 .bb-levels {
   display: flex;
   flex-direction: column;
@@ -3971,7 +3971,7 @@ body.hh-page #page {
   .home-video__arrow { width: 52px; margin: 2px 0 -6px; transform: rotate(20deg); }
 }
 
-/* ===== About: who's behind NEYRON ===== */
+/* ===== About: who's behind AXON ===== */
 .about-founder__card {
   display: flex;
   align-items: center;

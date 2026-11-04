@@ -40,7 +40,7 @@ export const demoQuestions = [
     difficulty: 2,
     type: "image_id",
     prompt: "Click the brand mark on this test image — stand-in for an atlas plate.",
-    explanation: "Hotspots are labelled regions. The demo target is the centre of the NEYRON mark.",
+    explanation: "Hotspots are labelled regions. The demo target is the centre of the AXON mark.",
     timeLimitSeconds: 45,
     tags: ["image"],
     imageUrl: "logo.png",

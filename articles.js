@@ -1,5 +1,5 @@
 /**
- * NEYRON Articles page (neuron-viewer5/articles.html).
+ * AXON Articles page (neuron-viewer5/articles.html).
  *
  * ACCESS TIERS (legal rule — drives the UI via `access` field)
  * -----------------------------------------------------------
@@ -248,8 +248,8 @@
       pmid: '41845445',
       topics: ['meninges', 'neuroanatomy', 'clinical'],
       summary: {
-        en: 'Modern review of dura, arachnoid, and pia as living interfaces — barriers, lymphatics, and neuroimmune roles — not just three membranes. Pair with the meninges viewer when you want why those layers matter clinically. Europe PMC: CC BY; link-only on NEYRON.',
-        az: 'Dura, araxnoid və pia-nın canlı interfeys kimi müasir icmalı — maneələr, limfatika və neyroimmun rollar — yalnız üç membran deyil. Meninges baxışı ilə oxuyun ki, bu qatların klinik əhəmiyyətini görün. Europe PMC: CC BY; NEYRON-da yalnız keçid.',
+        en: 'Modern review of dura, arachnoid, and pia as living interfaces — barriers, lymphatics, and neuroimmune roles — not just three membranes. Pair with the meninges viewer when you want why those layers matter clinically. Europe PMC: CC BY; link-only on AXON.',
+        az: 'Dura, araxnoid və pia-nın canlı interfeys kimi müasir icmalı — maneələr, limfatika və neyroimmun rollar — yalnız üç membran deyil. Meninges baxışı ilə oxuyun ki, bu qatların klinik əhəmiyyətini görün. Europe PMC: CC BY; AXON-da yalnız keçid.',
       },
       access: 'link',
       sourceUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12998060/',

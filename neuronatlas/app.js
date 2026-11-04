@@ -147,7 +147,7 @@ const tooltipNames = {
   },
 };
 
-/** Matches NEYRON opening hero neuron (day). */
+/** Matches AXON opening hero neuron (day). */
 const NEYRON_DAY_PHYS = {
   color: 0xc93840,
   emissive: 0x501820,
@@ -239,7 +239,7 @@ function applyDayPhysicalHeroLook(m) {
   }
 }
 
-/** NEYRON day accent — dendrites & spines (matches hero orange tone). */
+/** AXON day accent — dendrites & spines (matches hero orange tone). */
 const NEYRON_DAY_DENDRITE = {
   color: 0xe05a10,
   emissive: 0x502208,
