@@ -79,7 +79,7 @@ const cranialNervesStructures = {
     "category": "Mixed",
     "categoryAz": "Qarışıq",
     "description": "Right trigeminal nerve mirrors sensory dermatomes V1 (ophthalmic), V2 (maxillary), V3 (mandibular) plus masticatory motor supply.\n\nNuclear lesions in the brainstem can dissociate pain/temperature (spinal nucleus) from touch.\n\nImaging focuses on root entry zone, Meckel’s cave, and cavernous sinus.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Sağ üçlü sinir V1 (göz), V2 (üst çənə), V3 (alt çənə) hissi dermatomlarını və çeynəmə motor innervasiyasını təkrarlayır.\n\nBeyin sütunundakı nüvə lezyonları ağrı/temperatur hissiyyatını (onurğa nüvəsi) toxunmadan ayıra bilər.\n\nGörüntüləmə kök giriş zonasına, Mekkel boşluğuna və kavernoz sinusa yönəlir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Sağ üçlü sinir V1 (göz), V2 (üst çənə), V3 (alt çənə) hissi dermatomlarını və çeynəmə motor innervasiyasını təkrarlayır.\n\nBeyin gövdəsindəki nüvə lezyonları ağrı/temperatur hissiyyatını (onurğa nüvəsi) toxunmadan ayıra bilər.\n\nGörüntüləmə kök giriş zonasına, Mekkel boşluğuna və kavernoz sinusa yönəlir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "06_CN_VI_Abducens_L": {
     "title": "CN VI ABDUCENS (LEFT)",
@@ -119,7 +119,7 @@ const cranialNervesStructures = {
     "category": "Special sensory",
     "categoryAz": "Xüsusi hissi",
     "description": "Left CN VIII carries hearing (cochlear) and balance (vestibular) from the inner ear through the internal acoustic meatus to the CPA and brainstem nuclei.\n\nSchwannoma, meningioma, labyrinthitis, and vascular loops cause unilateral SNHL, tinnitus, and vertigo. Weber/Rinne and HINTS refine bedside localisation.\n\nMRI IAC is the key imaging study for asymmetric hearing loss.",
-    "descriptionAz": "Sol VIII sinir eşitməni (koxlear) və tarazlığı (vestibulyar) daxili qulaqdan daxili eşitmə keçəcəyi vasitəsilə körpü-beyincik bucağına və beyin sütunu nüvələrinə daşıyır.\n\nŞvannoma, meningioma, labirintit və damar ilgəkləri birtərəfli neyrosensor eşitmə itkisi, qulaq küyü və başgicəllənmə yaradır. Veber/Rinne və HINTS yataq başı lokalizasiyanı dəqiqləşdirir.\n\nAsimmetrik eşitmə itkisi üçün daxili eşitmə kanalının MRT-si əsas görüntüləmə müayinəsidir."
+    "descriptionAz": "Sol VIII sinir eşitməni (koxlear) və tarazlığı (vestibulyar) daxili qulaqdan daxili eşitmə keçəcəyi vasitəsilə körpü-beyincik bucağına və beyin gövdəsi nüvələrinə daşıyır.\n\nŞvannoma, meningioma, labirintit və damar ilgəkləri birtərəfli neyrosensor eşitmə itkisi, qulaq küyü və başgicəllənmə yaradır. Veber/Rinne və HINTS yataq başı lokalizasiyanı dəqiqləşdirir.\n\nAsimmetrik eşitmə itkisi üçün daxili eşitmə kanalının MRT-si əsas görüntüləmə müayinəsidir."
   },
   "08_CN_VIII_Vestibulocochlear_R": {
     "title": "CN VIII VESTIBULOCOCHLEAR (RIGHT)",
@@ -151,7 +151,7 @@ const cranialNervesStructures = {
     "category": "Mixed",
     "categoryAz": "Qarışıq",
     "description": "Left CN X is the long parasympathetic and branchiomotor nerve for larynx, pharynx, and thoracic/abdominal viscera; recurrent laryngeal loops under the aortic arch on the left.\n\nHoarseness, dysphagia, and palate deviation away from the lesion mark motor failure. Mediastinal disease preferentially threatens the left recurrent laryngeal nerve.\n\nJugular foramen and brainstem lesions may pair X with IX and XI.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Sol X sinir qırtlaq, udlaq və döş/qarın orqanları üçün uzun parasimpatik və branxiomotor sinirdir; solda qayıdan qırtlaq siniri aorta qövsünün altından dolanır.\n\nSəsin xırıltısı, disfagiya və damağın lezyondan əks tərəfə əyilməsi motor çatışmazlığını göstərir. Divararalığı xəstəlikləri üstünlüklə sol qayıdan qırtlaq sinirini təhdid edir.\n\nVidaj dəliyi və beyin sütunu lezyonları X-i IX və XI ilə birləşdirə bilər.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Sol X sinir qırtlaq, udlaq və döş/qarın orqanları üçün uzun parasimpatik və branxiomotor sinirdir; solda qayıdan qırtlaq siniri aorta qövsünün altından dolanır.\n\nSəsin xırıltısı, disfagiya və damağın lezyondan əks tərəfə əyilməsi motor çatışmazlığını göstərir. Divararalığı xəstəlikləri üstünlüklə sol qayıdan qırtlaq sinirini təhdid edir.\n\nVidaj dəliyi və beyin gövdəsi lezyonları X-i IX və XI ilə birləşdirə bilər.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "10_CN_X_Vagus_R": {
     "title": "CN X VAGUS (RIGHT)",
@@ -195,11 +195,11 @@ const cranialNervesStructures = {
   },
   "Brainstem": {
     "title": "BRAINSTEM",
-    "titleAz": "Beyin sütunu",
+    "titleAz": "Beyin gövdəsi",
     "category": "Brain context",
     "categoryAz": "Beyin konteksti",
     "description": "The brainstem (midbrain, pons, medulla) houses cranial-nerve nuclei and root exit zones for CN III–XII; CN I and II are forebrain tracts shown for completeness.\n\nShown ghosted so nerve courses read against their true origin rather than floating in empty space.\n\nClick a nerve for clinical detail; brainstem here is framing context.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Beyin sütunu (orta beyin, körpü, uzunsov beyin) III–XII kəllə sinirlərinin nüvələrini və kök çıxış zonalarını ehtiva edir; I və II sinirlər ön beyin yollarıdır və tamlıq üçün göstərilir.\n\nSinir gedişləri boşluqda üzmək əvəzinə həqiqi mənşələri fonunda görünsün deyə solğun göstərilir.\n\nKlinik məlumat üçün sinirə klikləyin; beyin sütunu burada çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Beyin gövdəsi (orta beyin, körpü, uzunsov beyin) III–XII kəllə sinirlərinin nüvələrini və kök çıxış zonalarını ehtiva edir; I və II sinirlər ön beyin yollarıdır və tamlıq üçün göstərilir.\n\nSinir gedişləri boşluqda üzmək əvəzinə həqiqi mənşələri fonunda görünsün deyə solğun göstərilir.\n\nKlinik məlumat üçün sinirə klikləyin; beyin gövdəsi burada çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "00_Skull_context": {
     "title": "SKULL",

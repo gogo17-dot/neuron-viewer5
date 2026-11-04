@@ -79,7 +79,7 @@ const diencephalonStructures = {
     "category": "Metathalamus",
     "categoryAz": "Metatalamus",
     "description": "The right MGN completes the paired auditory thalamic relay to ipsilateral auditory cortex.\n\nWith LGN it forms the geniculate (meta-thalamic) complex on the posterior thalamus.\n\nBrainstem and auditory cortex disease often co-localise clinically with MGN territory.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Sağ MGN eyni tərəfli eşitmə qabığına gedən cüt talamik eşitmə ötürücüsünü tamamlayır.\n\nLGN ilə birlikdə talamusun arxasında dizvari (metatalamik) kompleksi yaradır.\n\nBeyin sütunu və eşitmə qabığı xəstəlikləri klinik olaraq tez-tez MGN ərazisi ilə birgə lokalizasiya olunur.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Sağ MGN eyni tərəfli eşitmə qabığına gedən cüt talamik eşitmə ötürücüsünü tamamlayır.\n\nLGN ilə birlikdə talamusun arxasında dizvari (metatalamik) kompleksi yaradır.\n\nBeyin gövdəsi və eşitmə qabığı xəstəlikləri klinik olaraq tez-tez MGN ərazisi ilə birgə lokalizasiya olunur.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "07_Optic_chiasm_L": {
     "title": "OPTIC CHIASM (LEFT ASPECT)",
@@ -147,11 +147,11 @@ const diencephalonStructures = {
   },
   "Brainstem": {
     "title": "BRAINSTEM",
-    "titleAz": "Beyin sütunu",
+    "titleAz": "Beyin gövdəsi",
     "category": "Brain context",
     "categoryAz": "Beyin konteksti",
     "description": "The brainstem continues caudally from the diencephalon; midbrain abuts the posterior commissure, geniculates, and optic tracts.\n\nShown ghosted and non-interactive so diencephalic structures sit on a real stalk.\n\nClick thalamic, hypothalamic, and pathway meshes for detail.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Beyin sütunu diensefalondan kaudal davam edir; orta beyin arxa bitişmə, dizvari cisimlər və görmə traktları ilə həmsərhəddir.\n\nDiensefal strukturlar real gövdə üzərində görünsün deyə solğun və kliklənməyən formada göstərilir.\n\nƏtraflı məlumat üçün talamik, hipotalamik və yol meşlərinə klikləyin.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Beyin gövdəsi diensefalondan kaudal davam edir; orta beyin arxa bitişmə, dizvari cisimlər və görmə traktları ilə həmsərhəddir.\n\nDiensefal strukturlar real gövdə üzərində görünsün deyə solğun və kliklənməyən formada göstərilir.\n\nƏtraflı məlumat üçün talamik, hipotalamik və yol meşlərinə klikləyin.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   }
 };
 

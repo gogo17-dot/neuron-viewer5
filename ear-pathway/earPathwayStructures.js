@@ -71,7 +71,7 @@ const earPathwayStructures = {
     "category": "Peripheral nerves",
     "categoryAz": "Periferik sinirlər",
     "description": "The cochlear nerve is the auditory division of CN VIII. Peripheral processes of bipolar spiral-ganglion neurons contact hair cells; central processes gather in the modiolus and join the vestibulocochlear nerve toward the brainstem.\n\nIt carries frequency-, intensity-, and timing-coded spike trains from the cochlea. Schwann-cell myelination and a short intracranial course make it sensitive to compression (e.g. vestibular schwannoma) and to surgical trauma in the CPA.\n\nElectrically stimulating these fibres (cochlear implant) can restore useful hearing when hair cells are lost but the nerve remains.",
-    "descriptionAz": "Koxlear sinir VIII sinirin eşitmə hissəsidir. Bipolyar spiral qanqlion neyronlarının periferik çıxıntıları tük hüceyrələri ilə təmas edir; mərkəzi çıxıntılar ilbiz oxunda (modiolus) toplanaraq beyin sütununa doğru dəhliz-ilbiz sinirinə qoşulur.\n\nİlbizdən tezlik, intensivlik və vaxtla kodlaşdırılmış impuls seriyalarını daşıyır. Şvann hüceyrəsi miyelinləşməsi və qısa kəllədaxili gediş onu sıxılmaya (məs. vestibulyar şvannoma) və körpü-beyincik bucağında cərrahi travmaya həssas edir.\n\nTük hüceyrələri itdikdə, lakin sinir qaldıqda bu liflərin elektrik stimulyasiyası (koxlear implant) faydalı eşitməni bərpa edə bilər."
+    "descriptionAz": "Koxlear sinir VIII sinirin eşitmə hissəsidir. Bipolyar spiral qanqlion neyronlarının periferik çıxıntıları tük hüceyrələri ilə təmas edir; mərkəzi çıxıntılar ilbiz oxunda (modiolus) toplanaraq beyin gövdəsinə doğru dəhliz-ilbiz sinirinə qoşulur.\n\nİlbizdən tezlik, intensivlik və vaxtla kodlaşdırılmış impuls seriyalarını daşıyır. Şvann hüceyrəsi miyelinləşməsi və qısa kəllədaxili gediş onu sıxılmaya (məs. vestibulyar şvannoma) və körpü-beyincik bucağında cərrahi travmaya həssas edir.\n\nTük hüceyrələri itdikdə, lakin sinir qaldıqda bu liflərin elektrik stimulyasiyası (koxlear implant) faydalı eşitməni bərpa edə bilər."
   },
   "09_Vestibulocochlear_nerve_VIII": {
     "title": "VESTIBULOCOCHLEAR NERVE (VIII)",
@@ -79,7 +79,7 @@ const earPathwayStructures = {
     "category": "Peripheral nerves",
     "categoryAz": "Periferik sinirlər",
     "description": "Cranial nerve VIII carries cochlear (hearing) and vestibular (balance) fibres from the labyrinth through the internal acoustic meatus into the cerebellopontine angle, entering the brainstem at the pontomedullary junction.\n\nCochlear fibres terminate in the cochlear nuclei; vestibular fibres reach the vestibular nuclei. Lesions (schwannoma, meningioma, vascular loops) may cause hearing loss, tinnitus, and vertigo together.\n\nIn this pathway view CN VIII is the trunk linking the inner ear to the first central relays.",
-    "descriptionAz": "VIII kəllə siniri koxlear (eşitmə) və vestibulyar (tarazlıq) lifləri labirintdən daxili eşitmə keçəcəyi vasitəsilə körpü-beyincik bucağına daşıyır və körpü-uzunsov beyin keçidində beyin sütununa daxil olur.\n\nKoxlear liflər koxlear nüvələrdə, vestibulyar liflər isə vestibulyar nüvələrdə bitir. Lezyonlar (şvannoma, meningioma, damar ilgəkləri) eşitmə itkisi, qulaq küyü və başgicəllənməni birlikdə yarada bilər.\n\nBu yol görünüşündə VIII sinir daxili qulağı ilk mərkəzi ötürücülərlə birləşdirən gövdədir."
+    "descriptionAz": "VIII kəllə siniri koxlear (eşitmə) və vestibulyar (tarazlıq) lifləri labirintdən daxili eşitmə keçəcəyi vasitəsilə körpü-beyincik bucağına daşıyır və körpü-uzunsov beyin keçidində beyin gövdəsinə daxil olur.\n\nKoxlear liflər koxlear nüvələrdə, vestibulyar liflər isə vestibulyar nüvələrdə bitir. Lezyonlar (şvannoma, meningioma, damar ilgəkləri) eşitmə itkisi, qulaq küyü və başgicəllənməni birlikdə yarada bilər.\n\nBu yol görünüşündə VIII sinir daxili qulağı ilk mərkəzi ötürücülərlə birləşdirən gövdədir."
   },
   "10_Cochlear_nuclei_brainstem": {
     "title": "COCHLEAR NUCLEI",
@@ -87,7 +87,7 @@ const earPathwayStructures = {
     "category": "Central auditory pathway",
     "categoryAz": "Mərkəzi eşitmə yolu",
     "description": "The cochlear nuclei (dorsal and ventral) lie at the pontomedullary junction beside the inferior cerebellar peduncle and are the obligatory first CNS synapse of the auditory pathway. Tonotopy from the cochlea is preserved and refined here.\n\nVentral pathways feed the superior olivary complex for sound localisation; dorsal pathways contribute to higher-order spectral processing via ascending tracts toward the inferior colliculus.\n\nBrainstem stroke, demyelination, or CPA mass effect can disrupt this node, producing central hearing deficits that may spare the pure-tone audiogram more than speech-in-noise performance.",
-    "descriptionAz": "Koxlear nüvələr (dorsal və ventral) körpü-uzunsov beyin keçidində aşağı beyincik ayaqcığının yanında yerləşir və eşitmə yolunun məcburi ilk MSS sinapsıdır. İlbizdən gələn tonotopiya burada qorunur və dəqiqləşdirilir.\n\nVentral yollar səsin lokalizasiyası üçün yuxarı zeytun kompleksini qidalandırır; dorsal yollar aşağı təpəciyə gedən yüksələn yollar vasitəsilə daha yüksək səviyyəli spektral emala töhfə verir.\n\nBeyin sütunu insultu, demielinizasiya və ya körpü-beyincik bucağı həcm effekti bu düyünü poza bilər və saf ton audioqramını küydə nitqi anlama qabiliyyətindən daha çox qoruyan mərkəzi eşitmə defisitləri yaradır."
+    "descriptionAz": "Koxlear nüvələr (dorsal və ventral) körpü-uzunsov beyin keçidində aşağı beyincik ayaqcığının yanında yerləşir və eşitmə yolunun məcburi ilk MSS sinapsıdır. İlbizdən gələn tonotopiya burada qorunur və dəqiqləşdirilir.\n\nVentral yollar səsin lokalizasiyası üçün yuxarı zeytun kompleksini qidalandırır; dorsal yollar aşağı təpəciyə gedən yüksələn yollar vasitəsilə daha yüksək səviyyəli spektral emala töhfə verir.\n\nBeyin gövdəsi insultu, demielinizasiya və ya körpü-beyincik bucağı həcm effekti bu düyünü poza bilər və saf ton audioqramını küydə nitqi anlama qabiliyyətindən daha çox qoruyan mərkəzi eşitmə defisitləri yaradır."
   },
   "11_Superior_olivary_complex": {
     "title": "SUPERIOR OLIVARY COMPLEX",
@@ -103,7 +103,7 @@ const earPathwayStructures = {
     "category": "Central auditory pathway",
     "categoryAz": "Mərkəzi eşitmə yolu",
     "description": "The inferior colliculus is the midbrain auditory hub in the tectum. Almost all ascending brainstem auditory pathways converge here before projecting via the brachium of the inferior colliculus to the medial geniculate body.\n\nIt integrates monaural and binaural maps of frequency, space, and timing, and participates in acoustic startle and orienting. Commissural fibres link left and right colliculi.\n\nMidbrain lesions, demyelination, or tectal compression can cause auditory processing disorders, tinnitus, or impaired sound localisation with relatively preserved cochlear thresholds.",
-    "descriptionAz": "Aşağı təpəcik tektumdakı orta beyin eşitmə mərkəzidir. Demək olar ki, bütün yüksələn beyin sütunu eşitmə yolları aşağı təpəciyin qolu vasitəsilə medial dizvari cismə proyeksiya verməzdən əvvəl burada birləşir.\n\nTezlik, məkan və vaxtın monoaural və binaural xəritələrini birləşdirir, akustik diksinmə və istiqamətlənmədə iştirak edir. Bitişmə lifləri sol və sağ təpəcikləri birləşdirir.\n\nOrta beyin lezyonları, demielinizasiya və ya tektal sıxılma nisbətən qorunmuş koxlear həddlərlə eşitmə emalı pozğunluqlarına, qulaq küyünə və ya səs lokalizasiyasının pozulmasına səbəb ola bilər."
+    "descriptionAz": "Aşağı təpəcik tektumdakı orta beyin eşitmə mərkəzidir. Demək olar ki, bütün yüksələn beyin gövdəsi eşitmə yolları aşağı təpəciyin qolu vasitəsilə medial dizvari cismə proyeksiya verməzdən əvvəl burada birləşir.\n\nTezlik, məkan və vaxtın monoaural və binaural xəritələrini birləşdirir, akustik diksinmə və istiqamətlənmədə iştirak edir. Bitişmə lifləri sol və sağ təpəcikləri birləşdirir.\n\nOrta beyin lezyonları, demielinizasiya və ya tektal sıxılma nisbətən qorunmuş koxlear həddlərlə eşitmə emalı pozğunluqlarına, qulaq küyünə və ya səs lokalizasiyasının pozulmasına səbəb ola bilər."
   },
   "13_Medial_geniculate_body": {
     "title": "MEDIAL GENICULATE BODY",
@@ -147,11 +147,11 @@ const earPathwayStructures = {
   },
   "Brainstem": {
     "title": "BRAINSTEM",
-    "titleAz": "Beyin sütunu",
+    "titleAz": "Beyin gövdəsi",
     "category": "Brain context",
     "categoryAz": "Beyin konteksti",
     "description": "The brainstem (midbrain, pons, medulla) is the stalk connecting cerebrum and spinal cord. Auditory relays — cochlear nuclei, superior olivary complex, and inferior colliculus — live here before the pathway ascends to thalamus and cortex.\n\nShown ghosted as housing for the central auditory stations so nuclei no longer float in empty space.\n\nToggle Brain context off if you want only the bare pathway nodes.",
-    "descriptionAz": "Beyin sütunu (orta beyin, körpü, uzunsov beyin) böyük beyni onurğa beyni ilə birləşdirən gövdədir. Eşitmə ötürücüləri — koxlear nüvələr, yuxarı zeytun kompleksi və aşağı təpəcik — yol talamus və qabığa yüksəlməzdən əvvəl burada yerləşir.\n\nNüvələr artıq boşluqda üzməsin deyə mərkəzi eşitmə stansiyaları üçün yuva kimi solğun göstərilir.\n\nYalnız çılpaq yol düyünlərini görmək istəyirsinizsə, \"Beyin konteksti\"ni söndürün."
+    "descriptionAz": "Beyin gövdəsi (orta beyin, körpü, uzunsov beyin) böyük beyni onurğa beyni ilə birləşdirən gövdədir. Eşitmə ötürücüləri — koxlear nüvələr, yuxarı zeytun kompleksi və aşağı təpəcik — yol talamus və qabığa yüksəlməzdən əvvəl burada yerləşir.\n\nNüvələr artıq boşluqda üzməsin deyə mərkəzi eşitmə stansiyaları üçün yuva kimi solğun göstərilir.\n\nYalnız çılpaq yol düyünlərini görmək istəyirsinizsə, \"Beyin konteksti\"ni söndürün."
   },
   "Temporal_lobe.r": {
     "title": "TEMPORAL LOBE (RIGHT)",

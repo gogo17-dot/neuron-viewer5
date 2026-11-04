@@ -7,6 +7,6 @@
  *    Leave WEB3FORMS_ACCESS_KEY empty to fall back to mailto:.
  */
 window.NEYRON_PUBLISH = {
-  REVIEW_EMAIL: 'neyron.aze@gmail.com',
-  WEB3FORMS_ACCESS_KEY: '93ce2693-f481-4325-aee6-29e68cad5b09',
+  REVIEW_EMAIL: 'electricaxon26@gmail.com',
+  WEB3FORMS_ACCESS_KEY: '27acc4d8-6d25-4aed-aa44-9ceabdf861ce',
 };

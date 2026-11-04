@@ -103,7 +103,7 @@ const visualPathwayStructures = {
     "category": "Midbrain visual",
     "categoryAz": "Orta beyin görmə",
     "description": "The left superior colliculus is a midbrain tectal hub for orienting gaze and multimodal spatial maps; it receives a minority visual branch and drives head/eye orienting.\n\nIt is not the main path for conscious acuity (that is LGN → V1) but matters for blindsight and reflexive looking.\n\nGhosted brainstem in this viewer shows its tectal home.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Sol yuxarı təpəcik baxışın istiqamətlənməsi və multimodal məkan xəritələri üçün orta beyin tektal mərkəzidir; az bir görmə şaxəsi alır və baş/göz istiqamətlənməsini idarə edir.\n\nŞüurlu görmə kəskinliyi üçün əsas yol deyil (o, LGN → V1-dir), lakin \"kor görmə\" (blindsight) və refleks baxış üçün əhəmiyyətlidir.\n\nBu görüntüləyicidəki solğun beyin sütunu onun tektal yerini göstərir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Sol yuxarı təpəcik baxışın istiqamətlənməsi və multimodal məkan xəritələri üçün orta beyin tektal mərkəzidir; az bir görmə şaxəsi alır və baş/göz istiqamətlənməsini idarə edir.\n\nŞüurlu görmə kəskinliyi üçün əsas yol deyil (o, LGN → V1-dir), lakin \"kor görmə\" (blindsight) və refleks baxış üçün əhəmiyyətlidir.\n\nBu görüntüləyicidəki solğun beyin gövdəsi onun tektal yerini göstərir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "06_Superior_colliculus_R": {
     "title": "SUPERIOR COLLICULUS (RIGHT)",
@@ -203,11 +203,11 @@ const visualPathwayStructures = {
   },
   "Brainstem": {
     "title": "BRAINSTEM",
-    "titleAz": "Beyin sütunu",
+    "titleAz": "Beyin gövdəsi",
     "category": "Brain context",
     "categoryAz": "Beyin konteksti",
     "description": "The brainstem (especially midbrain tectum) houses the superior colliculi and pupil-related pretectal circuitry fed by a minority of optic-tract fibres.\n\nShown ghosted so colliculi sit on a real stalk while the geniculocalcarine path to cortex remains the main teaching line.\n\nClick pathway structures for detail; brainstem is framing context.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Beyin sütunu (xüsusilə orta beyin tektumu) görmə traktı liflərinin az bir hissəsi ilə qidalanan yuxarı təpəcikləri və bəbəklə əlaqəli pretektal dövrəni ehtiva edir.\n\nQabığa gedən dizvari-kalkarin yol əsas tədris xətti olaraq qalarkən təpəciklər real gövdə üzərində görünsün deyə solğun göstərilir.\n\nƏtraflı məlumat üçün yol strukturlarına klikləyin; beyin sütunu çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Beyin gövdəsi (xüsusilə orta beyin tektumu) görmə traktı liflərinin az bir hissəsi ilə qidalanan yuxarı təpəcikləri və bəbəklə əlaqəli pretektal dövrəni ehtiva edir.\n\nQabığa gedən dizvari-kalkarin yol əsas tədris xətti olaraq qalarkən təpəciklər real gövdə üzərində görünsün deyə solğun göstərilir.\n\nƏtraflı məlumat üçün yol strukturlarına klikləyin; beyin gövdəsi çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   }
 };
 

@@ -71,7 +71,7 @@ const whiteMatterStructures = {
     "category": "Descending motor",
     "categoryAz": "Enən motor",
     "description": "The cerebral peduncle (crus cerebri) on the ventral midbrain carries massive corticofugal fibres, including corticospinal and corticobulbar tracts, from cortex toward pons and medulla.\n\nThe middle third is classically rich in pyramidal fibres. Midbrain infarct (e.g. Weber syndrome) here produces contralateral hemiparesis with ipsilateral oculomotor palsy.\n\nThis left peduncle is the brainstem gateway for left-hemisphere descending motor output.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Beyin ayaqcığı (crus cerebri) ventral orta beyində qabıqdan körpü və uzunsov beyinə doğru kortikospinal və kortikobulbar yollar daxil olmaqla böyük kortikofuqal lifləri daşıyır.\n\nOrta üçdə bir klassik olaraq piramid lifləri ilə zəngindir. Burada orta beyin infarktı (məs. Veber sindromu) əks tərəfli hemiparez və eyni tərəfli okulomotor iflic yaradır.\n\nBu sol ayaqcıq sol yarımkürənin enən motor çıxışı üçün beyin sütunu qapısıdır.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Beyin ayaqcığı (crus cerebri) ventral orta beyində qabıqdan körpü və uzunsov beyinə doğru kortikospinal və kortikobulbar yollar daxil olmaqla böyük kortikofuqal lifləri daşıyır.\n\nOrta üçdə bir klassik olaraq piramid lifləri ilə zəngindir. Burada orta beyin infarktı (məs. Veber sindromu) əks tərəfli hemiparez və eyni tərəfli okulomotor iflic yaradır.\n\nBu sol ayaqcıq sol yarımkürənin enən motor çıxışı üçün beyin gövdəsi qapısıdır.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   },
   "10_Cerebral_peduncle_R": {
     "title": "CEREBRAL PEDUNCLE (RIGHT)",
@@ -131,11 +131,11 @@ const whiteMatterStructures = {
   },
   "Brainstem": {
     "title": "BRAINSTEM",
-    "titleAz": "Beyin sütunu",
+    "titleAz": "Beyin gövdəsi",
     "category": "Brain context",
     "categoryAz": "Beyin konteksti",
     "description": "The brainstem (midbrain, pons, medulla) houses the cerebral peduncles, superior cerebellar peduncles, medullary pyramids, and much of the course linking cortex to cord.\n\nShown ghosted so white-matter tracts read as pathways inside a real stalk rather than floating scraps.\n\nClick tracts for detail; the brainstem is framing context only.\n\nClinical meaning: correlate this structure with neighboring landmarks in the 3D model; lesions, compression, and inflammation here produce syndrome patterns used in bedside localization and imaging reports.",
-    "descriptionAz": "Beyin sütunu (orta beyin, körpü, uzunsov beyin) beyin ayaqcıqlarını, yuxarı beyincik ayaqcıqlarını, uzunsov beyin piramidlərini və qabığı onurğa beyni ilə birləşdirən yolun böyük hissəsini ehtiva edir.\n\nAğ maddə yolları havada üzən parçalar kimi deyil, real gövdə daxilində yollar kimi görünsün deyə solğun göstərilir.\n\nƏtraflı məlumat üçün yollara klikləyin; beyin sütunu yalnız çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
+    "descriptionAz": "Beyin gövdəsi (orta beyin, körpü, uzunsov beyin) beyin ayaqcıqlarını, yuxarı beyincik ayaqcıqlarını, uzunsov beyin piramidlərini və qabığı onurğa beyni ilə birləşdirən yolun böyük hissəsini ehtiva edir.\n\nAğ maddə yolları havada üzən parçalar kimi deyil, real gövdə daxilində yollar kimi görünsün deyə solğun göstərilir.\n\nƏtraflı məlumat üçün yollara klikləyin; beyin gövdəsi yalnız çərçivə kontekstidir.\n\nKlinik əhəmiyyəti: bu strukturu 3D modeldə qonşu oriyentirlərlə müqayisə edin; buradakı lezyonlar, sıxılma və iltihab yataq başı lokalizasiyasında və görüntüləmə hesabatlarında istifadə olunan sindrom tablolarını yaradır."
   }
 };
 
