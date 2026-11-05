@@ -1,4 +1,4 @@
-import { Niivue } from 'https://unpkg.com/@niivue/niivue@0.69.0/dist/index.js';
+import { Niivue } from 'https://cdn.jsdelivr.net/npm/@niivue/niivue@0.69.0/dist/index.js';
 import { initTheme, getTheme } from './theme.js';
 import { initLang, t, onLangChange, syncFromSiteShell } from './lang.js';
 import {

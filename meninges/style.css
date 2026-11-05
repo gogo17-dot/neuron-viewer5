@@ -14,8 +14,8 @@
   --popup-bg: rgba(6, 14, 26, 0.78);
   --card-bg: rgba(255, 255, 255, 0.04);
   --card-hover: rgba(0, 255, 140, 0.1);
-  --font: 'Share Tech Mono', ui-monospace, monospace;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 [data-theme='day'] {
@@ -451,5 +451,5 @@ a {
 /* Readable sans for the description text; labels keep the mono face. */
 .info-panel__detail,
 .info-panel__detail-wrap {
-  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }

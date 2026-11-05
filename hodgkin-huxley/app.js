@@ -398,7 +398,7 @@
     drawTrace(bufV, padL, y0, plotW, hV, -90, 50, colors.v, 2.25);
 
     ctx.fillStyle = colors.axis;
-    ctx.font = '11px "Share Tech Mono", ui-monospace, monospace';
+    ctx.font = '11px "Inter", system-ui, -apple-system, "Segoe UI", sans-serif';
     ctx.textAlign = "right";
     ctx.fillText(prettyNeg(Math.round(V0), 0), padL - 6, y0 + ((50 - V0) / 140) * hV + 4);
     ctx.fillText("0", padL - 6, y0 + ((50 - 0) / 140) * hV + 4);
@@ -464,7 +464,7 @@
     // shared time axis label
     ctx.fillStyle = colors.label;
     ctx.textAlign = "right";
-    ctx.font = '10px "Share Tech Mono", ui-monospace, monospace';
+    ctx.font = '10px "Inter", system-ui, -apple-system, "Segoe UI", sans-serif';
     ctx.fillText("50 ms →", padL + plotW, h - 6);
   }
 

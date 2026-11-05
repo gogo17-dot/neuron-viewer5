@@ -193,7 +193,7 @@
 
     // labels
     ctx.fillStyle = colors.axis;
-    ctx.font = '11px "Share Tech Mono", ui-monospace, monospace';
+    ctx.font = '11px "Inter", system-ui, -apple-system, "Segoe UI", sans-serif';
     ctx.textAlign = "right";
     ctx.fillText(prettyNeg(E_L), padL - 6, yOf(E_L) + 4);
     ctx.fillText(prettyNeg(Vth), padL - 6, yOf(Vth) + 4);

@@ -46,7 +46,7 @@
       body {
         margin: 0;
         min-height: 100%;
-        font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: 16px;
         line-height: 1.55;
         background: var(--bg);
@@ -58,7 +58,7 @@
       h2,
       h3,
       .font-display {
-        font-family: "Cormorant Garamond", Georgia, serif;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-weight: 600;
         letter-spacing: 0.02em;
       }
@@ -353,9 +353,10 @@
       }
 
       .hero-sub {
-        font-size: 0.75rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        letter-spacing: 0;
+        text-transform: none;
         color: var(--text-muted);
         margin: 0;
       }
@@ -383,7 +384,7 @@
         justify-content: center;
         min-height: 42px;
         padding: 0.65rem 1.1rem;
-        font-family: "Share Tech Mono", ui-monospace, monospace;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: 0.68rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -463,7 +464,7 @@
       }
 
       .home-explore-card__meta {
-        font-family: "Share Tech Mono", ui-monospace, monospace;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: 0.62rem;
         letter-spacing: 0.16em;
         text-transform: uppercase;
@@ -472,7 +473,7 @@
 
       .home-explore-card__title {
         margin: 0;
-        font-family: "Cormorant Garamond", Georgia, serif;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: clamp(1.35rem, 2.4vw, 1.7rem);
         font-weight: 600;
         line-height: 1.15;
@@ -623,7 +624,7 @@
 
       .research-card p {
         margin: 0;
-        font-family: "Cormorant Garamond", Georgia, serif;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: clamp(1.4rem, 2.5vw, 2rem);
         font-style: italic;
         color: var(--text-muted);
@@ -1248,7 +1249,7 @@
 
 .atlas-choice-card__title {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(1.35rem, 2.5vw, 1.75rem);
   font-weight: 600;
   line-height: 1.2;
@@ -1274,7 +1275,7 @@
 
 .atlas-choice-card__soon-title {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.35rem;
   color: var(--text-muted);
 }
@@ -1398,7 +1399,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .books-section__title {
   margin: 0 0 0.75rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.45rem;
   font-weight: 600;
   color: var(--text);
@@ -1437,12 +1438,12 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   color: var(--text-muted);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .book-card__title {
   margin: 0 0 0.55rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--text);
@@ -1459,7 +1460,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   margin: 0 0 0.35rem;
   color: var(--text-muted);
   font-size: 0.78rem;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .book-card__attribution {
@@ -1468,7 +1469,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   font-size: 0.78rem;
   line-height: 1.45;
   font-style: italic;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .book-card__actions {
@@ -1488,7 +1489,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .book-card__btn:hover {
@@ -1512,7 +1513,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .book-card__chapters ul {
@@ -1600,12 +1601,12 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .articles-sort__btn,
 .articles-topic {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.72rem;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
@@ -1643,7 +1644,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   margin: 0 0 0.85rem;
   font-size: 0.78rem;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .articles-choice-grid {
@@ -1665,7 +1666,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.45;
 }
 
@@ -1683,7 +1684,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   text-transform: lowercase;
 }
 
@@ -1697,7 +1698,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   margin: 0;
   font-size: 0.72rem;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .article-choice-card__actions {
@@ -1716,7 +1717,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   text-transform: uppercase;
   color: var(--text-muted);
   font-weight: 600;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   background: none;
   border: none;
   padding: 0;
@@ -1796,7 +1797,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .publish-reg-title {
   margin: 0 0 0.55rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(2rem, 4vw, 2.6rem);
   font-weight: 600;
   line-height: 1.15;
@@ -1863,7 +1864,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .publish-step__title {
   margin: 0 0 0.4rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.65rem;
   font-weight: 600;
   color: var(--text);
@@ -2112,7 +2113,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 }
 
 .publish-btn {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2176,7 +2177,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 }
 
 .about-block__title {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -2243,7 +2244,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   border: 1px solid var(--accent);
   background: var(--accent);
   color: #020810;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
   text-decoration: none;
@@ -2390,7 +2391,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   gap: 0.75rem 1.25rem;
   align-items: baseline;
   margin-bottom: 0.85rem;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.82rem;
   color: var(--text-muted);
 }
@@ -2438,7 +2439,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   display: flex;
   justify-content: space-between;
   margin: 0.45rem 0 1.1rem;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.68rem;
   color: var(--text-muted);
   letter-spacing: 0.03em;
@@ -2466,7 +2467,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .ndyn-slider__label strong {
   color: var(--accent);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 600;
 }
 
@@ -2489,7 +2490,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   border: 1px solid var(--accent);
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--text);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -2512,7 +2513,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .ndyn-teach__title {
   margin: 0 0 0.65rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.45rem;
   font-weight: 600;
   color: var(--text);
@@ -2533,7 +2534,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
   border: none;
   background: none;
   color: var(--accent);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.03em;
   cursor: pointer;
@@ -2553,7 +2554,7 @@ body.synapse-atlas-page .atlas-embed-frame.synapse-embed-wrap {
 
 .ndyn-credit {
   margin: 1.25rem 0 0;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.68rem;
   color: var(--text-muted);
   opacity: 0.8;
@@ -2595,7 +2596,7 @@ body.hh-page #page {
 
 .hh-app__title {
   margin: 0.35rem 0 0.45rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(2.1rem, 5vw, 3.1rem);
   font-weight: 600;
   line-height: 1.05;
@@ -2619,7 +2620,7 @@ body.hh-page #page {
 .hh-related a,
 .ndyn-related a {
   color: var(--accent);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
   text-decoration: underline;
@@ -2658,7 +2659,7 @@ body.hh-page #page {
   gap: 0.65rem 1.1rem;
   align-items: baseline;
   margin-bottom: 0.85rem;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
@@ -2708,7 +2709,7 @@ body.hh-page #page {
   flex-wrap: wrap;
   gap: 0.65rem 1rem;
   margin: 0.55rem 0 0.35rem;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.72rem;
   color: var(--text-muted);
 }
@@ -2758,7 +2759,7 @@ body.hh-page #page {
 
 .hh-controls__title {
   margin: 0 0 0.75rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--text);
@@ -2785,13 +2786,13 @@ body.hh-page #page {
 
 .hh-slider__label strong {
   color: var(--accent);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 600;
 }
 
 .hh-phi {
   margin-left: auto;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.75rem;
   color: var(--text-muted);
 }
@@ -2820,7 +2821,7 @@ body.hh-page #page {
   border: 1px solid var(--accent);
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--text);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.76rem;
   letter-spacing: 0.03em;
   cursor: pointer;
@@ -2896,7 +2897,7 @@ body.hh-page #page {
 
 .hh-prose__title {
   margin: 0 0 0.75rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.55rem;
   font-weight: 600;
   color: var(--text);
@@ -2917,7 +2918,7 @@ body.hh-page #page {
 
 .hh-credit {
   margin: 1rem 0 0 !important;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.68rem !important;
   color: var(--text-muted);
   opacity: 0.8;
@@ -3182,7 +3183,7 @@ body.hh-page #page {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 600;
 }
 
@@ -3252,7 +3253,7 @@ body.hh-page #page {
 }
 .bb-lesson-video summary {
   cursor: pointer;
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -3346,7 +3347,7 @@ body.hh-page #page {
 
 .bb-quiz-q {
   margin: 0 0 1rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.35;
@@ -3412,7 +3413,7 @@ body.hh-page #page {
 }
 
 .bb-clock .bb-score__n {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.05rem;
   letter-spacing: 0.06em;
 }
@@ -3484,7 +3485,7 @@ body.hh-page #page {
 }
 
 .bb-breakdown__n {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--accent);
   text-align: right;
 }
@@ -3648,7 +3649,7 @@ body.hh-page #page {
 .bb-panel__label,
 .bb-missed__tag,
 .bb-score {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .bb-topic-line {
@@ -3776,7 +3777,7 @@ body.hh-page #page {
   text-align: center;
 }
 .home-stats__n {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 700;
   line-height: 1;
@@ -3814,7 +3815,7 @@ body.hh-page #page {
   margin-bottom: 12px;
 }
 .qotd__tag {
-  font-family: "Share Tech Mono", ui-monospace, monospace;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3998,7 +3999,7 @@ body.hh-page #page {
 .about-founder__id { min-width: 0; }
 .about-founder .about-founder__name {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.15;
@@ -4110,7 +4111,7 @@ body.hh-page #page {
 .bb-hub .about-lead { max-width: 52ch; }
 .bb-path {
   display: flex; flex-wrap: wrap; gap: 0; margin: 0 0 1.6rem; padding: 0; list-style: none;
-  font-family: "Share Tech Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.06em;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.72rem; letter-spacing: 0.06em;
 }
 .bb-path li { display: flex; align-items: baseline; gap: 0.45rem; padding: 0.45rem 0.9rem; border: 1px solid var(--border); background: var(--card-bg); }
 .bb-path li:first-child { border-radius: 999px 0 0 999px; }
@@ -4119,7 +4120,7 @@ body.hh-page #page {
 .bb-path b { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; }
 .bb-path span { color: var(--text-muted); }
 .bb-hub__h {
-  margin: 2.6rem 0 1rem; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600;
+  margin: 2.6rem 0 1rem; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 600;
   font-size: clamp(1.35rem, 2.6vw, 1.7rem); color: var(--text);
 }
 .bb-grid { display: grid; gap: 14px; max-width: none; }
@@ -4131,7 +4132,7 @@ body.hh-page #page {
 .bb-card .atlas-choice-card__cta { margin-top: auto; }
 .bb-card__n {
   position: absolute; top: 16px; right: 18px;
-  font-family: "Cormorant Garamond", Georgia, serif; font-size: 2.4rem; line-height: 1; font-weight: 600;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 2.4rem; line-height: 1; font-weight: 600;
   color: var(--accent); opacity: 0.35;
 }
 .bb-extra { margin: 2.6rem 0 0; border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg); }
@@ -4140,13 +4141,13 @@ body.hh-page #page {
   padding: 16px 20px; cursor: pointer; list-style: none;
 }
 .bb-extra > summary::-webkit-details-marker { display: none; }
-.bb-extra__t { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; font-weight: 600; color: var(--text); }
-.bb-extra__m { font-family: "Share Tech Mono", ui-monospace, monospace; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.bb-extra__t { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 1.3rem; font-weight: 600; color: var(--text); }
+.bb-extra__m { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
 .bb-extra__m::after { content: " ▾"; }
 .bb-extra[open] .bb-extra__m::after { content: " ▴"; }
 .bb-extra #bb-quiz { padding: 0 20px 20px; }
 .bb-res { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; margin: 2.2rem 0 0; font-size: 0.9rem; }
-.bb-res__k { font-family: "Share Tech Mono", ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+.bb-res__k { font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
 .bb-res a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
 .bb-res a:hover { border-bottom-color: var(--accent); }
 .bb-hub .bb-disclaimer-inline { font-size: 0.76rem; margin-top: 1.2rem; }

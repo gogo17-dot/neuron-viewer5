@@ -14,8 +14,8 @@
   --popup-bg: rgba(6, 14, 26, 0.78);
   --card-bg: rgba(255, 255, 255, 0.04);
   --card-hover: rgba(0, 255, 140, 0.1);
-  --font: 'Share Tech Mono', ui-monospace, monospace;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 [data-theme='day'] {
@@ -465,7 +465,7 @@ a {
   box-shadow: 0 0 0 1px rgba(0, 255, 204, 0.1), 0 10px 36px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(10px);
   color: rgba(200, 200, 200, 0.88);
-  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 [data-theme='day'] .structure-popup {
   background: #fffef4;
