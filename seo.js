@@ -4,7 +4,7 @@
  */
 export const SITE = {
   name: 'AXON',
-  url: 'https://gogo17-dot.github.io/neuron-viewer5',
+  url: 'https://axon.az',
   themeColorNight: '#020810',
   themeColorDay: '#faf8f4',
 };
