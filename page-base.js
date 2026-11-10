@@ -42,6 +42,11 @@
     var t = localStorage.getItem("neyron_theme");
     if (t === "day" || t === "night") document.documentElement.setAttribute("data-theme", t);
     var l = localStorage.getItem("neyron_lang");
-    if (l === "az" || l === "en") document.documentElement.lang = l;
+    /* First visit: open in Azerbaijani. The EN/AZ toggle still switches and is remembered. */
+    if (l !== "az" && l !== "en") {
+      l = "az";
+      localStorage.setItem("neyron_lang", l);
+    }
+    document.documentElement.lang = l;
   } catch (e) {}
 })();
