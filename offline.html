@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>AXON — İnternet yoxdur</title>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #020810; color: #c8f0e0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 24px; box-sizing: border-box; }
+      img { width: 72px; height: 72px; border-radius: 18px; }
+      h1 { font-size: 1.4rem; margin: 18px 0 8px; color: #00ff8c; letter-spacing: 0.04em; }
+      p { margin: 0 auto 22px; max-width: 26rem; color: #9fb8ae; }
+      button { font: inherit; font-weight: 600; padding: 10px 22px; border-radius: 999px; border: 1px solid #00ff8c; background: transparent; color: #00ff8c; cursor: pointer; }
+      button:hover, button:focus-visible { background: #00ff8c; color: #020810; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icons/icon-192.png" alt="" />
+      <h1 id="t">İnternet bağlantısı yoxdur</h1>
+      <p id="d">Bu səhifə hələ telefonunuzda saxlanmayıb. Əvvəl açdığınız səhifələr internetsiz də işləyir. Bağlantı qayıdanda yenidən cəhd edin.</p>
+      <button id="b" type="button" onclick="location.reload()">Yenidən cəhd et</button>
+    </main>
+    <script>
+      try {
+        if (localStorage.getItem("neyron_lang") === "en") {
+          document.documentElement.lang = "en";
+          document.title = "AXON — You're offline";
+          document.getElementById("t").textContent = "No internet connection";
+          document.getElementById("d").textContent = "This page isn't saved on your phone yet. Pages you've opened before still work offline. Try again when you're back online.";
+          document.getElementById("b").textContent = "Try again";
+        }
+      } catch (e) {}
+    </script>
+  </body>
+</html>

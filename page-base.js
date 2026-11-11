@@ -66,3 +66,62 @@
     document.head.appendChild(s);
   } catch (e) {}
 })();
+
+/**
+ * Installable app: register the service worker (live site only) and wire up
+ * the "Install AXON" button in the homepage footer when the browser allows it.
+ * On iPhone/iPad there is no install prompt, so the button shows how to use
+ * Share → Add to Home Screen instead.
+ */
+(function () {
+  try {
+    var h = location.hostname;
+    var live = h === "axon.az" || h === "www.axon.az";
+    var testing = false;
+    try { testing = localStorage.getItem("axon_sw_test") === "1"; } catch (e) {}
+    if ("serviceWorker" in navigator && (live || testing)) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+
+    var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+    if (standalone) return;
+    var deferred = null;
+    var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    function az() { return document.documentElement.lang === "az"; }
+    function btn() { return document.getElementById("install-app"); }
+    function show() { var b = btn(); if (b) b.hidden = false; }
+
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferred = e;
+      show();
+    });
+    window.addEventListener("appinstalled", function () {
+      deferred = null;
+      var b = btn(); if (b) b.hidden = true;
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var b = btn();
+      if (!b) return;
+      if (ios) show();
+      b.addEventListener("click", function () {
+        if (deferred) {
+          deferred.prompt();
+          deferred.userChoice.then(function () { deferred = null; b.hidden = true; }).catch(function () {});
+          return;
+        }
+        var tip = document.getElementById("install-tip");
+        if (tip) {
+          tip.textContent = az()
+            ? "Safari-də aşağıdakı “Paylaş” düyməsinə, sonra “Əsas ekrana əlavə et”ə toxunun."
+            : "In Safari, tap the Share button, then “Add to Home Screen”.";
+          tip.hidden = false;
+        }
+      });
+    });
+  } catch (e) {}
+})();

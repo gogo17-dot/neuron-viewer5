@@ -1,0 +1,23 @@
+{
+  "name": "AXON — Neyroelm",
+  "short_name": "AXON",
+  "description": "Azərbaycan dilində neyroelm: 3D beyin atlasları, real MRT skanları, pasiyent halları və Brain Bee-yə hazırlıq. Pulsuz, iki dildə.",
+  "lang": "az",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#020810",
+  "theme_color": "#020810",
+  "categories": ["education", "medical"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Brain Bee hazırlığı", "short_name": "Brain Bee", "url": "/brain-bee.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "3D beyin atlasları", "short_name": "Atlaslar", "url": "/atlas.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Məşq sualları", "short_name": "Məşq", "url": "/practice.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

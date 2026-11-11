@@ -27,7 +27,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://axon.az/media/og-axon.jpg" />
     <link rel="canonical" href="https://axon.az/" />
-    <script src="page-base.js?v=r4"></script>
+    <script src="page-base.js?v=r5"></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,6 +45,10 @@
     <style>
       .netty-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; padding: 0.4rem 0.8rem; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
       .netty-badge:hover, .netty-badge:focus-visible { background: var(--accent); color: var(--bg, #0a0a0a); }
+      .install-app { display: block; margin: 0 0 0.6rem; padding: 0.45rem 0.9rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--bg, #020810); font: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
+      .install-app[hidden], .install-tip[hidden] { display: none; }
+      .install-app:hover, .install-app:focus-visible { filter: brightness(1.1); }
+      .install-tip { margin: 0 0 0.6rem; max-width: 18rem; font-size: 0.78rem; line-height: 1.45; color: var(--text-muted); }
       .netty-badge__dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
     </style>
   </head>
@@ -229,6 +234,8 @@
         </div>
         <div class="footer-center">
           <a class="netty-badge" href="https://www.netty.az/cgi-bin/onelike.cgi?id=4700&amp;lang=az" target="_blank" rel="noopener"><span class="netty-badge__dot" aria-hidden="true"></span><span data-en="NETTY 2026 · Participant" data-az="NETTY 2026 · İştirakçı">NETTY 2026 · Participant</span></a>
+          <button class="install-app" id="install-app" type="button" hidden><span data-en="Install AXON on your phone" data-az="AXON-u telefona quraşdır">Install AXON on your phone</span></button>
+          <p class="install-tip" id="install-tip" role="status" hidden></p>
           <div>© 2026 AXON</div>
         </div>
       </footer>
