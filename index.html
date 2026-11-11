@@ -41,6 +41,11 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <link rel="stylesheet" href="site.css?v=inter1" />
+    <style>
+      .netty-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; padding: 0.4rem 0.8rem; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); text-decoration: none; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .netty-badge:hover, .netty-badge:focus-visible { background: var(--accent); color: var(--bg, #0a0a0a); }
+      .netty-badge__dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
+    </style>
   </head>
   <body data-page="home">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -222,7 +227,10 @@
             </div>
           </nav>
         </div>
-        <div class="footer-center">© 2026 AXON</div>
+        <div class="footer-center">
+          <a class="netty-badge" href="https://www.netty.az/cgi-bin/onelike.cgi?id=4700&amp;lang=az" target="_blank" rel="noopener"><span class="netty-badge__dot" aria-hidden="true"></span><span data-en="NETTY 2026 · Participant" data-az="NETTY 2026 · İştirakçı">NETTY 2026 · Participant</span></a>
+          <div>© 2026 AXON</div>
+        </div>
       </footer>
     </div>
 
