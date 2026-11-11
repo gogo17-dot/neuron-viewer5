@@ -536,6 +536,10 @@ a {
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
+/* The panel stays hidden until the DTI checkbox is ticked. */
+.or-dti-panel[hidden] {
+  display: none;
+}
 [data-theme='day'] .or-dti-panel {
   background: #fffef4;
 }

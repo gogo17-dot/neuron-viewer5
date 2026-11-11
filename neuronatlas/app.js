@@ -731,9 +731,11 @@ function init() {
     roughness: 0.5,
   });
 
-  const spineGeomShared = new THREE.SphereGeometry(0.035, 10, 10);
+  const spineGeomShared = new THREE.SphereGeometry(0.035, 8, 6);
 
   // --- 3. DENDRITES ---
+  const dendriteGeoms = [];
+  const spinePositions = [];
   function makeDendrite(start, direction, radius, depth) {
     if (depth <= 0 || radius < 0.015) return;
 
@@ -754,19 +756,15 @@ function init() {
       false,
       "centripetal"
     );
-    const tubeGeom = createTaperedTubeGeometry(curve, 28, radius, radius * 0.7, 12, 8);
-    const branchMesh = new THREE.Mesh(tubeGeom, dendriteMat);
-    neuronGroup.add(branchMesh);
-    registerLabel(branchMesh, "Dendrites");
+    // Phone-friendly: fewer segments, and every branch is merged into one mesh below
+    // (was ~3M triangles in ~2,800 separate meshes).
+    const tubeGeom = createTaperedTubeGeometry(curve, 12, radius, radius * 0.7, radius > 0.06 ? 10 : 6, 2);
+    dendriteGeoms.push(tubeGeom);
 
     const spineCount = Math.floor(random(3, 5));
     for (let s = 0; s < spineCount; s++) {
       const t = random(0.15, 0.85);
-      const spinePos = curve.getPointAt(t);
-      const spine = new THREE.Mesh(spineGeomShared, spineMat);
-      spine.position.copy(spinePos);
-      neuronGroup.add(spine);
-      registerLabel(spine, "Dendritic Spine");
+      spinePositions.push(curve.getPointAt(t));
     }
 
     const spreadMin = 0.4;
@@ -793,6 +791,19 @@ function init() {
     ).normalize();
     const start = dir.clone().multiplyScalar(1.15);
     makeDendrite(start, dir, 0.22, 6);
+  }
+  {
+    const dendriteMesh = new THREE.Mesh(mergeGeometries(dendriteGeoms), dendriteMat);
+    dendriteGeoms.forEach((g) => g.dispose());
+    neuronGroup.add(dendriteMesh);
+    registerLabel(dendriteMesh, "Dendrites");
+    const spines = new THREE.InstancedMesh(spineGeomShared, spineMat, spinePositions.length);
+    const m4 = new THREE.Matrix4();
+    spinePositions.forEach((pos, i) => spines.setMatrixAt(i, m4.makeTranslation(pos.x, pos.y, pos.z)));
+    spines.instanceMatrix.needsUpdate = true;
+    spines.computeBoundingSphere();
+    neuronGroup.add(spines);
+    registerLabel(spines, "Dendritic Spine");
   }
 
   // --- 4. AXON HILLOCK (tapered tube from soma bottom to axon start) ---

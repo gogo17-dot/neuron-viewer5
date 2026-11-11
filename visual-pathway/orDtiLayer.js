@@ -3,15 +3,16 @@
  * Anatomical pathway GLBs stay in Three.js; streamlines are MNI-space measured fibres.
  */
 
-import { Niivue } from 'https://unpkg.com/@niivue/niivue@0.69.0/dist/index.js';
+import { Niivue } from 'https://cdn.jsdelivr.net/npm/@niivue/niivue@0.69.0/dist/index.js';
 
-const MNI_URL = 'https://niivue.github.io/niivue-demo-images/mni152.nii.gz';
+const MNI_URL = '../brain-scans/scans-data/mni152.nii.gz';
 const OR_TRACTS = [
   { url: 'tracts/OR_L.trk.gz', rgba255: [251, 191, 36, 255] },
   { url: 'tracts/OR_R.trk.gz', rgba255: [251, 191, 36, 255] },
 ];
 
 let nv = null;
+const L = (en, az) => (document.documentElement.lang === 'az' ? az : en);
 let loadPromise = null;
 
 function ensureDom() {
@@ -24,15 +25,17 @@ function ensureDom() {
   panel.hidden = true;
   panel.innerHTML = `
     <div class="or-dti-panel__head">
-      <strong data-en="Optic radiation (DTI)" data-az="Optik radiasiya (DTI)">Optic radiation (DTI)</strong>
-      <button type="button" class="or-dti-panel__close" id="or-dti-close" aria-label="Close">×</button>
+      <strong data-en="Optic radiation (DTI)" data-az="Optik radiasiya (DTI)">${L('Optic radiation (DTI)', 'Optik radiasiya (DTI)')}</strong>
+      <button type="button" class="or-dti-panel__close" id="or-dti-close" aria-label="${L('Close', 'Bağla')}">×</button>
     </div>
     <canvas id="or-dti-gl" class="or-dti-panel__canvas"></canvas>
-    <p class="or-dti-panel__status" id="or-dti-status">Loading…</p>
-    <p class="or-dti-panel__attr">
-      Tractography from the HCP-1065 population-averaged atlas (Yeh, 2022),
-      derived from Human Connectome Project data, licensed CC BY-SA 4.0.
-    </p>
+    <p class="or-dti-panel__status" id="or-dti-status">${L('Loading…', 'Yüklənir…')}</p>
+    <p class="or-dti-panel__attr"
+      data-en="Tractography from the HCP-1065 population-averaged atlas (Yeh, 2022), derived from Human Connectome Project data, licensed CC BY-SA 4.0."
+      data-az="Traktoqrafiya: HCP-1065 populyasiya üzrə orta atlas (Yeh, 2022), Human Connectome Project məlumatları əsasında, CC BY-SA 4.0 lisenziyası ilə.">${L(
+        'Tractography from the HCP-1065 population-averaged atlas (Yeh, 2022), derived from Human Connectome Project data, licensed CC BY-SA 4.0.',
+        'Traktoqrafiya: HCP-1065 populyasiya üzrə orta atlas (Yeh, 2022), Human Connectome Project məlumatları əsasında, CC BY-SA 4.0 lisenziyası ilə.'
+      )}</p>
   `;
   const host = document.getElementById('app') || document.body;
   host.appendChild(panel);
@@ -64,11 +67,11 @@ async function ensureLoaded() {
       isColorbar: false,
     });
     await nv.attachTo('or-dti-gl');
-    if (status) status.textContent = 'Loading MNI152…';
+    if (status) status.textContent = L('Loading MNI152…', 'MNI152 yüklənir…');
     await nv.loadVolumes([{ url: MNI_URL, opacity: 0.28, colormap: 'gray' }]);
     nv.setSliceType(nv.sliceTypeRender);
 
-    if (status) status.textContent = 'Loading optic radiation…';
+    if (status) status.textContent = L('Loading optic radiation…', 'Optik radiasiya yüklənir…');
     await nv.loadMeshes(
       OR_TRACTS.map((spec) => ({
         url: spec.url,
@@ -92,7 +95,7 @@ async function ensureLoaded() {
     const status = document.getElementById('or-dti-status');
     if (status) {
       status.hidden = false;
-      status.textContent = `Failed: ${err?.message || err}`;
+      status.textContent = L('Could not load. Please try again.', 'Yükləmək olmadı. Yenidən cəhd edin.');
     }
     throw err;
   });
@@ -124,7 +127,7 @@ export function initOrDtiToggle() {
     control.className = 'or-dti-control';
     control.innerHTML = `
       <input type="checkbox" id="tog-or-dti" />
-      <span data-en="Optic radiation (DTI)" data-az="Optik radiasiya (DTI)">Optic radiation (DTI)</span>
+      <span data-en="Optic radiation (DTI)" data-az="Optik radiasiya (DTI)">${L('Optic radiation (DTI)', 'Optik radiasiya (DTI)')}</span>
     `;
     const tip = document.getElementById('viewer-tip');
     const app = document.getElementById('app');

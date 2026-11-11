@@ -60,7 +60,7 @@
       az:
         'Çoxları həyatı əsl daxili sakitliyi heç vaxt yaşamadan və əldə etməli olduqları zirvə zehni gücə heç vaxt çatmadan keçirirlər. A Healthy Mind zehni gücün arxasındakı elm və fəlsəfəni araşdırır, neyroelm tarixini izləyərək beynin bizi necə formalaşdırdığını və onu necə yenidən formalaşdıra biləcəyimizi göstərir. Praktik məşqlərlə (mindfulness və neyroplastiklik üsulları daxil olmaqla) bu kitab sizi inam və həqiqi daxili sakitliyə yönəldir. Zehniniz sizin gücünüzdür — ondan istifadə etməyi öyrənin.',
     },
-    licenceLabel: 'All rights reserved · read on AXON',
+    licenceLabel: { en: 'All rights reserved · read on AXON', az: 'Bütün hüquqlar qorunur · AXON-da oxuyun' },
     attribution: 'A Healthy Mind © Omar Garagozov. All rights reserved. Read on AXON (no download).',
     localPath: 'public/books/a-healthy-mind.pdf',
   };
@@ -123,7 +123,7 @@
         en: 'The classic 1918 Gray’s Anatomy (20th edition), scanned by the Internet Archive — public-domain descriptive anatomy still useful as a historical and structural reference alongside modern atlases.',
         az: 'Internet Archive tərəfindən skan edilmiş klassik 1918 Gray’s Anatomy (20-ci nəşr) — müasir atlaslarla yanaşı tarixi və struktur istinad kimi faydalı ictimai domendə təsviri anatomiya.',
       },
-      licenceLabel: 'Public domain',
+      licenceLabel: { en: 'Public domain', az: 'İctimai mülkiyyət' },
       attribution:
         'Anatomy of the Human Body by Henry Gray, 20th ed., rev. Warren H. Lewis (Lea & Febiger, 1918). Public domain. Scan: Internet Archive (anatomyofhumanbo1918gray).',
       sourceUrl: 'https://archive.org/details/anatomyofhumanbo1918gray',
@@ -138,7 +138,7 @@
         en: 'Open-access electronic textbook: cellular, systems, and behavioural neuroscience in modular chapters. © McGovern Medical School — free to read at source; no Creative Commons redistribution licence, so we do not mirror files.',
         az: 'Açıq girişli elektron dərslik: hüceyrə, sistem və davranış neyroelmi modul fəsillərdə. © McGovern Medical School — mənbədə pulsuz oxunur; yenidən yayım üçün CC lisenziyası yoxdur, ona görə faylları güzgüləmirik.',
       },
-      licenceLabel: '© free to read at source (not redistributable)',
+      licenceLabel: { en: '© free to read at source (not redistributable)', az: '© mənbədə pulsuz oxunur (yenidən yayılmır)' },
       attribution:
         'Neuroscience Online © 1997–present, McGovern Medical School at UTHealth, Department of Neurobiology and Anatomy. Linked only; not mirrored.',
       sourceUrl: 'https://nba.uth.tmc.edu/neuroscience/',
@@ -153,7 +153,7 @@
         en: 'Companion open-access neuroanatomy laboratory to Neuroscience Online — structures, pathways, and clinical orientation. Same © as Neuroscience Online; link-only.',
         az: 'Neuroscience Online-un açıq girişli neyroanatomiya laboratoriyası — strukturlar, yollar və klinik oriyentasiya. Eyni müəllif hüququ; yalnız keçid.',
       },
-      licenceLabel: '© free to read at source (not redistributable)',
+      licenceLabel: { en: '© free to read at source (not redistributable)', az: '© mənbədə pulsuz oxunur (yenidən yayılmır)' },
       attribution:
         'Neuroanatomy Online © McGovern Medical School at UTHealth, Department of Neurobiology and Anatomy. Linked only; not mirrored.',
       sourceUrl: 'https://nba.uth.tmc.edu/neuroanatomy/',
@@ -168,7 +168,7 @@
         en: 'Undergraduate introductory neuroscience OER (16 chapters). Licence verified: CC BY-NC 4.0 — sharing for non-commercial use is allowed with attribution. Kept link-only here until a clean PDF mirror is added under public/books/; do not host without the NC site rule.',
         az: 'Bakalavr giriş neyroelmi OER (16 fəsil). Lisenziya təsdiqlənib: CC BY-NC 4.0 — qeyri-kommersiya paylaşım atributla icazəlidir. public/books/ altına təmiz PDF güzgü əlavə olunana qədər burada yalnız keçid; NC sayt qaydası olmadan host etməyin.',
       },
-      licenceLabel: 'CC BY-NC 4.0 (link until mirrored)',
+      licenceLabel: { en: 'CC BY-NC 4.0 (link until mirrored)', az: 'CC BY-NC 4.0 (hələlik keçid ilə)' },
       attribution:
         'Open Neuroscience Initiative © Austin Lim. Licensed under CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Read at source; local mirror deferred.',
       sourceUrl: 'https://www.austinlim.com/open-neuroscience-initiative',
@@ -183,7 +183,7 @@
         en: 'Short USMLE-aligned text on neuroenergetics and neurotransmitters (not a full anatomy atlas). Licence verified: CC BY-NC-SA 4.0. Link-only until mirrored; NC+SA rules apply if hosted later.',
         az: 'Neyroenergetika və neyromediatorlar haqqında qısa USMLE uyğun mətn (tam anatomiya atlası deyil). Lisenziya təsdiqlənib: CC BY-NC-SA 4.0. Güzgü olunana qədər yalnız keçid; host edilsə NC+SA qaydaları keçərlidir.',
       },
-      licenceLabel: 'CC BY-NC-SA 4.0 (link until mirrored)',
+      licenceLabel: { en: 'CC BY-NC-SA 4.0 (link until mirrored)', az: 'CC BY-NC-SA 4.0 (hələlik keçid ilə)' },
       attribution:
         'LeClair, Renée J. (2022). Neuroscience for Pre-Clinical Students. https://doi.org/10.21061/neuroscience. Licensed under CC BY-NC-SA 4.0. Linked only; local mirror deferred.',
       sourceUrl: 'https://doi.org/10.21061/neuroscience',
@@ -198,7 +198,7 @@
         en: 'Graduate-oriented behavioural neuroscience OER: neurons, neuroanatomy methods, drugs and behaviour, rhythms, emotion, learning, and psychopathology. Licence verified: CC BY-NC 4.0 on VCU Pressbooks — link-only; NC site rule if ever mirrored.',
         az: 'Magistr səviyyəli davranış neyroelmi OER: neyronlar, neyroanatomiya metodları, dərman və davranış, ritmlər, emosiyalar, öyrənmə və psixopatologiya. Lisenziya təsdiqlənib: CC BY-NC 4.0 (VCU Pressbooks) — yalnız keçid; güzgü olunsa NC qaydası.',
       },
-      licenceLabel: 'CC BY-NC 4.0 (link until mirrored)',
+      licenceLabel: { en: 'CC BY-NC 4.0 (link until mirrored)', az: 'CC BY-NC 4.0 (hələlik keçid ilə)' },
       attribution:
         'Biological Basis of Behavior © 2024 by Caroline Cobb (Amey). Licensed under CC BY-NC 4.0. https://pressbooks.library.vcu.edu/psyc629/ Linked only; local mirror deferred.',
       sourceUrl: 'https://pressbooks.library.vcu.edu/psyc629/',
@@ -272,7 +272,16 @@
     licenceLabel.setAttribute('data-az', UI.licence.az);
     licenceLabel.textContent = localized(UI.licence);
     licence.appendChild(licenceLabel);
-    licence.appendChild(document.createTextNode(' ' + book.licenceLabel));
+    licence.appendChild(document.createTextNode(' '));
+    if (book.licenceLabel && typeof book.licenceLabel === 'object') {
+      var licenceValue = document.createElement('span');
+      licenceValue.setAttribute('data-en', book.licenceLabel.en);
+      licenceValue.setAttribute('data-az', book.licenceLabel.az);
+      licenceValue.textContent = localized(book.licenceLabel);
+      licence.appendChild(licenceValue);
+    } else {
+      licence.appendChild(document.createTextNode(book.licenceLabel));
+    }
 
     var attribution = document.createElement('p');
     attribution.className = 'book-card__attribution';
