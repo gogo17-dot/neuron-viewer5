@@ -50,3 +50,19 @@
     document.documentElement.lang = l;
   } catch (e) {}
 })();
+
+/**
+ * Visitor counter (GoatCounter, no cookies). Counts only on the live site,
+ * not on local copies or previews.
+ */
+(function () {
+  try {
+    var h = location.hostname;
+    if (h !== "axon.az" && h !== "www.axon.az") return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.setAttribute("data-goatcounter", "https://omarg.goatcounter.com/count");
+    document.head.appendChild(s);
+  } catch (e) {}
+})();
