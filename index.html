@@ -49,6 +49,37 @@
       .install-app[hidden], .install-tip[hidden] { display: none; }
       .install-app:hover, .install-app:focus-visible { filter: brightness(1.1); }
       .install-tip { margin: 0 0 0.6rem; max-width: 18rem; font-size: 0.78rem; line-height: 1.45; color: var(--text-muted); }
+      .hero-news { display: inline-flex; align-items: center; gap: 0.6rem; max-width: 100%; margin-bottom: 18px; padding: 6px 14px 6px 6px; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--bg) 70%, transparent); color: var(--text); font-family: "Inter", system-ui, sans-serif; font-size: 0.82rem; text-decoration: none; pointer-events: auto; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: border-color 0.2s ease, transform 0.2s ease; }
+      .hero-news:hover, .hero-news:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
+      .hero-news__tag { flex: none; padding: 3px 9px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+      .hero-news__arrow { flex: none; color: var(--accent); }
+      .hero-proof { display: grid; grid-template-columns: repeat(4, minmax(0, auto)); gap: 0 28px; justify-content: start; margin: 26px 0 0; padding: 0; list-style: none; pointer-events: auto; }
+      .hero-proof li + li { padding-left: 28px; border-left: 1px solid var(--border); }
+      .hero-proof a { display: grid; gap: 2px; color: inherit; text-decoration: none; }
+      .hero-proof__n { font-family: "Cormorant Garamond", Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1; color: var(--accent); font-variant-numeric: lining-nums tabular-nums; }
+      .hero-proof__l { font-family: "Inter", system-ui, sans-serif; font-size: 0.74rem; color: var(--text-muted); white-space: nowrap; }
+      .hero-proof a:hover .hero-proof__l, .hero-proof a:focus-visible .hero-proof__l { color: var(--text); }
+      /* Phones: the badge and numbers make the copy taller, so give the hero
+       * more room and keep the headline clear of the neuron. */
+      @media (max-width: 760px) {
+        #hero { min-height: 94svh; }
+        .hero-overlay { min-height: calc(94svh - 60px - env(safe-area-inset-top, 0px)); }
+      }
+      @media (max-width: 640px) {
+        .hero-news { font-size: 0.76rem; margin-bottom: 14px; }
+        .hero-proof { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 20px; }
+        .hero-proof li + li { padding-left: 10px; }
+        .hero-proof li { padding-right: 6px; }
+        .hero-proof__n { font-size: 1.55rem; }
+        .hero-proof__l { font-size: 0.64rem; white-space: normal; line-height: 1.25; }
+      }
+      .lz-promo-wrap { padding-top: 0; padding-bottom: 0; }
+      .lz-promo { display: grid; gap: 0.45rem; max-width: 1100px; margin: 0 auto; padding: 1.4rem 1.5rem; border: 1px solid var(--accent); border-radius: 16px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--card-bg)), var(--card-bg) 60%); color: var(--text); text-decoration: none; transition: transform 0.2s ease; }
+      .lz-promo:hover, .lz-promo:focus-visible { transform: translateY(-2px); }
+      .lz-promo__tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .lz-promo__title { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.05; }
+      .lz-promo__text { max-width: 38rem; color: var(--text-muted); }
+      .lz-promo__cta { margin-top: 0.3rem; font-weight: 600; color: var(--accent); }
       .netty-badge__dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
     </style>
   </head>
@@ -93,6 +124,11 @@
         <canvas id="scene"></canvas>
         <div class="hero-overlay">
           <div class="hero-copy">
+            <a class="hero-news" href="lezyon.html">
+              <span class="hero-news__tag" data-en="New" data-az="Yeni">New</span>
+              <span data-en="Lesion hunter: find the damage on a 3D brain" data-az="Lezyon ovçusu: zədəni 3D beyində tap">Lesion hunter: find the damage on a 3D brain</span>
+              <span class="hero-news__arrow" aria-hidden="true">→</span>
+            </a>
             <h1>
               <span data-en="Neuroscience" data-az="Neyroelm">Neuroscience</span><br />
               <span class="line-accent" data-en="for Azerbaijan" data-az="Azərbaycan dilində">for Azerbaijan</span>
@@ -107,6 +143,12 @@
               <a class="hero-cta hero-cta--primary" href="atlas.html" data-en="Explore the brain" data-az="Beyni kəşf et">Explore the brain</a>
               <a class="hero-cta hero-cta--ghost" href="brain-bee.html" data-en="Brain Bee prep" data-az="Brain Bee hazırlığı">Brain Bee prep</a>
             </div>
+            <ul class="hero-proof" aria-label="AXON in numbers">
+              <li><a href="atlas.html"><span class="home-stats__n hero-proof__n" data-count="14">14</span><span class="hero-proof__l" data-en="3D atlases" data-az="3D atlas">3D atlases</span></a></li>
+              <li><a href="brain-bee-anatomy.html"><span class="home-stats__n hero-proof__n" data-count="149">149</span><span class="hero-proof__l" data-en="brain structures" data-az="beyin strukturu">brain structures</span></a></li>
+              <li><a href="practice.html"><span class="home-stats__n hero-proof__n" data-count="429">429</span><span class="hero-proof__l" data-en="practice questions" data-az="məşq sualı">practice questions</span></a></li>
+              <li><a href="brain-bee-diagnosis.html"><span class="home-stats__n hero-proof__n" data-count="27">27</span><span class="hero-proof__l" data-en="patient cases" data-az="pasiyent halı">patient cases</span></a></li>
+            </ul>
           </div>
         </div>
       </section>
@@ -147,14 +189,6 @@
         <p class="home-video__note" data-en="From a tiny worm to you · 0:49" data-az="Kiçik bir qurddan sənə qədər · 0:47">From a tiny worm to you · 0:49</p>
       </section>
 
-      <section class="home-stats io-fade" aria-label="AXON in numbers">
-        <div class="home-stats__grid">
-          <div class="home-stats__item"><span class="home-stats__n" data-count="429">429</span><span class="home-stats__label" data-en="practice questions" data-az="məşq sualı">practice questions</span></div>
-          <div class="home-stats__item"><span class="home-stats__n" data-count="149">149</span><span class="home-stats__label" data-en="brain structures" data-az="beyin strukturu">brain structures</span></div>
-          <div class="home-stats__item"><span class="home-stats__n" data-count="27">27</span><span class="home-stats__label" data-en="patient cases" data-az="pasiyent halı">patient cases</span></div>
-          <div class="home-stats__item"><span class="home-stats__n" data-count="14">14</span><span class="home-stats__label" data-en="3D atlases" data-az="3D atlas">3D atlases</span></div>
-        </div>
-      </section>
 
       <section class="qotd io-fade" id="qotd" aria-label="Question of the day">
         <div class="qotd__card">
@@ -167,6 +201,15 @@
           <p class="qotd__why" id="qotd-why" hidden></p>
           <a class="qotd__more" id="qotd-more" href="practice.html" hidden data-en="Keep practising →" data-az="Məşqə davam et →">Keep practising →</a>
         </div>
+      </section>
+
+      <section class="content-section io-fade lz-promo-wrap" aria-label="Lesion hunter game">
+        <a class="lz-promo" href="lezyon.html">
+          <span class="lz-promo__tag" data-en="New · Brain game" data-az="Yeni · Beyin oyunu">New · Brain game</span>
+          <span class="lz-promo__title" data-en="Lesion hunter" data-az="Lezyon ovçusu">Lesion hunter</span>
+          <span class="lz-promo__text" data-en="Read the patient’s symptoms and tap where the damage is on a 3D brain. Ten patients, 30 seconds each." data-az="Xəstənin əlamətlərini oxu və zədənin yerinə 3D beyində toxun. On pasiyent, hər birinə 30 saniyə.">Read the patient’s symptoms and tap where the damage is on a 3D brain. Ten patients, 30 seconds each.</span>
+          <span class="lz-promo__cta" data-en="Play now →" data-az="İndi oyna →">Play now →</span>
+        </a>
       </section>
 
       <section id="explore" class="content-section io-fade home-explore" aria-label="Explore AXON">

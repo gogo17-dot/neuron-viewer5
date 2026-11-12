@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Lezyon ovçusu — AXON beyin oyunu · Lesion hunter</title>
+    <meta
+      name="description"
+      content="Lezyon ovçusu: xəstənin hekayəsini oxu və zədəni 3D beyində tap. Lesion hunter: read the patient story and tap where the damage is on a 3D brain. Pulsuz, iki dildə."
+    />
+    <meta property="og:site_name" content="AXON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AXON — Lezyon ovçusu · Lesion hunter" />
+    <meta
+      property="og:description"
+      content="Xəstənin əlamətlərindən beyindəki zədəni tap. Find the damage in the brain from the patient’s symptoms."
+    />
+    <meta property="og:url" content="https://axon.az/lezyon.html" />
+    <meta property="og:image" content="https://axon.az/media/og-axon.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://axon.az/media/og-axon.jpg" />
+    <link rel="canonical" href="https://axon.az/lezyon.html" />
+    <script src="page-base.js?v=r5"></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=inter1" />
+    <link rel="stylesheet" href="lezyon.css?v=1" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+          "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body data-page="brain-bee" class="about-page">
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          AXON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main lz-main" style="padding-top: 96px">
+        <div class="tag" data-en="Brain game" data-az="Beyin oyunu">Brain game</div>
+        <h1 class="section-title about-title" data-en="Lesion hunter" data-az="Lezyon ovçusu">Lesion hunter</h1>
+        <p
+          class="section-desc"
+          data-en="Read the patient’s story, then tap where the damage is on the 3D brain — the way neurologists localise a lesion from symptoms. Ten patients, 30 seconds each. The faster you find it, the more points you get."
+          data-az="Xəstənin hekayəsini oxu, sonra 3D beyində zədənin olduğu yerə toxun — nevroloqların əlamətlərdən lezyonu tapdığı kimi. On pasiyent, hər birinə 30 saniyə. Nə qədər tez tapsan, bir o qədər çox xal."
+        >
+          Read the patient’s story, then tap where the damage is on the 3D brain — the way neurologists localise a lesion from symptoms. Ten patients, 30 seconds each. The faster you find it, the more points you get.
+        </p>
+        <ul class="lz-rules">
+          <li data-en="Left and right are marked on the brain. Mind the side: the left brain moves the right hand." data-az="Beyində sol və sağ işarələnib. Tərəfə diqqət et: sol beyin sağ əli hərəkət etdirir.">Left and right are marked on the brain. Mind the side: the left brain moves the right hand.</li>
+          <li data-en="Use “Deep” to hide the cortex and reach structures inside: thalamus, basal ganglia, ventricles." data-az="İçəridəki strukturlara — talamus, bazal nüvələr, mədəciklərə — çatmaq üçün “Dərin” düyməsi ilə qabığı gizlət.">Use “Deep” to hide the cortex and reach structures inside: thalamus, basal ganglia, ventricles.</li>
+        </ul>
+
+        <div class="lz-hud" id="lz-hud" hidden>
+          <span class="lz-hud__case" id="lz-case"></span>
+          <span class="lz-hud__timer" id="lz-timer"><span class="lz-hud__bar"><span id="lz-timebar"></span></span><span id="lz-time">30s</span></span>
+          <span class="lz-hud__score"><span id="lz-score-label">Score</span> <strong id="lz-score">0</strong></span>
+        </div>
+
+        <div class="lz-story" id="lz-story" hidden>
+          <p class="lz-story__text" id="lz-story-text"></p>
+          <p class="lz-story__src" id="lz-story-src" hidden></p>
+        </div>
+
+        <div class="lz-app" id="lz-app"></div>
+
+        <div class="lz-stage" id="lz-stage">
+          <canvas class="lz-stage__canvas" id="lz-canvas"></canvas>
+          <span class="lz-side" id="lz-tag-l" hidden>L</span>
+          <span class="lz-side" id="lz-tag-r" hidden>R</span>
+          <div class="lz-tools" id="lz-tools" hidden>
+            <div class="lz-seg" role="group" aria-label="View">
+              <button type="button" id="lz-mode-surface" class="is-on" aria-pressed="true">Surface</button>
+              <button type="button" id="lz-mode-deep" aria-pressed="false">Deep</button>
+            </div>
+            <button type="button" class="lz-reset" id="lz-reset">Reset view</button>
+          </div>
+          <p class="lz-stage__note" id="lz-note" role="status"></p>
+        </div>
+
+        <div class="lz-result" id="lz-result" hidden aria-live="polite"></div>
+
+        <p class="bb-back">
+          <a class="about-action about-action--ghost" href="brain-bee.html" data-en="← Brain Bee prep" data-az="← Brain Bee hazırlığı">← Brain Bee prep</a>
+        </p>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">AXON</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 AXON</div>
+      </footer>
+    </div>
+
+    <script src="site-shell.js?v=r1"></script>
+    <script type="module" src="lezyon.js?v=1"></script>
+  </body>
+</html>

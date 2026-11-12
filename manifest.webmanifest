@@ -18,6 +18,7 @@
   "shortcuts": [
     { "name": "Brain Bee hazırlığı", "short_name": "Brain Bee", "url": "/brain-bee.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "3D beyin atlasları", "short_name": "Atlaslar", "url": "/atlas.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Məşq sualları", "short_name": "Məşq", "url": "/practice.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+    { "name": "Məşq sualları", "short_name": "Məşq", "url": "/practice.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Lezyon ovçusu", "short_name": "Lezyon ovçusu", "url": "/lezyon.html", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }
