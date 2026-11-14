@@ -155,3 +155,5 @@
   .lz-hud { gap: 0.6rem; font-size: 0.8rem; }
   .lz-seg button, .lz-reset { padding: 0.4rem 0.75rem; }
 }
+.lz-sources { margin: 1rem 0 0; font-size: 0.8rem; color: var(--text-muted); }
+.lz-sources a { display: inline-block; margin-top: 0.25rem; color: var(--accent); }

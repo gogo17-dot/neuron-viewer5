@@ -35,6 +35,12 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <meta name="theme-color" content="#020810" />
     <link rel="stylesheet" href="site.css?v=inter1" />
+      <style>
+      #sources .about-list + p { margin-top: 14px; }
+      .about-report { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; background: var(--card-bg); }
+      .about-report__title { margin: 0 0 4px; font-weight: 700; color: var(--accent); }
+      .about-report p:not(.about-report__title) { margin: 0 0 12px; color: var(--text-muted); }
+    </style>
   </head>
   <body data-page="about" class="about-page">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -195,6 +201,56 @@
             data-en="He started AXON so that students in Azerbaijan can prepare for the Brain Bee in their own language, for free."
             data-az="O, AXON-u Azərbaycandakı şagirdlər Brain Bee-yə öz dillərində, pulsuz hazırlaşa bilsinlər deyə yaradıb."
           >He started AXON so that students in Azerbaijan can prepare for the Brain Bee in their own language, for free.</p>
+        </div>
+
+        <div class="about-block" id="sources">
+          <h2 class="about-block__title" data-en="Sources &amp; accuracy" data-az="Mənbələr və dəqiqlik">Sources &amp; accuracy</h2>
+          <p
+            data-en="Everything on AXON is based on published science and open data — never copied from exam banks or paid courses."
+            data-az="AXON-dakı hər şey dərc olunmuş elmə və açıq məlumatlara əsaslanır — imtahan banklarından və ya pullu kurslardan köçürülməyib."
+          >Everything on AXON is based on published science and open data — never copied from exam banks or paid courses.</p>
+          <ul class="about-list">
+            <li>
+              <strong data-en="Brain Bee lessons and questions" data-az="Brain Bee dərsləri və sualları">Brain Bee lessons and questions</strong>
+              <span
+                data-en=" — follow the structure of Brain Facts, the Society for Neuroscience book the International Brain Bee recommends for study. Every question is written in our own words, and factual claims are checked against published research before they go in."
+                data-az=" — Beynəlxalq Brain Bee-nin tövsiyə etdiyi Neyroelm Cəmiyyətinin (Society for Neuroscience) «Brain Facts» kitabının quruluşunu izləyir. Hər sual öz sözlərimizlə yazılıb, faktlar isə əlavə edilməzdən əvvəl dərc olunmuş tədqiqatlarla yoxlanılır."
+              > — follow the structure of Brain Facts, the Society for Neuroscience book the International Brain Bee recommends for study. Every question is written in our own words, and factual claims are checked against published research before they go in.</span>
+            </li>
+            <li>
+              <strong data-en="3D atlases" data-az="3D atlaslar">3D atlases</strong>
+              <span
+                data-en=" — built from open anatomical atlases, including Z-Anatomy, the CIT168 subcortical atlas and the SUIT cerebellar atlas. Optic radiation tractography comes from the HCP-1065 atlas (Yeh, 2022), based on Human Connectome Project data."
+                data-az=" — açıq anatomik atlaslar əsasında qurulub: Z-Anatomy, CIT168 subkortikal atlası və SUIT beyincik atlası. Optik radiasiya traktoqrafiyası Human Connectome Project məlumatlarına əsaslanan HCP-1065 atlasındandır (Yeh, 2022)."
+              > — built from open anatomical atlases, including Z-Anatomy, the CIT168 subcortical atlas and the SUIT cerebellar atlas. Optic radiation tractography comes from the HCP-1065 atlas (Yeh, 2022), based on Human Connectome Project data.</span>
+            </li>
+            <li>
+              <strong data-en="Brain scans" data-az="Beyin skanları">Brain scans</strong>
+              <span
+                data-en=" — real MRI data courtesy of Chris Rorden (McCausland Center for Brain Imaging) and the ICBM 152 atlases, shown with the open-source NiiVue viewer."
+                data-az=" — real MRT məlumatları Chris Rorden (McCausland Center for Brain Imaging) və ICBM 152 atlaslarının izni ilə, açıq mənbəli NiiVue proqramı ilə göstərilir."
+              > — real MRI data courtesy of Chris Rorden (McCausland Center for Brain Imaging) and the ICBM 152 atlases, shown with the open-source NiiVue viewer.</span>
+            </li>
+            <li>
+              <strong data-en="Articles and books" data-az="Məqalələr və kitablar">Articles and books</strong>
+              <span
+                data-en=" — every article links to its PubMed or journal record; books are hosted only when their licence allows it, with full credit to the authors."
+                data-az=" — hər məqalə PubMed və ya jurnal səhifəsinə keçid verir; kitablar yalnız lisenziya icazə verdikdə, müəlliflərin tam qeyd edilməsi ilə yerləşdirilir."
+              > — every article links to its PubMed or journal record; books are hosted only when their licence allows it, with full credit to the authors.</span>
+            </li>
+          </ul>
+          <p
+            data-en="AXON is an independent student project, built for learning — not for diagnosis or medical advice."
+            data-az="AXON müstəqil şagird layihəsidir və öyrənmək üçün yaradılıb — diaqnoz və ya tibbi məsləhət üçün deyil."
+          >AXON is an independent student project, built for learning — not for diagnosis or medical advice.</p>
+          <div class="about-report">
+            <p class="about-report__title" data-en="Found a mistake?" data-az="Səhv tapdınız?">Found a mistake?</p>
+            <p
+              data-en="Tell us which page and what is wrong — every correction is checked and fixed, and it helps everyone who learns here."
+              data-az="Hansı səhifədə və nəyin səhv olduğunu yazın — hər düzəliş yoxlanılır və düzəldilir, bu da burada öyrənən hər kəsə kömək edir."
+            >Tell us which page and what is wrong — every correction is checked and fixed, and it helps everyone who learns here.</p>
+            <a class="about-action about-action--ghost" href="mailto:electricaxon26@gmail.com?subject=AXON%20%E2%80%94%20d%C3%BCz%C9%99li%C5%9F%20%2F%20correction" data-en="Report a mistake" data-az="Səhvi bildir">Report a mistake</a>
+          </div>
         </div>
 
         <div class="about-block">
