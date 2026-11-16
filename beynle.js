@@ -1,265 +1,256 @@
-/* Beynle — one brain structure a day, guessed from clues. Data: beynle-data.js + brain-bee-structures.js */
-import { DRILL_VIEWER_BY_ID } from "./brain-bee-anatomy-viewers.js";
+/* Beynle — the daily brain word, played like Wordle. Data: beynle-data.js */
+(function () {
+  var ROWS = 6;
+  var LS = "axon_beynle_v2";
+  var KEYS = {
+    en: ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"],
+    az: ["QÜERTYUİOPÖĞ", "ASDFGHJKLIƏ", "ZXCVBNMÇŞ"],
+  };
+  var UI = {
+    puzzle: { en: "Puzzle", az: "Tapmaca" },
+    letters: { en: "letters", az: "hərf" },
+    hint: { en: "Show a hint", az: "İpucunu göstər" },
+    hintLabel: { en: "Hint", az: "İpucu" },
+    enter: { en: "ENTER", az: "GİRİŞ" },
+    short: { en: "Not enough letters", az: "Hərf azdır" },
+    won: ["Genius!", "Magnificent!", "Impressive!", "Splendid!", "Great!", "Phew!"],
+    wonAz: ["Dahi!", "Möhtəşəm!", "Təsirli!", "Əla!", "Yaxşı!", "Uf, az qala!"],
+    lost: { en: "The word was", az: "Söz bu idi" },
+    share: { en: "Share result", az: "Nəticəni paylaş" },
+    copied: { en: "Copied — paste it anywhere.", az: "Kopyalandı — istənilən yerə yapışdır." },
+    next: { en: "Next Beynle in", az: "Növbəti Beynle" },
+    other: { en: "Also play today’s Azerbaijani word →", az: "Bugünkü ingiliscə sözü də oyna →" },
+    played: { en: "Played", az: "Oynanılıb" },
+    winPct: { en: "Win %", az: "Qələbə %" },
+    streak: { en: "Streak", az: "Seriya" },
+    best: { en: "Best", az: "Ən yaxşı" },
+    dist: { en: "Guess distribution", az: "Cəhdlərin bölgüsü" },
+  };
 
-var MAX = 6;
-var LS = "axon_beynle_v1";
-var UI = {
-  puzzle: { en: "Puzzle", az: "Tapmaca" },
-  clue: { en: "Clue", az: "İpucu" },
-  atlasClue: { en: "It is in this atlas:", az: "Bu atlasdadır:" },
-  placeholder: { en: "Type a brain structure…", az: "Beyin strukturunu yaz…" },
-  guess: { en: "Guess", az: "Təxmin et" },
-  left: { en: "guesses left", az: "təxmin qalıb" },
-  correct: { en: "Correct", az: "Düzdür" },
-  near: { en: "Same atlas", az: "Eyni atlas" },
-  far: { en: "Other atlas", az: "Başqa atlas" },
-  pick: { en: "Pick a structure from the list.", az: "Siyahıdan struktur seç." },
-  dup: { en: "You already guessed that.", az: "Bunu artıq yazmısan." },
-  none: { en: "No match — try another spelling.", az: "Uyğun gəlmədi — başqa cür yaz." },
-  won: { en: "You got it!", az: "Tapdın!" },
-  lost: { en: "Not this time. The answer was:", az: "Bu dəfə alınmadı. Cavab:" },
-  open: { en: "Open it in the 3D atlas →", az: "3D atlasda aç →" },
-  share: { en: "Share result", az: "Nəticəni paylaş" },
-  copied: { en: "Copied — paste it anywhere.", az: "Kopyalandı — istənilən yerə yapışdır." },
-  next: { en: "Next Beynle in", az: "Növbəti Beynle" },
-  played: { en: "Played", az: "Oynanılıb" },
-  winPct: { en: "Win %", az: "Qələbə %" },
-  streak: { en: "Streak", az: "Seriya" },
-  best: { en: "Best", az: "Ən yaxşı" },
-};
+  function lang() { return document.documentElement.lang === "az" ? "az" : "en"; }
+  function t(k) { return UI[k][lang()]; }
+  function up(ch) { return lang() === "az" ? ch.toLocaleUpperCase("az") : ch.toUpperCase(); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-function lang() { return document.documentElement.lang === "az" ? "az" : "en"; }
-function t(k) { return UI[k][lang()]; }
-function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-function fold(s) {
-  return String(s).toLowerCase()
-    .replace(/ə/g, "e").replace(/ı/g, "i").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ğ/g, "g").replace(/ş/g, "s").replace(/ç/g, "c")
-    .normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-}
-
-/* ---------- the guess list: every drill structure, sides merged ---------- */
-var LIST = [];
-var BY_KEY = {};
-(window.BB_STRUCTURES || []).forEach(function (s) {
-  var en = s.name.en.replace(/, (left|right)$/i, "");
-  var az = s.name.az.replace(/^(Sağ|Sol) /, "");
-  az = az.charAt(0).toLocaleUpperCase("az") + az.slice(1);
-  var e = BY_KEY[en];
-  if (!e) {
-    e = BY_KEY[en] = { key: en, en: en, az: az, viewers: [], words: [], note: s.note, viewer: s.viewer };
-    LIST.push(e);
+  /* ---------- today (Baku time) ---------- */
+  function bakuDate(d) {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Baku", year: "numeric", month: "2-digit", day: "2-digit" }).format(d).slice(0, 10);
   }
-  if (e.viewers.indexOf(s.viewer) < 0) e.viewers.push(s.viewer);
-  [en, az].concat(s.accept.en, s.accept.az).forEach(function (w) {
-    var f = fold(w).replace(/\b(left|right|sag|sol)\b/g, "").replace(/\s+/g, " ").trim();
-    if (f && e.words.indexOf(f) < 0) e.words.push(f);
-  });
-});
-function vLabel(id) { var v = DRILL_VIEWER_BY_ID[id]; return v ? v.label[lang()] : id; }
-function nm(e) { return lang() === "az" ? e.az : e.en; }
+  var DAY = Math.max(1, Math.round((Date.parse(bakuDate(new Date()) + "T00:00:00Z") - Date.parse(window.BEYNLE_EPOCH + "T00:00:00Z")) / 864e5) + 1);
+  var W = window.BEYNLE_WORDS[(DAY - 1) % window.BEYNLE_WORDS.length];
 
-/* ---------- today’s puzzle (Baku time) ---------- */
-function bakuDate(d) {
-  var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Baku", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
-  return p.slice(0, 10);
-}
-var TODAY = bakuDate(new Date());
-var DAY = Math.round((Date.parse(TODAY + "T00:00:00Z") - Date.parse(window.BEYNLE_EPOCH + "T00:00:00Z")) / 864e5) + 1;
-if (DAY < 1) DAY = 1;
-var P = window.BEYNLE_PUZZLES[(DAY - 1) % window.BEYNLE_PUZZLES.length];
-var ANS = BY_KEY[P.a];
-if (!ANS) console.error("[beynle] answer not in structure list:", P.a);
-
-/* ---------- saved state ---------- */
-function load() { try { return JSON.parse(localStorage.getItem(LS)) || {}; } catch (e) { return {}; } }
-function save() { try { localStorage.setItem(LS, JSON.stringify(store)); } catch (e) {} }
-var store = load();
-store.days = store.days || {};
-store.stats = store.stats || { played: 0, wins: 0, streak: 0, best: 0, last: 0, dist: [0, 0, 0, 0, 0, 0] };
-var game = store.days[DAY] || { g: [], done: false, won: false };
-store.days[DAY] = game;
-
-function mark(key) {
-  if (key === ANS.key) return "hit";
-  var g = BY_KEY[key];
-  return g.viewers.some(function (v) { return ANS.viewers.indexOf(v) >= 0; }) ? "near" : "far";
-}
-
-/* ---------- elements ---------- */
-var $ = function (id) { return document.getElementById(id); };
-var elNum = $("bn-num"), elClues = $("bn-clues"), elRows = $("bn-rows"), elForm = $("bn-form"), elIn = $("bn-input"),
-  elSug = $("bn-sug"), elMsg = $("bn-msg"), elLeft = $("bn-left"), elEnd = $("bn-end"), elBtn = $("bn-go");
-var sugs = [], sugAt = 0, msgKey = "";
-
-function render() {
-  elNum.textContent = t("puzzle") + " #" + DAY;
-  var wrong = game.g.filter(function (k) { return k !== ANS.key; }).length;
-  var shown = game.done ? 5 : Math.min(1 + wrong, 5);
-  var h = "";
-  for (var i = 0; i < shown; i++) {
-    if (i < 4) h += '<li class="bn-clue"><span class="bn-clue__n">' + t("clue") + " " + (i + 1) + "</span>" + esc(P.c[i][lang() === "az" ? 1 : 0]) + "</li>";
-    else h += '<li class="bn-clue bn-clue--atlas"><span class="bn-clue__n">' + t("clue") + " 5</span>" + esc(t("atlasClue")) + " <strong>" + esc(ANS.viewers.map(vLabel).join(" · ")) + "</strong></li>";
+  /* ---------- saved state: one game per language per day ---------- */
+  var store;
+  try { store = JSON.parse(localStorage.getItem(LS)) || {}; } catch (e) { store = {}; }
+  store.games = store.games || {};
+  store.stats = store.stats || {};
+  function save() { try { localStorage.setItem(LS, JSON.stringify(store)); } catch (e) {} }
+  function game() {
+    var k = DAY + "-" + lang();
+    if (!store.games[k]) store.games[k] = { rows: [], done: false, won: false, hint: false };
+    return store.games[k];
   }
-  elClues.innerHTML = h;
-  elRows.innerHTML = game.g.map(function (k) {
-    var m = mark(k), g = BY_KEY[k];
-    var tag = m === "hit" ? t("correct") : m === "near" ? t("near") + " · " + vLabel(ANS.viewers.filter(function (v) { return g.viewers.indexOf(v) >= 0; })[0]) : t("far") + " · " + vLabel(g.viewers[0]);
-    return '<li class="bn-row bn-row--' + m + '"><span class="bn-row__sq" aria-hidden="true"></span><span class="bn-row__name">' + esc(nm(g)) + '</span><span class="bn-row__tag">' + esc(tag) + "</span></li>";
-  }).join("");
-  elForm.hidden = game.done;
-  elIn.placeholder = t("placeholder");
-  elBtn.textContent = t("guess");
-  elLeft.textContent = game.done ? "" : MAX - game.g.length + " " + t("left");
-  elMsg.textContent = msgKey ? t(msgKey) : "";
-  renderEnd();
-}
+  function stats() {
+    var l = lang();
+    if (!store.stats[l]) store.stats[l] = { played: 0, wins: 0, streak: 0, best: 0, last: 0, dist: [0, 0, 0, 0, 0, 0] };
+    return store.stats[l];
+  }
+  function answer() { return Array.from(W[lang()]); }
 
-function renderEnd() {
-  if (!game.done) { elEnd.hidden = true; return; }
-  var v = DRILL_VIEWER_BY_ID[ANS.viewer];
-  var s = store.stats;
-  elEnd.hidden = false;
-  elEnd.innerHTML =
-    '<p class="bn-end__head">' + esc(game.won ? t("won") : t("lost")) + "</p>" +
-    '<p class="bn-end__name">' + esc(nm(ANS)) + (lang() === "az" ? ' <span>' + esc(ANS.en) + "</span>" : ' <span>' + esc(ANS.az) + "</span>") + "</p>" +
-    '<p class="bn-end__note">' + esc(ANS.note[lang()] || ANS.note.en) + "</p>" +
-    (v ? '<p><a class="bn-end__link" href="' + v.atlasHref + '">' + esc(t("open")) + "</a></p>" : "") +
-    '<div class="bn-stats">' +
+  /* Wordle scoring: greens first, then yellows only while that letter is still unused. */
+  function score(guess, ans) {
+    var res = guess.map(function () { return "absent"; });
+    var left = {};
+    ans.forEach(function (c, i) { if (guess[i] === c) res[i] = "correct"; else left[c] = (left[c] || 0) + 1; });
+    guess.forEach(function (c, i) {
+      if (res[i] !== "correct" && left[c]) { res[i] = "present"; left[c]--; }
+    });
+    return res;
+  }
+
+  /* ---------- elements ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var elNum = $("bn-num"), elGrid = $("bn-grid"), elKb = $("bn-kb"), elToast = $("bn-toast"), elEnd = $("bn-end"),
+    elHintBtn = $("bn-hint-btn"), elHint = $("bn-hint");
+  var cur = [];
+  var revealRow = -1;
+
+  function render() {
+    var g = game(), ans = answer(), n = ans.length;
+    elNum.textContent = t("puzzle") + " #" + DAY + " · " + n + " " + t("letters");
+    elGrid.style.setProperty("--n", n);
+    var h = "";
+    for (var r = 0; r < ROWS; r++) {
+      var row = g.rows[r], live = !g.done && r === g.rows.length;
+      var sc = row ? score(row, ans) : null;
+      h += '<div class="bn-row' + (live && shake ? " is-shake" : "") + '">';
+      for (var i = 0; i < n; i++) {
+        var ch = row ? row[i] : live ? cur[i] || "" : "";
+        var cls = row ? " is-" + sc[i] + (r === revealRow ? " is-flip" : "") : ch ? " is-filled" : "";
+        h += '<div class="bn-tile' + cls + '"' + (r === revealRow ? ' style="animation-delay:' + i * 0.22 + 's"' : "") + ">" + esc(ch) + "</div>";
+      }
+      h += "</div>";
+    }
+    elGrid.innerHTML = h;
+    shake = false;
+    renderKb(g, ans);
+    elKb.hidden = g.done && revealRow < 0;
+    elHintBtn.hidden = g.hint || g.done;
+    elHintBtn.textContent = t("hint");
+    elHint.hidden = !(g.hint || g.done);
+    elHint.innerHTML = "<strong>" + esc(t("hintLabel")) + ":</strong> " + esc(W.h[lang() === "az" ? 1 : 0]);
+    renderEnd(g, ans);
+  }
+  var shake = false;
+
+  function renderKb(g, ans) {
+    var best = {};
+    var rank = { correct: 3, present: 2, absent: 1 };
+    g.rows.forEach(function (row, r) {
+      if (r === revealRow) return; /* keys change colour after the tiles have flipped */
+      var sc = score(row, ans);
+      row.forEach(function (c, i) { if (!best[c] || rank[sc[i]] > rank[best[c]]) best[c] = sc[i]; });
+    });
+    var rows = KEYS[lang()];
+    elKb.innerHTML = rows.map(function (r, ri) {
+      var keys = Array.from(r).map(function (c) {
+        return '<button type="button" class="bn-key' + (best[c] ? " is-" + best[c] : "") + '" data-k="' + esc(c) + '">' + esc(c) + "</button>";
+      }).join("");
+      if (ri === rows.length - 1) {
+        keys = '<button type="button" class="bn-key bn-key--wide" data-k="ENTER">' + esc(t("enter")) + "</button>" + keys +
+          '<button type="button" class="bn-key bn-key--wide" data-k="BACK" aria-label="Backspace">⌫</button>';
+      }
+      return '<div class="bn-kb__row">' + keys + "</div>";
+    }).join("");
+  }
+
+  function renderEnd(g, ans) {
+    if (!g.done) { elEnd.hidden = true; return; }
+    var s = stats();
+    var maxD = Math.max.apply(null, s.dist.concat([1]));
+    var az = lang() === "az";
+    elEnd.hidden = false;
+    elEnd.innerHTML =
+      '<p class="bn-end__head">' + esc(g.won ? (az ? UI.wonAz : UI.won)[g.rows.length - 1] : t("lost")) + "</p>" +
+      '<p class="bn-end__word">' + esc(ans.join("")) + ' <span>' + esc(az ? W.en : W.az) + "</span></p>" +
+      '<div class="bn-stats">' +
       [["played", s.played], ["winPct", s.played ? Math.round((100 * s.wins) / s.played) : 0], ["streak", s.streak], ["best", s.best]]
-        .map(function (x) { return '<div><strong>' + x[1] + "</strong><span>" + esc(t(x[0])) + "</span></div>"; }).join("") +
-    "</div>" +
-    '<div class="bn-end__actions"><button type="button" class="about-action" id="bn-share">' + esc(t("share")) + '</button>' +
-    '<span class="bn-end__next">' + esc(t("next")) + ' <strong id="bn-clock"></strong></span></div>' +
-    '<p class="bn-end__copied" id="bn-copied" role="status"></p>';
-  $("bn-share").onclick = share;
-  tick();
-}
-
-function tick() {
-  var el = $("bn-clock");
-  if (!el) return;
-  var now = new Date();
-  var baku = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Baku" }));
-  var left = 864e5 - ((baku.getHours() * 60 + baku.getMinutes()) * 60 + baku.getSeconds()) * 1000;
-  var hh = Math.floor(left / 36e5), mm = Math.floor((left % 36e5) / 6e4), ss = Math.floor((left % 6e4) / 1000);
-  el.textContent = String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0") + ":" + String(ss).padStart(2, "0");
-  if (left < 1500) setTimeout(function () { location.reload(); }, 1600);
-}
-setInterval(tick, 1000);
-
-function shareText() {
-  var sq = game.g.map(function (k) { var m = mark(k); return m === "hit" ? "🟩" : m === "near" ? "🟨" : "⬜"; }).join("");
-  return "Beynle #" + DAY + " 🧠 " + (game.won ? game.g.length : "X") + "/" + MAX + "\n" + sq + "\naxon.az/beynle.html";
-}
-function share() {
-  var text = shareText();
-  var done = function () { $("bn-copied").textContent = t("copied"); };
-  if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    navigator.share({ text: text }).catch(function () {});
-    return;
+        .map(function (x) { return "<div><strong>" + x[1] + "</strong><span>" + esc(t(x[0])) + "</span></div>"; }).join("") +
+      "</div>" +
+      '<p class="bn-dist__h">' + esc(t("dist")) + "</p><div class=\"bn-dist\">" +
+      s.dist.map(function (v, i) {
+        var mine = g.won && g.rows.length === i + 1;
+        return '<div class="bn-dist__row"><span>' + (i + 1) + '</span><span class="bn-dist__bar' + (mine ? " is-mine" : "") + '" style="width:' + Math.max(8, Math.round((100 * v) / maxD)) + '%">' + v + "</span></div>";
+      }).join("") + "</div>" +
+      '<div class="bn-end__actions"><button type="button" class="about-action" id="bn-share">' + esc(t("share")) + "</button>" +
+      '<span class="bn-end__next">' + esc(t("next")) + ' <strong id="bn-clock"></strong></span></div>' +
+      '<p class="bn-end__copied" id="bn-copied" role="status"></p>' +
+      '<p><button type="button" class="bn-other" id="bn-other">' + esc(t("other")) + "</button></p>";
+    $("bn-share").onclick = share;
+    $("bn-other").onclick = function () {
+      var btn = document.getElementById(az ? "lang-en" : "lang-az");
+      if (btn) btn.click();
+      window.scrollTo({ top: elGrid.getBoundingClientRect().top + window.scrollY - 120, behavior: "smooth" });
+    };
+    tick();
   }
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
-  else { fallbackCopy(text); done(); }
-}
-function fallbackCopy(text) {
-  var ta = document.createElement("textarea");
-  ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand("copy"); } catch (e) {}
-  ta.remove();
-}
 
-/* ---------- guessing ---------- */
-function findMatches(q) {
-  var f = fold(q);
-  if (!f) return [];
-  var scored = [];
-  LIST.forEach(function (e) {
-    if (game.g.indexOf(e.key) >= 0) return;
-    var best = 0;
-    var names = [fold(e.en), fold(e.az)];
-    names.forEach(function (w) {
-      if (w.indexOf(f) === 0) best = Math.max(best, 5);
-      else if (w.indexOf(" " + f) > 0) best = Math.max(best, 4);
-    });
-    e.words.forEach(function (w) {
-      if (w.indexOf(f) === 0) best = Math.max(best, 3);
-      else if (w.indexOf(" " + f) > 0) best = Math.max(best, 2);
-      else if (w.indexOf(f) > 0) best = Math.max(best, 1);
-    });
-    if (best) scored.push([best, e]);
+  function tick() {
+    var el = $("bn-clock");
+    if (!el) return;
+    var baku = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baku" }));
+    var left = 864e5 - ((baku.getHours() * 60 + baku.getMinutes()) * 60 + baku.getSeconds()) * 1000;
+    el.textContent = [Math.floor(left / 36e5), Math.floor((left % 36e5) / 6e4), Math.floor((left % 6e4) / 1000)]
+      .map(function (v) { return String(v).padStart(2, "0"); }).join(":");
+    if (left < 1500) setTimeout(function () { location.reload(); }, 1600);
+  }
+  setInterval(tick, 1000);
+
+  function toast(msg) {
+    elToast.textContent = msg;
+    elToast.classList.add("is-on");
+    clearTimeout(toast.t);
+    toast.t = setTimeout(function () { elToast.classList.remove("is-on"); }, 1400);
+  }
+
+  function shareText() {
+    var g = game(), ans = answer();
+    var grid = g.rows.map(function (row) {
+      return score(row, ans).map(function (s) { return s === "correct" ? "🟩" : s === "present" ? "🟨" : "⬛"; }).join("");
+    }).join("\n");
+    return "Beynle #" + DAY + " (" + lang().toUpperCase() + ") " + (g.won ? g.rows.length : "X") + "/" + ROWS + " 🧠\n\n" + grid + "\n\naxon.az/beynle.html";
+  }
+  function share() {
+    var text = shareText();
+    var done = function () { $("bn-copied").textContent = t("copied"); };
+    if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) { navigator.share({ text: text }).catch(function () {}); return; }
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () { copyOld(text); done(); });
+    else { copyOld(text); done(); }
+  }
+  function copyOld(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    ta.remove();
+  }
+
+  /* ---------- input ---------- */
+  function press(k) {
+    var g = game(), n = answer().length;
+    if (g.done) return;
+    if (k === "ENTER") {
+      if (cur.length < n) { shake = true; toast(t("short")); render(); return; }
+      g.rows.push(cur.slice());
+      cur = [];
+      revealRow = g.rows.length - 1;
+      var won = g.rows[revealRow].join("") === answer().join("");
+      if (won || g.rows.length >= ROWS) finish(g, won);
+      save();
+      render();
+      var r = revealRow;
+      setTimeout(function () { if (revealRow === r) { revealRow = -1; render(); } }, n * 220 + 450);
+      if (g.done) {
+        elEnd.classList.add("is-wait");
+        setTimeout(function () { elEnd.classList.remove("is-wait"); }, n * 220 + 700);
+        if (!won) setTimeout(function () { toast(answer().join("")); }, n * 220 + 500);
+      }
+      return;
+    }
+    revealRow = -1;
+    if (k === "BACK") { cur.pop(); render(); return; }
+    if (cur.length < n && Array.from(KEYS[lang()].join("")).indexOf(k) >= 0) { cur.push(k); render(); }
+  }
+  function finish(g, won) {
+    g.done = true; g.won = won;
+    var s = stats();
+    s.played++;
+    if (won) {
+      s.wins++; s.dist[g.rows.length - 1]++;
+      s.streak = s.last === DAY - 1 ? s.streak + 1 : 1;
+      s.last = DAY; s.best = Math.max(s.best, s.streak);
+    } else s.streak = 0;
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "beynle-" + lang() + "-" + (won ? "won" : "lost"), title: "Beynle #" + DAY, event: true }); } catch (x) {}
+    }
+  }
+
+  elKb.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-k]");
+    if (b) { press(b.getAttribute("data-k")); b.blur(); }
   });
-  scored.sort(function (a, b) { return b[0] - a[0]; });
-  return scored.slice(0, 8).map(function (x) { return x[1]; });
-}
-function showSug() {
-  sugs = findMatches(elIn.value);
-  sugAt = 0;
-  elSug.hidden = !sugs.length;
-  elIn.setAttribute("aria-expanded", sugs.length ? "true" : "false");
-  elSug.innerHTML = sugs.map(function (e, i) {
-    var other = lang() === "az" ? e.en : e.az;
-    return '<li role="option" id="bn-opt-' + i + '" data-i="' + i + '"' + (i === sugAt ? ' class="is-on" aria-selected="true"' : "") + ">" + esc(nm(e)) + "<small>" + esc(other) + "</small></li>";
-  }).join("");
-}
-function moveSug(d) {
-  if (!sugs.length) return;
-  sugAt = (sugAt + d + sugs.length) % sugs.length;
-  [].forEach.call(elSug.children, function (li, i) { li.classList.toggle("is-on", i === sugAt); li.setAttribute("aria-selected", i === sugAt ? "true" : "false"); });
-  elIn.setAttribute("aria-activedescendant", "bn-opt-" + sugAt);
-}
-function submit(e) {
-  if (game.done) return;
-  var exact = LIST.filter(function (x) { return x.words.indexOf(fold(elIn.value)) >= 0; })[0];
-  if (!e) {
-    if (exact && game.g.indexOf(exact.key) < 0) e = exact;
-    else if (sugs.length) e = sugs[sugAt];
-  }
-  if (!e) { msgKey = elIn.value.trim() ? "none" : "pick"; if (exact) msgKey = "dup"; render(); return; }
-  if (game.g.indexOf(e.key) >= 0) { msgKey = "dup"; render(); return; }
-  msgKey = "";
-  game.g.push(e.key);
-  if (e.key === ANS.key || game.g.length >= MAX) finish(e.key === ANS.key);
-  save();
-  elIn.value = "";
-  elSug.hidden = true;
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    if (e.key === "Enter") { e.preventDefault(); press("ENTER"); }
+    else if (e.key === "Backspace") { e.preventDefault(); press("BACK"); }
+    else if (e.key.length === 1) {
+      var c = up(e.key);
+      /* On an English keyboard “i” means the dotted İ in Azerbaijani; ı has its own on-screen key. */
+      if (Array.from(KEYS[lang()].join("")).indexOf(c) >= 0) press(c);
+    }
+  });
+  elHintBtn.addEventListener("click", function () { game().hint = true; save(); render(); });
+
+  new MutationObserver(function () { cur = []; revealRow = -1; render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
   render();
-  if (!game.done) elIn.focus();
-  if (window.goatcounter && window.goatcounter.count && game.done) {
-    try { window.goatcounter.count({ path: "beynle-" + (game.won ? "won" : "lost"), title: "Beynle #" + DAY, event: true }); } catch (x) {}
-  }
-}
-function finish(won) {
-  game.done = true; game.won = won;
-  var s = store.stats;
-  s.played++;
-  if (won) {
-    s.wins++;
-    s.dist[game.g.length - 1]++;
-    s.streak = s.last === DAY - 1 ? s.streak + 1 : 1;
-    s.last = DAY;
-    s.best = Math.max(s.best, s.streak);
-  } else { s.streak = 0; }
-}
-
-elForm.addEventListener("submit", function (ev) { ev.preventDefault(); submit(null); });
-elIn.addEventListener("input", function () { msgKey = ""; elMsg.textContent = ""; showSug(); });
-elIn.addEventListener("keydown", function (ev) {
-  if (ev.key === "ArrowDown") { ev.preventDefault(); moveSug(1); }
-  else if (ev.key === "ArrowUp") { ev.preventDefault(); moveSug(-1); }
-  else if (ev.key === "Escape") { elSug.hidden = true; }
-});
-elSug.addEventListener("mousedown", function (ev) {
-  var li = ev.target.closest("li");
-  if (!li) return;
-  ev.preventDefault();
-  submit(sugs[+li.getAttribute("data-i")]);
-});
-document.addEventListener("click", function (ev) { if (!elForm.contains(ev.target)) elSug.hidden = true; });
-
-new MutationObserver(function () { render(); if (!elSug.hidden) showSug(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
-render();
-
-/* QA hook: list answers missing from the structure list (should be empty). */
-window.__beynleCheck = function () {
-  return window.BEYNLE_PUZZLES.filter(function (p) { return !BY_KEY[p.a]; }).map(function (p) { return p.a; });
-};
+})();

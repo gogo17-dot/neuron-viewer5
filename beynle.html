@@ -6,14 +6,14 @@
     <title>Beynle — günün beyin tapmacası · AXON</title>
     <meta
       name="description"
-      content="Beynle: hər gün bir beyin strukturu. İpuclarından onu 6 cəhddə tap və nəticəni paylaş. Beynle: one brain structure a day — guess it from clues in 6 tries. Pulsuz, iki dildə."
+      content="Beynle: hər gün bir beyin sözü — Wordle kimi 6 cəhddə tap və nəticəni paylaş. Beynle: a daily brain word, played like Wordle — 6 tries. Pulsuz, iki dildə."
     />
     <meta property="og:site_name" content="AXON" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Beynle — günün beyin tapmacası · AXON" />
     <meta
       property="og:description"
-      content="Hər gün bir beyin strukturu, 6 cəhd. One brain structure a day, 6 tries."
+      content="Hər gün bir beyin sözü, 6 cəhd. A daily brain word, 6 tries."
     />
     <meta property="og:url" content="https://axon.az/beynle.html" />
     <meta property="og:image" content="https://axon.az/media/og-axon.jpg" />
@@ -34,7 +34,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <meta name="theme-color" content="#020810" />
     <link rel="stylesheet" href="site.css?v=inter1" />
-    <link rel="stylesheet" href="beynle.css?v=1" />
+    <link rel="stylesheet" href="beynle.css?v=2" />
   </head>
   <body data-page="brain-bee" class="about-page">
     <div id="page">
@@ -72,30 +72,20 @@
         <h1 class="section-title about-title">Beynle</h1>
         <p
           class="section-desc"
-          data-en="One brain structure a day. Read the clue and guess which structure it is — every wrong guess opens a new clue. You have 6 tries. Everyone gets the same puzzle, and a new one comes at midnight (Baku time)."
-          data-az="Hər gün bir beyin strukturu. İpucunu oxu və hansı struktur olduğunu tap — hər səhv cavab yeni ipucu açır. 6 cəhdin var. Hamı eyni tapmacanı alır, yenisi gecə yarısı (Bakı vaxtı) gəlir."
+          data-en="Guess today’s brain word in 6 tries. Each guess must have the right number of letters. After each guess the tiles change colour: green — right letter, right place; yellow — the letter is in the word but somewhere else; grey — not in the word. A new word comes at midnight (Baku time). Switch EN / AZ to play the word in the other language."
+          data-az="Bugünkü beyin sözünü 6 cəhddə tap. Hər cəhd düzgün sayda hərfdən ibarət olmalıdır. Hər cəhddən sonra xanaların rəngi dəyişir: yaşıl — hərf düzdür və öz yerindədir; sarı — hərf sözdə var, amma başqa yerdədir; boz — hərf sözdə yoxdur. Yeni söz gecə yarısı (Bakı vaxtı) gəlir. Sözü digər dildə oynamaq üçün EN / AZ düyməsini dəyiş."
         >
-          One brain structure a day. Read the clue and guess which structure it is — every wrong guess opens a new clue. You have 6 tries. Everyone gets the same puzzle, and a new one comes at midnight (Baku time).
+          Guess today’s brain word in 6 tries. Each guess must have the right number of letters. After each guess the tiles change colour: green — right letter, right place; yellow — the letter is in the word but somewhere else; grey — not in the word. A new word comes at midnight (Baku time). Switch EN / AZ to play the word in the other language.
         </p>
-        <ul class="bn-legend">
-          <li><span class="bn-sq bn-sq--hit" aria-hidden="true"></span><span data-en="Correct" data-az="Düzdür">Correct</span></li>
-          <li><span class="bn-sq bn-sq--near" aria-hidden="true"></span><span data-en="Same atlas — you are close" data-az="Eyni atlas — yaxınsan">Same atlas — you are close</span></li>
-          <li><span class="bn-sq bn-sq--far" aria-hidden="true"></span><span data-en="Different atlas" data-az="Başqa atlas">Different atlas</span></li>
-        </ul>
 
         <div class="bn-board">
           <p class="bn-num" id="bn-num"></p>
-          <ol class="bn-clues" id="bn-clues"></ol>
-          <ol class="bn-rows" id="bn-rows"></ol>
-          <form class="bn-form" id="bn-form" autocomplete="off">
-            <div class="bn-field">
-              <input id="bn-input" type="text" role="combobox" aria-autocomplete="list" aria-controls="bn-sug" aria-expanded="false" aria-label="Guess" spellcheck="false" />
-              <ul class="bn-sug" id="bn-sug" role="listbox" hidden></ul>
-            </div>
-            <button type="submit" class="about-action" id="bn-go">Guess</button>
-          </form>
-          <p class="bn-meta"><span id="bn-left"></span> <span class="bn-msg" id="bn-msg" role="status"></span></p>
+          <div class="bn-grid" id="bn-grid" aria-live="polite"></div>
+          <div class="bn-toast" id="bn-toast" role="status"></div>
+          <button type="button" class="bn-hint-btn" id="bn-hint-btn">Show a hint</button>
+          <p class="bn-hint" id="bn-hint" hidden></p>
           <div class="bn-end" id="bn-end" hidden aria-live="polite"></div>
+          <div class="bn-kb" id="bn-kb"></div>
         </div>
 
         <p class="bb-back bb-back--links">
@@ -103,7 +93,7 @@
           <a class="about-action about-action--ghost" href="brain-bee.html" data-en="← Brain Bee prep" data-az="← Brain Bee hazırlığı">← Brain Bee prep</a>
         </p>
         <p class="lz-sources">
-          <span data-en="Structures come from AXON’s 3D atlases and the Brain Bee identification drill. For learning only, not medical advice." data-az="Strukturlar AXON-un 3D atlaslarından və Brain Bee tanıma məşqindən götürülüb. Yalnız öyrənmək üçündür, tibbi məsləhət deyil.">Structures come from AXON’s 3D atlases and the Brain Bee identification drill. For learning only, not medical advice.</span>
+          <span data-en="Words and hints are neuroscience basics from AXON’s atlases and lessons. For learning only, not medical advice." data-az="Sözlər və ipucları AXON-un atlaslarından və dərslərindən götürülmüş neyroelm əsaslarıdır. Yalnız öyrənmək üçündür, tibbi məsləhət deyil.">Words and hints are neuroscience basics from AXON’s atlases and lessons. For learning only, not medical advice.</span>
           <a href="about.html#sources" data-en="Sources &amp; reporting mistakes →" data-az="Mənbələr və səhvləri bildirmək →">Sources &amp; reporting mistakes →</a>
         </p>
       </section>
@@ -131,8 +121,7 @@
     </div>
 
     <script src="site-shell.js?v=r1"></script>
-    <script src="brain-bee-structures.js"></script>
-    <script src="beynle-data.js?v=1"></script>
-    <script type="module" src="beynle.js?v=1"></script>
+    <script src="beynle-data.js?v=2"></script>
+    <script src="beynle.js?v=2"></script>
   </body>
 </html>
