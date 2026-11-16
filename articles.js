@@ -73,7 +73,7 @@
       topics: ['vestibular', 'clinical', 'neuroanatomy'],
       summary: {
         en: 'This short classic introduces the bedside head-impulse test — a quick way to spot unilateral semicircular-canal failure. If you are exploring the vestibular labyrinth or brainstem relays in the atlas, it connects anatomy to a manoeuvre still used in clinics every day. Worth reading for anyone learning how peripheral vestibular loss looks at the bedside rather than only on a diagram.',
-        az: 'Bu qısa klassik yazı yataq başı head-impulse testini təqdim edir — birtərəfli yarımdairevi kanal çatışmazlığını tez tapmaq üçün. Atlasda vestibulyar labirint və ya beyin sapı keçidlərinə baxırsınızsa, anatomiyanı klinikada hələ də istifadə olunan manevrlə bağlayır. Vestibulyar itkini yalnız sxemdən deyil, yataq başından öyrənmək istəyənlər üçün faydalıdır.',
+        az: 'Bu qısa klassik yazı yataq başı head-impulse testini təqdim edir — birtərəfli yarımdairevi kanal çatışmazlığını tez tapmaq üçün. Atlasda vestibulyar labirint və ya beyin gövdəsi keçidlərinə baxırsınızsa, anatomiyanı klinikada hələ də istifadə olunan manevrlə bağlayır. Vestibulyar itkini yalnız sxemdən deyil, yataq başından öyrənmək istəyənlər üçün faydalıdır.',
       },
       access: 'link',
       sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/3390028/',
@@ -89,7 +89,7 @@
       topics: ['vestibular', 'migraine', 'clinical'],
       summary: {
         en: 'The Bárány Society / IHS consensus criteria that made “vestibular migraine” a workable clinical diagnosis. Read this when you want the checklist behind the label — episode length, migrainous features, and what must be excluded. Ideal companion to the vestibular and brainstem atlas modules.',
-        az: 'Bárány Cəmiyyəti / IHS konsensus meyarları «vestibulyar miqren»i işlək klinik diaqnoz etdi. Epizod müddəti, miqren xüsusiyyətləri və nəyin istisna edilməli olduğunu bilmək istəyəndə oxuyun. Vestibulyar və beyin sapı atlas modulları ilə yaxşı cütlükdür.',
+        az: 'Bárány Cəmiyyəti / IHS konsensus meyarları «vestibulyar miqren»i işlək klinik diaqnoz etdi. Epizod müddəti, miqren xüsusiyyətləri və nəyin istisna edilməli olduğunu bilmək istəyəndə oxuyun. Vestibulyar və beyin gövdəsi atlas modulları ilə yaxşı cütlükdür.',
       },
       access: 'link',
       sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23142830/',
@@ -105,7 +105,7 @@
       topics: ['vestibular', 'migraine', 'clinical'],
       summary: {
         en: 'A clear review of how migraine and the vestibular system collide — symptoms, proposed mechanisms, and why patients often bounce between ENT and neurology. Useful if you are mapping inner-ear and brainstem structures and want the clinical “why it matters” layer. Linked only; we do not host the publisher PDF.',
-        az: 'Miqren və vestibulyar sistemin necə toqquşduğuna dair aydın icmal — simptomlar, ehtimal olunan mexanizmlər və xəstələrin niyə KBB ilə nevrologiya arasında qaldığı. Daxili qulaq və beyin sapı strukturlarını xəritələyib klinik «niyə vacibdir» qatını istəyənlər üçün faydalıdır. Yalnız keçid; nəşriyyat PDF-ini host etmirik.',
+        az: 'Miqren və vestibulyar sistemin necə toqquşduğuna dair aydın icmal — simptomlar, ehtimal olunan mexanizmlər və xəstələrin niyə KBB ilə nevrologiya arasında qaldığı. Daxili qulaq və beyin gövdəsi strukturlarını xəritələyib klinik «niyə vacibdir» qatını istəyənlər üçün faydalıdır. Yalnız keçid; nəşriyyat PDF-ini host etmirik.',
       },
       access: 'link',
       sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/23769597/',
@@ -153,7 +153,7 @@
       topics: ['vestibular', 'migraine', 'auditory', 'brainstem'],
       summary: {
         en: 'BMC open-access study (Europe PMC licence: CC BY) linking vestibular migraine to subtle auditory-brainstem changes even between attacks. Great beside the inferior colliculus and cochlear nuclei in the atlas. We link the free full text; we do not mirror the PDF here.',
-        az: 'BMC açıq girişli tədqiqat (Europe PMC: CC BY) vestibulyar miqreni hücumlararası dövrdə belə incə eşitmə-beyin sapı dəyişiklikləri ilə bağlayır. Atlasda aşağı kollikulus və koklear nüvələrin yanında oxuyun. Pulsuz tam mətnə keçid; PDF-i burada güzgüləmirik.',
+        az: 'BMC açıq girişli tədqiqat (Europe PMC: CC BY) vestibulyar miqreni hücumlararası dövrdə belə incə eşitmə-beyin gövdəsi dəyişiklikləri ilə bağlayır. Atlasda aşağı kollikulus və koklear nüvələrin yanında oxuyun. Pulsuz tam mətnə keçid; PDF-i burada güzgüləmirik.',
       },
       access: 'link',
       sourceUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6595618/',
@@ -169,7 +169,7 @@
       topics: ['vestibular', 'neuroanatomy', 'brainstem'],
       summary: {
         en: 'A modern systems view of how vestibular signals are processed for perception and movement — from labyrinth through brainstem nuclei to higher circuits. Use it after you have clicked through the semicircular canals and vestibular nuclei: it explains what those nodes are computing in real motion.',
-        az: 'Vestibulyar siqnalların qavrayış və hərəkət üçün necə işləndiyinin müasir sistem baxışı — labirintdən beyin sapı nüvələrinə və yuxarı dövrələrə. Yarımdairevi kanallar və vestibulyar nüvələri kliklədikdən sonra oxuyun: real hərəkətdə bu düyünlərin nə hesab etdiyini izah edir.',
+        az: 'Vestibulyar siqnalların qavrayış və hərəkət üçün necə işləndiyinin müasir sistem baxışı — labirintdən beyin gövdəsi nüvələrinə və yuxarı dövrələrə. Yarımdairevi kanallar və vestibulyar nüvələri kliklədikdən sonra oxuyun: real hərəkətdə bu düyünlərin nə hesab etdiyini izah edir.',
       },
       access: 'link',
       sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/30914780/',
@@ -233,7 +233,7 @@
       topics: ['brainstem', 'neuroanatomy', 'clinical'],
       summary: {
         en: 'High-resolution 7T MRI of a human brainstem and cerebellum paired with chemoarchitecture (cholinergic, serotonergic, catecholaminergic cells). Use it when the brainstem atlas feels like anonymous grey: this paper names cell groups and matches them to imaging. Europe PMC: open access, CC BY — we still link only.',
-        az: 'İnsan beyin sapı və beyincəyinin yüksək ayırdetməli 7T MRT-si kimyəvi arxitektura ilə (xolinergik, serotonergik, katexolaminergik hüceyrələr). Beyin sapı atlası boz ləkə kimi görünəndə oxuyun: hüceyrə qruplarını adlandırır və görüntüləmə ilə uyğunlaşdırır. Europe PMC: açıq giriş, CC BY — yenə də yalnız keçid.',
+        az: 'İnsan beyin gövdəsi və beyincəyinin yüksək ayırdetməli 7T MRT-si kimyəvi arxitektura ilə (xolinergik, serotonergik, katexolaminergik hüceyrələr). Beyin gövdəsi atlası boz ləkə kimi görünəndə oxuyun: hüceyrə qruplarını adlandırır və görüntüləmə ilə uyğunlaşdırır. Europe PMC: açıq giriş, CC BY — yenə də yalnız keçid.',
       },
       access: 'link',
       sourceUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9838717/',
@@ -297,7 +297,7 @@
       topics: ['cranial-nerves', 'brainstem', 'neuroanatomy'],
       summary: {
         en: 'Short teaching piece on learning how the twelve cranial nerves sit relative to forebrain and brainstem — a practical companion while you rotate the cranial-nerves atlas. Europe PMC: open access, CC BY; link-only.',
-        az: 'On iki kranial sinirin ön beyin və beyin sapına nisbətən necə yerləşdiyini öyrənmək üçün qısa tədris yazısı — cranial nerves atlasını fırladarkən praktik yoldaş. Europe PMC: açıq giriş, CC BY; yalnız keçid.',
+        az: 'On iki kranial sinirin ön beyin və beyin gövdəsinə nisbətən necə yerləşdiyini öyrənmək üçün qısa tədris yazısı — cranial nerves atlasını fırladarkən praktik yoldaş. Europe PMC: açıq giriş, CC BY; yalnız keçid.',
       },
       access: 'link',
       sourceUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9054994/',

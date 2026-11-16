@@ -18,7 +18,7 @@
     { id: "diencephalon", chapter: "1.7", moduleId: "diencephalon", title: { en: "Diencephalon", az: "Diensefalon" } },
     { id: "limbic-system", chapter: "1.8", moduleId: "limbic", title: { en: "Limbic system", az: "Limbik sistem" } },
     { id: "basal-ganglia", chapter: "1.9", moduleId: "basal-ganglia", title: { en: "Basal ganglia", az: "Bazal qanqliyalar" } },
-    { id: "brainstem", chapter: "1.10", moduleId: "brainstem", title: { en: "Brainstem", az: "Beyin sapı" } },
+    { id: "brainstem", chapter: "1.10", moduleId: "brainstem", title: { en: "Brainstem", az: "Beyin gövdəsi" } },
     { id: "cranial-nerves", chapter: "1.11", moduleId: "cranial-nerves", title: { en: "Cranial nerves", az: "Kəllə sinirləri" } },
     { id: "cerebellum", chapter: "1.12", moduleId: "cerebellum", title: { en: "Cerebellum", az: "Beyincik" } },
     { id: "white-matter", chapter: "1.13", moduleId: "white-matter", title: { en: "White matter & tracts", az: "Ağ maddə və yollar" } },
@@ -47,7 +47,7 @@
 
   var MODULE_LABELS = {
     cortex: { en: "Cortex & lobes", az: "Qabıq və paylar" },
-    brainstem: { en: "Brainstem", az: "Beyin sapı" },
+    brainstem: { en: "Brainstem", az: "Beyin gövdəsi" },
     cerebellum: { en: "Cerebellum", az: "Beyincik" },
     "basal-ganglia": { en: "Basal ganglia", az: "Bazal qanqliyalar" },
     limbic: { en: "Limbic system", az: "Limbik sistem" },

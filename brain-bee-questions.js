@@ -237,7 +237,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "The brainstem (midbrain, pons, medulla) is critical for:",
-      az: "Beyin sapı (orta beyin, pons, medulla) nə üçün kritikdir?",
+      az: "Beyin gövdəsi (orta beyin, pons, medulla) nə üçün kritikdir?",
     },
     choices: [
       { en: "Only hippocampal memory encoding", az: "Yalnız hippokamp yaddaş kodlanması" },
@@ -250,7 +250,7 @@ var BB_QUESTIONS = [
       en: "Nuclei of most cranial nerves, respiratory/cardiovascular centres, and the corticospinal and lemniscal highways pack into this small volume.",
       az: "Əksər kəllə siniri nüvələri, tənəffüs/ürək-damar mərkəzləri, kortikospinal və lemniskal magistrallar bu kiçik həcmdə yığılır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "pyramid-decussation",
@@ -273,7 +273,7 @@ var BB_QUESTIONS = [
       en: "The pyramidal decussation sits at the medulla–spinal cord junction, so one hemisphere controls the opposite half of the body. The optic chiasm is a crossing too, but it carries retinal axons, not motor fibres.",
       az: "Piramidal dekussasiya medulla ilə onurğa beyninin birləşməsindədir — ona görə bir yarımkürə bədənin əks yarısını idarə edir. Optik xiazma da çarpazlaşmadır, lakin o, motor liflər yox, retina aksonlarını daşıyır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cn12-medulla",
@@ -296,7 +296,7 @@ var BB_QUESTIONS = [
       en: "CN XII arises from the medulla, and its nucleus raises the floor of the fourth ventricle as the hypoglossal trigone. A medullary lesion makes the protruded tongue deviate toward the weak side.",
       az: "CN XII medulladan çıxır və nüvəsi dördüncü mədəciyin dibində hipoqlossal üçbucaq kimi qabarır. Medulla zədəsində irəli çıxarılan dil zəif tərəfə əyilir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cn7-pons",
@@ -306,7 +306,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "The facial nerve nucleus (CN VII) is found in which brainstem segment?",
-      az: "Üz siniri nüvəsi (CN VII) beyin sapının hansı hissəsindədir?",
+      az: "Üz siniri nüvəsi (CN VII) beyin gövdəsinin hansı hissəsindədir?",
     },
     choices: [
       { en: "Midbrain", az: "Orta beyində" },
@@ -319,7 +319,7 @@ var BB_QUESTIONS = [
       en: "CN V, VI, VII and VIII are all pontine. Learn the rule of levels: CN III–IV midbrain, V–VIII pons, IX–XII medulla — it turns dozens of facts into one map.",
       az: "CN V, VI, VII və VIII ponsdadır. Səviyyə qaydasını öyrənin: CN III–IV orta beyin, V–VIII pons, IX–XII medulla — bu, onlarla faktı bir xəritəyə çevirir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cn3-midbrain",
@@ -329,7 +329,7 @@ var BB_QUESTIONS = [
     difficulty: 2,
     q: {
       en: "Which brainstem level contains the oculomotor (CN III) nucleus?",
-      az: "Beyin sapının hansı səviyyəsində okulomotor (CN III) nüvəsi var?",
+      az: "Beyin gövdəsinin hansı səviyyəsində okulomotor (CN III) nüvəsi var?",
     },
     choices: [
       { en: "Lower pons", az: "Aşağı pons" },
@@ -342,7 +342,7 @@ var BB_QUESTIONS = [
       en: "The CN III nucleus sits in the midbrain beside the cerebral aqueduct, with the Edinger–Westphal nucleus supplying the pupil. That neighbourhood is why midbrain compression from raised pressure blows the pupil early.",
       az: "CN III nüvəsi orta beyində, beyin su kanalının yanındadır; Edinger–Vestfal nüvəsi pupili idarə edir. Bu qonşuluğa görə təzyiq artdıqda orta beyin sıxılması pupili erkən genişləndirir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "inferior-colliculus",
@@ -375,7 +375,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "Which brainstem system, when badly damaged, causes coma?",
-      az: "Beyin sapının hansı sistemi ciddi zədələndikdə koma yaradır?",
+      az: "Beyin gövdəsinin hansı sistemi ciddi zədələndikdə koma yaradır?",
     },
     choices: [
       { en: "The ascending reticular activating system", az: "Yüksələn retikulyar aktivləşdirici sistem" },
@@ -388,7 +388,7 @@ var BB_QUESTIONS = [
       en: "The reticular formation projects diffusely through the thalamus to keep cortex awake, so damage there abolishes consciousness. Cutting the pyramidal tract instead paralyses a fully awake patient — motor loss without loss of arousal.",
       az: "Retikulyar formasiya talamus vasitəsilə qabığı oyaq saxlamaq üçün geniş yayılır, ona görə oranın zədəsi şüuru söndürür. Piramidal traktın kəsilməsi isə tam oyaq xəstəni iflic edir — oyanıqlıq itmədən motor itki.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "locked-in-pons",
@@ -411,7 +411,7 @@ var BB_QUESTIONS = [
       en: "Locked-in syndrome comes from a ventral pontine lesion that cuts descending motor fibres while sparing the dorsal tegmentum, so arousal and the midbrain vertical-gaze centres survive. A high cervical cord injury also paralyses the body, but it spares the face and horizontal gaze and does not produce this pattern of eye-only communication.",
       az: "Locked-in sindromu ponsun ön hissəsindəki zədədən olur: enən motor liflər kəsilir, arxa tegmentum isə qorunur — buna görə oyanıqlıq və orta beyindəki şaquli baxış mərkəzləri sağ qalır. Yuxarı boyun onurğa beyni zədəsi də bədəni iflic edir, lakin üzü və üfüqi baxışı qoruyur və yalnız gözlə əlaqə mənzərəsi vermir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cereb-signs",
@@ -467,7 +467,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "The cerebellum is attached to the brainstem by three pairs of peduncles. The middle cerebellar peduncle mainly carries:",
-      az: "Beyincik beyin sapına üç cüt ayaqcıqla bağlanır. Orta beyincik ayaqcığı əsasən nəyi daşıyır?",
+      az: "Beyincik beyin gövdəsinə üç cüt ayaqcıqla bağlanır. Orta beyincik ayaqcığı əsasən nəyi daşıyır?",
     },
     choices: [
       { en: "Massive input from the pons", az: "Ponsdan güclü girişi" },
@@ -1554,7 +1554,7 @@ var BB_QUESTIONS = [
       { en: "Optic chiasm", az: "Optik xiazmada" },
       { en: "Choroid plexus", az: "Xoroid pleksusda" },
       { en: "Cerebellar cortex", az: "Beyincik qabığında" },
-      { en: "Raphe nuclei of the brainstem", az: "Beyin sapının rafe nüvələrində" },
+      { en: "Raphe nuclei of the brainstem", az: "Beyin gövdəsinin rafe nüvələrində" },
     ],
     answer: 3,
     why: {
@@ -1571,7 +1571,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "Which brainstem nucleus is the brain’s main source of norepinephrine for arousal and vigilance?",
-      az: "Oyanıqlıq və diqqət üçün beynin əsas noradrenalin mənbəyi hansı beyin sapı nüvəsidir?",
+      az: "Oyanıqlıq və diqqət üçün beynin əsas noradrenalin mənbəyi hansı beyin gövdəsi nüvəsidir?",
     },
     choices: [
       { en: "Locus coeruleus", az: "Locus coeruleus" },
@@ -1584,7 +1584,7 @@ var BB_QUESTIONS = [
       en: "The locus coeruleus in the pons fires harder during alerting events and sharpens attention across cortex. Substantia nigra is the trap because it is also a pigmented midbrain nucleus, but its transmitter is dopamine and its job is movement.",
       az: "Ponsdaki locus coeruleus xəbərdarlıq hadisələrində daha güclü atır və qabıq boyunca diqqəti kəskinləşdirir. Qara maddə tələdir, çünki o da piqmentli orta beyin nüvəsidir, lakin transmitteri dopamindir və işi hərəkətdir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "ionotropic-metabotropic",
@@ -1628,7 +1628,7 @@ var BB_QUESTIONS = [
     answer: 2,
     why: {
       en: "The organ of Corti in the cochlea converts mechanical vibration into auditory-nerve spikes. The pathway then climbs the brainstem to cortex.",
-      az: "Koxleadakı Korti orqanı mexaniki titrəməni eşitmə siniri impulslarına çevirir. Yol sonra beyin sapından qabığa qalxır.",
+      az: "Koxleadakı Korti orqanı mexaniki titrəməni eşitmə siniri impulslarına çevirir. Yol sonra beyin gövdəsindən qabığa qalxır.",
     },
     see: { href: "ear-pathway/index.html", en: "See the auditory pathway in 3D →", az: "Eşitmə yolunu 3D-də gör →" },
   },
@@ -2220,7 +2220,7 @@ var BB_QUESTIONS = [
     answer: 0,
     why: {
       en: "In REM the cortex looks awake on EEG and vivid dreaming occurs, while brainstem circuits actively paralyse skeletal muscle so the dream is not acted out. Slow high-amplitude waves belong to deep NREM instead, where tone is reduced but preserved.",
-      az: "REM zamanı qabıq EEQ-də oyaq görünür və canlı yuxular olur, beyin sapı dövrələri isə skelet əzələlərini aktiv şəkildə iflic edir ki, yuxu hərəkətlə oynanılmasın. Yavaş, yüksək amplitudalı dalğalar isə dərin NREM-ə aiddir — orada tonus azalır, lakin qorunur.",
+      az: "REM zamanı qabıq EEQ-də oyaq görünür və canlı yuxular olur, beyin gövdəsi dövrələri isə skelet əzələlərini aktiv şəkildə iflic edir ki, yuxu hərəkətlə oynanılmasın. Yavaş, yüksək amplitudalı dalğalar isə dərin NREM-ə aiddir — orada tonus azalır, lakin qorunur.",
     },
   },
   {
@@ -2552,9 +2552,9 @@ var BB_QUESTIONS = [
     answer: 2,
     why: {
       en: "The superior colliculus is a visuomotor orienting centre, stacking visual, auditory and touch maps so that gaze snaps to whatever just appeared. Relaying hearing is the inferior colliculus’s job, and swapping the two is the most common brainstem mistake in the written round.",
-      az: "Yuxarı təpəcik görmə-motor oriyentasiya mərkəzidir: görmə, eşitmə və toxunma xəritələrini üst-üstə yığır ki, baxış yeni görünən şeyə tuşlansın. Eşitməni ötürmək aşağı təpəciyin işidir və bu ikisini qarışdırmaq yazılı turda beyin sapı ilə bağlı ən çox rast gəlinən səhvdir.",
+      az: "Yuxarı təpəcik görmə-motor oriyentasiya mərkəzidir: görmə, eşitmə və toxunma xəritələrini üst-üstə yığır ki, baxış yeni görünən şeyə tuşlansın. Eşitməni ötürmək aşağı təpəciyin işidir və bu ikisini qarışdırmaq yazılı turda beyin gövdəsi ilə bağlı ən çox rast gəlinən səhvdir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-substantia-nigra-site",
@@ -2564,7 +2564,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "In which brainstem segment does the substantia nigra sit?",
-      az: "Qara substansiya beyin sapının hansı hissəsindədir?",
+      az: "Qara substansiya beyin gövdəsinin hansı hissəsindədir?",
     },
     choices: [
       { en: "Pons", az: "Pons" },
@@ -2575,9 +2575,9 @@ var BB_QUESTIONS = [
     answer: 3,
     why: {
       en: "The substantia nigra lies in the midbrain, between the crus cerebri in front and the tegmentum behind, which is why axial midbrain sections show it as a dark band across each side. The thalamus is tempting because it is part of the same movement circuit, but it is diencephalon and not brainstem at all.",
-      az: "Qara substansiya orta beyində, önündəki serebral ayaqcıq və arxasındaki tegmentum arasında yerləşir — buna görə orta beynin en kəsiklərində hər tərəfdə tünd zolaq kimi görünür. Talamus cəlbedicidir, çünki eyni hərəkət dövrəsinin hissəsidir, lakin o diensefalondur, ümumiyyətlə beyin sapı deyil.",
+      az: "Qara substansiya orta beyində, önündəki serebral ayaqcıq və arxasındaki tegmentum arasında yerləşir — buna görə orta beynin en kəsiklərində hər tərəfdə tünd zolaq kimi görünür. Talamus cəlbedicidir, çünki eyni hərəkət dövrəsinin hissəsidir, lakin o diensefalondur, ümumiyyətlə beyin gövdəsi deyil.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-fourth-ventricle-floor",
@@ -2600,7 +2600,7 @@ var BB_QUESTIONS = [
       en: "The rhomboid floor is the back of the pons and upper medulla, with cranial-nerve nuclei lying immediately beneath it, which is why a tumour pressing on that floor can take out eye movement, facial power and swallowing together. The cerebellum forms the roof rather than the floor, and reversing the two is the usual slip.",
       az: "Romb şəkilli dib ponsun və uzunsov beynin yuxarı hissəsinin arxasıdır; kəllə siniri nüvələri onun bilavasitə altındadır — buna görə bu dibə təzyiq edən şiş göz hərəkətini, üz gücünü və udmanı birlikdə poza bilər. Beyincik dibi deyil, damı təşkil edir və bu ikisini yerdəyişmək adi səhvdir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-medulla-vital",
@@ -2626,7 +2626,7 @@ var BB_QUESTIONS = [
       en: "Respiratory and blood-pressure control live in a few cubic millimetres of medullary reticular formation, so a tiny lesion can stop breathing outright, while the cortex is large and functionally redundant enough to absorb comparable damage. It is not a perfusion problem — the medulla is well supplied by vertebral and basilar branches.",
       az: "Tənəffüs və qan təzyiqi nəzarəti uzunsov beynin retikulyar formasiyasının bir neçə kubmillimetrində yerləşir, ona görə kiçik zədə tənəffüsü tamamilə dayandıra bilər; qabıq isə böyükdür və oxşar zədəni udacaq qədər funksional ehtiyata malikdir. Bu, qan təchizatı problemi deyil — uzunsov beyin vertebral və bazilyar şaxələrlə yaxşı qidalanır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-crus-cerebri",
@@ -2649,7 +2649,7 @@ var BB_QUESTIONS = [
       en: "The crus cerebri is the ventral bundle of descending motor fibres, which is why a lesion there gives weakness on the opposite side of the body together with a third nerve palsy on the same side as the lesion. The medial lemniscus is tempting but it runs the other way, carrying fine touch and joint position upward.",
       az: "Crus cerebri enən motor liflərin ventral dəstəsidir — buna görə buradaki zədə bədənin əks tərəfində zəiflik, ocaqla eyni tərəfdə isə üçüncü sinir iflici verir. Medial ilgək cəlbedicidir, lakin o əks istiqamətdə, incə toxunma və oynaq mövqeyini yuxarıya daşıyır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-cn-nuclei-rule",
@@ -2659,7 +2659,7 @@ var BB_QUESTIONS = [
     difficulty: 3,
     q: {
       en: "Which grouping of cranial-nerve nuclei by brainstem level is correct?",
-      az: "Kəllə siniri nüvələrinin beyin sapı səviyyələrinə görə hansı qruplaşması doğrudur?",
+      az: "Kəllə siniri nüvələrinin beyin gövdəsi səviyyələrinə görə hansı qruplaşması doğrudur?",
     },
     choices: [
       { en: "III–VI midbrain, VII–X pons, XI–XII medulla", az: "III–VI orta beyin, VII–X pons, XI–XII uzunsov beyin" },
@@ -2670,9 +2670,9 @@ var BB_QUESTIONS = [
     answer: 3,
     why: {
       en: "Counting in fours from the top — III and IV in the midbrain, V to VIII in the pons, IX to XII in the medulla — is the standard rule, and it is what lets you localise a brainstem lesion from the deficits alone. Putting III–VI in the midbrain shifts the abducens nucleus up from the pons, which would wrongly predict failed eye abduction from a midbrain lesion.",
-      az: "Yuxarıdan dördlüklərlə saymaq — III və IV orta beyində, V–VIII ponsda, IX–XII uzunsov beyində — standart qaydadır və yalnız defisitlərə görə beyin sapındaki zədəni yerləşdirməyə imkan verir. III–VI-nı orta beyinə qoymaq uzaqlaşdırıcı sinir nüvəsini ponsdan yuxarı qaldırır, bu isə orta beyin zədəsindən gözün yana çıxa bilməməsini səhvən gözləməyə səbəb olardı.",
+      az: "Yuxarıdan dördlüklərlə saymaq — III və IV orta beyində, V–VIII ponsda, IX–XII uzunsov beyində — standart qaydadır və yalnız defisitlərə görə beyin gövdəsindəki zədəni yerləşdirməyə imkan verir. III–VI-nı orta beyinə qoymaq uzaqlaşdırıcı sinir nüvəsini ponsdan yuxarı qaldırır, bu isə orta beyin zədəsindən gözün yana çıxa bilməməsini səhvən gözləməyə səbəb olardı.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-locus-coeruleus",
@@ -2695,7 +2695,7 @@ var BB_QUESTIONS = [
       en: "The locus coeruleus is a small pigmented nucleus in the upper pons whose axons blanket the entire cortex with noradrenaline, setting arousal and vigilance. The raphe nuclei are the tempting near-miss — also midline brainstem modulatory nuclei with diffuse projections — but their transmitter is serotonin.",
       az: "Locus coeruleus ponsun yuxarı hissəsində kiçik piqmentli nüvədir; aksonları bütün qabığı noradrenalinlə örtür və oyanıqlığı, diqqətliliyi təyin edir. Raphe nüvələri yaxın, cəlbedici səhvdir — onlar da orta xətt boyu, yayılmış proyeksiyalı modulyator nüvələrdir, lakin transmitterləri serotonindir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-red-nucleus",
@@ -2718,7 +2718,7 @@ var BB_QUESTIONS = [
       en: "The red nucleus takes cerebellar and cortical input and sends the rubrospinal tract down the cord to bias limb flexor tone. The lateral corticospinal tract is tempting because it passes right through the midbrain nearby, but it starts in the cortex and merely travels past the red nucleus.",
       az: "Qırmızı nüvə beyincik və qabıqdan giriş alır və ətrafların bükücü tonusuna təsir edən rubrospinal yolu onurğa iliyinə göndərir. Yan kortikospinal yol cəlbedicidir, çünki orta beynin lap yanından keçir, lakin o qabıqda başlayır və qırmızı nüvənin sadəcə yanından ötür.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cn-v1-cornea",
@@ -3737,7 +3737,7 @@ var BB_QUESTIONS = [
       en: "The vertebrals meet at the pontomedullary junction to form the basilar artery, which climbs the front of the pons giving perforating branches to it before dividing into the posterior cerebral arteries. The internal carotid is tempting as the other great supply to the brain, but it enters separately and feeds the anterior circulation.",
       az: "Onurğa arteriyaları pons-uzunsov beyin sərhədində birləşib bazilyar arteriyanı yaradır; o, ponsun ön səthi ilə qalxır, ona deşici şaxələr verir və sonra arxa beyin arteriyalarına ayrılır. Daxili yuxu arteriyası beynin digər böyük təchizatçısı kimi cəlbedicidir, lakin o ayrıca daxil olur və ön dövranı qidalandırır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-inferior-olive",
@@ -3760,7 +3760,7 @@ var BB_QUESTIONS = [
       en: "The inferior olive is the sole source of climbing fibres, each of which wraps a single Purkinje cell and delivers the error signal that drives motor learning. Mossy fibres through the middle peduncle are the tempting alternative, but those arise mainly from the pontine nuclei relaying cortical instructions.",
       az: "Aşağı zeytun dırmaşan liflərin yeganə mənbəyidir; hər biri tək bir Purkinye hüceyrəsini sarıyır və motor öyrənməni idarə edən səhv siqnalını çatdırır. Orta ayaqcıqdan keçən yosunabənzər liflər cəlbedici alternativdir, lakin onlar əsasən qabıq göstərişlərini ötürən pons nüvələrindən başlayır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-periaqueductal-grey",
@@ -3783,7 +3783,7 @@ var BB_QUESTIONS = [
       en: "The periaqueductal grey surrounds the cerebral aqueduct and drives a descending pathway through the raphe nuclei that damps pain transmission in the dorsal horn, which is where opioid analgesia largely begins. The substantia nigra is tempting as the famous midbrain nucleus, but it belongs to the movement circuit and has no role in pain modulation.",
       az: "Su kəməri ətrafı boz maddə beyin su kəmərini əhatə edir və raphe nüvələri vasitəsilə enən yolu işə salır; bu yol arxa buynuzda ağrı ötürülməsini boğur, opioid analgeziyası da əsasən oradan başlayır. Qara substansiya məşhur orta beyin nüvəsi kimi cəlbedicidir, lakin o hərəkət dövrəsinə aiddir və ağrının modulyasiyasında rolu yoxdur.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-wallenberg",
@@ -3806,7 +3806,7 @@ var BB_QUESTIONS = [
       en: "Crossed sensory loss — face on one side, body on the other — with swallowing failure and Horner’s syndrome is the lateral medullary pattern, because the spinal trigeminal nucleus, the spinothalamic tract, the nucleus ambiguus and descending sympathetic fibres all lie together in that small wedge. An internal capsule lesion is tempting for one-sided numbness, but it takes face and body on the same side.",
       az: "Çarpaz hissiyyat itkisi — üz bir tərəfdə, bədən digərində — udma pozğunluğu və Horner sindromu ilə birlikdə uzunsov beynin yan hissəsinin mənzərəsidir, çünki üçlü sinirin onurğa nüvəsi, spinotalamik yol, nucleus ambiguus və enən simpatik liflər hamısı həmin kiçik sahədə yanaşıdır. Daxili kapsul zədəsi birtərəfli keyimə üçün cəlbedicidir, lakin o üzü və bədəni eyni tərəfdə tutar.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-mlf-ino",
@@ -3829,7 +3829,7 @@ var BB_QUESTIONS = [
       en: "The medial longitudinal fasciculus yokes the abducens nucleus on one side to the oculomotor nucleus on the other, so breaking it leaves adduction failing on conjugate gaze while convergence, which does not use that route, still works — internuclear ophthalmoplegia, and in a young adult a strong pointer to multiple sclerosis. A third nerve palsy is tempting, but it would also drop the lid and dilate the pupil and would not spare convergence.",
       az: "Medial uzununa dəstə bir tərəfin uzaqlaşdırıcı nüvəsini digər tərəfin göz hərəkətləndirici nüvəsinə bağlayır; onun qırılması konyuqat baxışda içəri gətirməni pozur, bu yoldan istifadə etməyən konvergensiya isə işləməkdə qalır — internuklear oftalmoplegiya, gənc yaşda isə dağınıq skleroza güclü işarə. Üçüncü sinir iflici cəlbedicidir, lakin o həm də göz qapağını salar, bəbəyi genişləndirər və konvergensiyanı saxlamazdı.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-nucleus-solitarius",
@@ -3839,7 +3839,7 @@ var BB_QUESTIONS = [
     difficulty: 3,
     q: {
       en: "Where do taste fibres and visceral sensory input from the heart, lungs and gut first arrive in the brainstem?",
-      az: "Dad lifləri, həmçinin ürək, ağciyər və bağırsaqdan gələn visseral hissiyyat beyin sapında ilk hara çatır?",
+      az: "Dad lifləri, həmçinin ürək, ağciyər və bağırsaqdan gələn visseral hissiyyat beyin gövdəsində ilk hara çatır?",
     },
     choices: [
       { en: "The red nucleus", az: "Qırmızı nüvə" },
@@ -3852,7 +3852,7 @@ var BB_QUESTIONS = [
       en: "The solitary nucleus is the visceral sensory receiving station, taking taste at its rostral end and cardiorespiratory and gut afferents caudally, and it forms the first link of the baroreceptor and gag reflex arcs. The nucleus ambiguus is the tempting neighbour, but it is a motor nucleus supplying the pharynx and larynx.",
       az: "Tək dəstə nüvəsi visseral hissiyyatın qəbul məntəqəsidir: yuxarı ucunda dadı, aşağıda isə ürək-tənəffüs və bağırsaq afferentlərini qəbul edir və barorezeptor ilə qusma refleksi qövsünün ilk halqasıdır. Nucleus ambiguus cəlbedici qonşudur, lakin o udlaq və qırtlağı innervasiya edən motor nüvədir.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "bs-corticobulbar-forehead",
@@ -3888,7 +3888,7 @@ var BB_QUESTIONS = [
     difficulty: 3,
     q: {
       en: "Brainstem cross-sections are read in three zones. Which arrangement is correct?",
-      az: "Beyin sapının en kəsikləri üç zonaya bölünərək oxunur. Hansı düzülüş doğrudur?",
+      az: "Beyin gövdəsinin en kəsikləri üç zonaya bölünərək oxunur. Hansı düzülüş doğrudur?",
     },
     choices: [
       { en: "Tectum in front, basis in the middle, tegmentum behind", az: "Öndə tektum, ortada basis, arxada tegmentum" },
@@ -3901,7 +3901,7 @@ var BB_QUESTIONS = [
       en: "Descending motor fibres run in the basis at the front, cranial-nerve nuclei and the reticular formation fill the tegmentum in the middle, and the tectum is the roof behind the ventricular space — a plan that lets you predict which deficits will appear together. Putting the tectum first is tempting if the colliculi are the first thing you picture, but they sit behind the aqueduct, not in front of it.",
       az: "Enən motor liflər öndəki basisdə gedir, kəllə siniri nüvələri və retikulyar formasiya ortadaki tegmentumu doldurur, tektum isə mədəcik boşluğunun arxasındaki damdır — bu plan hansı defisitlərin birlikdə görünəcəyini qabaqcadan söyləməyə imkan verir. Tektumu önə qoymaq təpəcikləri ilk təsəvvür etsəniz cəlbedicidir, lakin onlar su kəmərinin önündə deyil, arxasındadır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "cn-trochlear-unique",
@@ -3911,7 +3911,7 @@ var BB_QUESTIONS = [
     difficulty: 3,
     q: {
       en: "Which cranial nerve is the only one to leave the brainstem from its back surface?",
-      az: "Hansı kəllə siniri beyin sapını yeganə olaraq arxa səthdən tərk edir?",
+      az: "Hansı kəllə siniri beyin gövdəsini yeganə olaraq arxa səthdən tərk edir?",
     },
     choices: [
       { en: "CN IV", az: "IV kəllə siniri" },
@@ -4422,13 +4422,13 @@ var BB_QUESTIONS = [
     choices: [
       { en: "Its limb-like shape", az: "Ətrafa bənzər forması" },
       { en: "Its role in moving the limbs", az: "Ətrafların hərəkətindəki rolu" },
-      { en: "The ring of cortex it forms around the corpus callosum and upper brainstem", az: "Qabırğalı cismin və beyin sapının yuxarı hissəsinin ətrafında yaratdığı qabıq halqası" },
+      { en: "The ring of cortex it forms around the corpus callosum and upper brainstem", az: "Qabırğalı cismin və beyin gövdəsinin yuxarı hissəsinin ətrafında yaratdığı qabıq halqası" },
       { en: "Its position at the outer edge of the hemisphere", az: "Yarımkürənin xarici kənarındaki mövqeyi" },
     ],
     answer: 2,
     why: {
       en: "Limbus means border, and Broca used it for the rim of cortex — cingulate above, parahippocampal below — that encircles the corpus callosum and the upper brainstem. Moving the limbs is a tempting false friend from the English word, but the structures in that ring deal with emotion, memory and drive.",
-      az: "Limbus «kənar» deməkdir və Broca bu adı qabırğalı cismi ilə beyin sapının yuxarı hissəsini əhatə edən qabıq kənarı üçün işlədib: yuxarıda kəmərəbənzər, aşağıda parahipokampal qabıq. Ətrafların hərəkəti ingilis sözünə görə cəlbedici yanlış assosiasiyadır, halbuki bu halqadaki strukturlar emosiya, yaddaş və motivasiya ilə məşğuldur.",
+      az: "Limbus «kənar» deməkdir və Broca bu adı qabırğalı cismi ilə beyin gövdəsinin yuxarı hissəsini əhatə edən qabıq kənarı üçün işlədib: yuxarıda kəmərəbənzər, aşağıda parahipokampal qabıq. Ətrafların hərəkəti ingilis sözünə görə cəlbedici yanlış assosiasiyadır, halbuki bu halqadaki strukturlar emosiya, yaddaş və motivasiya ilə məşğuldur.",
     },
     see: { href: "limbic/index.html", en: "See the limbic system in 3D →", az: "Limbik sistemi 3D-də gör →" },
   },
@@ -4724,7 +4724,7 @@ var BB_QUESTIONS = [
       { en: "Each cochlea reports direction on its own", az: "Hər salyangoz istiqaməti təkbaşına bildirir" },
       {
         en: "By comparing the arrival time and loudness at the two ears in the brainstem",
-        az: "Beyin sapında səsin iki qulağa çatma vaxtını və ucalığını müqayisə edərək",
+        az: "Beyin gövdəsində səsin iki qulağa çatma vaxtını və ucalığını müqayisə edərək",
       },
       { en: "By the pitch of the sound", az: "Səsin tezliyinə görə" },
     ],
@@ -5246,7 +5246,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "Which transmitter carries most fast inhibition in the spinal cord and brainstem?",
-      az: "Onurğa iliyi və beyin sapında sürətli tormozlanmanın çoxunu hansı transmitter daşıyır?",
+      az: "Onurğa iliyi və beyin gövdəsində sürətli tormozlanmanın çoxunu hansı transmitter daşıyır?",
     },
     choices: [
       { en: "Glycine", az: "Qlisin" },
@@ -5581,7 +5581,7 @@ var BB_QUESTIONS = [
     difficulty: 1,
     q: {
       en: "Why can a cat with a spinal cord transected below the brainstem still produce stepping movements on a treadmill?",
-      az: "Beyin sapından aşağıda onurğa iliyi kəsilmiş pişik niyə hələ də qaçış zolağında addımlama hərəkətləri edə bilir?",
+      az: "Beyin gövdəsindən aşağıda onurğa iliyi kəsilmiş pişik niyə hələ də qaçış zolağında addımlama hərəkətləri edə bilir?",
     },
     choices: [
       { en: "Stepping is a purely mechanical consequence of the moving belt", az: "Addımlama hərəkət edən lentin sırf mexaniki nəticəsidir" },
@@ -5617,7 +5617,7 @@ var BB_QUESTIONS = [
     answer: 3,
     why: {
       en: "In primates the corticospinal tract makes near-direct contact with motor neurons for the digits, and brainstem pathways can drive posture and reaching but cannot reproduce that fractionated control, so fine movement is lost for good. Muscle size is tempting, but the same small muscles work perfectly when the tract is intact.",
-      az: "Primatlarda kortikospinal yol barmaqların motor neyronları ilə demək olar birbaşa təmas qurur; beyin sapı yolları duruşu və uzanmanı idarə edə bilir, lakin bu ayrılmış nəzarəti təkrarlaya bilmir, ona görə incə hərəkət həmişəlik itir. Əzələ ölçüsü cəlbedicidir, lakin yol salamat olduqda həmin kiçik əzələlər qüsursuz işləyir.",
+      az: "Primatlarda kortikospinal yol barmaqların motor neyronları ilə demək olar birbaşa təmas qurur; beyin gövdəsi yolları duruşu və uzanmanı idarə edə bilir, lakin bu ayrılmış nəzarəti təkrarlaya bilmir, ona görə incə hərəkət həmişəlik itir. Əzələ ölçüsü cəlbedicidir, lakin yol salamat olduqda həmin kiçik əzələlər qüsursuz işləyir.",
     },
     see: { href: "white-matter/index.html", en: "See white matter in 3D →", az: "Ağ maddəni 3D-də gör →" },
   },
@@ -6667,7 +6667,7 @@ var BB_QUESTIONS = [
       az: "Hərəkət edərkən sizi dik saxlayan və duruşu avtomatik tənzimləyən enən yollar hansılardır?",
     },
     choices: [
-      { en: "The vestibulospinal and reticulospinal tracts from the brainstem", az: "Beyin sapından gələn vestibulospinal və retikulospinal yollar" },
+      { en: "The vestibulospinal and reticulospinal tracts from the brainstem", az: "Beyin gövdəsindən gələn vestibulospinal və retikulospinal yollar" },
       { en: "The spinothalamic tract", az: "Spinotalamik yol" },
       { en: "The lateral corticospinal tract alone", az: "Yalnız yan kortikospinal yol" },
       { en: "The dorsal columns", az: "Arxa sütunlar" },
@@ -6675,9 +6675,9 @@ var BB_QUESTIONS = [
     answer: 0,
     why: {
       en: "Medial brainstem pathways drive axial and proximal muscles continuously, which is why a decorticate patient still holds tone and posture, and why balance survives cortical injury better than fine hand control does. The dorsal columns are tempting because position sense is essential to balance, but they carry information upward rather than commands down.",
-      az: "Beyin sapının medial yolları ox və proksimal əzələləri fasiləsiz idarə edir — buna görə dekortikasiya olunmuş xəstədə tonus və duruş qalır, tarazlıq isə qabıq zədəsindən əlin incə nəzarətindən daha yaxşı sağ çıxır. Arxa sütunlar cəlbedicidir, çünki mövqe hissiyyatı tarazlıq üçün vacibdir, lakin onlar aşağıya əmr deyil, yuxarıya məlumat daşıyır.",
+      az: "Beyin gövdəsinin medial yolları ox və proksimal əzələləri fasiləsiz idarə edir — buna görə dekortikasiya olunmuş xəstədə tonus və duruş qalır, tarazlıq isə qabıq zədəsindən əlin incə nəzarətindən daha yaxşı sağ çıxır. Arxa sütunlar cəlbedicidir, çünki mövqe hissiyyatı tarazlıq üçün vacibdir, lakin onlar aşağıya əmr deyil, yuxarıya məlumat daşıyır.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "mo-babinski-development",
@@ -6944,9 +6944,9 @@ var BB_QUESTIONS = [
     answer: 0,
     why: {
       en: "Brainstem circuits normally paralyse skeletal muscle during REM, and when that inhibition fails the dream is enacted — a disorder that often precedes Parkinson's disease and related synucleinopathies by years. Sleepwalking is the tempting alternative, but it arises from deep non-REM sleep and the person has no dream to report afterwards.",
-      az: "Beyin sapı dövrələri REM zamanı skelet əzələlərini normalda iflic edir; bu tormozlanma pozulanda yuxu səhnələşdirilir — bu pozğunluq çox vaxt Parkinson xəstəliyindən və əlaqəli sinukleinopatiyalardan illər əvvəl gəlir. Yuxuda gəzmə cəlbedici alternativdir, lakin o, dərin qeyri-REM yuxusundan yaranır və insanın sonradan danışacağı yuxu olmur.",
+      az: "Beyin gövdəsi dövrələri REM zamanı skelet əzələlərini normalda iflic edir; bu tormozlanma pozulanda yuxu səhnələşdirilir — bu pozğunluq çox vaxt Parkinson xəstəliyindən və əlaqəli sinukleinopatiyalardan illər əvvəl gəlir. Yuxuda gəzmə cəlbedici alternativdir, lakin o, dərin qeyri-REM yuxusundan yaranır və insanın sonradan danışacağı yuxu olmur.",
     },
-    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin sapını 3D-də gör →" },
+    see: { href: "brainstem/index.html", en: "See the brainstem in 3D →", az: "Beyin gövdəsini 3D-də gör →" },
   },
   {
     id: "sae-narcolepsy-orexin",

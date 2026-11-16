@@ -83,10 +83,15 @@ function resolveStructureName(object, group) {
 }
 
 export class BasalGangliaScene {
-  constructor(canvas, { onSelect, onLoadProgress, theme = 'dark', interactive = true } = {}) {
+  constructor(canvas, { onSelect, onLoadProgress, onReady, theme = 'dark', interactive = true } = {}) {
     this.canvas = canvas;
     this.onSelect = onSelect;
     this.onLoadProgress = onLoadProgress;
+    this.onReady = onReady;
+    /** Set of structure keys lit by an overlay (neurotransmitter pathway); null = normal mode. */
+    this.highlightSet = null;
+    this.frameHooks = [];
+    this.ready = false;
     this.theme = theme;
     this.interactive = interactive;
 
@@ -221,10 +226,24 @@ export class BasalGangliaScene {
       true,
       this.failedLoads,
     );
+    this.ready = true;
+    this.onReady?.(this);
+  }
+
+  /** Light several structures at once and fade the rest (pathway overlay). */
+  setHighlight(keys) {
+    this.highlightSet = keys && keys.length ? new Set(keys) : null;
+    if (this.highlightSet) {
+      this.selectedName = null;
+      this.lastFrontName = null;
+      this.clickDepth = 0;
+    }
+    this.applySelectionVisuals();
   }
 
   selectStructure(name) {
     if (!this.structures.has(name) || isNonInteractiveContextKey(name)) return;
+    this.highlightSet = null;
     this.selectedName = name;
     this.applySelectionVisuals();
   }
@@ -238,8 +257,9 @@ export class BasalGangliaScene {
 
   applySelectionVisuals() {
     for (const [key, { meshes }] of this.structures) {
-      const isSelected = key === this.selectedName;
-      const isFaded = this.selectedName != null && !isSelected;
+      const hasFocus = this.highlightSet != null;
+      const isSelected = hasFocus ? this.highlightSet.has(key) : key === this.selectedName;
+      const isFaded = hasFocus ? !isSelected : this.selectedName != null && !isSelected;
       const isGhost = isGhostContextKey(key);
       const baseOpacity = ghostOpacityForKey(key, this.theme);
 
@@ -348,6 +368,7 @@ export class BasalGangliaScene {
     if (this.disposed) return;
     requestAnimationFrame(() => this.animate());
     this.controls.update();
+    for (const hook of this.frameHooks) hook();
     this.renderer.render(this.scene, this.camera);
   }
 

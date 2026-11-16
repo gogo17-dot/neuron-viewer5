@@ -1,10 +1,12 @@
 import { initTheme, getTheme } from './theme.js';
 import { initPopup, showPopup, hidePopup, setPopupLang } from './popup.js';
-import { BasalGangliaScene } from './BasalGangliaScene.js';
+import { BasalGangliaScene } from './BasalGangliaScene.js?v=nt1';
+import { NTOverlay } from './ntOverlay.js';
 
 const loadingEl = document.getElementById('loading-banner');
 
 let scene = null;
+let overlay = null;
 
 function updateLoading(loaded, total, done = false, failed = 0) {
   if (!loadingEl) return;
@@ -26,16 +28,28 @@ function updateLoading(loaded, total, done = false, failed = 0) {
 
 initTheme((theme) => {
   scene?.setTheme(theme);
+  overlay?.setTheme(theme);
 });
 
 initPopup(() => {
-  scene?.clearSelection();
+  if (overlay?.activeId) overlay.clear();
+  else scene?.clearSelection();
 });
 
 scene = new BasalGangliaScene(document.getElementById('scene'), {
   theme: getTheme(),
   onSelect: (data) => {
+    overlay?.clear(false);
     showPopup(data);
+  },
+  onReady: (s) => {
+    overlay = new NTOverlay(s, {
+      host: document.getElementById('app'),
+      onShowInfo: (pathway) => showPopup(pathway),
+      onHideInfo: () => hidePopup(),
+    });
+    const fromUrl = new URLSearchParams(location.search).get('pathway');
+    if (fromUrl) overlay.show(fromUrl);
   },
   onLoadProgress: updateLoading,
 });
@@ -48,4 +62,5 @@ window.addEventListener('error', (event) => {
 
 window.__neyronAfterSetLang = function (lang) {
   if (typeof setPopupLang === 'function') setPopupLang(lang);
+  overlay?.setLang(lang);
 };

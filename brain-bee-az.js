@@ -136,7 +136,7 @@ export const caseAz = {
     tests: {
       ct: "Beyin və boyun KT-də açıq kompressiv mielopatiya yoxdur. Yumşaq toxuma detalı KT-də məhduddur.",
       pet_spect: "Yüngül frontal hipometabolizm, qeyri-spesifik. Motor diaqnoz üçün vacib deyil.",
-      mri: "Beyində T2 kortikospinal hiperintenslik ola bilər. Boyun iliyi: stenoz və sirinks yoxdur. Beyin sapı başqa cəhətdən normaldır.",
+      mri: "Beyində T2 kortikospinal hiperintenslik ola bilər. Boyun iliyi: stenoz və sirinks yoxdur. Beyin gövdəsi başqa cəhətdən normaldır.",
       eeg: "Normal EEQ.",
       ncs: "Sensor cavablar normal. Əriyən əldə motor amplituda azalmışdır. EMG boyun, döş və bel miotomlarında, döş paravertebralı daxil, aktiv denervasiya və reinnervasiya göstərir.",
       cognitive: "Yataqyanı skrində yüngül frontal disinhibisiya; başqa cəhətdən oriyentasiya saxlanılıb.",
@@ -339,14 +339,14 @@ export const caseAz = {
       ct: "Boyun KT-də C6-nın partlayıcı sınığı, sümük fraqmenti kanala doğru yerini dəyişib. Kəllə sınığı və kəllədaxili qanaxma yoxdur.",
       pet_spect: "Göstəriş yoxdur, kəskin travmada heç nə əlavə etmir.",
       mri: "C6 səviyyəsində mərkəzləşmiş ilik siqnal dəyişikliyi və ödemi, kanal daralması, önə doğru ilik sıxılması. Epidural abses və şiş yoxdur. Beyin görüntüsü normaldır.",
-      eeg: "Normal EEQ. Şüur təsirlənməyib, bu da beyin sapından aşağı zədə ilə uyğundur.",
+      eeg: "Normal EEQ. Şüur təsirlənməyib, bu da beyin gövdəsindən aşağı zədə ilə uyğundur.",
       ncs: "Ayaqlarda motor cavab yoxdur, əllərdə azalıb, proksimal yuxarı ətraf müayinələri normaldır. Demiyelinizasiya əlaməti və Guillain-Barré üçün keçiricilik bloku yoxdur.",
       cognitive: "Tam ayıq və oriyentasiyalı, koqnisiya normaldır.",
       blood: "Tam qan sayı, elektrolitlər və kreatin kinaza kəskin travma ilə uyğundur. İnfeksiyanın iltihab markerləri yoxdur.",
       csf: "Aparılmayıb. Burada lumbal punksiya lazımsız və təhlükəlidir, infeksiya şübhəsi yoxdur.",
     },
     explanation:
-      "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin sapı insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
+      "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin gövdəsi insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
   },
   "tourette-01": {
     answer: "Turett sindromu",

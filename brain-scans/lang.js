@@ -187,7 +187,7 @@ const STRINGS = {
     'note.spl': 'Yuxarı parietal pay — vizuomotor koordinasiya və məkan oriyentasiyası.',
     'note.hypothalamus': 'Hipotalamus — diensefalon əsasında avtonom, endokrin və homeostatik nəzarət.',
     'note.habenula': 'Habenula — limbik girişi orta beyin monoamin sistemlərinə bağlayan epitalamik düyün.',
-    'note.parabrachial': 'Parabraxial bölgə — visseral hiss, dad və avtonom/affektiv inteqrasiya üçün beyin sapı keçidi.',
+    'note.parabrachial': 'Parabraxial bölgə — visseral hiss, dad və avtonom/affektiv inteqrasiya üçün beyin gövdəsi keçidi.',
     'note.vta': 'Ventral tegmental sahə — mükafat və motivasiya üçün orta beyin dopamin mənbəyi.',
     'atlasPage.title': 'Atlaslar',
     'atlasPage.lead': '3D kəşf üçün struktur seçin, və ya MRT skan baxışını açın.',
@@ -202,7 +202,7 @@ const STRINGS = {
     'atlasPage.brain.body': 'Klinik qeydlərlə interaktiv beyin yarımkürəsi strukturları.',
     'atlasPage.brain.tag': 'Kəşf et',
     'atlasPage.ear.title': 'Eşitmə yolu',
-    'atlasPage.ear.body': 'Qulaqcıqdan eşitmə qabığına — orta qulaq, koklea və beyin sapı keçidləri.',
+    'atlasPage.ear.body': 'Qulaqcıqdan eşitmə qabığına — orta qulaq, koklea və beyin gövdəsi keçidləri.',
     'atlasPage.ear.tag': 'Kəşf et',
   },
 };

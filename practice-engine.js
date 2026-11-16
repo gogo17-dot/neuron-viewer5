@@ -16,7 +16,7 @@ export { DRILL_KEY }
 // still works, it just falls back to printing the raw id.
 export const MODULE_LABELS = {
   cortex: { en: "Cortex & lobes", az: "Qabıq və paylar" },
-  brainstem: { en: "Brainstem", az: "Beyin sapı" },
+  brainstem: { en: "Brainstem", az: "Beyin gövdəsi" },
   cerebellum: { en: "Cerebellum", az: "Beyincik" },
   "basal-ganglia": { en: "Basal ganglia", az: "Bazal qanqliyalar" },
   limbic: { en: "Limbic system", az: "Limbik sistem" },

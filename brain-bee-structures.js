@@ -31,7 +31,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "The lowest segment of the brainstem, holding the reticular centres that set breathing, heart rate and blood pressure, the pyramidal decussation, and the nuclei of cranial nerves IX to XII.",
-      az: "Beyin sapının ən aşağı hissəsi: tənəffüsü, ürək ritmini və qan təzyiqini təyin edən retikulyar mərkəzləri, piramid çarpazını və IX–XII kəllə sinirlərinin nüvələrini saxlayır.",
+      az: "Beyin gövdəsinin ən aşağı hissəsi: tənəffüsü, ürək ritmini və qan təzyiqini təyin edən retikulyar mərkəzləri, piramid çarpazını və IX–XII kəllə sinirlərinin nüvələrini saxlayır.",
     },
   },
   {
@@ -59,7 +59,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "The shortest brainstem segment: colliculi on its roof for visual and auditory reflexes, cranial nerve III and IV nuclei in its tegmentum, and descending motor fibres in the crus below.",
-      az: "Beyin sapının ən qısa hissəsi: damında görmə və eşitmə reflekslərinə cavabdeh təpəciklər, tegmentumunda III və IV sinir nüvələri, altındaki ayaqcıqda enən motor liflər.",
+      az: "Beyin gövdəsinin ən qısa hissəsi: damında görmə və eşitmə reflekslərinə cavabdeh təpəciklər, tegmentumunda III və IV sinir nüvələri, altındaki ayaqcıqda enən motor liflər.",
     },
   },
   {
@@ -219,7 +219,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "Carries hearing and balance signals from the inner ear into the brainstem at the pontomedullary junction; a schwannoma on it causes one-sided hearing loss with imbalance.",
-      az: "Daxili qulaqdan eşitmə və müvazinət siqnallarını ponto-medulyar birləşmə səviyyəsində beyin sapına gətirir; üzərindəki şvannoma birtərəfli eşitmə itkisi və müvazinət pozğunluğu verir.",
+      az: "Daxili qulaqdan eşitmə və müvazinət siqnallarını ponto-medulyar birləşmə səviyyəsində beyin gövdəsinə gətirir; üzərindəki şvannoma birtərəfli eşitmə itkisi və müvazinət pozğunluğu verir.",
     },
   },
   {
@@ -343,7 +343,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "The only cranial nerve to decussate and to leave the brainstem dorsally; it supplies superior oblique. A palsy tilts the head away from the weak side to cancel diplopia.",
-      az: "Çarpazlaşıb beyin sapını arxadan tərk edən yeganə kəllə siniri; yuxarı əyri əzələni innervasiya edir. Iflicdə diplopiyanı azaltmaq üçün baş zəif tərəfdən uzağa əyilir.",
+      az: "Çarpazlaşıb beyin gövdəsini arxadan tərk edən yeganə kəllə siniri; yuxarı əyri əzələni innervasiya edir. Iflicdə diplopiyanı azaltmaq üçün baş zəif tərəfdən uzağa əyilir.",
     },
   },
   {
@@ -822,7 +822,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "Tent between brainstem and cerebellum. Its lateral and median apertures dump CSF into the cisterns; a medulloblastoma in childhood often fills this space.",
-      az: "Beyin sapı ilə beyincik arasındakı çadır. Yan və orta dəlikləri mayeni sisternlərə tökür; uşaqlıqda medulloblastoma tez-tez bu boşluğu doldurur.",
+      az: "Beyin gövdəsi ilə beyincik arasındakı çadır. Yan və orta dəlikləri mayeni sisternlərə tökür; uşaqlıqda medulloblastoma tez-tez bu boşluğu doldurur.",
     },
   },
   {
@@ -1634,7 +1634,7 @@ var BB_STRUCTURES = [
     },
     note: {
       en: "First brainstem relay of hearing, draped on the inferior cerebellar peduncle. Almost every later auditory station is already binaural; a lesion here can still be one-sided.",
-      az: "Eşitmənin ilk beyin sapı ötürücüsü, aşağı beyincik ayaqcığına örtülüb. Sonrakı stansiyaların demək olar ki, hamısı artıq ikiqulaqlıdır; buradakı zədə hələ də birtərəfli ola bilər.",
+      az: "Eşitmənin ilk beyin gövdəsi ötürücüsü, aşağı beyincik ayaqcığına örtülüb. Sonrakı stansiyaların demək olar ki, hamısı artıq ikiqulaqlıdır; buradakı zədə hələ də birtərəfli ola bilər.",
     },
   },
   {

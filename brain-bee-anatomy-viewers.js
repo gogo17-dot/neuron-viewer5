@@ -18,20 +18,20 @@ export const DRILL_VIEWERS = [
     manifestHref: "brainstem/brainstemManifest.js",
     frameKeys: ["Midbrain", "Pons", "Medulla_oblongata"],
     group: (scene) => scene.brainstemGroup || scene.assemblyRoot,
-    label: { en: "Brainstem", az: "Beyin sapı" },
+    label: { en: "Brainstem", az: "Beyin gövdəsi" },
     copy: {
       weight: {
         en: "The brainstem model is a few megabytes and loads in one go, so give it a moment on a slow connection.",
-        az: "Beyin sapı modeli bir neçə meqabaytdır və birdəfəyə yüklənir — zəif internetdə bir az vaxt verin.",
+        az: "Beyin gövdəsi modeli bir neçə meqabaytdır və birdəfəyə yüklənir — zəif internetdə bir az vaxt verin.",
       },
-      loading: { en: "Loading the brainstem model…", az: "Beyin sapı modeli yüklənir…" },
+      loading: { en: "Loading the brainstem model…", az: "Beyin gövdəsi modeli yüklənir…" },
       loadFail: {
         en: "The 3D models did not load. Check that the brainstem GLB files are being served.",
-        az: "3D modellər yüklənmədi. Beyin sapı GLB fayllarının verildiyini yoxlayın.",
+        az: "3D modellər yüklənmədi. Beyin gövdəsi GLB fayllarının verildiyini yoxlayın.",
       },
       openAtlas: {
         en: "Open this structure in the brainstem atlas →",
-        az: "Bu strukturu beyin sapı atlasında aç →",
+        az: "Bu strukturu beyin gövdəsi atlasında aç →",
       },
     },
   },
@@ -47,7 +47,7 @@ export const DRILL_VIEWERS = [
     copy: {
       weight: {
         en: "Twelve nerves plus a ghost skull and brainstem — a few extra megabytes. Give it a moment on a slow connection.",
-        az: "On iki sinir plus kölgə kəllə və beyin sapı — bir neçə əlavə meqabayt. Zəif internetdə bir az vaxt verin.",
+        az: "On iki sinir plus kölgə kəllə və beyin gövdəsi — bir neçə əlavə meqabayt. Zəif internetdə bir az vaxt verin.",
       },
       loading: { en: "Loading the cranial nerve models…", az: "Kəllə siniri modelləri yüklənir…" },
       loadFail: {
@@ -143,7 +143,7 @@ export const DRILL_VIEWERS = [
     copy: {
       weight: {
         en: "Tracts plus a ghost brainstem. Give them a moment on a slow connection.",
-        az: "Traktlar plus kölgə beyin sapı. Zəif internetdə bir az vaxt verin.",
+        az: "Traktlar plus kölgə beyin gövdəsi. Zəif internetdə bir az vaxt verin.",
       },
       loading: { en: "Loading the white-matter models…", az: "Ağ maddə modelləri yüklənir…" },
       loadFail: {
@@ -242,7 +242,7 @@ export const DRILL_VIEWERS = [
     copy: {
       weight: {
         en: "Thalamus, hypothalamus and neighbours plus a ghost brainstem.",
-        az: "Talamus, hipotalamus və qonşuları plus kölgə beyin sapı.",
+        az: "Talamus, hipotalamus və qonşuları plus kölgə beyin gövdəsi.",
       },
       loading: { en: "Loading the diencephalon models…", az: "Diensefalon modelləri yüklənir…" },
       loadFail: {
@@ -267,7 +267,7 @@ export const DRILL_VIEWERS = [
     copy: {
       weight: {
         en: "Seven nuclei plus a ghost brainstem. Locus coeruleus and PAG are included for context, not as classical basal ganglia.",
-        az: "Yeddi nüvə plus kölgə beyin sapı. Locus coeruleus və PAG kontekst üçün daxildir, klassik bazal qanqliya deyil.",
+        az: "Yeddi nüvə plus kölgə beyin gövdəsi. Locus coeruleus və PAG kontekst üçün daxildir, klassik bazal qanqliya deyil.",
       },
       loading: { en: "Loading the basal ganglia models…", az: "Bazal qanqliya modelləri yüklənir…" },
       loadFail: {
@@ -291,7 +291,7 @@ export const DRILL_VIEWERS = [
     copy: {
       weight: {
         en: "Lobules, peduncles and deep nuclei plus a ghost brainstem.",
-        az: "Lobullar, ayaqcıqlar və dərin nüvələr plus kölgə beyin sapı.",
+        az: "Lobullar, ayaqcıqlar və dərin nüvələr plus kölgə beyin gövdəsi.",
       },
       loading: { en: "Loading the cerebellum models…", az: "Beyincik modelləri yüklənir…" },
       loadFail: {

@@ -637,7 +637,7 @@ export const questions = [
     ],
     prompt: {
       en: "The brainstem (midbrain, pons, medulla) is critical for:",
-      az: "Beyin sapı (orta beyin, pons, medulla) nə üçün kritikdir?",
+      az: "Beyin gövdəsi (orta beyin, pons, medulla) nə üçün kritikdir?",
     },
     explanation: {
       en: "Nuclei of most cranial nerves, respiratory/cardiovascular centres, and the corticospinal and lemniscal highways pack into this small volume.",
@@ -677,7 +677,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -738,7 +738,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -799,7 +799,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -820,7 +820,7 @@ export const questions = [
     ],
     prompt: {
       en: "The facial nerve nucleus (CN VII) is found in which brainstem segment?",
-      az: "Üz siniri nüvəsi (CN VII) beyin sapının hansı hissəsindədir?",
+      az: "Üz siniri nüvəsi (CN VII) beyin gövdəsinin hansı hissəsindədir?",
     },
     explanation: {
       en: "CN V, VI, VII and VIII are all pontine. Learn the rule of levels: CN III–IV midbrain, V–VIII pons, IX–XII medulla — it turns dozens of facts into one map.",
@@ -860,7 +860,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -881,7 +881,7 @@ export const questions = [
     ],
     prompt: {
       en: "Which brainstem level contains the oculomotor (CN III) nucleus?",
-      az: "Beyin sapının hansı səviyyəsində okulomotor (CN III) nüvəsi var?",
+      az: "Beyin gövdəsinin hansı səviyyəsində okulomotor (CN III) nüvəsi var?",
     },
     explanation: {
       en: "The CN III nucleus sits in the midbrain beside the cerebral aqueduct, with the Edinger–Westphal nucleus supplying the pupil. That neighbourhood is why midbrain compression from raised pressure blows the pupil early.",
@@ -921,7 +921,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -1003,7 +1003,7 @@ export const questions = [
     ],
     prompt: {
       en: "Which brainstem system, when badly damaged, causes coma?",
-      az: "Beyin sapının hansı sistemi ciddi zədələndikdə koma yaradır?",
+      az: "Beyin gövdəsinin hansı sistemi ciddi zədələndikdə koma yaradır?",
     },
     explanation: {
       en: "The reticular formation projects diffusely through the thalamus to keep cortex awake, so damage there abolishes consciousness. Cutting the pyramidal tract instead paralyses a fully awake patient — motor loss without loss of arousal.",
@@ -1043,7 +1043,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -1104,7 +1104,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -1247,7 +1247,7 @@ export const questions = [
     ],
     prompt: {
       en: "The cerebellum is attached to the brainstem by three pairs of peduncles. The middle cerebellar peduncle mainly carries:",
-      az: "Beyincik beyin sapına üç cüt ayaqcıqla bağlanır. Orta beyincik ayaqcığı əsasən nəyi daşıyır?",
+      az: "Beyincik beyin gövdəsinə üç cüt ayaqcıqla bağlanır. Orta beyincik ayaqcığı əsasən nəyi daşıyır?",
     },
     explanation: {
       en: "The middle peduncle is the huge pontocerebellar input road: cortex talks to pontine nuclei, which cross and feed the cerebellum. The superior peduncle is the main output route, and the inferior carries spinal and vestibular input — so direction of traffic is the way to keep them apart.",
@@ -4146,7 +4146,7 @@ export const questions = [
         id: "d",
         text: {
           en: "Raphe nuclei of the brainstem",
-          az: "Beyin sapının rafe nüvələrində",
+          az: "Beyin gövdəsinin rafe nüvələrində",
         },
       },
     ],
@@ -4175,7 +4175,7 @@ export const questions = [
     ],
     prompt: {
       en: "Which brainstem nucleus is the brain’s main source of norepinephrine for arousal and vigilance?",
-      az: "Oyanıqlıq və diqqət üçün beynin əsas noradrenalin mənbəyi hansı beyin sapı nüvəsidir?",
+      az: "Oyanıqlıq və diqqət üçün beynin əsas noradrenalin mənbəyi hansı beyin gövdəsi nüvəsidir?",
     },
     explanation: {
       en: "The locus coeruleus in the pons fires harder during alerting events and sharpens attention across cortex. Substantia nigra is the trap because it is also a pigmented midbrain nucleus, but its transmitter is dopamine and its job is movement.",
@@ -4215,7 +4215,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -4301,7 +4301,7 @@ export const questions = [
     },
     explanation: {
       en: "The organ of Corti in the cochlea converts mechanical vibration into auditory-nerve spikes. The pathway then climbs the brainstem to cortex.",
-      az: "Koxleadakı Korti orqanı mexaniki titrəməni eşitmə siniri impulslarına çevirir. Yol sonra beyin sapından qabığa qalxır.",
+      az: "Koxleadakı Korti orqanı mexaniki titrəməni eşitmə siniri impulslarına çevirir. Yol sonra beyin gövdəsindən qabığa qalxır.",
     },
     choices: [
       {
@@ -5857,7 +5857,7 @@ export const questions = [
     },
     explanation: {
       en: "In REM the cortex looks awake on EEG and vivid dreaming occurs, while brainstem circuits actively paralyse skeletal muscle so the dream is not acted out. Slow high-amplitude waves belong to deep NREM instead, where tone is reduced but preserved.",
-      az: "REM zamanı qabıq EEQ-də oyaq görünür və canlı yuxular olur, beyin sapı dövrələri isə skelet əzələlərini aktiv şəkildə iflic edir ki, yuxu hərəkətlə oynanılmasın. Yavaş, yüksək amplitudalı dalğalar isə dərin NREM-ə aiddir — orada tonus azalır, lakin qorunur.",
+      az: "REM zamanı qabıq EEQ-də oyaq görünür və canlı yuxular olur, beyin gövdəsi dövrələri isə skelet əzələlərini aktiv şəkildə iflic edir ki, yuxu hərəkətlə oynanılmasın. Yavaş, yüksək amplitudalı dalğalar isə dərin NREM-ə aiddir — orada tonus azalır, lakin qorunur.",
     },
     choices: [
       {
@@ -6701,7 +6701,7 @@ export const questions = [
     },
     explanation: {
       en: "The superior colliculus is a visuomotor orienting centre, stacking visual, auditory and touch maps so that gaze snaps to whatever just appeared. Relaying hearing is the inferior colliculus’s job, and swapping the two is the most common brainstem mistake in the written round.",
-      az: "Yuxarı təpəcik görmə-motor oriyentasiya mərkəzidir: görmə, eşitmə və toxunma xəritələrini üst-üstə yığır ki, baxış yeni görünən şeyə tuşlansın. Eşitməni ötürmək aşağı təpəciyin işidir və bu ikisini qarışdırmaq yazılı turda beyin sapı ilə bağlı ən çox rast gəlinən səhvdir.",
+      az: "Yuxarı təpəcik görmə-motor oriyentasiya mərkəzidir: görmə, eşitmə və toxunma xəritələrini üst-üstə yığır ki, baxış yeni görünən şeyə tuşlansın. Eşitməni ötürmək aşağı təpəciyin işidir və bu ikisini qarışdırmaq yazılı turda beyin gövdəsi ilə bağlı ən çox rast gəlinən səhvdir.",
     },
     choices: [
       {
@@ -6737,7 +6737,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -6758,11 +6758,11 @@ export const questions = [
     ],
     prompt: {
       en: "In which brainstem segment does the substantia nigra sit?",
-      az: "Qara substansiya beyin sapının hansı hissəsindədir?",
+      az: "Qara substansiya beyin gövdəsinin hansı hissəsindədir?",
     },
     explanation: {
       en: "The substantia nigra lies in the midbrain, between the crus cerebri in front and the tegmentum behind, which is why axial midbrain sections show it as a dark band across each side. The thalamus is tempting because it is part of the same movement circuit, but it is diencephalon and not brainstem at all.",
-      az: "Qara substansiya orta beyində, önündəki serebral ayaqcıq və arxasındaki tegmentum arasında yerləşir — buna görə orta beynin en kəsiklərində hər tərəfdə tünd zolaq kimi görünür. Talamus cəlbedicidir, çünki eyni hərəkət dövrəsinin hissəsidir, lakin o diensefalondur, ümumiyyətlə beyin sapı deyil.",
+      az: "Qara substansiya orta beyində, önündəki serebral ayaqcıq və arxasındaki tegmentum arasında yerləşir — buna görə orta beynin en kəsiklərində hər tərəfdə tünd zolaq kimi görünür. Talamus cəlbedicidir, çünki eyni hərəkət dövrəsinin hissəsidir, lakin o diensefalondur, ümumiyyətlə beyin gövdəsi deyil.",
     },
     choices: [
       {
@@ -6798,7 +6798,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -6859,7 +6859,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -6920,7 +6920,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -6981,7 +6981,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -7002,11 +7002,11 @@ export const questions = [
     ],
     prompt: {
       en: "Which grouping of cranial-nerve nuclei by brainstem level is correct?",
-      az: "Kəllə siniri nüvələrinin beyin sapı səviyyələrinə görə hansı qruplaşması doğrudur?",
+      az: "Kəllə siniri nüvələrinin beyin gövdəsi səviyyələrinə görə hansı qruplaşması doğrudur?",
     },
     explanation: {
       en: "Counting in fours from the top — III and IV in the midbrain, V to VIII in the pons, IX to XII in the medulla — is the standard rule, and it is what lets you localise a brainstem lesion from the deficits alone. Putting III–VI in the midbrain shifts the abducens nucleus up from the pons, which would wrongly predict failed eye abduction from a midbrain lesion.",
-      az: "Yuxarıdan dördlüklərlə saymaq — III və IV orta beyində, V–VIII ponsda, IX–XII uzunsov beyində — standart qaydadır və yalnız defisitlərə görə beyin sapındaki zədəni yerləşdirməyə imkan verir. III–VI-nı orta beyinə qoymaq uzaqlaşdırıcı sinir nüvəsini ponsdan yuxarı qaldırır, bu isə orta beyin zədəsindən gözün yana çıxa bilməməsini səhvən gözləməyə səbəb olardı.",
+      az: "Yuxarıdan dördlüklərlə saymaq — III və IV orta beyində, V–VIII ponsda, IX–XII uzunsov beyində — standart qaydadır və yalnız defisitlərə görə beyin gövdəsindəki zədəni yerləşdirməyə imkan verir. III–VI-nı orta beyinə qoymaq uzaqlaşdırıcı sinir nüvəsini ponsdan yuxarı qaldırır, bu isə orta beyin zədəsindən gözün yana çıxa bilməməsini səhvən gözləməyə səbəb olardı.",
     },
     choices: [
       {
@@ -7042,7 +7042,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -7103,7 +7103,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -7164,7 +7164,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -9787,7 +9787,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -9848,7 +9848,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -9909,7 +9909,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -9970,7 +9970,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -10031,7 +10031,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -10052,7 +10052,7 @@ export const questions = [
     ],
     prompt: {
       en: "Where do taste fibres and visceral sensory input from the heart, lungs and gut first arrive in the brainstem?",
-      az: "Dad lifləri, həmçinin ürək, ağciyər və bağırsaqdan gələn visseral hissiyyat beyin sapında ilk hara çatır?",
+      az: "Dad lifləri, həmçinin ürək, ağciyər və bağırsaqdan gələn visseral hissiyyat beyin gövdəsində ilk hara çatır?",
     },
     explanation: {
       en: "The solitary nucleus is the visceral sensory receiving station, taking taste at its rostral end and cardiorespiratory and gut afferents caudally, and it forms the first link of the baroreceptor and gag reflex arcs. The nucleus ambiguus is the tempting neighbour, but it is a motor nucleus supplying the pharynx and larynx.",
@@ -10092,7 +10092,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -10174,7 +10174,7 @@ export const questions = [
     ],
     prompt: {
       en: "Brainstem cross-sections are read in three zones. Which arrangement is correct?",
-      az: "Beyin sapının en kəsikləri üç zonaya bölünərək oxunur. Hansı düzülüş doğrudur?",
+      az: "Beyin gövdəsinin en kəsikləri üç zonaya bölünərək oxunur. Hansı düzülüş doğrudur?",
     },
     explanation: {
       en: "Descending motor fibres run in the basis at the front, cranial-nerve nuclei and the reticular formation fill the tegmentum in the middle, and the tectum is the roof behind the ventricular space — a plan that lets you predict which deficits will appear together. Putting the tectum first is tempting if the colliculi are the first thing you picture, but they sit behind the aqueduct, not in front of it.",
@@ -10214,7 +10214,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -10235,7 +10235,7 @@ export const questions = [
     ],
     prompt: {
       en: "Which cranial nerve is the only one to leave the brainstem from its back surface?",
-      az: "Hansı kəllə siniri beyin sapını yeganə olaraq arxa səthdən tərk edir?",
+      az: "Hansı kəllə siniri beyin gövdəsini yeganə olaraq arxa səthdən tərk edir?",
     },
     explanation: {
       en: "The trochlear nerve emerges dorsally just below the inferior colliculi and crosses to the opposite side, which gives it the longest intracranial course and makes it the nerve most easily damaged by head trauma. CN III is tempting because it also moves the eye, but it exits ventrally into the interpeduncular fossa.",
@@ -11581,7 +11581,7 @@ export const questions = [
     },
     explanation: {
       en: "Limbus means border, and Broca used it for the rim of cortex — cingulate above, parahippocampal below — that encircles the corpus callosum and the upper brainstem. Moving the limbs is a tempting false friend from the English word, but the structures in that ring deal with emotion, memory and drive.",
-      az: "Limbus «kənar» deməkdir və Broca bu adı qabırğalı cismi ilə beyin sapının yuxarı hissəsini əhatə edən qabıq kənarı üçün işlədib: yuxarıda kəmərəbənzər, aşağıda parahipokampal qabıq. Ətrafların hərəkəti ingilis sözünə görə cəlbedici yanlış assosiasiyadır, halbuki bu halqadaki strukturlar emosiya, yaddaş və motivasiya ilə məşğuldur.",
+      az: "Limbus «kənar» deməkdir və Broca bu adı qabırğalı cismi ilə beyin gövdəsinin yuxarı hissəsini əhatə edən qabıq kənarı üçün işlədib: yuxarıda kəmərəbənzər, aşağıda parahipokampal qabıq. Ətrafların hərəkəti ingilis sözünə görə cəlbedici yanlış assosiasiyadır, halbuki bu halqadaki strukturlar emosiya, yaddaş və motivasiya ilə məşğuldur.",
     },
     choices: [
       {
@@ -11602,7 +11602,7 @@ export const questions = [
         id: "c",
         text: {
           en: "The ring of cortex it forms around the corpus callosum and upper brainstem",
-          az: "Qabırğalı cismin və beyin sapının yuxarı hissəsinin ətrafında yaratdığı qabıq halqası",
+          az: "Qabırğalı cismin və beyin gövdəsinin yuxarı hissəsinin ətrafında yaratdığı qabıq halqası",
         },
       },
       {
@@ -12334,7 +12334,7 @@ export const questions = [
         id: "c",
         text: {
           en: "By comparing the arrival time and loudness at the two ears in the brainstem",
-          az: "Beyin sapında səsin iki qulağa çatma vaxtını və ucalığını müqayisə edərək",
+          az: "Beyin gövdəsində səsin iki qulağa çatma vaxtını və ucalığını müqayisə edərək",
         },
       },
       {
@@ -13631,7 +13631,7 @@ export const questions = [
     ],
     prompt: {
       en: "Which transmitter carries most fast inhibition in the spinal cord and brainstem?",
-      az: "Onurğa iliyi və beyin sapında sürətli tormozlanmanın çoxunu hansı transmitter daşıyır?",
+      az: "Onurğa iliyi və beyin gövdəsində sürətli tormozlanmanın çoxunu hansı transmitter daşıyır?",
     },
     explanation: {
       en: "Glycine opens chloride channels on spinal interneurons and motor neurons, and blocking it with strychnine, or losing it as tetanus toxin does, produces violent muscle spasms because nothing restrains the motor neurons. Acetylcholine is tempting because it is the transmitter at the neuromuscular junction just downstream, but there it is excitatory.",
@@ -14460,7 +14460,7 @@ export const questions = [
     ],
     prompt: {
       en: "Why can a cat with a spinal cord transected below the brainstem still produce stepping movements on a treadmill?",
-      az: "Beyin sapından aşağıda onurğa iliyi kəsilmiş pişik niyə hələ də qaçış zolağında addımlama hərəkətləri edə bilir?",
+      az: "Beyin gövdəsindən aşağıda onurğa iliyi kəsilmiş pişik niyə hələ də qaçış zolağında addımlama hərəkətləri edə bilir?",
     },
     explanation: {
       en: "Networks of spinal interneurons — central pattern generators — produce the alternating flexion and extension of locomotion, with the brain normally starting, steering and adapting the pattern rather than composing each step. Muscle memory is tempting as a phrase, but muscle has no circuitry to alternate limbs in a rhythm.",
@@ -14520,7 +14520,7 @@ export const questions = [
     },
     explanation: {
       en: "In primates the corticospinal tract makes near-direct contact with motor neurons for the digits, and brainstem pathways can drive posture and reaching but cannot reproduce that fractionated control, so fine movement is lost for good. Muscle size is tempting, but the same small muscles work perfectly when the tract is intact.",
-      az: "Primatlarda kortikospinal yol barmaqların motor neyronları ilə demək olar birbaşa təmas qurur; beyin sapı yolları duruşu və uzanmanı idarə edə bilir, lakin bu ayrılmış nəzarəti təkrarlaya bilmir, ona görə incə hərəkət həmişəlik itir. Əzələ ölçüsü cəlbedicidir, lakin yol salamat olduqda həmin kiçik əzələlər qüsursuz işləyir.",
+      az: "Primatlarda kortikospinal yol barmaqların motor neyronları ilə demək olar birbaşa təmas qurur; beyin gövdəsi yolları duruşu və uzanmanı idarə edə bilir, lakin bu ayrılmış nəzarəti təkrarlaya bilmir, ona görə incə hərəkət həmişəlik itir. Əzələ ölçüsü cəlbedicidir, lakin yol salamat olduqda həmin kiçik əzələlər qüsursuz işləyir.",
     },
     choices: [
       {
@@ -17200,14 +17200,14 @@ export const questions = [
     },
     explanation: {
       en: "Medial brainstem pathways drive axial and proximal muscles continuously, which is why a decorticate patient still holds tone and posture, and why balance survives cortical injury better than fine hand control does. The dorsal columns are tempting because position sense is essential to balance, but they carry information upward rather than commands down.",
-      az: "Beyin sapının medial yolları ox və proksimal əzələləri fasiləsiz idarə edir — buna görə dekortikasiya olunmuş xəstədə tonus və duruş qalır, tarazlıq isə qabıq zədəsindən əlin incə nəzarətindən daha yaxşı sağ çıxır. Arxa sütunlar cəlbedicidir, çünki mövqe hissiyyatı tarazlıq üçün vacibdir, lakin onlar aşağıya əmr deyil, yuxarıya məlumat daşıyır.",
+      az: "Beyin gövdəsinin medial yolları ox və proksimal əzələləri fasiləsiz idarə edir — buna görə dekortikasiya olunmuş xəstədə tonus və duruş qalır, tarazlıq isə qabıq zədəsindən əlin incə nəzarətindən daha yaxşı sağ çıxır. Arxa sütunlar cəlbedicidir, çünki mövqe hissiyyatı tarazlıq üçün vacibdir, lakin onlar aşağıya əmr deyil, yuxarıya məlumat daşıyır.",
     },
     choices: [
       {
         id: "a",
         text: {
           en: "The vestibulospinal and reticulospinal tracts from the brainstem",
-          az: "Beyin sapından gələn vestibulospinal və retikulospinal yollar",
+          az: "Beyin gövdəsindən gələn vestibulospinal və retikulospinal yollar",
         },
       },
       {
@@ -17236,7 +17236,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -17897,7 +17897,7 @@ export const questions = [
     },
     explanation: {
       en: "Brainstem circuits normally paralyse skeletal muscle during REM, and when that inhibition fails the dream is enacted — a disorder that often precedes Parkinson's disease and related synucleinopathies by years. Sleepwalking is the tempting alternative, but it arises from deep non-REM sleep and the person has no dream to report afterwards.",
-      az: "Beyin sapı dövrələri REM zamanı skelet əzələlərini normalda iflic edir; bu tormozlanma pozulanda yuxu səhnələşdirilir — bu pozğunluq çox vaxt Parkinson xəstəliyindən və əlaqəli sinukleinopatiyalardan illər əvvəl gəlir. Yuxuda gəzmə cəlbedici alternativdir, lakin o, dərin qeyri-REM yuxusundan yaranır və insanın sonradan danışacağı yuxu olmur.",
+      az: "Beyin gövdəsi dövrələri REM zamanı skelet əzələlərini normalda iflic edir; bu tormozlanma pozulanda yuxu səhnələşdirilir — bu pozğunluq çox vaxt Parkinson xəstəliyindən və əlaqəli sinukleinopatiyalardan illər əvvəl gəlir. Yuxuda gəzmə cəlbedici alternativdir, lakin o, dərin qeyri-REM yuxusundan yaranır və insanın sonradan danışacağı yuxu olmur.",
     },
     choices: [
       {
@@ -17933,7 +17933,7 @@ export const questions = [
     see: {
       href: "brainstem/index.html",
       en: "See the brainstem in 3D →",
-      az: "Beyin sapını 3D-də gör →",
+      az: "Beyin gövdəsini 3D-də gör →",
     },
   },
   {
@@ -23832,6 +23832,738 @@ export const questions = [
     correctChoiceId: "a",
   },
   {
+    id: "nt-path-tuberoinfundibular-galactorrhoea",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "A woman starts haloperidol for psychosis. Two months later she has milky nipple discharge and her periods have stopped. Blocking D2 receptors in which dopamine pathway explains this?",
+      az: "Psixoz üçün haloperidol qəbul etməyə başlayan qadında iki ay sonra döş giləsindən süd kimi ifrazat yaranır və aybaşısı kəsilir. Hansı dopamin yolunda D2 reseptorlarının bloklanması bunu izah edir?",
+    },
+    explanation: {
+      en: "Dopamine from the hypothalamic arcuate nucleus constantly inhibits prolactin release from the anterior pituitary. Blocking its D2 receptors lifts that brake: prolactin rises, causing galactorrhoea and amenorrhoea. Nigrostriatal blockade causes movement side effects instead.",
+      az: "Hipotalamusun qövsvari nüvəsindən gələn dopamin ön hipofizdən prolaktin ifrazını daim tormozlayır. Onun D2 reseptorlarının bloklanması bu tormozu aradan qaldırır: prolaktin artır, qalaktoreya və amenoreya yaranır. Nigrostriar blokada isə hərəki yan təsirlər verir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Nigrostriatal",
+          az: "Nigrostriar",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Tuberoinfundibular",
+          az: "Tuberoinfundibulyar",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Mesolimbic",
+          az: "Mezolimbik",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Mesocortical",
+          az: "Mezokortikal",
+        },
+      },
+    ],
+    correctChoiceId: "b",
+    see: {
+      href: "basal-ganglia/index.html?pathway=tuberoinfundibular",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-dopamine-prolactin-role",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "concept",
+    ],
+    prompt: {
+      en: "Dopamine released by arcuate nucleus neurons into the pituitary portal blood mainly:",
+      az: "Qövsvari nüvənin neyronlarının hipofiz portal qanına buraxdığı dopamin əsasən:",
+    },
+    explanation: {
+      en: "In the tuberoinfundibular pathway, dopamine acts as a hormone: it reaches the anterior pituitary through the portal veins and binds D2 receptors on lactotroph cells, keeping prolactin secretion low. Prolactin is the one pituitary hormone mainly held down by the hypothalamus, not driven up.",
+      az: "Tuberoinfundibulyar yolda dopamin hormon kimi işləyir: portal venalar vasitəsilə ön hipofizə çatır və laktotrof hüceyrələrdəki D2 reseptorlarına birləşərək prolaktin ifrazını aşağı saxlayır. Prolaktin hipotalamus tərəfindən əsasən stimullaşdırılan yox, tormozlanan yeganə hipofiz hormonudur.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Stimulates growth hormone release",
+          az: "Böyümə hormonunun ifrazını stimullaşdırır",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Stimulates ACTH release",
+          az: "AKTH ifrazını stimullaşdırır",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Inhibits prolactin release",
+          az: "Prolaktin ifrazını tormozlayır",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Inhibits oxytocin release",
+          az: "Oksitosin ifrazını tormozlayır",
+        },
+      },
+    ],
+    correctChoiceId: "c",
+    see: {
+      href: "basal-ganglia/index.html?pathway=tuberoinfundibular",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-prolactinoma-treatment",
+    moduleId: "synapse-nt",
+    tier: 3,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 3,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "The first-line drug treatment for a prolactin-secreting pituitary tumour (prolactinoma) is:",
+      az: "Prolaktin ifraz edən hipofiz şişinin (prolaktinomanın) birinci sıra dərman müalicəsi hansıdır?",
+    },
+    explanation: {
+      en: "Dopamine is the natural brake on prolactin, so a dopamine agonist (cabergoline or bromocriptine) both lowers prolactin and usually shrinks the tumour. A D2 blocker would do the opposite and raise prolactin further.",
+      az: "Dopamin prolaktinin təbii tormozudur, ona görə dopamin aqonisti (kabergolin və ya bromokriptin) həm prolaktini azaldır, həm də adətən şişi kiçildir. D2 blokatoru isə əksinə təsir edib prolaktini daha da artırardı.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "A dopamine agonist such as cabergoline",
+          az: "Kabergolin kimi dopamin aqonisti",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "A D2 blocker such as haloperidol",
+          az: "Haloperidol kimi D2 blokatoru",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "An SSRI such as fluoxetine",
+          az: "Fluoksetin kimi SSRİ",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "A cholinesterase inhibitor such as donepezil",
+          az: "Donepezil kimi xolinesteraza inhibitoru",
+        },
+      },
+    ],
+    correctChoiceId: "a",
+    see: {
+      href: "basal-ganglia/index.html?pathway=tuberoinfundibular",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-mesocortical-negative",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "Too little dopamine in the mesocortical pathway (ventral tegmental area → prefrontal cortex) is linked to which features of schizophrenia?",
+      az: "Mezokortikal yolda (ventral tegmental sahə → prefrontal qabıq) dopaminin azlığı şizofreniyanın hansı əlamətləri ilə əlaqələndirilir?",
+    },
+    explanation: {
+      en: "Underactivity in the prefrontal dopamine supply is linked to the negative and cognitive symptoms. Hallucinations and delusions (positive symptoms) are linked to too much mesolimbic dopamine, which is why D2 blockers help positive symptoms far more than negative ones.",
+      az: "Prefrontal dopamin təchizatının zəif aktivliyi neqativ və kognitiv simptomlarla əlaqələndirilir. Hallüsinasiyalar və sayıqlamalar (pozitiv simptomlar) mezolimbik dopaminin çoxluğu ilə bağlıdır; buna görə D2 blokatorları pozitiv simptomlara neqativlərdən qat-qat çox kömək edir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Hallucinations and delusions",
+          az: "Hallüsinasiyalar və sayıqlamalar",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Tremor and rigidity",
+          az: "Tremor və rigidlik",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Raised prolactin",
+          az: "Prolaktinin artması",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Flat emotion, low motivation and poor working memory",
+          az: "Emosional kütlük, motivasiya azlığı və zəif işçi yaddaş",
+        },
+      },
+    ],
+    correctChoiceId: "d",
+    see: {
+      href: "basal-ganglia/index.html?pathway=mesocortical",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-mesolimbic-antipsychotic",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "Antipsychotic drugs reduce hallucinations and delusions mainly by blocking D2 receptors in the:",
+      az: "Antipsixotik dərmanlar hallüsinasiya və sayıqlamaları əsasən harada D2 reseptorlarını bloklamaqla azaldır?",
+    },
+    explanation: {
+      en: "The dopamine hypothesis links positive symptoms to overactive mesolimbic dopamine. The drugs cannot target one pathway alone, so the same D2 blockade in the nigrostriatal and tuberoinfundibular pathways causes their side effects (movement problems and raised prolactin).",
+      az: "Dopamin hipotezi pozitiv simptomları həddindən artıq aktiv mezolimbik dopaminlə əlaqələndirir. Dərmanlar yalnız bir yolu hədəfləyə bilmir, ona görə nigrostriar və tuberoinfundibulyar yollarda eyni D2 blokadası yan təsirlər yaradır (hərəki problemlər və prolaktinin artması).",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Mesolimbic pathway (VTA → nucleus accumbens)",
+          az: "Mezolimbik yolda (VTA → akkumbens nüvəsi)",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Nigrostriatal pathway (substantia nigra → striatum)",
+          az: "Nigrostriar yolda (qara maddə → striatum)",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Tuberoinfundibular pathway (arcuate nucleus → pituitary)",
+          az: "Tuberoinfundibulyar yolda (qövsvari nüvə → hipofiz)",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Neuromuscular junction",
+          az: "Sinir-əzələ birləşməsində",
+        },
+      },
+    ],
+    correctChoiceId: "a",
+    see: {
+      href: "basal-ganglia/index.html?pathway=mesolimbic",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-raphe-descending-pain",
+    moduleId: "synapse-nt",
+    tier: 3,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 3,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "concept",
+    ],
+    prompt: {
+      en: "Serotonergic fibres from the caudal raphe nuclei (such as raphe magnus) that descend to the dorsal horn of the spinal cord mainly:",
+      az: "Kaudal rafe nüvələrindən (məsələn, böyük rafe nüvəsindən) onurğa beyninin arxa buynuzuna enən serotonergik liflər əsasən:",
+    },
+    explanation: {
+      en: "These descending fibres are part of the brainstem's pain-control system (with the periaqueductal grey): they inhibit pain transmission in the dorsal horn. It is one reason some antidepressants that raise serotonin and norepinephrine are used for chronic pain.",
+      az: "Bu enən liflər beyin gövdəsinin ağrı nəzarəti sisteminin (periakveduktal boz maddə ilə birlikdə) bir hissəsidir: arxa buynuzda ağrı ötürülməsini tormozlayır. Serotonin və noradrenalini artıran bəzi antidepressantların xroniki ağrıda istifadəsinin bir səbəbi budur.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Carry fine touch up to the thalamus",
+          az: "İncə toxunma hissini talamusa daşıyır",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Damp down incoming pain signals",
+          az: "Daxil olan ağrı siqnallarını zəiflədir",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Directly fire skeletal muscle",
+          az: "Skelet əzələsini birbaşa yığır",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Produce cerebrospinal fluid",
+          az: "Onurğa beyni mayesini hasil edir",
+        },
+      },
+    ],
+    correctChoiceId: "b",
+    see: {
+      href: "basal-ganglia/index.html?pathway=raphe",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-ssri-mechanism",
+    moduleId: "synapse-nt",
+    tier: 1,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 1,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "concept",
+    ],
+    prompt: {
+      en: "SSRIs such as fluoxetine and sertraline raise serotonin in the synapse by:",
+      az: "Fluoksetin və sertralin kimi SSRİ-lər sinapsda serotonini necə artırır?",
+    },
+    explanation: {
+      en: "SSRI stands for selective serotonin reuptake inhibitor: they block SERT, the transporter that pulls serotonin back into the releasing terminal. Blocking monoamine oxidase is how the older MAOI antidepressants work, and direct 5-HT2A activation is how psychedelics such as LSD act.",
+      az: "SSRİ — selektiv serotonin geri sorulma inhibitoru deməkdir: serotonini ifraz edən terminala geri çəkən SERT daşıyıcısını bloklayır. Monoaminoksidazanın bloklanması köhnə MAO inhibitoru antidepressantlarının, 5-HT2A-nın birbaşa aktivləşdirilməsi isə LSD kimi psixodeliklərin təsir mexanizmidir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Blocking the serotonin transporter, so less is taken back up",
+          az: "Serotonin daşıyıcısını bloklayır, geri sorulma azalır",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Blocking the enzyme monoamine oxidase",
+          az: "Monoaminoksidaza fermentini bloklayır",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Directly activating 5-HT2A receptors",
+          az: "5-HT2A reseptorlarını birbaşa aktivləşdirir",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Making raphe neurons produce more serotonin",
+          az: "Rafe neyronlarının daha çox serotonin istehsal etməsinə səbəb olur",
+        },
+      },
+    ],
+    correctChoiceId: "a",
+    see: {
+      href: "basal-ganglia/index.html?pathway=raphe",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-serotonin-syndrome",
+    moduleId: "synapse-nt",
+    tier: 3,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 3,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "A man taking an SSRI starts tramadol for back pain. Within a day he is agitated, sweating and feverish, with brisk reflexes and jerking clonus in his legs. The most likely diagnosis is:",
+      az: "SSRİ qəbul edən kişi bel ağrısı üçün tramadol qəbul etməyə başlayır. Bir gün ərzində həyəcanlı, tərli və qızdırmalı olur, refleksləri canlıdır, ayaqlarında klonus var. Ən ehtimal olunan diaqnoz:",
+    },
+    explanation: {
+      en: "Tramadol also boosts serotonin, and combining serotonergic drugs can cause serotonin syndrome: agitation, fever, sweating, hyperreflexia and clonus, coming on within hours to a day. Neuroleptic malignant syndrome follows dopamine blockers, develops over days and causes lead-pipe rigidity with slow, dull reflexes.",
+      az: "Tramadol da serotonini artırır, serotonergik dərmanların birləşdirilməsi isə serotonin sindromuna səbəb ola bilər: həyəcan, qızdırma, tərləmə, hiperrefleksiya və klonus, saatlar və ya bir gün ərzində başlayır. Neyroleptik malign sindrom isə dopamin blokatorlarından sonra, günlər ərzində inkişaf edir və zəif reflekslərlə \"qurğuşun boru\" rigidliyi yaradır.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Neuroleptic malignant syndrome",
+          az: "Neyroleptik malign sindrom",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Myasthenic crisis",
+          az: "Miasteniya krizi",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Serotonin syndrome",
+          az: "Serotonin sindromu",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Drug-induced parkinsonism",
+          az: "Dərmanla yaranan parkinsonizm",
+        },
+      },
+    ],
+    correctChoiceId: "c",
+    see: {
+      href: "basal-ganglia/index.html?pathway=raphe",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-lc-sleep",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "concept",
+    ],
+    prompt: {
+      en: "How does locus coeruleus activity change across the sleep–wake cycle?",
+      az: "Mavi ləkənin (locus coeruleus) aktivliyi yuxu–oyaqlıq dövrü ərzində necə dəyişir?",
+    },
+    explanation: {
+      en: "The locus coeruleus tracks arousal: highest firing when awake and attentive (and in sudden alerting moments), slower in non-REM sleep, and close to silent in REM. Its silence in REM sleep is part of what lets the cortex dream without full arousal.",
+      az: "Mavi ləkə oyaqlığı izləyir: oyaq və diqqətli olanda (və qəfil həyəcan anlarında) ən yüksək boşalma, qeyri-REM yuxusunda daha yavaş, REM-də isə demək olar ki, səssizlik. Onun REM yuxusunda susması qabığın tam oyanmadan yuxu görməsinə imkan verən amillərdən biridir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "It fires fastest during REM sleep",
+          az: "Ən sürətli REM yuxusunda boşalır",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "It fires at the same rate all the time",
+          az: "Hər zaman eyni sürətlə boşalır",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "It fires most when awake and alert, and is nearly silent in REM sleep",
+          az: "Ən çox oyaq və ayıq olanda boşalır, REM yuxusunda isə demək olar ki, səssizdir",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "It is only active during deep non-REM sleep",
+          az: "Yalnız dərin qeyri-REM yuxusunda aktivdir",
+        },
+      },
+    ],
+    correctChoiceId: "c",
+    see: {
+      href: "basal-ganglia/index.html?pathway=coeruleus",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-lc-opioid-withdrawal",
+    moduleId: "synapse-nt",
+    tier: 3,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 3,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "In opioid withdrawal the locus coeruleus becomes overactive, causing anxiety, sweating and a racing heart. Clonidine eases these symptoms because it:",
+      az: "Opioid abstinensiyasında mavi ləkə həddindən artıq aktivləşir və narahatlıq, tərləmə, sürətli ürək döyüntüsü yaradır. Klonidin bu simptomları yüngülləşdirir, çünki:",
+    },
+    explanation: {
+      en: "Opioids normally inhibit locus coeruleus neurons; with long use the cells adapt, so stopping the drug leaves them overactive. Clonidine is an α2-adrenergic agonist: α2 autoreceptors act as a brake on norepinephrine release, calming the overactive system. Blocking opioid receptors (naloxone) would trigger withdrawal, not ease it.",
+      az: "Opioidlər normalda mavi ləkə neyronlarını tormozlayır; uzunmüddətli istifadədə hüceyrələr uyğunlaşır və dərman dayandırılanda həddindən artıq aktiv qalır. Klonidin α2-adrenergik aqonistdir: α2 autoreseptorları noradrenalin ifrazını tormozlayır və həddindən artıq aktiv sistemi sakitləşdirir. Opioid reseptorlarının bloklanması (nalokson) abstinensiyanı yüngülləşdirməz, əksinə törədər.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Blocks opioid receptors",
+          az: "Opioid reseptorlarını bloklayır",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Activates α2 receptors that turn down norepinephrine release",
+          az: "Noradrenalin ifrazını azaldan α2 reseptorlarını aktivləşdirir",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Blocks dopamine D2 receptors",
+          az: "Dopamin D2 reseptorlarını bloklayır",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Blocks the serotonin transporter",
+          az: "Serotonin daşıyıcısını bloklayır",
+        },
+      },
+    ],
+    correctChoiceId: "b",
+    see: {
+      href: "basal-ganglia/index.html?pathway=coeruleus",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-septum-hippocampus",
+    moduleId: "synapse-nt",
+    tier: 3,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 3,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "concept",
+    ],
+    prompt: {
+      en: "The hippocampus gets most of its cholinergic input from the:",
+      az: "Hipokamp xolinergik daxilolmanın çox hissəsini haradan alır?",
+    },
+    explanation: {
+      en: "The basal forebrain's cholinergic cells are split by target: the medial septal nucleus (with the diagonal band) projects to the hippocampus, while the nucleus basalis of Meynert covers the neocortex and amygdala. The locus coeruleus and raphe supply norepinephrine and serotonin, not acetylcholine.",
+      az: "Bazal ön beynin xolinergik hüceyrələri hədəfə görə bölünür: medial septal nüvə (diaqonal zolaqla birlikdə) hipokampa, Meynertin bazal nüvəsi isə neokorteksə və amiqdalaya proyeksiya verir. Mavi ləkə və rafe asetilxolin deyil, noradrenalin və serotonin təmin edir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "Locus coeruleus",
+          az: "Mavi ləkədən (locus coeruleus)",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "Nucleus basalis of Meynert",
+          az: "Meynertin bazal nüvəsindən",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "Medial septal nucleus",
+          az: "Medial septal nüvədən",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "Dorsal raphe nucleus",
+          az: "Dorsal rafe nüvəsindən",
+        },
+      },
+    ],
+    correctChoiceId: "c",
+    see: {
+      href: "basal-ganglia/index.html?pathway=basalForebrain",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
+    id: "nt-path-cholinesterase-alzheimer",
+    moduleId: "synapse-nt",
+    tier: 2,
+    levels: [
+      "local",
+      "national",
+      "international",
+    ],
+    difficulty: 2,
+    type: "mcq",
+    timeLimitSeconds: 45,
+    tags: [
+      "synapse-nt",
+      "clinical",
+    ],
+    prompt: {
+      en: "Donepezil is prescribed in Alzheimer disease. How is it meant to help?",
+      az: "Alzheimer xəstəliyində donepezil təyin olunur. Onun köməyi nəyə əsaslanır?",
+    },
+    explanation: {
+      en: "Cholinergic neurons of the nucleus basalis are lost early in Alzheimer disease, so cortical acetylcholine falls. Donepezil inhibits acetylcholinesterase so the acetylcholine that is still released lasts longer. The benefit is modest and symptomatic; it does not stop the disease. NMDA blockade is how memantine works.",
+      az: "Alzheimer xəstəliyində bazal nüvənin xolinergik neyronları erkən itir və qabıqda asetilxolin azalır. Donepezil asetilxolinesterazanı tormozlayır, beləliklə hələ də ifraz olunan asetilxolin daha uzun təsir edir. Fayda mülayim və simptomatikdir; xəstəliyi dayandırmır. NMDA blokadası memantinin təsir mexanizmidir.",
+    },
+    choices: [
+      {
+        id: "a",
+        text: {
+          en: "It removes amyloid plaques from the cortex",
+          az: "Qabıqdan amiloid lövhələrini təmizləyir",
+        },
+      },
+      {
+        id: "b",
+        text: {
+          en: "It slows acetylcholine breakdown, making up for lost basal forebrain cholinergic neurons",
+          az: "Asetilxolinin parçalanmasını ləngidir və itirilmiş bazal ön beyin xolinergik neyronlarının yerini qismən doldurur",
+        },
+      },
+      {
+        id: "c",
+        text: {
+          en: "It replaces dopamine lost from the substantia nigra",
+          az: "Qara maddədən itirilən dopamini əvəz edir",
+        },
+      },
+      {
+        id: "d",
+        text: {
+          en: "It blocks NMDA glutamate receptors",
+          az: "NMDA glutamat reseptorlarını bloklayır",
+        },
+      },
+    ],
+    correctChoiceId: "b",
+    see: {
+      href: "basal-ganglia/index.html?pathway=basalForebrain",
+      en: "See this pathway in 3D →",
+      az: "Bu yolu 3D-də gör →",
+    },
+  },
+  {
     id: "pd-01",
     moduleId: "diagnosis",
     tier: 1,
@@ -24493,7 +25225,7 @@ export const questions = [
     },
     explanation: {
       en: "A dive into shallow water, a C6 burst fracture, a clean sensory level, and flaccid areflexic weakness below it locate the lesion in the cervical cord — the early flaccidity and areflexia are spinal shock, and tone and reflexes will rise later. Guillain-Barré syndrome is the ascending-weakness mimic, but it does not produce a sharp sensory level or a bony fracture, and nerve conduction shows no demyelination. A brainstem stroke would involve cranial nerves and consciousness. Transverse myelitis presents over hours to days with inflammatory CSF rather than instantly after impact.",
-      az: "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin sapı insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
+      az: "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin gövdəsi insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
     },
     acceptedAnswers: {
       en: [
@@ -25678,7 +26410,7 @@ export const diagnosisCases = [
         },
         result: {
           en: "Brain may show T2 corticospinal hyperintensity. Cervical cord: no stenosis and no syrinx. Brainstem otherwise normal.",
-          az: "Beyində T2 kortikospinal hiperintenslik ola bilər. Boyun iliyi: stenoz və sirinks yoxdur. Beyin sapı başqa cəhətdən normaldır.",
+          az: "Beyində T2 kortikospinal hiperintenslik ola bilər. Boyun iliyi: stenoz və sirinks yoxdur. Beyin gövdəsi başqa cəhətdən normaldır.",
         },
       },
       {
@@ -26679,7 +27411,7 @@ export const diagnosisCases = [
         },
         result: {
           en: "Normal EEG. Consciousness is unaffected, which fits a lesion below the brainstem.",
-          az: "Normal EEQ. Şüur təsirlənməyib, bu da beyin sapından aşağı zədə ilə uyğundur.",
+          az: "Normal EEQ. Şüur təsirlənməyib, bu da beyin gövdəsindən aşağı zədə ilə uyğundur.",
         },
       },
       {
@@ -26734,7 +27466,7 @@ export const diagnosisCases = [
     },
     explanation: {
       en: "A dive into shallow water, a C6 burst fracture, a clean sensory level, and flaccid areflexic weakness below it locate the lesion in the cervical cord — the early flaccidity and areflexia are spinal shock, and tone and reflexes will rise later. Guillain-Barré syndrome is the ascending-weakness mimic, but it does not produce a sharp sensory level or a bony fracture, and nerve conduction shows no demyelination. A brainstem stroke would involve cranial nerves and consciousness. Transverse myelitis presents over hours to days with inflammatory CSF rather than instantly after impact.",
-      az: "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin sapı insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
+      az: "Dayaz suya atılma, C6 partlayıcı sınığı, aydın hissiyat sərhəddi və ondan aşağı flassid arefleksik zəiflik zədəni boyun iliyində yerləşdirir — erkən flassidlik və arefleksiya onurğa şokudur, tonus və reflekslər sonra artacaq. Guillain-Barré qalxan zəiflik verən oxşardır, lakin kəskin hissiyat sərhəddi və sümük sınığı yaratmır, keçiricilik müayinəsində demiyelinizasiya göstərmir. Beyin gövdəsi insultu kəllə sinirlərini və şüuru tutardı. Transvers mielit saatlar-günlər ərzində, iltihablı BOS ilə başlayır, zərbədən dərhal sonra deyil.",
     },
   },
   {
