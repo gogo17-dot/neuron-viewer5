@@ -1,0 +1,56 @@
+/* Beynle — daily brain puzzle */
+.bn-main { --bn-hit: var(--accent); --bn-near: #e5b52e; --bn-far: rgba(140, 160, 155, 0.45); }
+.bn-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin: 0 0 1.2rem; padding: 0; list-style: none; font-size: 0.82rem; color: var(--text-muted); }
+.bn-legend li { display: inline-flex; align-items: center; gap: 0.45rem; }
+.bn-sq, .bn-row__sq { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 3px; flex: none; }
+.bn-sq--hit, .bn-row--hit .bn-row__sq { background: var(--bn-hit); }
+.bn-sq--near, .bn-row--near .bn-row__sq { background: var(--bn-near); }
+.bn-sq--far, .bn-row--far .bn-row__sq { background: var(--bn-far); }
+
+.bn-board { padding: 1.1rem; border: 1px solid var(--border); border-radius: 14px; background: var(--card-bg); }
+.bn-num { margin: 0 0 0.7rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.bn-clues, .bn-rows { margin: 0; padding: 0; list-style: none; }
+.bn-clue { margin: 0 0 0.55rem; padding: 0.7rem 0.9rem; border-left: 3px solid var(--accent); border-radius: 8px; background: rgba(127, 127, 127, 0.07); font-size: 0.98rem; line-height: 1.5; color: var(--text); animation: bn-in 0.35s ease both; }
+.bn-clue__n { display: block; margin-bottom: 0.15rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+.bn-clue--atlas strong { color: var(--accent); }
+.bn-rows { margin-top: 0.8rem; display: grid; gap: 0.4rem; }
+.bn-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.92rem; animation: bn-in 0.3s ease both; }
+.bn-row__name { flex: 1; min-width: 0; color: var(--text); font-weight: 600; }
+.bn-row__tag { font-size: 0.75rem; color: var(--text-muted); text-align: right; }
+.bn-row--hit { border-color: var(--bn-hit); }
+.bn-row--hit .bn-row__tag { color: var(--accent); font-weight: 600; }
+.bn-row--near { border-color: var(--bn-near); }
+
+.bn-form { display: flex; gap: 0.5rem; margin-top: 0.9rem; }
+.bn-form[hidden] { display: none; }
+.bn-field { position: relative; flex: 1 1 0; min-width: 8rem; }
+.bn-field input { width: 100%; box-sizing: border-box; padding: 0.7rem 0.85rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg, transparent); color: var(--text); font: inherit; font-size: 1rem; }
+.bn-field input:focus { outline: none; border-color: var(--accent); }
+.bn-form .about-action { flex: 0 0 auto; width: auto; margin: 0; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.bn-sug { position: absolute; z-index: 20; left: 0; right: 0; bottom: calc(100% + 4px); max-height: 18rem; overflow-y: auto; margin: 0; padding: 0.25rem; list-style: none; border: 1px solid var(--border); border-radius: 10px; background: var(--card-bg); box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.35); }
+.bn-sug[hidden] { display: none; }
+.bn-sug li { padding: 0.5rem 0.65rem; border-radius: 7px; cursor: pointer; color: var(--text); font-size: 0.92rem; }
+.bn-sug li small { display: block; font-size: 0.75rem; color: var(--text-muted); }
+.bn-sug li.is-on, .bn-sug li:hover { background: rgba(127, 127, 127, 0.14); }
+.bn-meta { margin: 0.5rem 0 0; min-height: 1.2em; font-size: 0.8rem; color: var(--text-muted); }
+.bn-msg { color: var(--bn-near); }
+
+.bn-end { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); animation: bn-in 0.4s ease both; }
+.bn-end[hidden] { display: none; }
+.bn-end__head { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+.bn-end__name { margin: 0.2rem 0 0.5rem; font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 700; line-height: 1.1; color: var(--accent); }
+.bn-end__name span { display: block; font-family: Inter, sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); }
+.bn-end__note { margin: 0 0 0.6rem; font-size: 0.92rem; line-height: 1.55; color: var(--text); }
+.bn-end__link { color: var(--accent); font-size: 0.9rem; }
+.bn-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin: 1rem 0; text-align: center; }
+.bn-stats strong { display: block; font-size: 1.5rem; color: var(--text); font-variant-numeric: tabular-nums; }
+.bn-stats span { font-size: 0.7rem; letter-spacing: 0.04em; color: var(--text-muted); }
+.bn-end__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+.bn-end__actions .about-action { margin: 0; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.bn-end__next { font-size: 0.82rem; color: var(--text-muted); }
+.bn-end__next strong { color: var(--text); font-variant-numeric: tabular-nums; }
+.bn-end__copied { margin: 0.4rem 0 0; min-height: 1.1em; font-size: 0.8rem; color: var(--accent); }
+.lz-sources { margin: 1rem 0 0; font-size: 0.8rem; color: var(--text-muted); }
+.lz-sources a { display: inline-block; margin-top: 0.25rem; color: var(--accent); }
+@keyframes bn-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .bn-clue, .bn-row, .bn-end { animation: none; } }
