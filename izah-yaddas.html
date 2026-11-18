@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Yaddaş necə yaranır? · How are memories made? — AXON</title>
+    <meta
+      name="description"
+      content="Yeni faktdan gələn il də bildiyin şeyə qədər — və elmə yaddaşın harada yaşadığını öyrədən pasiyent. From a new fact to something you still know next year — and the patient who taught science where memory lives."
+    />
+    <meta name="author" content="Omar Garagozov" />
+    <meta property="og:site_name" content="AXON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yaddaş necə yaranır? — AXON" />
+    <meta
+      property="og:description"
+      content="Yeni faktdan gələn il də bildiyin şeyə qədər — və elmə yaddaşın harada yaşadığını öyrədən pasiyent."
+    />
+    <meta property="og:url" content="https://axon.az/izah-yaddas.html" />
+    <meta property="og:image" content="https://axon.az/media/og-axon.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://axon.az/media/og-axon.jpg" />
+    <link rel="canonical" href="https://axon.az/izah-yaddas.html" />
+    <script src="page-base.js?v=r5"></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=inter1" />
+      <style>
+      #sources .about-list + p { margin-top: 14px; }
+      .about-report { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; background: var(--card-bg); }
+      .about-report__title { margin: 0 0 4px; font-weight: 700; color: var(--accent); }
+      .about-report p:not(.about-report__title) { margin: 0 0 12px; color: var(--text-muted); }
+    </style>
+      <style>
+      .izah { max-width: 68ch; }
+      .izah h1 { margin-bottom: .4rem; }
+      .izah .izah-meta { margin: 0 0 1.4rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+      .izah h2 { margin: 2rem 0 .5rem; font-size: 1.25rem; color: var(--text); }
+      .izah p { font-size: 1.02rem; line-height: 1.75; color: var(--text); }
+      .izah .izah-note { font-size: .85rem; color: var(--text-muted); border-left: 3px solid var(--accent); padding-left: .8rem; }
+      .izah-box { margin-top: 2.2rem; padding: 1.1rem 1.2rem; border: 1px solid var(--border); border-radius: 14px; background: var(--card-bg); }
+      .izah-box h2 { margin-top: 0; font-size: 1rem; letter-spacing: .06em; }
+      .izah-box ul { margin: .4rem 0 0; padding-left: 1.1rem; }
+      .izah-box li { margin: .35rem 0; line-height: 1.5; }
+      .izah-box a { color: var(--accent); }
+      .izah-more { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+      .izah-more a { padding: .4rem .8rem; border: 1px solid var(--border); border-radius: 999px; color: var(--text); text-decoration: none; font-size: .85rem; }
+      .izah-more a:hover { border-color: var(--accent); color: var(--accent); }
+    </style>
+  </head>
+  <body data-page="about" class="about-page">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          AXON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main izah" style="padding-top: 96px">
+        <div class="tag" data-en="Explainer" data-az="İzah">Explainer</div>
+        <h1 class="section-title about-title" data-en="How are memories made?" data-az="Yaddaş necə yaranır?">How are memories made?</h1>
+        <p class="izah-meta" data-en="4 min read · AXON" data-az="4 dəq oxu · AXON">4 min read · AXON</p>
+        <p class="section-desc about-lead" data-en="From a new fact to something you still know next year — and the patient who taught science where memory lives." data-az="Yeni faktdan gələn il də bildiyin şeyə qədər — və elmə yaddaşın harada yaşadığını öyrədən pasiyent.">From a new fact to something you still know next year — and the patient who taught science where memory lives.</p>
+        <h2 data-en="The patient H.M." data-az="Pasiyent H.M.">The patient H.M.</h2>
+        <p data-en="In 1953, a young man known as H.M. had parts of both temporal lobes, including the hippocampus, removed to stop severe epilepsy. The seizures improved, but he could no longer form new long-term memories of facts and events. He could still learn new movement skills, though he did not remember practising them. His case showed that memory is not one thing and that the hippocampus is key for new memories." data-az="1953-cü ildə H.M. kimi tanınan gəncin ağır epilepsiyanı dayandırmaq üçün hər iki temporal payının hissələri, o cümlədən hippokampı çıxarıldı. Tutmalar azaldı, lakin o, fakt və hadisələrə dair yeni uzunmüddətli xatirələr yarada bilmədi. Yeni hərəki bacarıqları isə öyrənə bilirdi, baxmayaraq ki, onları məşq etdiyini xatırlamırdı. Onun halı yaddaşın tək bir şey olmadığını və yeni xatirələr üçün hippokampın əsas rol oynadığını göstərdi.">In 1953, a young man known as H.M. had parts of both temporal lobes, including the hippocampus, removed to stop severe epilepsy. The seizures improved, but he could no longer form new long-term memories of facts and events. He could still learn new movement skills, though he did not remember practising them. His case showed that memory is not one thing and that the hippocampus is key for new memories.</p>
+        <h2 data-en="Three steps" data-az="Üç addım">Three steps</h2>
+        <p data-en="Encoding is taking information in — paying attention matters. Consolidation is making it stable: over hours, days and especially during sleep, memories are strengthened and gradually rely less on the hippocampus and more on the cortex. Retrieval is bringing a memory back — and every recall slightly rebuilds it." data-az="Kodlaşdırma məlumatı qəbul etməkdir — burada diqqət vacibdir. Möhkəmlənmə onu sabit etməkdir: saatlar, günlər ərzində və xüsusilə yuxuda xatirələr güclənir və tədricən hippokampdan daha az, qabıqdan daha çox asılı olur. Bərpa xatirəni geri çağırmaqdır — və hər xatırlama onu bir az yenidən qurur.">Encoding is taking information in — paying attention matters. Consolidation is making it stable: over hours, days and especially during sleep, memories are strengthened and gradually rely less on the hippocampus and more on the cortex. Retrieval is bringing a memory back — and every recall slightly rebuilds it.</p>
+        <h2 data-en="What changes in the brain" data-az="Beyində nə dəyişir">What changes in the brain</h2>
+        <p data-en="At the level of cells, learning strengthens some synapses and weakens others. Repeated use of a connection makes the receiving neuron respond more strongly — one of the main ways memories are thought to be stored." data-az="Hüceyrə səviyyəsində öyrənmə bəzi sinapsları gücləndirir, bəzilərini zəiflədir. Bir əlaqədən təkrar istifadə qəbul edən neyronun daha güclü cavab verməsinə səbəb olur — xatirələrin saxlanmasının əsas yollarından biri belə hesab olunur.">At the level of cells, learning strengthens some synapses and weakens others. Repeated use of a connection makes the receiving neuron respond more strongly — one of the main ways memories are thought to be stored.</p>
+        <h2 data-en="Memory research in Baku" data-az="Bakıda yaddaş tədqiqatları">Memory research in Baku</h2>
+        <p data-en="Scientists in Azerbaijan study memory too: one Baku research line has spent decades on brain proteins that seem to act as a brake on storing memories. You can find these papers on AXON’s Articles page under “From Azerbaijan”." data-az="Azərbaycanda da yaddaş öyrənilir: Bakıdakı tədqiqat xətlərindən biri onilliklər boyu xatirələrin saxlanmasına “əyləc” kimi təsir edən beyin zülallarını araşdırıb. Bu məqalələri AXON-un Məqalələr səhifəsində “Azərbaycandan” bölməsində tapa bilərsən.">Scientists in Azerbaijan study memory too: one Baku research line has spent decades on brain proteins that seem to act as a brake on storing memories. You can find these papers on AXON’s Articles page under “From Azerbaijan”.</p>
+        <h2 data-en="Study tips that follow" data-az="Buradan çıxan dərs məsləhətləri">Study tips that follow</h2>
+        <p data-en="Test yourself instead of rereading, spread practice over several days, and sleep well before and after learning. All three work with how the brain stores memories, not against it." data-az="Təkrar oxumaq əvəzinə özünü yoxla, məşqi bir neçə günə böl və öyrənmədən əvvəl və sonra yaxşı yat. Hər üçü beynin xatirələri saxlama üsuluna qarşı deyil, onunla birlikdə işləyir.">Test yourself instead of rereading, spread practice over several days, and sleep well before and after learning. All three work with how the brain stores memories, not against it.</p>
+        <div class="izah-box">
+          <h2 data-en="Explore it on AXON" data-az="AXON-da kəşf et">Explore it on AXON</h2>
+          <ul><li><a href="limbic/index.html" data-en="3D limbic system (hippocampus)" data-az="3D limbik sistem (hippokamp)">3D limbic system (hippocampus)</a></li><li><a href="practice.html" data-en="Practice questions" data-az="Məşq sualları">Practice questions</a></li><li><a href="articles.html" data-en="Research from Azerbaijan" data-az="Azərbaycan tədqiqatları">Research from Azerbaijan</a></li></ul>
+        </div>
+        <div class="izah-box">
+          <h2 data-en="Sources" data-az="Mənbələr">Sources</h2>
+          <ul><li><a href="https://pubmed.ncbi.nlm.nih.gov/13406589/" target="_blank" rel="noopener" data-en="Scoville &amp; Milner, 1957 — the original report on patient H.M." data-az="Scoville və Milner, 1957 — H.M. haqqında ilk məqalə">Scoville &amp; Milner, 1957 — the original report on patient H.M.</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/20046194/" target="_blank" rel="noopener" data-en="Diekelmann &amp; Born, 2010 — sleep and memory" data-az="Diekelmann və Born, 2010 — yuxu və yaddaş">Diekelmann &amp; Born, 2010 — sleep and memory</a></li></ul>
+        </div>
+        <div class="izah-box">
+          <h2 data-en="More explainers" data-az="Digər izahlar">More explainers</h2>
+          <div class="izah-more"><a href="izah-beyin.html" data-en="How does the brain work?" data-az="Beyin necə işləyir?">How does the brain work?</a><a href="izah-neyron.html" data-en="What is a neuron?" data-az="Neyron nədir?">What is a neuron?</a><a href="izah-yuxu.html" data-en="What does sleep do for the brain?" data-az="Yuxu beyinə nə edir?">What does sleep do for the brain?</a><a href="izah-insult.html" data-en="Stroke: know the signs" data-az="İnsult: əlamətləri tanı">Stroke: know the signs</a></div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">AXON</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 AXON</div>
+      </footer>
+    </div>
+
+    <script src="site-shell.js?v=r1"></script>
+    <script src="particles-bg.js?v=r1"></script>
+  </body>
+</html>

@@ -38,6 +38,14 @@
       .articles-origin { margin-bottom: 0.6rem; }
       .articles-origin__note { margin: 0.35rem 0 0; font-size: 0.78rem; color: var(--text-muted); }
       .article-choice-card__tag--az { color: var(--accent); border-color: var(--accent); }
+      .izah-hub { margin: 0 0 1.6rem; }
+      .izah-hub__h { margin: 0 0 .7rem; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+      .izah-hub__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .7rem; }
+      .izah-hub__grid a { display: block; padding: .9rem 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--card-bg); color: var(--text); text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+      .izah-hub__grid a:hover, .izah-hub__grid a:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+      .izah-hub__grid strong { display: block; font-size: 1rem; margin-bottom: .25rem; }
+      .izah-hub__grid span { display: block; font-size: .82rem; line-height: 1.45; color: var(--text-muted); }
+      .izah-hub__grid em { display: block; margin-top: .45rem; font-style: normal; font-size: .72rem; color: var(--accent); }
     </style>
   </head>
   <body data-page="articles" class="articles-page">
@@ -48,9 +56,9 @@
           <span class="brand-mark" aria-hidden="true"></span>
           AXON
         </a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu" />
         <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
-        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <label class="nav-burger" for="nav-toggle"><span></span></label>
         <div class="nav-center" id="primary-navigation">
           <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
           <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
@@ -81,6 +89,11 @@
         <div class="tag" data-en="Library" data-az="Kitabxana">Library</div>
         <h2 class="section-title" data-en="Articles" data-az="Məqalələr">Articles</h2>
         <p class="section-desc" data-en="Papers worth reading, each with a short note on why — including research by scientists and doctors in Azerbaijan." data-az="Oxumağa dəyər məqalələr, hər biri niyə oxunmalı olduğuna dair qısa qeydlə — Azərbaycandakı alim və həkimlərin tədqiqatları da daxil olmaqla.">Papers worth reading, each with a short note on why — including research by scientists and doctors in Azerbaijan.</p>
+
+        <div class="izah-hub">
+          <h3 class="izah-hub__h" data-en="AXON explainers — written in Azerbaijani" data-az="AXON izahları — Azərbaycan dilində yazılıb">AXON explainers — written in Azerbaijani</h3>
+          <div class="izah-hub__grid" id="izah-hub"></div>
+        </div>
 
         <div class="articles-toolbar" role="search">
           <label class="articles-search">
@@ -152,6 +165,27 @@
 
     <script src="site-shell.js?v=r1"></script>
     <script src="particles-bg.js?v=r1"></script>
+    <script src="izah-list.js?v=1"></script>
+    <script>
+      (function () {
+        var root = document.getElementById("izah-hub");
+        if (!root || !window.AXON_IZAH) return;
+        function draw() {
+          var az = document.documentElement.lang === "az";
+          root.replaceChildren.apply(root, window.AXON_IZAH.map(function (x) {
+            var a = document.createElement("a");
+            a.href = x.href;
+            var s = document.createElement("strong"); s.textContent = az ? x.t.az : x.t.en;
+            var p = document.createElement("span"); p.textContent = az ? x.l.az : x.l.en;
+            var m = document.createElement("em"); m.textContent = x.m + (az ? " dəq oxu →" : " min read →");
+            a.append(s, p, m);
+            return a;
+          }));
+        }
+        draw();
+        new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      })();
+    </script>
     <script src="articles.js?v=az1"></script>
   </body>
 </html>
