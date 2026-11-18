@@ -34,6 +34,11 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <meta name="theme-color" content="#020810" />
     <link rel="stylesheet" href="site.css?v=inter1" />
+    <style>
+      .articles-origin { margin-bottom: 0.6rem; }
+      .articles-origin__note { margin: 0.35rem 0 0; font-size: 0.78rem; color: var(--text-muted); }
+      .article-choice-card__tag--az { color: var(--accent); border-color: var(--accent); }
+    </style>
   </head>
   <body data-page="articles" class="articles-page">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -75,7 +80,7 @@
       <section class="content-section io-fade page-narrow articles-main" style="padding-top: 96px">
         <div class="tag" data-en="Library" data-az="Kitabxana">Library</div>
         <h2 class="section-title" data-en="Articles" data-az="Məqalələr">Articles</h2>
-        <p class="section-desc" data-en="Papers worth reading, each with a short note on why." data-az="Oxumağa dəyər məqalələr, hər biri niyə oxunmalı olduğuna dair qısa qeydlə.">Papers worth reading, each with a short note on why.</p>
+        <p class="section-desc" data-en="Papers worth reading, each with a short note on why — including research by scientists and doctors in Azerbaijan." data-az="Oxumağa dəyər məqalələr, hər biri niyə oxunmalı olduğuna dair qısa qeydlə — Azərbaycandakı alim və həkimlərin tədqiqatları da daxil olmaqla.">Papers worth reading, each with a short note on why — including research by scientists and doctors in Azerbaijan.</p>
 
         <div class="articles-toolbar" role="search">
           <label class="articles-search">
@@ -101,6 +106,10 @@
           </div>
         </div>
 
+        <div class="articles-origin" role="group" aria-label="Where the research comes from">
+          <div class="articles-topics" id="articles-origin"></div>
+          <p class="articles-origin__note" id="articles-origin-note"></p>
+        </div>
         <div class="articles-topics" id="articles-topics" role="group" aria-label="Topics"></div>
         <p class="articles-count" id="articles-count" hidden></p>
         <div id="articles-list" class="articles-list"></div>
@@ -143,6 +152,6 @@
 
     <script src="site-shell.js?v=r1"></script>
     <script src="particles-bg.js?v=r1"></script>
-    <script src="articles.js?v=clean1"></script>
+    <script src="articles.js?v=az1"></script>
   </body>
 </html>

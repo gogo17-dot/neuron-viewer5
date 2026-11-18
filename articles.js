@@ -45,6 +45,11 @@
     copy: { en: 'Copy citation', az: 'Sitatı kopyala' },
     copied: { en: 'Copied', az: 'Kopyalandı' },
     version: { en: 'Version', az: 'Versiya' },
+    originAll: { en: 'All research', az: 'Bütün tədqiqatlar' },
+    originAz: { en: '🇦🇿 From Azerbaijan', az: '🇦🇿 Azərbaycandan' },
+    originIntl: { en: 'International', az: 'Beynəlxalq' },
+    originBadge: { en: 'Research from Azerbaijan', az: 'Azərbaycan tədqiqatı' },
+    originCount: { en: '{n} papers by researchers in Azerbaijan', az: 'Azərbaycandakı tədqiqatçıların {n} məqaləsi' },
   };
 
   function fill(template, vars) {
@@ -446,10 +451,535 @@
       access: 'link',
       sourceUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8129562/',
     },
+    /* ---- Research from Azerbaijan: papers led by researchers at Azerbaijani institutions (PubMed). Summaries are AXON commentary. ---- */
+    {
+      id: 'az-41642101',
+      title: "Electroencephalographic findings and 5-year risk of posttraumatic epilepsy after mild traumatic brain injury: insights from Second Karabakh War veterans",
+      authors: ["Javid Shafiyev", "Ömer Karadaş", "Gardashkhan Karımzada", "et al."],
+      journal: "Epilepsia",
+      year: 2026,
+      doi: "10.1002/epi.70137",
+      pmid: '41642101',
+      topics: ["epilepsy", "trauma", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Follows 2,000 veterans of the Second Karabakh War for five years to ask whether a mild head injury raises the later risk of epilepsy, and whether early EEG findings and blast injuries predict it. A rare long-term study from Azerbaijan on a question every neurology student meets.",
+        az: "İkinci Qarabağ müharibəsinin 2000 veteranını beş il izləyərək yüngül kəllə-beyin travmasının sonradan epilepsiya riskini artırıb-artırmadığını, erkən EEG tapıntılarının və partlayış travmasının bunu proqnozlaşdırıb-proqnozlaşdırmadığını araşdırır. Hər nevrologiya tələbəsinin qarşılaşdığı suala Azərbaycandan nadir uzunmüddətli cavab.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/41642101/',
+    },
+    {
+      id: 'az-40954435',
+      title: "Long-term outcomes of mild traumatic brain injury in veterans of the second Nagorno-Karabakh war",
+      authors: ["Javid Shafiyev", "Anar İsmayılov", "Azar Aliyev", "et al."],
+      journal: "Neurological Sciences",
+      year: 2025,
+      doi: "10.1007/s10072-025-08509-9",
+      pmid: '40954435',
+      topics: ["trauma", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Tracks headache, memory problems, dizziness, tinnitus, sleep trouble and irritability in 1,280 veterans after a mild brain injury, comparing blast and non-blast injuries. Shows what “concussion symptoms” look like over years, not days.",
+        az: "Yüngül beyin travmasından sonra 1280 veteranda baş ağrısı, yaddaş problemləri, başgicəllənmə, qulaq küyü, yuxu pozuntusu və əsəbiliyi izləyir, partlayış və digər travmaları müqayisə edir. “Beyin silkələnməsi əlamətlərinin” günlərlə yox, illərlə necə davam etdiyini göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/40954435/',
+    },
+    {
+      id: 'az-42760997',
+      title: "Healthcare providers' perspectives on headache care in Azerbaijan: results of a national cross-sectional survey",
+      authors: ["Sarkhan Amirguliyev", "Aynur Özge", "Derya Uludüz", "et al."],
+      journal: "Frontiers in Neurology",
+      year: 2026,
+      doi: "10.3389/fneur.2026.1886668",
+      pmid: '42760997',
+      topics: ["migraine", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "A national survey of 333 neurologists, family doctors, pharmacists and paediatricians on how headaches are diagnosed and treated in Azerbaijan. Useful for seeing how brain science turns into everyday care in our own health system.",
+        az: "Azərbaycanda baş ağrılarının necə diaqnoz qoyulub müalicə olunduğuna dair 333 nevroloq, ailə həkimi, əczaçı və pediatr arasında aparılmış milli sorğu. Beyin elminin öz səhiyyə sistemimizdə gündəlik qayğıya necə çevrildiyini görmək üçün faydalıdır.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/42760997/',
+    },
+    {
+      id: 'az-42127663',
+      title: "Clinical spectrum and genetic landscape of Duchenne muscular dystrophy in Azerbaijan",
+      authors: ["Aytan Mammadbayli", "Madina Taghiyeva"],
+      journal: "European Journal of Paediatric Neurology",
+      year: 2026,
+      doi: "10.1016/j.ejpn.2026.05.002",
+      pmid: '42127663',
+      topics: ["genetics", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "The first nationwide group of boys with Duchenne muscular dystrophy in Azerbaijan, studied at the Azerbaijan Medical University: muscle strength, timed motor tests and the gene mutations behind the disease. A clear example of how genes, nerves and muscles connect.",
+        az: "Azərbaycanda Duşen əzələ distrofiyası olan oğlanların ilk ölkə miqyaslı qrupu, Azərbaycan Tibb Universitetində öyrənilib: əzələ gücü, vaxtlı hərəki testlər və xəstəliyin arxasındakı gen mutasiyaları. Genlərin, sinirlərin və əzələlərin necə bağlı olduğunu aydın göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/42127663/',
+    },
+    {
+      id: 'az-39926687',
+      title: "Clinical and epidemiological characteristics of multiple sclerosis in the southern region of the Republic of Azerbaijan",
+      authors: ["Rahim R. Aliyev", "Shahla N. Mehtiyeva", "Rana K. Shiraliyeva"],
+      journal: "Pakistan Journal of Medical Sciences",
+      year: 2025,
+      doi: "10.12669/pjms.41.2.11373",
+      pmid: '39926687',
+      topics: ["multiple sclerosis", "epidemiology"],
+      origin: 'az',
+      summary: {
+        en: "Ten years (2013–2022) of multiple sclerosis cases in southern Azerbaijan, with incidence and prevalence calculated for a population of about 930,000. Shows how common this immune attack on myelin is in our region.",
+        az: "Cənubi Azərbaycanda on illik (2013–2022) dağınıq skleroz halları; təxminən 930 min nəfərlik əhali üçün yeni hal və yayılma göstəriciləri hesablanıb. Mielinə qarşı bu immun hücumun bölgəmizdə nə qədər yayıldığını göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/39926687/',
+    },
+    {
+      id: 'az-22229328',
+      title: "The prevalence of epilepsy in the Nakhichevan Autonomous Republic of Azerbaijan",
+      authors: ["Sharif I. Magalov", "Nusrat F. Hasanov", "Nargiz X. Azizova", "et al."],
+      journal: "CNS & Neurological Disorders – Drug Targets",
+      year: 2012,
+      doi: "10.2174/187152712800269768",
+      pmid: '22229328',
+      topics: ["epilepsy", "epidemiology"],
+      origin: 'az',
+      summary: {
+        en: "Researchers went door to door in 69 villages and towns of the Sharur district (about 114,000 people) to count people with epilepsy, using a capture–recapture method. A good lesson in how disease numbers are actually measured.",
+        az: "Tədqiqatçılar Şərur rayonunun 69 kənd və qəsəbəsində (təxminən 114 min nəfər) qapı-qapı gəzərək epilepsiyalı insanları “tutma–təkrar tutma” üsulu ilə sayıblar. Xəstəlik rəqəmlərinin əslində necə ölçüldüyünə dair yaxşı dərs.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/22229328/',
+    },
+    {
+      id: 'az-34932290',
+      title: "[Incidence and prevalence of Parkinson's disease in Baku]",
+      authors: ["F. N. Aliyeva"],
+      journal: "Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova",
+      year: 2021,
+      doi: "10.17116/jnevro202112111177",
+      pmid: '34932290',
+      topics: ["parkinson", "epidemiology"],
+      origin: 'az',
+      summary: {
+        en: "How many people in Baku were diagnosed with Parkinson’s disease from 2010 to 2019, and how that number changed, with patients examined at the Azerbaijan Medical University neurology clinic. Written in Russian; pairs with AXON’s basal ganglia and dopamine pathways.",
+        az: "2010–2019-cu illərdə Bakıda neçə nəfərə Parkinson xəstəliyi diaqnozu qoyulduğu və bu rəqəmin necə dəyişdiyi; xəstələr Azərbaycan Tibb Universitetinin nevrologiya klinikasında müayinə olunub. Rus dilindədir; AXON-dakı bazal nüvələr və dopamin yolları ilə birlikdə oxuyun.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/34932290/',
+    },
+    {
+      id: 'az-41932156',
+      title: "Seizure control, delivery, and neonatal outcomes according to parity in women with epilepsy: a prospective cohort study",
+      authors: ["Shahla Melikova", "Aytan Mammadbayli"],
+      journal: "Epilepsy Research",
+      year: 2026,
+      doi: "10.1016/j.eplepsyres.2026.107791",
+      pmid: '41932156',
+      topics: ["epilepsy", "pregnancy", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Compares 112 pregnant women with epilepsy with 285 women without it, looking at first versus later pregnancies, seizure control and the health of the babies. Part of a long-running Baku research line on epilepsy and pregnancy.",
+        az: "Epilepsiyası olan 112 hamilə qadını epilepsiyası olmayan 285 qadınla müqayisə edir: ilk və sonrakı hamiləliklər, tutmaların nəzarəti və körpələrin sağlamlığı. Bakıda epilepsiya və hamiləlik üzrə uzun müddətdir davam edən tədqiqat xəttinin bir hissəsi.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/41932156/',
+    },
+    {
+      id: 'az-40783352',
+      title: "Factors predicting seizure control and delivery outcomes in women with epilepsy with planned and unplanned pregnancy",
+      authors: ["S. Melikova", "A. Mammadbayli", "A. Guekht"],
+      journal: "Revue Neurologique",
+      year: 2025,
+      doi: "10.1016/j.neurol.2025.07.006",
+      pmid: '40783352',
+      topics: ["epilepsy", "pregnancy", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Eight years of follow-up of 112 pregnant women with epilepsy, asking whether planning a pregnancy changes seizure control and birth outcomes. Shows why neurologists ask about seizures in the year before pregnancy.",
+        az: "Epilepsiyası olan 112 hamilə qadının səkkiz illik izlənməsi: hamiləliyin planlaşdırılması tutmaların nəzarətinə və doğuş nəticələrinə təsir edirmi? Nevroloqların niyə hamiləlikdən əvvəlki ildəki tutmaları soruşduğunu göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/40783352/',
+    },
+    {
+      id: 'az-32805607',
+      title: "New-onset epilepsy in pregnant women: clinical features and delivery outcomes",
+      authors: ["Shahla Melikova", "Hijran Bagirova", "Sharif Magalov"],
+      journal: "Seizure",
+      year: 2020,
+      doi: "10.1016/j.seizure.2020.08.004",
+      pmid: '32805607',
+      topics: ["epilepsy", "pregnancy", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Looks at the rare women whose very first seizure happens during pregnancy, followed by a neurologist and an obstetrician in Baku. Explains why a first seizure in pregnancy needs careful investigation.",
+        az: "İlk tutması məhz hamiləlik zamanı baş verən nadir qadınlara baxır; onlar Bakıda nevroloq və mama-ginekoloq tərəfindən izlənib. Hamiləlikdə ilk tutmanın niyə diqqətlə araşdırılmalı olduğunu izah edir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/32805607/',
+    },
+    {
+      id: 'az-29981006',
+      title: "The course of epilepsy and seizure control in pregnant women",
+      authors: ["Shahla Melikova", "Hijran Bagirova", "Sharif Magalov"],
+      journal: "Acta Neurologica Belgica",
+      year: 2018,
+      doi: "10.1007/s13760-018-0974-0",
+      pmid: '29981006',
+      topics: ["epilepsy", "pregnancy", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Follows 105 pregnant women with epilepsy (2013–2017): for some, seizures became more frequent, for others less, and some stayed seizure-free. A clear picture of how unpredictable epilepsy can be during pregnancy.",
+        az: "Epilepsiyası olan 105 hamilə qadını izləyir (2013–2017): bəzilərində tutmalar tezləşib, bəzilərində azalıb, bəziləri isə tutmasız qalıb. Hamiləlik zamanı epilepsiyanın nə qədər gözlənilməz ola biləcəyinin aydın mənzərəsi.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/29981006/',
+    },
+    {
+      id: 'az-32207734',
+      title: "[The problem of depression in women with epilepsy during pregnancy and after childbirth]",
+      authors: ["S. Ya. Melikova"],
+      journal: "Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova",
+      year: 2019,
+      doi: "10.17116/jnevro201911911270",
+      pmid: '32207734',
+      topics: ["epilepsy", "mental health", "pregnancy"],
+      origin: 'az',
+      summary: {
+        en: "A review of why depression and anxiety are more common in women with epilepsy during pregnancy and after birth, and how medicines affect mother and baby. Written in Russian; links brain disease with mood.",
+        az: "Epilepsiyası olan qadınlarda hamiləlik zamanı və doğuşdan sonra depressiya və narahatlığın niyə daha çox rast gəlindiyi, dərmanların ana və körpəyə təsiri haqqında icmal. Rus dilindədir; beyin xəstəliyini əhval-ruhiyyə ilə bağlayır.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/32207734/',
+    },
+    {
+      id: 'az-28993543',
+      title: "Psychiatric and behavioural problems in children and adolescents with epilepsy",
+      authors: ["K. A. Salayev", "B. Sanne", "R. Salayev"],
+      journal: "East Asian Archives of Psychiatry",
+      year: 2017,
+      pmid: '28993543',
+      topics: ["epilepsy", "mental health", "children"],
+      origin: 'az',
+      summary: {
+        en: "Compares children with epilepsy from a medical centre in Azerbaijan with children from three schools, using a standard questionnaire for parents. Shows that epilepsy is not only about seizures but also about attention, emotions and behaviour.",
+        az: "Azərbaycandakı tibb mərkəzindən epilepsiyalı uşaqları üç məktəbin şagirdləri ilə valideynlər üçün standart sorğu vasitəsilə müqayisə edir. Epilepsiyanın yalnız tutmalarla deyil, diqqət, emosiyalar və davranışla da bağlı olduğunu göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/28993543/',
+    },
+    {
+      id: 'az-40536825',
+      title: "The effectiveness of cognitive processing therapy for posttraumatic stress disorder in Azerbaijan",
+      authors: ["Jamila Ismayilova", "Josef I. Ruzek", "Gunel Muradova", "et al."],
+      journal: "Journal of Traumatic Stress",
+      year: 2025,
+      doi: "10.1002/jts.23183",
+      pmid: '40536825',
+      topics: ["mental health", "trauma"],
+      origin: 'az',
+      summary: {
+        en: "A pilot project in which local clinicians gave cognitive processing therapy to 103 people with PTSD in Azerbaijan, measuring symptoms over three months. A look at how talking therapy changes the way the brain handles traumatic memories.",
+        az: "Yerli klinisistlərin Azərbaycanda TSSP olan 103 nəfərə koqnitiv emal terapiyası tətbiq etdiyi və simptomları üç ay ərzində ölçdüyü pilot layihə. Danışıq terapiyasının beynin travmatik xatirələri emal etmə tərzini necə dəyişdiyinə baxış.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/40536825/',
+    },
+    {
+      id: 'az-38501640',
+      title: "Determination of the severity of traumatic brain injuries by methods of radiation diagnostics",
+      authors: ["G. Gasimzade"],
+      journal: "Georgian Medical News",
+      year: 2024,
+      pmid: '38501640',
+      topics: ["trauma", "imaging"],
+      origin: 'az',
+      summary: {
+        en: "Compares CT and MRI in nearly 1,000 injured patients to see which finds traumatic brain injuries best. A practical companion to AXON’s brain-scan pages.",
+        az: "Təxminən 1000 xəsarət almış xəstədə kəllə-beyin travmalarını hansı üsulun daha yaxşı aşkar etdiyini görmək üçün KT və MRT-ni müqayisə edir. AXON-un beyin skanları səhifələri ilə praktik cütlük.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/38501640/',
+    },
+    {
+      id: 'az-26048608',
+      title: "A blackhole over brain: interdural hematoma — a challenging diagnosis",
+      authors: ["Rasim Babayev", "Murat Şakir Ekşi"],
+      journal: "Neurologia i Neurochirurgia Polska",
+      year: 2015,
+      doi: "10.1016/j.pjnns.2015.04.005",
+      pmid: '26048608',
+      topics: ["neurosurgery", "imaging", "meninges"],
+      origin: 'az',
+      summary: {
+        en: "A case report of a very rare bleed that forms between two layers of the dura mater, with a review of how it is diagnosed and treated. Read it alongside the meninges atlas.",
+        az: "Sərt beyin qişasının (dura) iki qatı arasında yaranan çox nadir qansızmanın klinik halı və onun diaqnoz və müalicəsinə dair icmal. Beyin qişaları atlası ilə birlikdə oxuyun.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/26048608/',
+    },
+    {
+      id: 'az-42573850',
+      title: "P2X7 signaling in neuroinflammation: glial crosstalk, redox integration, and therapeutic targeting",
+      authors: ["Gunel Ayyubova", "Tamilla Sultanova", "Shahana Gurbanova", "et al."],
+      journal: "Journal of Molecular Neuroscience",
+      year: 2026,
+      doi: "10.1007/s12031-026-02581-2",
+      pmid: '42573850',
+      topics: ["glia", "inflammation"],
+      origin: 'az',
+      summary: {
+        en: "A review of how ATP released by stressed cells switches glial cells from helping neurons to inflaming the brain, through the P2X7 receptor. Good next step after learning what glia are.",
+        az: "Stres altındakı hüceyrələrin buraxdığı ATP-nin P2X7 reseptoru vasitəsilə qliya hüceyrələrini neyronlara kömək etməkdən beyni iltihablaşdırmağa necə keçirdiyinə dair icmal. Qliyanın nə olduğunu öyrəndikdən sonra yaxşı növbəti addım.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/42573850/',
+    },
+    {
+      id: 'az-41596124',
+      title: "Roles of reactive oxygen species in relationships between viral infections and Alzheimer's disease and related dementia",
+      authors: ["Gunel Ayyubova", "Fariha E. Bablu", "Nazrin Rahimli", "et al."],
+      journal: "Antioxidants",
+      year: 2026,
+      doi: "10.3390/antiox15010066",
+      pmid: '41596124',
+      topics: ["alzheimer", "dementia"],
+      origin: 'az',
+      summary: {
+        en: "Reviews the evidence that viruses such as herpes and coronaviruses may play a part in Alzheimer’s disease, with oxidative stress as a possible link. Shows how an open research question is argued.",
+        az: "Herpes və koronavirus kimi virusların Alzheimer xəstəliyində rol oynaya biləcəyinə dair sübutları, mümkün əlaqə kimi oksidləşdirici stresslə birlikdə nəzərdən keçirir. Açıq elmi sualın necə müzakirə olunduğunu göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/41596124/',
+    },
+    {
+      id: 'az-38398788',
+      title: "The role of furin in the pathogenesis of COVID-19-associated neurological disorders",
+      authors: ["Gunel Ayyubova", "Sergiy G. Gychka", "Sofia I. Nikolaienko", "et al."],
+      journal: "Life",
+      year: 2024,
+      doi: "10.3390/life14020279",
+      pmid: '38398788',
+      topics: ["infection", "clinical"],
+      origin: 'az',
+      summary: {
+        en: "Explains how the enzyme furin helps the COVID-19 virus enter cells, and why that may matter for the neurological problems seen in some patients. Connects molecular biology to the nervous system.",
+        az: "Furin fermentinin COVID-19 virusunun hüceyrələrə daxil olmasına necə kömək etdiyini və bunun bəzi xəstələrdə görülən nevroloji problemlər üçün niyə vacib ola biləcəyini izah edir. Molekulyar biologiyanı sinir sistemi ilə bağlayır.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/38398788/',
+    },
+    {
+      id: 'az-36637116',
+      title: "TREM2 signalling as a multifaceted player in brain homoeostasis and a potential target for Alzheimer's disease treatment",
+      authors: ["Gunel Ayyubova"],
+      journal: "European Journal of Neuroscience",
+      year: 2023,
+      doi: "10.1111/ejn.15914",
+      pmid: '36637116',
+      topics: ["alzheimer", "glia"],
+      origin: 'az',
+      summary: {
+        en: "A single-author review on TREM2, a receptor on microglia (the brain’s immune cells) whose mutations raise the risk of late-onset Alzheimer’s disease. Shows how genetics points researchers to new treatment targets.",
+        az: "Mutasiyaları gec başlayan Alzheimer xəstəliyi riskini artıran, mikroqliyada (beynin immun hüceyrələri) yerləşən TREM2 reseptoru haqqında tək müəllifli icmal. Genetikanın tədqiqatçıları yeni müalicə hədəflərinə necə yönəltdiyini göstərir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/36637116/',
+    },
+    {
+      id: 'az-38304064',
+      title: "Impact of dihydropyrimidinase-related protein 2 in memory formation on rats and its possible role in neuronal back remodeling",
+      authors: ["Arif A. Mekhtiev", "Shamsiyya M. Asadova"],
+      journal: "IBRO Neuroscience Reports",
+      year: 2024,
+      doi: "10.1016/j.ibneur.2024.01.001",
+      pmid: '38304064',
+      topics: ["memory", "hippocampus", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Rat experiments from Baku on a protein complex that seems to act as a brake on memory: blocking it with antibodies strengthened learning and changed growth factors in the hippocampus. Continues a research line started decades ago.",
+        az: "Bakıda siçovullar üzərində aparılmış təcrübələr: yaddaşa “əyləc” kimi təsir edən zülal kompleksi antikorlarla bloklananda öyrənmə güclənib və hippokampda böyümə faktorları dəyişib. Onilliklər əvvəl başlanmış tədqiqat xəttinin davamıdır.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/38304064/',
+    },
+    {
+      id: 'az-11177230',
+      title: "Detection of protein with anticonsolidation properties in the rat brain",
+      authors: ["A. A. Mekhtiev"],
+      journal: "Bulletin of Experimental Biology and Medicine",
+      year: 2000,
+      doi: "10.1007/BF02766081",
+      pmid: '11177230',
+      topics: ["memory", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Describes isolating a rat brain protein that disturbed memory consolidation when injected, suggesting nerve cells have a molecular switch for storing memories. The starting point of the line above.",
+        az: "Yeridildikdə yaddaşın möhkəmlənməsini pozan siçovul beyni zülalının ayrılmasını təsvir edir; sinir hüceyrələrində xatirələri saxlamaq üçün molekulyar açar olduğunu güman edir. Yuxarıdakı tədqiqat xəttinin başlanğıcı.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/11177230/',
+    },
+    {
+      id: 'az-15587807',
+      title: "Selective effects of antibodies to protein SMP-69 on the activity of defensive behavior command neurons in the common snail",
+      authors: ["A. A. Mekhtiev", "S. A. Kozyrev", "V. P. Nikitin", "et al."],
+      journal: "Neuroscience and Behavioral Physiology",
+      year: 2004,
+      doi: "10.1023/b:neab.0000038129.66735.ad",
+      pmid: '15587807',
+      topics: ["neurons", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Uses the snail’s large, easy-to-record “command neurons” for defensive behaviour to test how the same memory-related protein changes a neuron’s excitability. A classic simple-animal approach to learning.",
+        az: "Müdafiə davranışının ilbizdəki iri, asan qeydə alınan “komanda neyronlarından” istifadə edərək eyni yaddaş zülalının neyronun oyanıqlığını necə dəyişdiyini yoxlayır. Öyrənməni sadə heyvanlarda öyrənməyin klassik yolu.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/15587807/',
+    },
+    {
+      id: 'az-42570284',
+      title: "Investigation of the efficacy of stem cell therapy in a rat model of cyclophosphamide-induced neurotoxicity",
+      authors: ["Javid Sardarzada", "Aytaj Jafarzade", "Elvan Anadol", "et al."],
+      journal: "Restorative Neurology and Neuroscience",
+      year: 2026,
+      doi: "10.1177/09226028261470927",
+      pmid: '42570284',
+      topics: ["stem cells", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Tests whether stem cells from the umbilical cord can protect the rat nervous system from damage caused by a common chemotherapy drug. An example of how new treatments are tried in animals first.",
+        az: "Göbək ciyəsindən alınan kök hüceyrələrin geniş istifadə olunan kimyaterapiya dərmanının siçovul sinir sisteminə vurduğu zərərdən qoruya bilib-bilmədiyini yoxlayır. Yeni müalicələrin əvvəlcə heyvanlarda necə sınaqdan keçirildiyinə nümunə.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/42570284/',
+    },
+    {
+      id: 'az-26638002',
+      title: "Activity of phosphate-dependent glutaminase in the brain of rats exposed to prenatal hypoxia during organogenesis",
+      authors: ["L. B. Gadirova", "T. M. Agaev"],
+      journal: "Bulletin of Experimental Biology and Medicine",
+      year: 2015,
+      doi: "10.1007/s10517-015-3123-2",
+      pmid: '26638002',
+      topics: ["development", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Measures an enzyme that makes the neurotransmitter glutamate in different brain regions of rats whose mothers lacked oxygen during pregnancy, from birth to six months. Links brain development, oxygen and chemistry.",
+        az: "Anaları hamiləlik zamanı oksigen çatışmazlığı yaşamış siçovulların müxtəlif beyin nahiyələrində doğuşdan altı aylığa qədər glutamat neyromediatorunu hazırlayan fermenti ölçür. Beynin inkişafını, oksigeni və kimyanı bağlayır.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/26638002/',
+    },
+    {
+      id: 'az-31512425',
+      title: "[Peculiarities of the functional state of the brain in long-livers and their relatives]",
+      authors: ["U. F. Hashimova", "A. R. Allahverdiyev", "E. O. Bayramova", "et al."],
+      journal: "Advances in Gerontology",
+      year: 2019,
+      pmid: '31512425',
+      topics: ["eeg", "ageing"],
+      origin: 'az',
+      summary: {
+        en: "Compares the EEG brain rhythms (delta, theta, alpha, beta) of rural Azerbaijani long-livers, their relatives and families without long-livers. Azerbaijan is famous for its long-livers; written in Russian.",
+        az: "Kənddə yaşayan azərbaycanlı uzunömürlülərin, onların qohumlarının və uzunömürlü olmayan ailələrin EEG beyin ritmlərini (delta, teta, alfa, beta) müqayisə edir. Azərbaycan uzunömürlüləri ilə məşhurdur; rus dilindədir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/31512425/',
+    },
+    {
+      id: 'az-14502975',
+      title: "[Neurophysiological study of short-latency potentials in central structures of visual system and their relations to additional oscillations in retina]",
+      authors: ["N. M. Rzaeva"],
+      journal: "Rossiiskii Fiziologicheskii Zhurnal imeni I.M. Sechenova",
+      year: 2003,
+      pmid: '14502975',
+      topics: ["vision", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Recordings in rabbits from the retina, lateral geniculate body, superior colliculus and visual cortex show very early electrical signals after a flash of light. Follows the same stations as AXON’s visual pathway atlas; written in Russian.",
+        az: "Dovşanlarda retina, lateral dizəbənzər cisim, yuxarı təpəcik və görmə qabığından aparılmış qeydlər işıq çaxmasından sonra çox erkən elektrik siqnallarını göstərir. AXON-un görmə yolu atlasındakı eyni stansiyaları izləyir; rus dilindədir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/14502975/',
+    },
+    {
+      id: 'az-8065559',
+      title: "Influence of motivational centers of the hypothalamus on the functioning of the visual area of cerebral cortex",
+      authors: ["N. A. Gadzhieva", "A. I. Dmitrenko"],
+      journal: "Neuroscience and Behavioral Physiology",
+      year: 1994,
+      doi: "10.1007/BF02355680",
+      pmid: '8065559',
+      topics: ["vision", "hypothalamus", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Shows that stimulating hunger- and motivation-related nuclei of the hypothalamus first blocks, then boosts, the visual cortex’s response to a flash of light. Motivation literally changes what the cortex sees.",
+        az: "Hipotalamusun aclıq və motivasiya ilə bağlı nüvələrinin stimullaşdırılmasının görmə qabığının işıq çaxmasına cavabını əvvəlcə bloklayıb, sonra gücləndirdiyini göstərir. Motivasiya qabığın gördüyünü sözün həqiqi mənasında dəyişir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/8065559/',
+    },
+    {
+      id: 'az-2755608',
+      title: "Changes in reactivity of neurons of the visual cortex under influence of the posterolateral hypothalamus and the nuclei of the midbrain raphe",
+      authors: ["G. G. Gasanov", "Z. G. Mamedov", "N. F. Samedova"],
+      journal: "Neuroscience and Behavioral Physiology",
+      year: 1989,
+      doi: "10.1007/BF01190464",
+      pmid: '2755608',
+      topics: ["vision", "serotonin", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Classic Baku physiology: how the hypothalamus and the serotonin-producing raphe nuclei change the way single visual-cortex neurons respond to repeated light. Pairs with AXON’s serotonin pathway.",
+        az: "Klassik Bakı fiziologiyası: hipotalamus və serotonin hazırlayan tikiş (rafe) nüvələri ayrı-ayrı görmə qabığı neyronlarının təkrarlanan işığa cavabını necə dəyişir. AXON-dakı serotonin yolu ilə cütləşir.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/2755608/',
+    },
+    {
+      id: 'az-8413915',
+      title: "A comparative analysis of learning and exploratory behavior of rats with varying resistance to stressor influences and the level of brain monoamines",
+      authors: ["K. Yu. Ismailova", "T. P. Semenova", "A. E. Fast", "et al."],
+      journal: "Neuroscience and Behavioral Physiology",
+      year: 1993,
+      doi: "10.1007/BF01183026",
+      pmid: '8413915',
+      topics: ["stress", "learning", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Rats that resist stress learned and explored differently from stress-sensitive rats, and the study compared levels of brain monoamines such as dopamine and serotonin in the two groups. An early look at why individuals cope with stress differently.",
+        az: "Stresə davamlı siçovullar stresə həssas olanlardan fərqli öyrənib və kəşf ediblər; tədqiqat iki qrupda dopamin və serotonin kimi beyin monoaminlərinin səviyyəsini də müqayisə edib. İnsanların stresin öhdəsindən niyə fərqli gəldiyinə erkən baxış.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/8413915/',
+    },
+    {
+      id: 'az-1977096',
+      title: "Influence of neurohypophyseal peptides on the formation of active avoidance conditioned reflex behavior",
+      authors: ["R. Sh. Ibragimov"],
+      journal: "Neuroscience and Behavioral Physiology",
+      year: 1990,
+      doi: "10.1007/BF01195453",
+      pmid: '1977096',
+      topics: ["hormones", "hippocampus", "experimental"],
+      origin: 'az',
+      summary: {
+        en: "Vasopressin and oxytocin, the hormones of the posterior pituitary, were injected into the hippocampus of rats: one helped learning to avoid danger, the other had the opposite effect. Hormones and memory in one experiment.",
+        az: "Arxa hipofizin hormonları olan vazopressin və oksitosin siçovulların hippokampına yeridilib: biri təhlükədən qaçmağı öyrənməyə kömək edib, digəri əks təsir göstərib. Hormonlar və yaddaş bir təcrübədə.",
+      },
+      access: 'link',
+      sourceUrl: 'https://pubmed.ncbi.nlm.nih.gov/1977096/',
+    },
   ];
 
   var sortMode = 'year';
   var activeTopic = null;
+  var activeOrigin = null; /* null | 'az' | 'intl' */
   var searchQuery = '';
 
   function formatAuthors(authors) {
@@ -510,6 +1040,8 @@
 
   function matchesFilters(article) {
     if (activeTopic && (article.topics || []).indexOf(activeTopic) === -1) return false;
+    if (activeOrigin === 'az' && article.origin !== 'az') return false;
+    if (activeOrigin === 'intl' && article.origin === 'az') return false;
     var q = searchQuery.trim().toLowerCase();
     if (!q) return true;
     var hay = [
@@ -566,6 +1098,27 @@
     });
     root.appendChild(allBtn);
 
+    var originRoot = document.getElementById('articles-origin');
+    if (originRoot) {
+      originRoot.replaceChildren();
+      [[null, UI.originAll], ['az', UI.originAz], ['intl', UI.originIntl]].forEach(function (o) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'articles-topic articles-origin__btn' + (activeOrigin === o[0] ? ' is-active' : '');
+        b.textContent = localized(o[1]);
+        b.addEventListener('click', function () {
+          activeOrigin = o[0];
+          render();
+        });
+        originRoot.appendChild(b);
+      });
+      var note = document.getElementById('articles-origin-note');
+      if (note) {
+        var n = ARTICLES.filter(function (a) { return a.origin === 'az'; }).length;
+        note.textContent = fill(localized(UI.originCount), { n: String(n) });
+      }
+    }
+
     allTopics(ARTICLES).forEach(function (topic) {
       var btn = document.createElement('button');
       btn.type = 'button';
@@ -614,6 +1167,13 @@
       span.textContent = topic;
       tags.appendChild(span);
     });
+
+    if (article.origin === 'az') {
+      var az = document.createElement('span');
+      az.className = 'article-choice-card__tag article-choice-card__tag--az';
+      az.textContent = '🇦🇿 ' + localized(UI.originBadge);
+      tags.insertBefore(az, tags.firstChild);
+    }
 
     if (article.access === 'host' && article.licence) {
       var badge = document.createElement('span');

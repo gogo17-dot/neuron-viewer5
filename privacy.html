@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>AXON — Privacy · Məxfilik</title>
+    <meta
+      name="description"
+      content="How AXON handles your data: no accounts, no cookies, no ads. Visits are counted anonymously; game and practice progress stays in your browser. AXON-un məxfilik siyasəti."
+    />
+    <meta name="author" content="Omar Garagozov" />
+    <meta property="og:site_name" content="AXON" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AXON — Privacy" />
+    <meta
+      property="og:description"
+      content="No accounts, no cookies, no ads — how AXON handles your data."
+    />
+    <meta property="og:url" content="https://axon.az/privacy.html" />
+    <meta property="og:image" content="https://axon.az/media/og-axon.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://axon.az/media/og-axon.jpg" />
+    <link rel="canonical" href="https://axon.az/privacy.html" />
+    <script src="page-base.js?v=r5"></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#020810" />
+    <link rel="stylesheet" href="site.css?v=inter1" />
+      <style>
+      #sources .about-list + p { margin-top: 14px; }
+      .about-report { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; background: var(--card-bg); }
+      .about-report__title { margin: 0 0 4px; font-weight: 700; color: var(--accent); }
+      .about-report p:not(.about-report__title) { margin: 0 0 12px; color: var(--text-muted); }
+    </style>
+  </head>
+  <body data-page="about" class="about-page">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div id="page">
+      <nav class="site-nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          AXON
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label class="nav-overlay" for="nav-toggle" aria-hidden="true"></label>
+        <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-center" id="primary-navigation">
+          <a class="nav-link" href="index.html" data-nav="home" data-en="Home" data-az="Ana səhifə">Home</a>
+          <a class="nav-link" href="brain-bee.html" data-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+          <a class="nav-link" href="atlas.html" data-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+          <a class="nav-link" href="brain-scans/index.html" data-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+          <a class="nav-link" href="book.html" data-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+          <a class="nav-link" href="about.html" data-nav="about" data-en="About" data-az="Haqqında">About</a>
+        </div>
+        <div class="nav-tools">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" id="lang-en" class="is-active">EN</button>
+            <button type="button" id="lang-az">AZ</button>
+          </div>
+          <button type="button" class="theme-pill" id="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-pill__knob" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <section class="content-section io-fade page-narrow about-main" style="padding-top: 96px">
+        <div class="tag" data-en="Privacy" data-az="Məxfilik">Privacy</div>
+        <h1 class="section-title about-title" data-en="Privacy" data-az="Məxfilik">Privacy</h1>
+        <p class="section-desc about-lead" data-en="Short version: AXON has no accounts, no cookies and no ads, and it does not sell or share data. You can use every page without telling us who you are." data-az="Qısası: AXON-da hesab, kuki və reklam yoxdur, məlumatlar satılmır və paylaşılmır. Bütün səhifələrdən kim olduğunu bildirmədən istifadə edə bilərsən.">Short version: AXON has no accounts, no cookies and no ads, and it does not sell or share data. You can use every page without telling us who you are.</p>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="Counting visits" data-az="Ziyarətlərin sayılması">Counting visits</h2>
+          <ul class="about-list">
+            <li><span data-en="We count page visits with GoatCounter, an open-source counter that sets no cookies and does not track you across sites." data-az="Səhifə ziyarətlərini GoatCounter ilə sayırıq — bu, açıq mənbəli sayğacdır, kuki yazmır və səni başqa saytlarda izləmir.">We count page visits with GoatCounter, an open-source counter that sets no cookies and does not track you across sites.</span></li>
+            <li><span data-en="It records only general information: which page was opened, the referring site, browser type, screen size and country. It does not store your IP address or identify you." data-az="O, yalnız ümumi məlumatı qeyd edir: hansı səhifə açılıb, hansı saytdan gəlinib, brauzer növü, ekran ölçüsü və ölkə. IP ünvanını saxlamır və səni tanımır.">It records only general information: which page was opened, the referring site, browser type, screen size and country. It does not store your IP address or identify you.</span></li>
+            <li><span data-en="Visits are only counted on axon.az itself, and most ad blockers switch the counter off — that is fine with us." data-az="Ziyarətlər yalnız axon.az-ın özündə sayılır; reklam bloklayıcılarının çoxu sayğacı söndürür — bu bizim üçün problem deyil.">Visits are only counted on axon.az itself, and most ad blockers switch the counter off — that is fine with us.</span></li>
+          </ul>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="What stays on your device" data-az="Cihazında qalanlar">What stays on your device</h2>
+          <ul class="about-list">
+            <li><span data-en="Your language, day/night theme, game results (Beynle, Lesion hunter) and practice progress are saved in your own browser (local storage). They never leave your device, and we cannot see them." data-az="Dil, gündüz/gecə rejimi, oyun nəticələri (Beynle, Lezyon ovçusu) və məşq irəliləyişi öz brauzerində (local storage) saxlanılır. Onlar cihazından çıxmır və biz onları görə bilmirik.">Your language, day/night theme, game results (Beynle, Lesion hunter) and practice progress are saved in your own browser (local storage). They never leave your device, and we cannot see them.</span></li>
+            <li><span data-en="If you install AXON as an app, pages are stored on your device so they work offline." data-az="AXON-u tətbiq kimi quraşdırsan, səhifələr oflayn işləsin deyə cihazında saxlanılır.">If you install AXON as an app, pages are stored on your device so they work offline.</span></li>
+            <li><span data-en="To delete all of this, clear the site data for axon.az in your browser settings." data-az="Bunların hamısını silmək üçün brauzer ayarlarında axon.az üçün sayt məlumatlarını təmizlə.">To delete all of this, clear the site data for axon.az in your browser settings.</span></li>
+          </ul>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="When you send us something" data-az="Bizə nəsə göndərəndə">When you send us something</h2>
+          <ul class="about-list">
+            <li><span data-en="The “Propose a work” form sends your name, email and message to us through Web3Forms, an email delivery service, or through your own email app. We use them only to reply and to review your proposal." data-az="“Əsər təklif et” forması adını, e-poçtunu və mesajını bizə Web3Forms e-poçt xidməti və ya öz e-poçt proqramın vasitəsilə göndərir. Onlardan yalnız cavab vermək və təklifi nəzərdən keçirmək üçün istifadə edirik.">The “Propose a work” form sends your name, email and message to us through Web3Forms, an email delivery service, or through your own email app. We use them only to reply and to review your proposal.</span></li>
+            <li><span data-en="If you email us, we keep the email only as long as we need it to answer you." data-az="Bizə e-poçt yazsan, onu yalnız sənə cavab vermək üçün lazım olduğu qədər saxlayırıq.">If you email us, we keep the email only as long as we need it to answer you.</span></li>
+          </ul>
+        </div>
+
+        <div class="about-block">
+          <h2 class="about-block__title" data-en="Other services the pages load" data-az="Səhifələrin yüklədiyi digər xidmətlər">Other services the pages load</h2>
+          <ul class="about-list">
+            <li><span data-en="Fonts come from Google Fonts, and the 3D and chart libraries from the jsDelivr and cdnjs networks. Like any website, these services receive your IP address when they deliver the files." data-az="Şriftlər Google Fonts-dan, 3D və qrafik kitabxanaları isə jsDelivr və cdnjs şəbəkələrindən yüklənir. Hər sayt kimi, bu xidmətlər faylları çatdırarkən IP ünvanını alır.">Fonts come from Google Fonts, and the 3D and chart libraries from the jsDelivr and cdnjs networks. Like any website, these services receive your IP address when they deliver the files.</span></li>
+            <li><span data-en="Lesson videos are embedded from YouTube in privacy-enhanced mode (youtube-nocookie.com) and load only when you open them." data-az="Dərs videoları YouTube-dan məxfilik rejimində (youtube-nocookie.com) yerləşdirilib və yalnız onları açanda yüklənir.">Lesson videos are embedded from YouTube in privacy-enhanced mode (youtube-nocookie.com) and load only when you open them.</span></li>
+            <li><span data-en="The homepage shows the badges of the Netty and MilliNet awards; the MilliNet badge is loaded from millinet.az." data-az="Ana səhifədə Netty və MilliNet mükafatlarının nişanları göstərilir; MilliNet nişanı millinet.az-dan yüklənir.">The homepage shows the badges of the Netty and MilliNet awards; the MilliNet badge is loaded from millinet.az.</span></li>
+            <li><span data-en="Links to other sites (PubMed, Instagram, Facebook and others) follow those sites’ own privacy rules." data-az="Digər saytlara keçidlər (PubMed, Instagram, Facebook və s.) həmin saytların öz məxfilik qaydalarına tabedir.">Links to other sites (PubMed, Instagram, Facebook and others) follow those sites’ own privacy rules.</span></li>
+          </ul>
+        </div>
+
+        <div class="about-block about-block--contact">
+          <h2 class="about-block__title" data-en="Questions" data-az="Suallar">Questions</h2>
+          <p data-en="Write to us any time — we answer every message." data-az="İstənilən vaxt yaz — hər mesaja cavab veririk.">Write to us any time — we answer every message.</p>
+          <p class="about-contact"><a href="mailto:electricaxon26@gmail.com">electricaxon26@gmail.com</a></p>
+          <p style="font-size:0.8rem;color:var(--text-muted)" data-en="Last updated: 18 November 2026" data-az="Son yenilənmə: 18 noyabr 2026">Last updated: 18 November 2026</p>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-stack">
+          <a class="footer-brand" href="index.html">AXON</a>
+          <nav class="footer-links" aria-label="Site">
+            <div class="footer-links__col">
+              <a href="atlas.html" data-footer-nav="atlas" data-en="Atlases" data-az="Atlaslar">Atlases</a>
+              <a href="brain-bee.html" data-footer-nav="brain-bee" data-en="Brain Bee" data-az="Brain Bee">Brain Bee</a>
+              <a href="brain-scans/index.html" data-footer-nav="brain-scans" data-en="Brain scans" data-az="Beyin skanları">Brain scans</a>
+              <a href="hodgkin-huxley/" data-footer-nav="hodgkin-huxley" data-en="Neuron simulator" data-az="Neyron simulyatoru">Neuron simulator</a>
+              <a href="publish.html" data-footer-nav="publish" data-en="Publish" data-az="Nəşr et">Publish</a>
+            </div>
+            <div class="footer-links__col">
+              <a href="articles.html" data-footer-nav="articles" data-en="Articles" data-az="Məqalələr">Articles</a>
+              <a href="book.html" data-footer-nav="book" data-en="Books" data-az="Kitablar">Books</a>
+              <a href="about.html" data-footer-nav="about" data-en="About" data-az="Haqqında">About</a>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-center">© 2026 AXON</div>
+      </footer>
+    </div>
+
+    <script src="site-shell.js?v=r1"></script>
+    <script src="particles-bg.js?v=r1"></script>
+  </body>
+</html>
