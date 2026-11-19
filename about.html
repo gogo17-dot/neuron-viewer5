@@ -41,6 +41,13 @@
       .about-report__title { margin: 0 0 4px; font-weight: 700; color: var(--accent); }
       .about-report p:not(.about-report__title) { margin: 0 0 12px; color: var(--text-muted); }
     </style>
+      <style>
+      .ax-quote { margin: 1.4rem 0; padding: 1.1rem 1.3rem; border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; background: var(--card-bg); }
+      .ax-quote__h { margin: 0 0 .5rem; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+      .ax-quote blockquote { margin: 0; font-size: 1.08rem; line-height: 1.6; color: var(--text); font-style: italic; }
+      .ax-quote figcaption { margin-top: .5rem; font-size: .85rem; color: var(--text-muted); }
+      .ax-quote small { display: block; margin-top: .35rem; font-size: .72rem; color: var(--text-muted); }
+    </style>
   </head>
   <body data-page="about" class="about-page">
     <canvas id="bg-particles" aria-hidden="true"></canvas>
@@ -102,6 +109,13 @@
             neurobiology. The UI stays bilingual so learners in Azerbaijan and readers abroad can use the same atlas.
           </p>
         </div>
+
+        <figure class="ax-quote">
+          <p class="ax-quote__h" data-en="What students say" data-az="Tələbələr nə deyir">What students say</p>
+          <blockquote data-en="“It helps with memorization of terms and processes, as it’s very illustrative — and the practice questions are extremely fun to do.”" data-az="“Terminləri və prosesləri əzbərləməyə kömək edir, çünki çox əyani izah edir — məşq sualları isə həddindən artıq maraqlıdır.”">“It helps with memorization of terms and processes, as it’s very illustrative — and the practice questions are extremely fun to do.”</blockquote>
+          <figcaption data-en="— Tahir Mammadov, preparing for Brain Bee" data-az="— Tahir Məmmədov, Brain Bee-yə hazırlaşır">— Tahir Mammadov, preparing for Brain Bee</figcaption>
+          <small data-en="Quote in the student’s own words; Azerbaijani translation by AXON." data-az="Tələbənin öz sözləri (ingiliscə); Azərbaycan dilinə tərcümə AXON-a məxsusdur.">Quote in the student’s own words; Azerbaijani translation by AXON.</small>
+        </figure>
 
         <div class="about-block">
           <h2 class="about-block__title" data-en="What you will find" data-az="Nə tapa bilərsiniz">What you will find</h2>
