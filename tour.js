@@ -149,6 +149,78 @@
     ],
   };
 
+  T.lezyon = [
+    { t: ["Think like a neurologist", "Nevroloq kimi düşün"],
+      x: ["You read a patient’s story, then tap the spot on the 3D brain where the damage must be. Ten patients, 30 seconds each. Here is how to play.",
+          "Pasiyentin hekayəsini oxuyursan, sonra 3D beyində zədənin olmalı olduğu yerə toxunursan. On pasiyent, hər biri 30 saniyə. Necə oynanılır:"] },
+    { el: ".lz-start",
+      t: ["Start the round", "Raunda başla"],
+      x: ["Press this when you are ready. The timer starts with the first patient — the faster you find the lesion, the more points you get.",
+          "Hazır olanda bunu bas. Taymer ilk pasiyentlə başlayır — zədəni nə qədər tez tapsan, bir o qədər çox xal alırsan."] },
+    { el: "#lz-stage",
+      t: ["The brain", "Beyin"],
+      x: ["Drag to turn it, pinch or scroll to zoom, and tap where you think the damage is. The “Left” and “Right” labels mark the brain’s sides — remember, the left brain controls the right side of the body.",
+          "Fırlatmaq üçün sürüşdür, böyütmək üçün çimdiklə və ya təkəri çevir, zədənin olduğunu düşündüyün yerə toxun. “Sol” və “Sağ” işarələri beynin tərəflərini göstərir — unutma, beynin sol tərəfi bədənin sağ tərəfini idarə edir."] },
+    { el: "#lz-tools",
+      t: ["Surface or deep", "Səth və ya dərinlik"],
+      x: ["“Surface” shows the cortex. “Deep” hides it so you can reach the thalamus, basal ganglia and ventricles. “Reset view” brings the brain back if you get lost. Good luck!",
+          "“Səth” qabığı göstərir. “Dərin” onu gizlədir ki, talamusa, bazal nüvələrə və mədəciklərə çata biləsən. Azsan, “Görünüşü sıfırla” beyni geri qaytarır. Uğurlar!"] },
+  ];
+
+  T.practice = [
+    { t: ["Practice, one question at a time", "Bir-bir sual ilə məşq"],
+      x: ["Answer a question, then read why the answer is right before you move on. The site remembers what you got wrong and brings it back later.",
+          "Suala cavab ver, sonra növbətiyə keçməzdən əvvəl cavabın niyə düz olduğunu oxu. Sayt səhv etdiklərini yadda saxlayır və sonra yenidən qarşına çıxarır."] },
+    { el: ".bb-quiz-filters",
+      t: ["Choose a mode", "Rejim seç"],
+      x: ["Learn: new questions, easiest first. Review: questions that are due again for repetition. Mixed: some new and some review. Mock: a timed test, like the real exam.",
+          "Öyrən: yeni suallar, ən asanından başlayaraq. Təkrar: yenidən təkrarlanma vaxtı çatmış suallar. Qarışıq: həm yeni, həm təkrar. Sınaq: əsl imtahan kimi vaxtlı test."] },
+    { el: ".bb-topic-line",
+      t: ["Pick a topic", "Mövzu seç"],
+      x: ["Practise everything, or press “Change” to focus on one module — for example the eye, memory or movement.",
+          "Hamısını məşq et və ya bir modula — məsələn, gözə, yaddaşa və ya hərəkətə — fokuslanmaq üçün “Dəyiş”i bas."] },
+    { el: ".bb-actions",
+      t: ["Start", "Başla"],
+      x: ["Start a session of questions. Your score and streak appear at the top of the card.",
+          "Suallar sessiyasına başla. Xalın və seriyan kartın yuxarısında görünür."] },
+    { el: "#bb-mistakes-link",
+      t: ["Mistake log", "Səhv jurnalı"],
+      x: ["Every question you get wrong is saved here, so you can go back to exactly what you still need to learn. Good luck!",
+          "Səhv cavab verdiyin hər sual burada saxlanılır ki, hələ öyrənməli olduğun şeyə dəqiq qayıdasan. Uğurlar!"] },
+  ];
+
+  T.diagnosis = [
+    { t: ["Diagnose a patient", "Pasiyentə diaqnoz qoy"],
+      x: ["This works like the patient-diagnosis part of the Brain Bee exam: you get a story and an examination, choose tests, and then name the disorder yourself.",
+          "Bu, Brain Bee imtahanının pasiyent diaqnozu hissəsi kimi işləyir: hekayə və müayinə nəticəsini alırsan, testlər seçirsən, sonra pozğunluğun adını özün yazırsan."] },
+    { el: ".bb-panel",
+      t: ["Read the case", "Halı oxu"],
+      x: ["Start with the history (what the patient tells you) and the presentation (what the doctor finds). Look for the side, the speed of onset and which functions are lost.",
+          "Tarixçədən (pasiyentin danışdıqları) və müayinədən (həkimin tapdıqları) başla. Tərəfə, başlanğıcın sürətinə və hansı funksiyaların itdiyinə diqqət et."] },
+    { el: ".bb-test-group",
+      t: ["Choose exactly three tests", "Düz üç test seç"],
+      x: ["Pick the three tests that will help most — CT, MRI, EEG, nerve studies and others. You only see the results of the tests you choose, so choose carefully.",
+          "Ən çox kömək edəcək üç testi seç — KT, MRT, EEG, sinir tədqiqatları və s. Yalnız seçdiyin testlərin nəticələrini görürsən, ona görə diqqətlə seç."] },
+    { el: "#bb-score",
+      t: ["Name the disorder", "Pozğunluğu adlandır"],
+      x: ["Then type the diagnosis — there is no list to choose from, just like the real exam. Your score is kept here. Good luck, doctor!",
+          "Sonra diaqnozu yaz — əsl imtahandakı kimi seçmək üçün siyahı yoxdur. Xalın burada saxlanılır. Uğurlar, həkim!"] },
+  ];
+
+  T.basal = [
+    { t: ["The basal ganglia in 3D", "3D bazal nüvələr"],
+      x: ["Deep structures that help start and smooth out movement, shown with the brainstem. You can also light up the brain’s chemical pathways.",
+          "Hərəkəti başlatmağa və hamarlaşdırmağa kömək edən dərin strukturlar, beyin gövdəsi ilə birlikdə. Beynin kimyəvi yollarını da işıqlandıra bilərsən."] },
+    { el: "#scene",
+      t: ["Turn and tap", "Fırlat və toxun"],
+      x: ["Drag to rotate, pinch or scroll to zoom. Tap a structure to read what it does.",
+          "Fırlatmaq üçün sürüşdür, böyütmək üçün çimdiklə və ya təkəri çevir. Nə iş gördüyünü oxumaq üçün struktura toxun."] },
+    { el: ".nt-panel",
+      t: ["Neurotransmitter pathways", "Neyromediator yolları"],
+      x: ["Tap a pathway to see where it starts and where it goes: four dopamine pathways, plus serotonin, noradrenaline and acetylcholine. The arrows are a simplified sketch, not exact fibre routes. Enjoy!",
+          "Harada başladığını və hara getdiyini görmək üçün yola toxun: dörd dopamin yolu, həmçinin serotonin, noradrenalin və asetilxolin. Oxlar sadələşdirilmiş sxemdir, dəqiq lif yolları deyil. Zövq al!"] },
+  ];
+
   var UI = {
     next: ["Next", "Növbəti"],
     back: ["Back", "Geri"],
@@ -317,7 +389,15 @@
     st.textContent = css;
     document.head.appendChild(st);
     addButton();
-    if (!seen()) setTimeout(function () { if (!root) start(); }, 2000);
+    /* On 3D pages, wait until the model has loaded (the loading card is gone). Give up if 3D failed. */
+    var tries = 0;
+    function tryStart() {
+      if (root || seen()) return;
+      if (document.querySelector(".axl--fail")) return;
+      if (document.querySelector(".axl") && tries++ < 90) { setTimeout(tryStart, 1000); return; }
+      start();
+    }
+    setTimeout(tryStart, 2000);
   }
 
   window.AxonTour = { start: function () { if (!root) start(); } };

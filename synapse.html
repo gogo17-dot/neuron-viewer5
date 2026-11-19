@@ -19,6 +19,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <meta name="theme-color" content="#020810" />
     <link rel="stylesheet" href="site.css?v=inter1" />
+    <script src="viewer-loading.js?v=1"></script>
     <style>
       body.synapse-atlas-page {
         overflow-x: hidden;
@@ -1222,8 +1223,8 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           camera.layers.enable(1);
           raycaster.layers.enable(1);
 
-          renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+          renderer = new THREE.WebGLRenderer({ antialias: !window.__axonLowEnd, powerPreference: "high-performance" });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, Math.min(1.5, window.__axonMaxDpr || 1.5)));
           renderer.setSize(vs0.w, vs0.h);
           renderer.outputEncoding = THREE.sRGBEncoding;
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -1279,7 +1280,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           synapseAmbPostSyn.layers.set(1);
           scene.add(synapseAmbPostSyn);
 
-          var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          var dpr = Math.min(window.devicePixelRatio || 1, Math.min(1.5, window.__axonMaxDpr || 1.5));
           composer = new THREE.EffectComposer(renderer);
           composer.setPixelRatio(dpr);
           renderPass = new THREE.RenderPass(scene, camera);
@@ -3515,7 +3516,7 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
           var sz = getViewportSize();
           var w = sz.w;
           var h = sz.h;
-          var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          var dpr = Math.min(window.devicePixelRatio || 1, Math.min(1.5, window.__axonMaxDpr || 1.5));
           camera.aspect = w / h;
           camera.updateProjectionMatrix();
           renderer.setPixelRatio(dpr);
@@ -3888,6 +3889,6 @@ Auto, when enabled, repeats the full sequence on a timer so you can watch the cy
         animLoop();
       })();
     </script>
-      <script src="tour.js?v=1" data-tour="synapse"></script>
+      <script src="tour.js?v=2" data-tour="synapse"></script>
   </body>
 </html>

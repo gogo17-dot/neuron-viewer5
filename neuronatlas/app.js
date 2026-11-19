@@ -462,7 +462,7 @@ function init() {
   camera.position.set(0, 2, 16);
 
   const renderer = new THREE.WebGLRenderer({
-    antialias: true,
+    antialias: !window.__axonLowEnd,
     alpha: false,
     powerPreference: "high-performance",
   });
@@ -481,7 +481,7 @@ function init() {
     if (w < 2 || h < 2) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, Math.min(1.5, window.__axonMaxDpr || 1.5)));
     renderer.setSize(w, h);
   }
   syncCanvasSize();

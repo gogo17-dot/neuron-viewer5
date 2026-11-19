@@ -12,8 +12,8 @@ export function createViewer(canvas, sceneBackground) {
     100,
   );
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !window.__axonLowEnd, powerPreference: "high-performance" });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.__axonMaxDpr || 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;

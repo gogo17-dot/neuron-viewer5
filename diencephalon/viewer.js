@@ -12,7 +12,7 @@ export function resizeViewer(camera, renderer, canvas = renderer.domElement) {
 
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.__axonMaxDpr || 2));
   renderer.setSize(width, height, false);
 }
 
@@ -22,7 +22,7 @@ export function createViewer(canvas, sceneBackground) {
 
   const camera = new THREE.PerspectiveCamera(42, 1, 0.001, 100);
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !window.__axonLowEnd, powerPreference: "high-performance" });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   // Milder tone mapping avoids crushing the far side of curved anatomy into dark shade.
   renderer.toneMapping = THREE.NoToneMapping;
