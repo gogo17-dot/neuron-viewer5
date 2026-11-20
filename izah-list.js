@@ -59,5 +59,65 @@ window.AXON_IZAH = [
    "az": "İnsult beyin üçün təcili vəziyyətdir. Əlamətləri bilmək və tez 103-ə zəng etmək həyat xilas edə bilər."
   },
   "m": 3
+ },
+ {
+  "href": "izah-brain-bee.html",
+  "t": {
+   "en": "What is the Brain Bee?",
+   "az": "Brain Bee nədir?"
+  },
+  "l": {
+   "en": "The world’s neuroscience competition for school students — how it works and how to prepare.",
+   "az": "Məktəblilər üçün dünya neyroelm müsabiqəsi — necə keçir və necə hazırlaşmaq olar."
+  },
+  "m": 3
+ },
+ {
+  "href": "izah-gorme.html",
+  "t": {
+   "en": "How do the eyes see?",
+   "az": "Gözlər necə görür?"
+  },
+  "l": {
+   "en": "Light hits your eye, but you see with your brain. The journey from retina to cortex, step by step.",
+   "az": "İşıq gözünə düşür, amma sən beyninlə görürsən. Retinadan qabığa qədər yol, addım-addım."
+  },
+  "m": 4
+ },
+ {
+  "href": "izah-dopamin.html",
+  "t": {
+   "en": "Dopamine: more than pleasure",
+   "az": "Dopamin: həzzdən daha çox"
+  },
+  "l": {
+   "en": "Often called the “happy chemical”, dopamine is really about movement, motivation and learning.",
+   "az": "Çox vaxt “xoşbəxtlik kimyəvi maddəsi” adlandırılan dopamin əslində hərəkət, motivasiya və öyrənmə ilə bağlıdır."
+  },
+  "m": 3
+ },
+ {
+  "href": "izah-epilepsiya.html",
+  "t": {
+   "en": "What is epilepsy?",
+   "az": "Epilepsiya nədir?"
+  },
+  "l": {
+   "en": "One of the most common brain conditions — what a seizure is, how it is treated and how to help someone having one.",
+   "az": "Ən çox rast gəlinən beyin xəstəliklərindən biri — tutma nədir, necə müalicə olunur və tutması olan insana necə kömək etmək olar."
+  },
+  "m": 4
+ },
+ {
+  "href": "izah-mrt-kt.html",
+  "t": {
+   "en": "How do MRI and CT work?",
+   "az": "MRT və KT necə işləyir?"
+  },
+  "l": {
+   "en": "Two machines that let doctors see inside the skull — one uses X-rays, the other a giant magnet.",
+   "az": "Həkimlərə kəllənin içini görməyə imkan verən iki aparat — biri rentgen şüalarından, digəri nəhəng maqnitdən istifadə edir."
+  },
+  "m": 4
  }
 ];

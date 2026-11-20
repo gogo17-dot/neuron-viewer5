@@ -221,6 +221,41 @@
           "Harada başladığını və hara getdiyini görmək üçün yola toxun: dörd dopamin yolu, həmçinin serotonin, noradrenalin və asetilxolin. Oxlar sadələşdirilmiş sxemdir, dəqiq lif yolları deyil. Zövq al!"] },
   ];
 
+  T.anatomy = [
+    { t: ["Name the lit-up structure", "İşıqlanan strukturu adlandır"],
+      x: ["This drill works like the identification round of the Brain Bee: one structure lights up on a 3D model and you type its name — no list to choose from.",
+          "Bu məşq Brain Bee-nin tanıma turu kimi işləyir: 3D modeldə bir struktur işıqlanır və sən onun adını yazırsan — seçmək üçün siyahı yoxdur."] },
+    { el: "#bb-anatomy-head .articles-topics",
+      t: ["Pick a region", "Nahiyə seç"],
+      x: ["Choose which part of the brain to practise: brainstem, cranial nerves, limbic system and more. “All structures” mixes everything; “Review missed” brings back only the ones you got wrong.",
+          "Beynin hansı hissəsini məşq edəcəyini seç: beyin gövdəsi, kəllə sinirləri, limbik sistem və s. “Bütün strukturlar” hamısını qarışdırır; “Səhvləri təkrarla” yalnız səhv etdiklərini qaytarır."] },
+    { el: ".bb-score",
+      t: ["Your progress", "İrəliləyişin"],
+      x: ["How many structures in this region you have named correctly so far.",
+          "Bu nahiyədə indiyədək neçə strukturu düzgün adlandırdığın."] },
+    { el: "#bb-anatomy-start",
+      t: ["Start the drill", "Məşqə başla"],
+      x: ["The 3D model loads, one structure lights up, and you type what it is. English, Azerbaijani and Latin names all count, and small spelling slips are forgiven.",
+          "3D model yüklənir, bir struktur işıqlanır və sən onun nə olduğunu yazırsan. İngilis, Azərbaycan və latın adları hamısı qəbul olunur, kiçik yazı xətaları bağışlanır."] },
+    { el: "#bb-anatomy-reset",
+      t: ["Start over", "Yenidən başla"],
+      x: ["Clears your progress for a fresh start. Good luck!",
+          "Təzə başlamaq üçün irəliləyişini silir. Uğurlar!"] },
+  ];
+
+  T.exam = [
+    { t: ["A real exam rehearsal", "Əsl imtahan məşqi"],
+      x: ["Fifty random questions from the whole bank and 25 minutes on the clock — like the written round of the Brain Bee.",
+          "Bütün bankdan təsadüfi 50 sual və 25 dəqiqə — Brain Bee-nin yazılı turu kimi."] },
+    { el: "#bb-exam-start",
+      t: ["Start when ready", "Hazır olanda başla"],
+      x: ["The timer starts as soon as you press this. You can move between questions and change answers until time runs out.",
+          "Bunu basan kimi taymer başlayır. Vaxt bitənədək suallar arasında keçə və cavabları dəyişə bilərsən."] },
+    { t: ["No hints until the end", "Sonadək ipucu yoxdur"],
+      x: ["Nothing is marked until you finish — then you see your score and every explanation. Use Practice for learning, and this page to test yourself. Good luck!",
+          "Bitirənədək heç nə yoxlanılmır — sonra xalını və bütün izahları görürsən. Öyrənmək üçün “Məşq”dən, özünü yoxlamaq üçün bu səhifədən istifadə et. Uğurlar!"] },
+  ];
+
   var UI = {
     next: ["Next", "Növbəti"],
     back: ["Back", "Geri"],
