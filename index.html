@@ -15,16 +15,18 @@
     />
     <meta property="og:site_name" content="AXON" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="AXON — Azərbaycan dilində neyroelm" />
+    <meta property="og:title" content="AXON — Azərbaycan dilində neyroelm · Neuroscience for Azerbaijan" />
     <meta
       property="og:description"
-      content="3D beyin atlasları, real MRT skanları, pasiyent halları və Brain Bee-yə hazırlıq. Pulsuz, Azərbaycan və ingilis dillərində."
+      content="3D beyin atlasları, real MRT skanları, pasiyent halları və Brain Bee-yə hazırlıq. Free 3D brain atlases, real MRI scans and Brain Bee prep in Azerbaijani and English."
     />
     <meta property="og:url" content="https://axon.az/" />
     <meta property="og:image" content="https://axon.az/media/og-axon.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:locale" content="az_AZ" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:image" content="https://axon.az/media/og-axon.jpg" />
     <link rel="canonical" href="https://axon.az/" />
     <script src="page-base.js?v=r5"></script>
@@ -174,7 +176,7 @@
         <h2 class="section-title" data-en="Start in three steps" data-az="Üç addımla başla">Start in three steps</h2>
         <ol class="home-start__list">
           <li><a href="beynle.html"><span class="home-start__n">1</span><span class="home-start__t" data-en="Play today’s Beynle" data-az="Bugünkü Beynle-ni oyna">Play today’s Beynle</span><span class="home-start__d" data-en="One brain word, six tries. About a minute." data-az="Bir beyin sözü, altı cəhd. Təxminən bir dəqiqə.">One brain word, six tries. About a minute.</span></a></li>
-          <li><a href="atlas.html"><span class="home-start__n">2</span><span class="home-start__t" data-en="Turn a 3D brain" data-az="3D beyni fırlat">Turn a 3D brain</span><span class="home-start__d" data-en="Pick an atlas, rotate it and tap any part to learn what it does." data-az="Atlas seç, fırlat və hər hissəyə toxunub nə iş gördüyünü öyrən.">Pick an atlas, rotate it and tap any part to learn what it does.</span></a></li>
+          <li><a href="atlas.html"><span class="home-start__n">2</span><span class="home-start__t" data-en="Explore a 3D brain" data-az="3D beyni kəşf et">Explore a 3D brain</span><span class="home-start__d" data-en="Pick an atlas, rotate it and tap any part to learn what it does." data-az="Atlas seç, fırlat və hər hissəyə toxunub nə iş gördüyünü öyrən.">Pick an atlas, rotate it and tap any part to learn what it does.</span></a></li>
           <li><a href="practice.html"><span class="home-start__n">3</span><span class="home-start__t" data-en="Answer five questions" data-az="Beş suala cavab ver">Answer five questions</span><span class="home-start__d" data-en="Each answer comes with a short explanation." data-az="Hər cavabın qısa izahı var.">Each answer comes with a short explanation.</span></a></li>
         </ol>
       </section>
@@ -222,7 +224,7 @@
             <span class="qotd__tag" data-en="Question of the day" data-az="Günün sualı">Question of the day</span>
             <span class="qotd__streak" id="qotd-streak" hidden></span>
           </div>
-          <p class="qotd__q" id="qotd-q" aria-live="polite">…</p>
+          <p class="qotd__q" id="qotd-q" aria-live="polite" data-en="Loading today’s question…" data-az="Günün sualı yüklənir…">Loading today’s question…</p>
           <div class="qotd__choices" id="qotd-choices"></div>
           <p class="qotd__why" id="qotd-why" hidden></p>
           <a class="qotd__more" id="qotd-more" href="practice.html" hidden data-en="Keep practising →" data-az="Məşqə davam et →">Keep practising →</a>
@@ -1293,7 +1295,8 @@
           function render() {
             if (!Q) return;
             var L = lang(), li = L === "az" ? 1 : 0;
-            document.getElementById("qotd-q").textContent = L === "az" ? Q[2] : Q[1];
+            var qq = document.getElementById("qotd-q"); qq.removeAttribute("data-en"); qq.removeAttribute("data-az");
+            qq.textContent = L === "az" ? Q[2] : Q[1];
             var box = document.getElementById("qotd-choices"); box.innerHTML = "";
             var answered = st.day === key ? st.pick : null;
             Q[3].forEach(function (c, k) {
