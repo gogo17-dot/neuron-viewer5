@@ -859,10 +859,10 @@ var BB_STRUCTURES = [
     id: "wm-corpus-callosum",
     viewer: "white-matter",
     mesh: "01_Corpus_callosum",
-    name: { en: "Corpus callosum", az: "Korpus kallozum (əzələ cisim)" },
+    name: { en: "Corpus callosum", az: "Döyənəkli cisim (korpus kallozum)" },
     accept: {
       en: ["corpus callosum", "callosum", "callosal commissure"],
-      az: ["korpus kallozum", "əzələ cisim", "kallozum", "ezle cisim"],
+      az: ["döyənəkli cisim", "doyenekli cisim", "korpus kallozum", "kallozum"],
     },
     note: {
       en: "The great commissure linking the hemispheres. Splenium lesions can disconnect visual language (alexia without agraphia); agenesis is a developmental malformation.",
@@ -999,10 +999,10 @@ var BB_STRUCTURES = [
     id: "wm-pyramid-l",
     viewer: "white-matter",
     mesh: "13_Medullary_pyramid_L",
-    name: { en: "Medullary pyramid, left", az: "Sol medulyar piramid" },
+    name: { en: "Medullary pyramid, left", az: "Uzunsov beynin sol piramidi" },
     accept: {
       en: ["left medullary pyramid", "left pyramid", "left pyramid of medulla"],
-      az: ["sol medulyar piramid", "sol piramid", "sol uzunsov beyin piramidi"],
+      az: ["uzunsov beynin sol piramidi", "sol uzunsov beyin piramidi", "sol medulyar piramid", "sol piramid"],
     },
     note: {
       en: "Corticospinal ridge on the left ventral medulla. Most fibres cross at its caudal end, which is why a pyramid lesion above the decussation weakens the opposite limbs.",
@@ -1013,14 +1013,14 @@ var BB_STRUCTURES = [
     id: "wm-pyramid-r",
     viewer: "white-matter",
     mesh: "14_Medullary_pyramid_R",
-    name: { en: "Medullary pyramid, right", az: "Sağ medulyar piramid" },
+    name: { en: "Medullary pyramid, right", az: "Uzunsov beynin sağ piramidi" },
     accept: {
       en: ["right medullary pyramid", "right pyramid", "right pyramid of medulla"],
-      az: ["sağ medulyar piramid", "sağ piramid", "sağ uzunsov beyin piramidi"],
+      az: ["uzunsov beynin sağ piramidi", "sağ uzunsov beyin piramidi", "sağ medulyar piramid", "sağ piramid"],
     },
     note: {
       en: "Right medullary pyramid of corticospinal fibres, continuous with the right cerebral peduncle above.",
-      az: "Yuxarıda sağ beyin ayaqcığı ilə davam edən, kortikospinal liflərdən sağ medulyar piramid.",
+      az: "Yuxarıda sağ beyin ayaqcığı ilə davam edən, kortikospinal liflərdən ibarət sağ piramid.",
     },
   },
   {
